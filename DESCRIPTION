@@ -1,0 +1,28 @@
+Package: expanding-peer-review
+Title: rOpenSci Expanding Software Peer Review
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "Mark",
+             family = "Padgham",
+             role = c("cre", "aut"),
+             email = "mark.padgham@email.com",
+             comment = c(ORCID = "0000-0003-2172-5265")),
+        person(given = "Noam",
+             family = "Ross",
+             role = "aut",
+             email = "ross@ecohealthalliance.org"))
+Description: Documentation of rOpenSci's project on expanding software peer review to include statistical software
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+Imports: 
+    bookdown,
+    webshot2,
+    curl,
+    glue,
+    magrittr,
+    details,
+    gluedown
+Remotes:
+    rstudio/webshot2

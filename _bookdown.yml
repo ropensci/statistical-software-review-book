@@ -1,0 +1,8 @@
+book_filename: "bookdown-start"
+chapter_name: "Chapter "
+repo: https://github.com/ropenscilabs/statistical-software
+output_dir: docs
+rmd_files: ["index.Rmd", "introduction.Rmd", "scope.Rmd"] 
+clean: [packages.bib, bookdown.bbl]
+new_session: yes
+before_chapter_script: "_common.R"

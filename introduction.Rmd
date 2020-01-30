@@ -1,0 +1,17 @@
+# Introduction {#intro}
+
+The rOpenSci project, "Expanding Software Peer Review" has the two-fold aim to:
+
+1. Expand the current scope of software reviewed by rOpenSci to include
+   statistical software; and
+2. Provide a documented framework to facilitate and enable the processes and
+   protocols developed during this project to be adapted and translated onto
+   other domains (other forms of software; other computer languages; and other
+   forms of "other").
+
+Most of the following sections and chapters of this document are accordingly
+divided into two sequential sections, the first of which documents and
+describes processes and protocols in general, and the second of which details
+the specific application of those processes and protocols to the domain of
+statistical software.
+
