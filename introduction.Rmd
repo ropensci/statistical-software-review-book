@@ -15,3 +15,18 @@ describes processes and protocols in general, and the second of which details
 the specific application of those processes and protocols to the domain of
 statistical software.
 
+This document is intended to function as much as possible as a guidebook which
+not only describes how we went about expanding our system of peer review into a
+new domain (reflecting the first of the above aims), but which may also be used
+as a set of guidelines on how such an expansion of scope may be reproduced in
+other domains (reflecting the second of the above aims). While our particular
+project built upon an already existing system for peer review, and aimed to
+expand that system into a new domain, the current guidelines are also intended
+as much as possible to be useful in attempts to construct entirely new systems
+of peer review. Thus, although the entire project, and this document, refer to
+"Expanding Peer Review," we equally aim here to provide guidelines for projects
+on "Constructing" or "Establishing" Peer Review. The document makes frequent
+reference to the concept of a "new domain," which is presumed throughout to
+refer to the domain into which a project is to expand.
+
+

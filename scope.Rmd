@@ -3,6 +3,141 @@
 
 # General Scope {#scope}
 
-The general scope is ...
+The first task in expanding a peer review system is to define the scope of
+expansion, primarily through enabling determination of what might lie either
+within or beyond scope. Defining scope is largely an exercise in
+categorization, requiring the definition of, and distinction between,
+categories which will be considered either within or beyond scope. This
+endeavour plays a critical role in subsequent development or expansion of a
+peer review system because,
+
+1. A categorical definition of scope is critical to determining which kinds of
+   software will be admitted;
+2. Different categories of software will be subject to different standards, and
+   mapping categories on to standards is crucially important for the development
+   of a software assessment system.
+
+
+## Scope Categories
+
+
+Defining such categories unavoidably entails considerable subjective
+judgement extending from personal domain knowledge, and is thus an exercise
+which is not readily generalized or transferred to new domains. We nevertheless
+attempt here to describe some general principles which may be used to adapt and
+adopt a pragmatic system for defining scope.
+
+Definition of scope is best approached as an empirical endeavour, through
+collating a database of extant software within the new domain. A new domain
+will ideally be at least partially represented in some form of centralised
+repository such as a journal or some other form of curated list which can be
+taken to represent the domain. The [Journal of Open Source
+Software (JOSS)](https://joss.theoj.org/) provides a general forum for peer reviewed
+software which is likely to be of general use for many domains. We now describe
+how we used this resource to define our own scope, but note that this is
+intended as illustrative only, and most of the processes described in the
+remainder of this section may be transferred to alternative empirical sources.
+
+The [JOSS](https://joss.theoj.org/) conducts its own peer review process, and
+publishes textual descriptions of accepted software. Each piece of software
+then has its own web page on the journal's site, on which the text is presented
+as a compiled `.pdf`-format document, along with links to the open review, as
+well as to the software repository. The published document must be included
+within the software repository in a file named `paper.md`, which enables
+automatic extraction and analysis of these text descriptions of software.
+Rather than attempt a comprehensive, and unavoidably subjective, categorization
+of software, these textual descriptions can be used to identify key words or
+phrases (hereafter, "keywords") which encapsulate the purpose, function, or
+other general descriptive elements of each piece of software. Each paper will
+generally yield multiple keywords. Extracting these from all papers judged to
+be potentially in scope allows for the construction of a network of topics, in
+which the nodes are the key words and phrases, and the connections between any
+pair of nodes reflect the number of times those two keywords co-occur across
+all papers.
+
+To illustrate the construction of a categorization defining our scope, we
+briefly present the results from our own efforts, derived from extracting all
+papers accepted and published by JOSS (217 at the time of writing in early
+2020). We manually determined which of these were broadly statistical, reducing
+the total to 92. We then read through the contents of each of these, and
+recorded as many keywords as possible for each paper. The resultant network is
+shown in the following interactive graphic, in which nodes are scaled by
+numbers of occurrences, and edges by numbers of co-occurrences.
+
+
+```{r message = FALSE, fig.cap = "Interactive network of relationships between keywords defining statistical software"}
+# caption does not work for htmlwidgets, in spite of https://github.com/rstudio/bookdown/issues/118
+x <- readLines ("stat-software-categories.md")
+x <- x [grep ("[0-9]*\\. \\[", x)]
+names <- vapply (x, function (i) {
+                     res <- strsplit (i, "\\[\\`") [[1]]
+                     strsplit (res, "\\`\\]") [[2]] [1] },
+                     character (1),
+                     USE.NAMES = FALSE)
+terms <- lapply (x, function (i) {
+                 res <- strsplit (i, ":\\s") [[1]] [2]
+                 res <- strsplit (res, ";\\s") [[1]] [1] # rm "; input"
+                 strsplit (res, ",\\s") [[1]]   })
+input <- lapply (x, function (i) {
+                     res <- strsplit (i, "input: ") [[1]] [2]
+                     res <- strsplit (res, ";\\s") [[1]] [1]
+                     if (grepl (",\\s", res))
+                         res <- strsplit (res, ",\\s") [[1]]
+                     return (res)   })
+output <- lapply (x, function (i) {
+                     res <- strsplit (i, "output: ") [[1]] [2]
+                     if (grepl (",\\s", res))
+                         res <- strsplit (res, ",\\s") [[1]]
+                     return (res)   })
+names (terms) <- names (input) <- names (output) <- names
+
+# Then convert to `visNetwork` nodes and edges tables:
+library (dplyr)
+library (igraph)
+nodes <- table (unlist (terms))
+nodes <- data.frame (id = names (nodes),
+                     label = names (nodes),
+                     value = as.integer (nodes),
+                     stringsAsFactors = FALSE)
+edges <- lapply (terms, function (i) {
+                     if (length (i) > 1) {
+                         res <- sort (i)
+                         n <- combn (seq_along (res), 2)
+                         cbind (res [n [1, ]],
+                                res [n [2, ]])
+                     }  })
+edges <- do.call (rbind, edges)
+edges <- data.frame (from = edges [, 1],
+                     to = edges [, 2],
+                     stringsAsFactors = FALSE) %>%
+    group_by (from, to) %>%
+    summarise (width = length (from))
+# Remove isolated edges:
+# annotation, areal weights, binomial distribution, cubature, gene loci,
+# generalized least squares, misspecification, classification, interpolation,
+# over-dispersion, integration, random effects, probit model
+cl <- graph_from_data_frame (edges) %>%
+    clusters ()
+out <- names (cl$membership [which (cl$membership != which.max (cl$csize))])
+nodes <- nodes [which (!nodes$id %in% out), ]
+edges <- edges [which (!(edges$from %in% out | edges$to %in% out)), ]
+
+library (visNetwork)
+visNetwork (nodes, edges)
+```
+
+Such a network visualization enables immediate identification of more and less
+central concepts including, in our case, several that we may not otherwise have
+conceived of as having been potentially in scope. We then used this network to
+define our set of key "in scope" concepts. This figure also reveals that many
+of these keywords are somewhat "lower level" than the kinds of concepts we
+might otherwise have used to define scoping categories. For example, keywords
+such as "likelihood" or "probability" are not likely to be useful in defining
+actual categories of statistical software, yet they turned out to lie at the
+centres of relatively well-defined groups of related keywords.
+
+
+
+# Specific Scope {#scope-specific}
 
 
