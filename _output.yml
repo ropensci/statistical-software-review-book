@@ -7,7 +7,7 @@ bookdown::gitbook:
     toc:
       collapse: subsection
       before: |
-          <li><a href="https://github.com/ropenscilabs/expanding-peer-review"><i class="fa fa-github"></i> Expanding Peer Review</a></li>
+          <li><a href="https://github.com/ropenscilabs/statistical-software-review"><i class="fa fa-github"></i> Statistical Software Review</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
 bookdown::pdf_book:

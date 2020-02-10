@@ -1,44 +1,46 @@
-#  (PART) Scope {-}
 
+# Scope {#scope}
 
-# General Scope {#scope}
-
-The first task in expanding a peer review system is to define the scope of
-expansion, primarily through enabling determination of what might lie either
-within or beyond scope. Defining scope is largely an exercise in
-categorization, requiring the definition of, and distinction between,
-categories which will be considered either within or beyond scope. This
-endeavour plays a critical role in subsequent development or expansion of a
-peer review system because,
+One of the primary tasks in extending the current peer review system to the new
+domain of statistical software is defining scope, particularly in terms of
+determining what might lie either within or beyond scope. Defining scope is
+largely an exercise in categorization, requiring the definition of, and
+distinction between, categories which will be considered either within or
+beyond scope. This endeavour plays a critical role in subsequent development or
+expansion of a peer review system because,
 
 1. A categorical definition of scope is critical to determining which kinds of
    software will be admitted;
 2. Different categories of software will be subject to different standards, and
-   mapping categories on to standards is crucially important for the development
-   of a software assessment system.
-
+   mapping categories on to standards is crucially important for the
+   development of a software assessment system.
 
 ## Scope Categories
 
 
-Defining such categories unavoidably entails considerable subjective
-judgement extending from personal domain knowledge, and is thus an exercise
-which is not readily generalized or transferred to new domains. We nevertheless
-attempt here to describe some general principles which may be used to adapt and
-adopt a pragmatic system for defining scope.
+Defining such categories unavoidably entails considerable subjective judgement
+extending from personal domain knowledge, and is thus an exercise which is not
+readily generalized or transferred to new domains. We nevertheless attempt here
+to describe some general principles which may be used to adapt and adopt
+a pragmatic system for defining scope.
 
 Definition of scope is best approached as an empirical endeavour, through
 collating a database of extant software within the new domain. A new domain
 will ideally be at least partially represented in some form of centralised
 repository such as a journal or some other form of curated list which can be
-taken to represent the domain. The [Journal of Open Source
-Software (JOSS)](https://joss.theoj.org/) provides a general forum for peer reviewed
+taken to represent the domain. The 
+<a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org">
+Journal of Open Source Software (JOSS)</a>
+provides a general forum for peer reviewed
 software which is likely to be of general use for many domains. We now describe
 how we used this resource to define our own scope, but note that this is
 intended as illustrative only, and most of the processes described in the
 remainder of this section may be transferred to alternative empirical sources.
 
-The [JOSS](https://joss.theoj.org/) conducts its own peer review process, and
+The
+<a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org">
+JOSS</a>
+conducts its own peer review process, and
 publishes textual descriptions of accepted software. Each piece of software
 then has its own web page on the journal's site, on which the text is presented
 as a compiled `.pdf`-format document, along with links to the open review, as
@@ -65,19 +67,17 @@ shown in the following interactive graphic, in which nodes are scaled by
 numbers of occurrences, and edges by numbers of co-occurrences.
 
 
-```{r message = FALSE, fig.cap = "Interactive network of relationships between keywords defining statistical software"}
-# caption does not work for htmlwidgets, in spite of https://github.com/rstudio/bookdown/issues/118
+```{r message = FALSE}
 x <- readLines ("stat-software-categories.md")
 x <- x [grep ("[0-9]*\\. \\[", x)]
 names <- vapply (x, function (i) {
                      res <- strsplit (i, "\\[\\`") [[1]]
                      strsplit (res, "\\`\\]") [[2]] [1] },
-                     character (1),
-                     USE.NAMES = FALSE)
+                     character (1), USE.NAMES = FALSE)
 terms <- lapply (x, function (i) {
-                 res <- strsplit (i, ":\\s") [[1]] [2]
-                 res <- strsplit (res, ";\\s") [[1]] [1] # rm "; input"
-                 strsplit (res, ",\\s") [[1]]   })
+                     res <- strsplit (i, ":\\s") [[1]] [2]
+                     res <- strsplit (res, ";\\s") [[1]] [1] # rm "; input"
+                     strsplit (res, ",\\s") [[1]]   })
 input <- lapply (x, function (i) {
                      res <- strsplit (i, "input: ") [[1]] [2]
                      res <- strsplit (res, ";\\s") [[1]] [1]
@@ -85,10 +85,10 @@ input <- lapply (x, function (i) {
                          res <- strsplit (res, ",\\s") [[1]]
                      return (res)   })
 output <- lapply (x, function (i) {
-                     res <- strsplit (i, "output: ") [[1]] [2]
-                     if (grepl (",\\s", res))
-                         res <- strsplit (res, ",\\s") [[1]]
-                     return (res)   })
+                      res <- strsplit (i, "output: ") [[1]] [2]
+                      if (grepl (",\\s", res))
+                          res <- strsplit (res, ",\\s") [[1]]
+                      return (res)   })
 names (terms) <- names (input) <- names (output) <- names
 
 # Then convert to `visNetwork` nodes and edges tables:
@@ -103,19 +103,17 @@ edges <- lapply (terms, function (i) {
                      if (length (i) > 1) {
                          res <- sort (i)
                          n <- combn (seq_along (res), 2)
-                         cbind (res [n [1, ]],
-                                res [n [2, ]])
-                     }  })
+                         cbind (res [n [1, ]], res [n [2, ]]) } 
+                     })
 edges <- do.call (rbind, edges)
 edges <- data.frame (from = edges [, 1],
                      to = edges [, 2],
                      stringsAsFactors = FALSE) %>%
     group_by (from, to) %>%
-    summarise (width = length (from))
-# Remove isolated edges:
-# annotation, areal weights, binomial distribution, cubature, gene loci,
-# generalized least squares, misspecification, classification, interpolation,
-# over-dispersion, integration, random effects, probit model
+    summarise (width = length (from)) # Remove isolated edges:
+      # annotation, areal weights, binomial distribution, cubature, gene loci,
+      # generalized least squares, misspecification, classification, interpolation,
+      # over-dispersion, integration, random effects, probit model
 cl <- graph_from_data_frame (edges) %>%
     clusters ()
 out <- names (cl$membership [which (cl$membership != which.max (cl$csize))])
@@ -138,6 +136,7 @@ centres of relatively well-defined groups of related keywords.
 
 
 
-# Specific Scope {#scope-specific}
+# Scope Categories {#scope-categories}
+
 
 

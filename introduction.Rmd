@@ -1,32 +1,12 @@
 # Introduction {#intro}
 
-The rOpenSci project, "Expanding Software Peer Review" has the two-fold aim to:
-
-1. Expand the current scope of software reviewed by rOpenSci to include
-   statistical software; and
-2. Provide a documented framework to facilitate and enable the processes and
-   protocols developed during this project to be adapted and translated onto
-   other domains (other forms of software; other computer languages; and other
-   forms of "other").
-
-Most of the following sections and chapters of this document are accordingly
-divided into two sequential sections, the first of which documents and
-describes processes and protocols in general, and the second of which details
-the specific application of those processes and protocols to the domain of
-statistical software.
-
-This document is intended to function as much as possible as a guidebook which
-not only describes how we went about expanding our system of peer review into a
-new domain (reflecting the first of the above aims), but which may also be used
-as a set of guidelines on how such an expansion of scope may be reproduced in
-other domains (reflecting the second of the above aims). While our particular
-project built upon an already existing system for peer review, and aimed to
-expand that system into a new domain, the current guidelines are also intended
-as much as possible to be useful in attempts to construct entirely new systems
-of peer review. Thus, although the entire project, and this document, refer to
-"Expanding Peer Review," we equally aim here to provide guidelines for projects
-on "Constructing" or "Establishing" Peer Review. The document makes frequent
-reference to the concept of a "new domain," which is presumed throughout to
-refer to the domain into which a project is to expand.
-
-
+This is a book-form documentation of the development and implementation of
+<a target="_blank" rel="noopener noreferrer" href="https://ropensci.org">
+rOpenSci</a>'s project to expand their 
+<a target="_blank" rel="noopener noreferrer" href="https://ropensci.org/packages">
+peer review system</a> to encompass statistical software---the original and
+still primary focus of the R language. This document is intended to function as
+much as possible as a guidebook which not only describes how we went about
+expanding our system of peer review into the new domain of statistical
+software, but which may also be used as a set of guidelines on how such an
+expansion of scope may be reproduced in other domains. 

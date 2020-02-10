@@ -1,5 +1,5 @@
 --- 
-title: "rOpenSci Expanding Software Peer Review"
+title: "rOpenSci Statistial Software Review"
 author: "Mark Padgham and Noam Ross"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -7,7 +7,7 @@ documentclass: book
 bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: ropenscilabs/expanding-peer-review
+github-repo: ropenscilabs/statistical-software-review
 url: 'https\://ropensci-blog-guidance.netlify.com/'
 ---
 
