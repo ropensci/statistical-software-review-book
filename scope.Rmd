@@ -34,32 +34,27 @@ We consider two main types of categories:
 
 ## Software categories {#software-categories}
 
-This project was conceived of, and is being conducted, by 
-<a target="_blank" rel="noopener noreferrer" href="https://ropensci.org">
-rOpenSci</a>, and so naturally is primarily intended to target the **R**
+This project was conceived of, and is being conducted, by
+[https://ropensci.org](rOpenSci), and so naturally is primarily intended to target the **R**
 language, and its well-defined system for structuring software "packages"
-(referred to as 
-<a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/doc/manuals/R-exts.html">
-"extensions"</a> in the original **R** terminology). Other forms of packaging
+(referred to as
+[https://cran.r-project.org/doc/manuals/R-exts.html]("extensions") in the original **R** terminology). Other forms of packaging
 **R** software may nevertheless be considered within scope, as may other
 languages. It is particularly important to note that many **R** packages
 distributed by the
-<a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org">
-Comprehensive R Archive Network (CRAN)</a> bundle code from a variety of other
+[https://cran.r-project.org](Comprehensive R Archive Network (CRAN)) bundle code from a variety of other
 languages. The following table summarises statistics for the top ten languages
 from all
 `r format (nrow (available.packages ()), big.mark = ",")` CRAN packages as of
 `r format(Sys.time(), "%a %b %d %Y")`.
 
 While the easiest decision regarding software scope would be to restrict review
-submissions to **R** packages only, as is currently practiced by 
-<a target="_blank" rel="noopener noreferrer" href="https://ropensci.org">
-rOpenSci</a>, there are compelling reasons to consider extension beyond this
+submissions to **R** packages only, as is currently practiced by
+[https://ropensci.org](rOpenSci), there are compelling reasons to consider extension beyond this
 scope. Foremost among potential extensions is the inclusion of python packages,
 which would both open up scope to the enormously larger community of python
-users, and also enable direct collaboration with the incipient 
-<a target="_blank" rel="noopener noreferrer" href="https://www.pyopensci.org">
-pyOpenSci</a> organisation. Two factors may be usefully noted in this regard:
+users, and also enable direct collaboration with the incipient
+[https://www.pyopensci.org](pyOpenSci) organisation. Two factors may be usefully noted in this regard:
 
 ```{r pypi-projects, echo = FALSE}
 u <- "https://pypi.org/"
@@ -83,27 +78,22 @@ pypi_cran_ratio <- floor (as.integer (gsub (",", "", pypi_n_projects)) /
    abstrat, while 32 **R** packages were presented, along with two
    meta-platforms for **R** packages. Presentations at the Symposium of Data
    Science and Statistics (SDSS) for 2018-19 similarly including numerous
-   presentations of **R** packages, along with presentation of 
-   <a target="_blank" rel="noopener noreferrer" href="https://altair-viz.github.io">
-   three</a> 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/ajboyd2/salmon">
-   python</a> 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/dlsun/symbulate">
-   packages</a>. It may accordingly be expected that potential expansion to
+   presentations of **R** packages, along with presentation of
+   [https://altair-viz.github.io](   three)
+   [https://github.com/ajboyd2/salmon](   python)
+   [https://github.com/dlsun/symbulate](   packages). It may accordingly be expected that potential expansion to
    include python packages will demand relatively very little time or effort
    compared with that devoted to **R** packages as the primary software scope.
 2. In spite of the above, the community of python users is enormously greater,
-   reflected in the currently `r pypi_n_projects` packages compared with 
+   reflected in the currently `r pypi_n_projects` packages compared with
    `r cran_n_projects` packages on CRAN, or over `r pypi_cran_ratio` times as
-   many python packages. Similarly, 41.7% of all respondents to the 
-   <a target="_blank" rel="noopener noreferrer" href="https://insights.stackoverflow.com/survey/2019">
-   2019 stackoverflow developer survey</a> nominated python as their most
+   many python packages. Similarly, 41.7% of all respondents to the
+   [https://insights.stackoverflow.com/survey/2019](   2019 stackoverflow developer survey) nominated python as their most
    popular language, compared with only 5.8% who nominated **R**.
 
 The relative importance of python is powerfully reflected in temporal trends
-from the 
-<a target="_blank" rel="noopener noreferrer" href="https://insights.stackoverflow.com/survey/2019">
-stackoverflow developer survey</a> from the previous three years, with results
+from the
+[https://insights.stackoverflow.com/survey/2019](stackoverflow developer survey) from the previous three years, with results
 shown in the following graphic.
 
 ```{r py_v_r, echo = FALSE, message = FALSE}
@@ -143,27 +133,20 @@ have equivalent statistics for **R**.
 
 Both languages nevertheless have relative well-defined standards for software
 packaging, python via the
-<a target="_blank" rel="noopener noreferrer" href="https://packaging.python.org/tutorials/packaging-projects">
-Python Package Index (pypi)</a>, and **R** via
-<a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org">
-CRAN</a>. In contrast to CRAN, which runs its own checks on all packages on
-a daily basis, there are no automatic checks for 
-<a target="_blank" rel="noopener noreferrer" href="https://packaging.python.org/tutorials/packaging-projects">
-pypi</a> packages, and almost any form of package that minimally conforms to
+[https://packaging.python.org/tutorials/packaging-projects](Python Package Index (pypi)), and **R** via
+[https://cran.r-project.org](CRAN). In contrast to CRAN, which runs its own checks on all packages on
+a daily basis, there are no automatic checks for
+[https://packaging.python.org/tutorials/packaging-projects](pypi) packages, and almost any form of package that minimally conforms to
 the standards may be submitted. This much lower effective barrier to entry
-likely partially contributes to the far greater numbers of 
-<a target="_blank" rel="noopener noreferrer" href="https://packaging.python.org/tutorials/packaging-projects">
-pypi</a> than 
-<a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org">
-CRAN</a> packages.
+likely partially contributes to the far greater numbers of
+[https://packaging.python.org/tutorials/packaging-projects](pypi) than
+[https://cran.r-project.org](CRAN) packages.
 
 Within **R**, it may be conceivable to consider forms of packaging or bundling
 code other than
-<a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org">
-CRAN</a>-standard packages. Of particular note here are attempts to develop
+[https://cran.r-project.org](CRAN)-standard packages. Of particular note here are attempts to develop
 a python-like system of
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/klmr/modules">
-modules for **R**</a>.
+[https://github.com/klmr/modules](modules for **R**).
 
 
 
@@ -173,14 +156,12 @@ modules for **R**</a>.
 The major exercise in categorisation which this project must be addressed is to
 categorise software into different *statistical* categories. The construction
 of statistical categories is best approached as an empirical endeavour, for
-which we initially used the 
-<a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org">
-Journal of Open Source Software (JOSS)</a>, which provides a general forum for
+which we initially used the
+[https://joss.theoj.org](Journal of Open Source Software (JOSS)), which provides a general forum for
 peer reviewed software which is likely to be of general use for many domains.
 
 The
-<a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org">
-JOSS</a>
+[https://joss.theoj.org](JOSS)
 conducts its own peer review process, and publishes textual descriptions of
 accepted software. Each piece of software then has its own web page on the
 journal's site, on which the text is presented as a compiled `.pdf`-format
@@ -241,7 +222,7 @@ edges <- lapply (terms, function (i) {
                      if (length (i) > 1) {
                          res <- sort (i)
                          n <- combn (seq_along (res), 2)
-                         cbind (res [n [1, ]], res [n [2, ]]) } 
+                         cbind (res [n [1, ]], res [n [2, ]]) }
                      })
 edges <- do.call (rbind, edges)
 edges <- data.frame (from = edges [, 1],
@@ -284,9 +265,8 @@ software and conference presentations from the following sources:
 4. All CRAN Task Views, and perusal of R packages mentioned therein.
 
 Several descriptions and graphical representations of these raw data are
-included in an auxiliary 
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/ropenscilabs/statistical-software">
-github repository</a>
+included in an auxiliary
+[https://github.com/ropenscilabs/statistical-software](github repository)
 containing a number of descriptions, code scripts, and analyses used to guide
 the construction of the following categories. Based on the preceding input
 data, we identified the following primary categories of statistical software,
@@ -300,7 +280,7 @@ These categories ought not be considered in any way mutually exclusive, and it
 is very likely that any individual piece of software will be described by
 multiple categories. Decisions of whether a particular piece of software is
 described by any particular category will also generally involve some degree of
-ambiguity. 
+ambiguity.
 
 The following categorical descriptions are based primarily on examples which
 serve to illustrates the kinds of ambiguities and difficulties likely to arise
@@ -322,9 +302,8 @@ on the unique abilities of the software.
 ### Methods and Algorithms
 
 This main category encompasses all software which implements statistical
-methods and algorithms. See the 
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/ropenscilabs/statistical-software/blob/master/categories.md">
-"Raw Data"</a>
+methods and algorithms. See the
+[https://github.com/ropenscilabs/statistical-software/blob/master/categories.md]("Raw Data")
 section in the auxiliary repository for
 details of the myriad of potential sub-categories of statistical methods and
 algorithms. There are a number of sub-categories which some may consider
@@ -335,22 +314,15 @@ include:
 
 1. Network software, either for representing, processing, visualising, or
    analysing networks. Ambiguous examples of such include
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/nvihrs14/tcherry">
-   `tcherry`</a> (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01480">
-   JOSS paper</a>);
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/jakobbossek/grapherator">
-   `grapherator`</a> (with accompanying
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.00528">
-   JOSS paper</a>) which is effectively a distribution generator for data
+   [https://github.com/nvihrs14/tcherry](   `tcherry`) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.01480](   JOSS paper));
+   [https://github.com/jakobbossek/grapherator](   `grapherator`) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.00528](   JOSS paper)) which is effectively a distribution generator for data
    represented in a particular format; and three JSM presentations, one on
-   <a target="_blank" rel="noopener noreferrer" href="https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=327171">
-   network-based clustering of high-dimensional data</a>,
+   [https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=327171](   network-based clustering of high-dimensional data),
    one on
-   <a target="_blank" rel="noopener noreferrer" href="https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764">
-   community structure in dynamic networks</a> and one on 
-   <a target="_blank" rel="noopener noreferrer" href="https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764">
-   Gaussian graphical models</a>.
+   [https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764](   community structure in dynamic networks) and one on
+   [https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764](   Gaussian graphical models).
 2. Software for analysing categorical or qualitative data, which can not be
    unambiguously distinguished because many methods for dimensionality
    reduction, and particularly clustering methods, effectively transform data
@@ -359,9 +331,8 @@ include:
    non-spatial statistics, yet merely differ by being bound two two orthogonal
    dimensions (arbitrary numbers of additional dimensions notwithstanding).
 
-We have also prepared an interactive 
-<a target="_blank" rel="noopener noreferrer" href="https://ropenscilabs.github.io/statistical-software/abstracts/network-terms">
-network diagram</a>
+We have also prepared an interactive
+[https://ropenscilabs.github.io/statistical-software/abstracts/network-terms](network diagram)
 with nodes representing statistical terms scaled by approximate frequencies of
 occurrence within JOSS papers, and edges between each pair of nodes scaled
 according to numbers of JOSS papers which encompass those two terms or
@@ -401,9 +372,8 @@ specify:
 - [ ] **Output Data:** Does the software provide output in forms previously
   unavailable by reference implementations?
 - [ ] **Reference Standards:** Are there any reference standards, such as the
-  US National Institute of Standards and Technology's 
-  <a target="_blank" rel="noopener noreferrer" href="https://www.itl.nist.gov/div898/strd">
-  collection of reference data sets</a>
+  US National Institute of Standards and Technology's
+  [https://www.itl.nist.gov/div898/strd](  collection of reference data sets)
   against which the software may be compared? If so, which?
 
 Note that software which is described by any of the following categories may
@@ -440,8 +410,7 @@ a specific method or algorithm, although it may also be more general and offer
 several of the above "workflow" aspects, and so ambiguity may often arise
 between these two categories. We note in particular that the "workflow" node in
 the
-<a target="_blank" rel="noopener noreferrer" href="https://ropenscilabs.github.io/statistical-software/abstracts/network-terms">
-interactive network diagram</a>
+[https://ropenscilabs.github.io/statistical-software/abstracts/network-terms](interactive network diagram)
 mentioned above is very strongly connected to the "machine learning" node,
 generally reflecting software which attempts to unify varied interfaces to
 varied platforms for machine learning.
@@ -449,34 +418,26 @@ varied platforms for machine learning.
 Among the numerous examples of software in this category are:
 
 1. The
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/mlr-org/mlr3">
-   `mlr3` package</a> (with accompanying
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01903">
-   JOSS paper</a>), which provides, "A modern object-oriented machine learning
+   [https://github.com/mlr-org/mlr3](   `mlr3` package) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.01903](   JOSS paper)), which provides, "A modern object-oriented machine learning
    framework in R."
-2. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/USCbiostats/fmcmc">
-   `fmcmc` package</a>
-   (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01427">
-   JOSS paper</a>), which provides a unified framework and workflow for
+2. The
+   [https://github.com/USCbiostats/fmcmc](   `fmcmc` package)
+   (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.01427](   JOSS paper)), which provides a unified framework and workflow for
    Markov-Chain Monte Carlo analyses.
-3. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/easystats/bayestestR">
-   `bayestestR` package</a> (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01541">
-   JOSS paper</a>)
+3. The
+   [https://github.com/easystats/bayestestR](   `bayestestR` package) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.01541](   JOSS paper))
    for "describing effects and their uncertainty, existence and significance
    within the Bayesian framework. While this packages includes its own
    algorithmic implementations, it is primarily intended to aid general
    Bayesian workflows through a unified interface.
 
 Workflows are also commonly required and developed for specific areas of
-application, as exemplified by the 
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/nfrerebeau/tabula">
-`tabular` package</a> (with accompanying
-<a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01821">
-JOSS article</a> for "Analysis, Seriation, and visualisation of Archaeological
+application, as exemplified by the
+[https://github.com/nfrerebeau/tabula](`tabular` package) (with accompanying
+[https://joss.theoj.org/papers/10.21105/joss.01821](JOSS article) for "Analysis, Seriation, and visualisation of Archaeological
 Count Data".
 
 Relevant standards for workflow software may be guided by consideration of
@@ -504,46 +465,35 @@ Many packages aim to simplify and facilitate the reporting of complex
 statistical results. Such reporting commonly involves visualisation, and there
 is direct overlap between this and the Visualisation category. Examples of this
 category include one package rejected by rOpenSci as out-of-scope,
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/ddsjoberg/gtsummary">
-`gtsummary`</a>, which provides, "Presentation-ready data summary and analytic
+[https://github.com/ddsjoberg/gtsummary](`gtsummary`), which provides, "Presentation-ready data summary and analytic
 result tables." Other examples include:
 
-1. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/daya6489/SmartEDA">
-   `smartEDA` package</a> (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01509">
-   JOSS paper</a>) "for automated exploratory data analysis". The package,
+1. The
+   [https://github.com/daya6489/SmartEDA](   `smartEDA` package) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.01509](   JOSS paper)) "for automated exploratory data analysis". The package,
    "automatically selects the variables and performs the related descriptive
    statistics. Moreover, it also analyzes the information value, the weight of
    evidence, custom tables, summary statistics, and performs graphical
    techniques for both numeric and categorical variables." This package is
    potentially as much a workflow package as it is a statistical reporting
    package, and illustrates the ambiguity between these two categories.
-2. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/ShanaScogin/modeLLtest">
-   `modeLLtest` package</a> (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01542">
-   JOSS paper</a>) is "An R Package for Unbiased Model Comparison using Cross
+2. The
+   [https://github.com/ShanaScogin/modeLLtest](   `modeLLtest` package) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.01542](   JOSS paper)) is "An R Package for Unbiased Model Comparison using Cross
    Validation." Its main functionality allows different statistical models to
    be compared, likely implying that this represents a kind of meta package.
-3. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/easystats/insight">
-   `insight` package</a> (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01412">
-   JOSS paper</a> provides "a unified interface to access information from
+3. The
+   [https://github.com/easystats/insight](   `insight` package) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.01412](   JOSS paper) provides "a unified interface to access information from
    model objects in R," with a strong focus on unified and consistent reporting
    of statistical results.
-4. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/arviz-devs/arviz">
-   `arviz` software for python</a> (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01143">
-   JOSS paper</a> provides "a unified library for exploratory analysis of
+4. The
+   [https://github.com/arviz-devs/arviz](   `arviz` software for python) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.01143](   JOSS paper) provides "a unified library for exploratory analysis of
    Bayesian models in Python."
-5. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/sumbose/iRF">
-   `iRF` package</a> (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01077">
-   JOSS paper</a> enables "extracting interactions from random forests", yet
+5. The
+   [https://github.com/sumbose/iRF](   `iRF` package) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.01077](   JOSS paper) enables "extracting interactions from random forests", yet
    also focusses primarily on enabling interpretation of random forests through
    reporting on interaction terms.
 
@@ -572,23 +522,19 @@ unique to statistical reporting software might include the following:
 ### Education
 
 Software for the purposes of education may be considered in scope. A prominent
-example of this category is the 
-<a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/web/packages/LearnBayes/index.html">
-`LearnBayes` package</a>, which provides functions for learning Bayesian
+example of this category is the
+[https://cran.r-project.org/web/packages/LearnBayes/index.html](`LearnBayes` package), which provides functions for learning Bayesian
 inference, and includes many of its own implementations. This category may be
 of particular interest or relevance because of a potentially direct connection
-with the 
-<a target="_blank" rel="noopener noreferrer" href="https://jose.theoj.org">
-Journal of Open Source Education</a>, which has a peer review system (almost)
-identical to the 
-<a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org">
-JOSS</a>. Educational statistical software reviewed by rOpenSci could thus
+with the
+[https://jose.theoj.org](Journal of Open Source Education), which has a peer review system (almost)
+identical to the
+[https://joss.theoj.org](JOSS). Educational statistical software reviewed by rOpenSci could thus
 potentially be fast-tracked through JOSE reviews just as current
 (non-statistical) submissions have the opportunity to be fast-tracked through
 the JOSS review process. Many examples of educational statistical software are
-listed on the 
-<a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/web/views/TeachingStatistics.html">
-CRAN Task View: Teaching Statistics</a>. This page also clearly indicates the
+listed on the
+[https://cran.r-project.org/web/views/TeachingStatistics.html](CRAN Task View: Teaching Statistics). This page also clearly indicates the
 likely strong overlap between education and visualisation software. With
 specific regard to the educational components of software, the follow checklist
 items may be relevant.
@@ -609,39 +555,28 @@ items may be relevant.
 
 While many may consider software primarily aimed at visualisation to be out of
 scope, there are nevertheless cases which may indeed be within scope, notably
-including the 
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/sinhrks/ggfortify">
-`ggfortify` package</a> which allows results of statistical tests to be
+including the
+[https://github.com/sinhrks/ggfortify](`ggfortify` package) which allows results of statistical tests to be
 "automatically" visualised using the
-<a target="_blank" rel="noopener noreferrer" href="https://ggplot2.tidyverse.org">
-`ggplot2` package</a>. The list of "fortified" functions on the packages 
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/sinhrks/ggfortify">
-webpage</a> clearly indicates the very predominantly statistical scope of this
+[https://ggplot2.tidyverse.org](`ggplot2` package). The list of "fortified" functions on the packages
+[https://github.com/sinhrks/ggfortify](webpage) clearly indicates the very predominantly statistical scope of this
 software which is in effect a package for statistical reporting, yet in visual
 rather than tabular form. Other examples of visualisation software include:
 
 1. The
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/ModelOriented/modelStudio">
-   `modelStudio` package</a> (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01798">
-   JOSS paper</a>), which is also very much a workflow package.
-3. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/PsyChiLin/EFAshiny">
-   `shinyEFA` package</a> (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.00567">
-   JOSS paper</a>) which provides a, "User-Friendly Shiny Application for
+   [https://github.com/ModelOriented/modelStudio](   `modelStudio` package) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.01798](   JOSS paper)), which is also very much a workflow package.
+3. The
+   [https://github.com/PsyChiLin/EFAshiny](   `shinyEFA` package) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.00567](   JOSS paper)) which provides a, "User-Friendly Shiny Application for
    Exploratory Factor Analysis."
-3. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/terrytangyuan/autoplotly">
-   `autoplotly` package</a> (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.00657">
-   JOSS paper</a>) which provides, "Automatic Generation of Interactive
+3. The
+   [https://github.com/terrytangyuan/autoplotly](   `autoplotly` package) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.00657](   JOSS paper)) which provides, "Automatic Generation of Interactive
    Visualisations for Statistical Results", primarily by porting the output of
    the authors' above-mentioned
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/sinhrks/ggfortify">
-   `ggfortify` package</a> to 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/plotly/plotly.js">
-   `plotly.js`</a>.
+   [https://github.com/sinhrks/ggfortify](   `ggfortify` package) to
+   [https://github.com/plotly/plotly.js](   `plotly.js`).
 
 Many software packages also include functions to visualise output, and this
 category can likely not be considered out of scope in any absolute sense
@@ -682,22 +617,17 @@ access to some external interface, such as a web server. Examples of potential
 wrapper packages include the following:
 
 
-1. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/greta-dev/greta">
-   `greta` package</a>
+1. The
+   [https://github.com/greta-dev/greta](   `greta` package)
    (with accompanying
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01601">
-   JOSS article</a>) "for writing statistical models and fitting them by MCMC
-   and optimisation" provides a wrapper around google's 
-   <a target="_blank" rel="noopener noreferrer" href="https://www.tensorflow.org">
-   `TensorFlow` library</a>. It is also clearly a workflow package, aiming to
+   [https://joss.theoj.org/papers/10.21105/joss.01601](   JOSS article)) "for writing statistical models and fitting them by MCMC
+   and optimisation" provides a wrapper around google's
+   [https://www.tensorflow.org](   `TensorFlow` library). It is also clearly a workflow package, aiming to
    provide a single, unified workflow for generic machine learning processes
    and analyses.
-2. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/keblu/nse">
-   `nse` package</a> (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.00172">
-   JOSS paper</a>) which offers "multiple ways to calculate numerical standard
+2. The
+   [https://github.com/keblu/nse](   `nse` package) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.00172](   JOSS paper)) which offers "multiple ways to calculate numerical standard
    errors (NSE) of univariate (or multivariate in some cases) time series,"
    through providing a unified interface to several other R packages to provide
    more than 30 NSE estimators. This is an example of a wrapper package which
@@ -731,32 +661,24 @@ software which offers some degree of abstraction in terms of either input or
 output data, or both. Examples include,
 
 
-1. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/spatial-ews/spatialwarnings">
-   `spatialwarnings` package</a> which provides "early-warning signal of
+1. The
+   [https://github.com/spatial-ews/spatialwarnings](   `spatialwarnings` package) which provides "early-warning signal of
    ecosystem degradation," where these signals and associated indices are
    highly domain-specific.
-1. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/robwschlegel/heatwaveR">
-   `heatsaveR` package</a> which calculates and displays marine heatwaves using
+1. The
+   [https://github.com/robwschlegel/heatwaveR](   `heatsaveR` package) which calculates and displays marine heatwaves using
    specific indices established in previously-published literature.
-1. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/pdwaggoner/hhi">
-   `hhi` package</a> which calculates and visualizes "Herfindahl-Hirschman Index
+1. The
+   [https://github.com/pdwaggoner/hhi](   `hhi` package) which calculates and visualizes "Herfindahl-Hirschman Index
    Scores," which are measures of numeric concentration.
-1. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/OttaviaE/DscoreApp">
-   `DscoreApp` package</a> which provides an index (the "D-Score") to quantify
-   the results of 
-   <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Implicit-association_test">
-   Implicit Association Tests</a>.
-1. The 
-   <a target="_blank" rel="noopener noreferrer" href="https://github.com/paul-buerkner/thurstonianIRT">
-   `thurstonianIRT` package</a> (with accompanying 
-   <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org/papers/10.21105/joss.01662">
-   JOSS paper</a>) for score forced-choice questionnaires using 
-   <a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/Item_response_theory">
-   "Item Response Theory"</a>.
+1. The
+   [https://github.com/OttaviaE/DscoreApp](   `DscoreApp` package) which provides an index (the "D-Score") to quantify
+   the results of
+   [https://en.wikipedia.org/wiki/Implicit-association_test](   Implicit Association Tests).
+1. The
+   [https://github.com/paul-buerkner/thurstonianIRT](   `thurstonianIRT` package) (with accompanying
+   [https://joss.theoj.org/papers/10.21105/joss.01662](   JOSS paper)) for score forced-choice questionnaires using
+   [https://en.wikipedia.org/wiki/Item_response_theory](   "Item Response Theory").
 
 The following checklist items may be relevant in considering software developed
 to calculate particular indices or scores.
