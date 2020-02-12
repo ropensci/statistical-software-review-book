@@ -1,3 +1,12 @@
+#  (PART) Scope and Standards {-}
+
+```{r startup, echo = FALSE, message = FALSE}
+library (dplyr)
+library (ggplot2)
+library (rvest)
+theme_set (theme_minimal ())
+```
+
 
 # Scope {#scope}
 
@@ -15,53 +24,185 @@ expansion of a peer review system because,
    mapping categories on to standards is crucially important for the
    development of a software assessment system.
 
-Defining such categories unavoidably entails considerable subjective judgement
-extending from personal domain knowledge, and is thus an exercise which is not
-readily generalized or transferred to new domains. We nevertheless attempt here
-to describe some general principles which may be used to adapt and adopt
-a pragmatic system for defining scope.
+We consider two main types of categories:
 
-Definition of scope is best approached as an empirical endeavour, through
-collating a database of extant software within the new domain. A new domain
-will ideally be at least partially represented in some form of centralised
-repository such as a journal or some other form of curated list which can be
-taken to represent the domain. The 
+1. Categories defining types of software, referred to as "software
+   categories", and determined by computer languages, and forms for packaging
+   software in those languages; and
+2. Categories defining different types of statistical software, referred to as
+   "statistical categories".
+
+## Software categories {#software-categories}
+
+This project was conceived of, and is being conducted, by 
+<a target="_blank" rel="noopener noreferrer" href="https://ropensci.org">
+rOpenSci</a>, and so naturally is primarily intended to target the **R**
+language, and its well-defined system for structuring software "packages"
+(referred to as 
+<a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org/doc/manuals/R-exts.html">
+"extensions"</a> in the original **R** terminology). Other forms of packaging
+**R** software may nevertheless be considered within scope, as may other
+languages. It is particularly important to note that many **R** packages
+distributed by the
+<a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org">
+Comprehensive R Archive Network (CRAN)</a> bundle code from a variety of other
+languages. The following table summarises statistics for the top ten languages
+from all
+`r format (nrow (available.packages ()), big.mark = ",")` CRAN packages as of
+`r format(Sys.time(), "%a %b %d %Y")`.
+
+While the easiest decision regarding software scope would be to restrict review
+submissions to **R** packages only, as is currently practiced by 
+<a target="_blank" rel="noopener noreferrer" href="https://ropensci.org">
+rOpenSci</a>, there are compelling reasons to consider extension beyond this
+scope. Foremost among potential extensions is the inclusion of python packages,
+which would both open up scope to the enormously larger community of python
+users, and also enable direct collaboration with the incipient 
+<a target="_blank" rel="noopener noreferrer" href="https://www.pyopensci.org">
+pyOpenSci</a> organisation. Two factors may be usefully noted in this regard:
+
+```{r pypi-projects, echo = FALSE}
+u <- "https://pypi.org/"
+x <- read_html (u) %>%
+    #html_nodes ("div.statistics-bar") %>%
+    html_nodes ("p.statistics-bar__statistic") %>%
+    html_text ()
+pypi_n_projects <- x [grep ("projects", x)] %>%
+    gsub ("projects|[[:space:]]", "", .)
+
+cran_n_projects <- format (nrow (available.packages ()), big.mark = ",")
+
+pypi_cran_ratio <- floor (as.integer (gsub (",", "", pypi_n_projects)) /
+    as.integer (gsub (",", "", cran_n_projects)))
+```
+
+1. The potential number of python packages for statistical analyses is likely
+   to be relatively more restricted than relative numbers of **R** packages.
+   Taking as indicative presentations at the previous three Joint Statistical
+   Meetings (JSMs; 2018-2020), no python packages were referred to in any
+   abstrat, while 32 **R** packages were presented, along with two
+   meta-platforms for **R** packages. Presentations at the Symposium of Data
+   Science and Statistics (SDSS) for 2018-19 similarly including numerous
+   presentations of **R** packages, along with presentation of 
+   <a target="_blank" rel="noopener noreferrer" href="https://altair-viz.github.io">
+   three</a> 
+   <a target="_blank" rel="noopener noreferrer" href="https://github.com/ajboyd2/salmon">
+   python</a> 
+   <a target="_blank" rel="noopener noreferrer" href="https://github.com/dlsun/symbulate">
+   packages</a>. It may accordingly be expected that potential expansion to
+   include python packages will demand relatively very little time or effort
+   compared with that devoted to **R** packages as the primary software scope.
+2. In spite of the above, the community of python users is enormously greater,
+   reflected in the currently `r pypi_n_projects` packages compared with 
+   `r cran_n_projects` packages on CRAN, or over `r pypi_cran_ratio` times as
+   many python packages. Similarly, 41.7% of all respondents to the 
+   <a target="_blank" rel="noopener noreferrer" href="https://insights.stackoverflow.com/survey/2019">
+   2019 stackoverflow developer survey</a> nominated python as their most
+   popular language, compared with only 5.8% who nominated **R**.
+
+The relative importance of python is powerfully reflected in temporal trends
+from the 
+<a target="_blank" rel="noopener noreferrer" href="https://insights.stackoverflow.com/survey/2019">
+stackoverflow developer survey</a> from the previous three years, with results
+shown in the following graphic.
+
+```{r py_v_r, echo = FALSE, message = FALSE}
+theme_set (theme_minimal ())
+year <- 2017:2019
+python_used <- c (31.7, 38.8, 41.7)
+r_used <- c (4.4, 6.1, 5.8)
+python_loved <- c (62.7, 68.0, 73.1)
+r_loved <- c (49.9, 49.4, 51.7)
+
+dat <- rbind (tibble (year = year,
+                      proportion = python_used,
+                      language = "python-used",
+                      context = "used"),
+              tibble (year = year,
+                      proportion = r_used,
+                      language = "R-used",
+                      context = "used"),
+              tibble (year = year,
+                      proportion = python_loved,
+                      language = "python-loved",
+                      context = "loved"),
+              tibble (year = year,
+                      proportion = r_loved,
+                      language = "R-loved",
+                      context = "loved"))
+
+ggplot (dat, aes (x = year, y = proportion, color = language)) +
+    geom_line () +
+    geom_point () +
+    scale_x_continuous (breaks = year)
+```
+
+Python is not only more used and more loved than **R**, but both statistics for
+python have consistently grown at a faster rate over the past three years as
+have equivalent statistics for **R**.
+
+Both languages nevertheless have relative well-defined standards for software
+packaging, python via the
+<a target="_blank" rel="noopener noreferrer" href="https://packaging.python.org/tutorials/packaging-projects">
+Python Package Index (pypi)</a>, and **R** via
+<a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org">
+CRAN</a>. In contrast to CRAN, which runs its own checks on all packages on
+a daily basis, there are no automatic checks for 
+<a target="_blank" rel="noopener noreferrer" href="https://packaging.python.org/tutorials/packaging-projects">
+pypi</a> packages, and almost any form of package that minimally conforms to
+the standards may be submitted. This much lower effective barrier to entry
+likely partially contributes to the far greater numbers of 
+<a target="_blank" rel="noopener noreferrer" href="https://packaging.python.org/tutorials/packaging-projects">
+pypi</a> than 
+<a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org">
+CRAN</a> packages.
+
+Within **R**, it may be conceivable to consider forms of packaging or bundling
+code other than
+<a target="_blank" rel="noopener noreferrer" href="https://cran.r-project.org">
+CRAN</a>-standard packages. Of particular note here are attempts to develop
+a python-like system of
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/klmr/modules">
+modules for **R**</a>.
+
+
+
+
+## Statistical Categories {#statistical-categories}
+
+The major exercise in categorisation which this project must be addressed is to
+categorise software into different *statistical* categories. The construction
+of statistical categories is best approached as an empirical endeavour, for
+which we initially used the 
 <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org">
-Journal of Open Source Software (JOSS)</a>
-provides a general forum for peer reviewed
-software which is likely to be of general use for many domains. We now describe
-how we used this resource to define our own scope, but note that this is
-intended as illustrative only, and most of the processes described in the
-remainder of this section may be transferred to alternative empirical sources.
+Journal of Open Source Software (JOSS)</a>, which provides a general forum for
+peer reviewed software which is likely to be of general use for many domains.
 
 The
 <a target="_blank" rel="noopener noreferrer" href="https://joss.theoj.org">
 JOSS</a>
-conducts its own peer review process, and
-publishes textual descriptions of accepted software. Each piece of software
-then has its own web page on the journal's site, on which the text is presented
-as a compiled `.pdf`-format document, along with links to the open review, as
-well as to the software repository. The published document must be included
-within the software repository in a file named `paper.md`, which enables
-automatic extraction and analysis of these text descriptions of software.
-Rather than attempt a comprehensive, and unavoidably subjective, categorization
-of software, these textual descriptions can be used to identify key words or
-phrases (hereafter, "keywords") which encapsulate the purpose, function, or
-other general descriptive elements of each piece of software. Each paper will
-generally yield multiple keywords. Extracting these from all papers judged to
-be potentially in scope allows for the construction of a network of topics, in
-which the nodes are the key words and phrases, and the connections between any
-pair of nodes reflect the number of times those two keywords co-occur across
-all papers.
+conducts its own peer review process, and publishes textual descriptions of
+accepted software. Each piece of software then has its own web page on the
+journal's site, on which the text is presented as a compiled `.pdf`-format
+document, along with links to the open review, as well as to the software
+repository. The published document must be included within the software
+repository in a file named `paper.md`, which enables automatic extraction and
+analysis of these text descriptions of software. Rather than attempt
+a comprehensive, and unavoidably subjective, categorization of software, these
+textual descriptions were used to identify key words or phrases (hereafter,
+"keywords") which encapsulated the purpose, function, or other general
+descriptive elements of each piece of software. Each paper generally yielded
+multiple keywords. Extracting these from all papers judged to be potentially in
+scope allowed for the construction of a network of topics, in which the nodes
+were the key words and phrases, and the connections between any pair of nodes
+reflected the number of times those two keywords co-occured across all papers.
 
-To illustrate the construction of a categorization defining our scope, we
-briefly present the results from our own efforts, derived from extracting all
-papers accepted and published by JOSS (217 at the time of writing in early
-2020). We manually determined which of these were broadly statistical, reducing
-the total to 92. We then read through the contents of each of these, and
-recorded as many keywords as possible for each paper. The resultant network is
-shown in the following interactive graphic, in which nodes are scaled by
-numbers of occurrences, and edges by numbers of co-occurrences.
+We extracted all papers accepted and published by JOSS (217 at the time of
+writing in early 2020), and manually determined which of these were broadly
+statistical, reducing the total to 92. We then read through the contents of
+each of these, and recorded as many keywords as possible for each paper. The
+resultant network is shown in the following interactive graphic, in which nodes
+are scaled by numbers of occurrences, and edges by numbers of co-occurrences.
 
 
 ```{r message = FALSE}
@@ -131,26 +272,8 @@ such as "likelihood" or "probability" are not likely to be useful in defining
 actual categories of statistical software, yet they turned out to lie at the
 centres of relatively well-defined groups of related keywords.
 
-
-
-# Software Categories {#software-categories}
-
-
-## Primary Categories
-
-We have identified the following primary categories of statistical software,
-the current intention of which is twofold:
-
-1. To guide decisions of which categories (or sub-components) may or may not be
-   in scope; and
-2. To relate these categories to corresponding standards.
-
-These categories ought not be considered in any way mutually exclusive, and it
-is very likely that any individual piece of software will be described by
-multiple categories. Decisions of whether a particular piece of software is
-described by any particular category will also generally involve some degree of
-ambiguity. These categories have been identified through empirical analyses of
-both software and conference presentations from the following sources:
+In addition to these data from JOSS, we conducted empirical analyses of both
+software and conference presentations from the following sources:
 
 1. All software packages published as articles in both the Journal of
    Statistical Software and the Journal of Open Source Software.
@@ -165,11 +288,24 @@ included in an auxiliary
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/ropenscilabs/statistical-software">
 github repository</a>
 containing a number of descriptions, code scripts, and analyses used to guide
-the construction of these categories. The following categorical descriptions
-are based primarily on examples which serve to illustrates the kinds of
-ambiguities and difficulties likely to arise in establishing and delineating
-the respective categories, and accordingly to guide the construction of
-standards corresponding to each category.
+the construction of the following categories. Based on the preceding input
+data, we identified the following primary categories of statistical software,
+the current intention of which is twofold:
+
+1. To guide decisions of which statistical categories (or sub-components) may
+   or may not be in scope; and
+2. To relate these statistical categories to corresponding standards.
+
+These categories ought not be considered in any way mutually exclusive, and it
+is very likely that any individual piece of software will be described by
+multiple categories. Decisions of whether a particular piece of software is
+described by any particular category will also generally involve some degree of
+ambiguity. 
+
+The following categorical descriptions are based primarily on examples which
+serve to illustrates the kinds of ambiguities and difficulties likely to arise
+in establishing and delineating the respective categories, and accordingly to
+guide the construction of standards corresponding to each category.
 
 Explicit standards are currently considered in a separate document. It is
 envisioned that an author-provided categorisation will guide the selection of

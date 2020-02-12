@@ -1,5 +1,3 @@
-#  (PART) Standards {-}
-
 
 # General Standards {#standards}
 
