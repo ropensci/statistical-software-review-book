@@ -31,7 +31,6 @@ jobs:
       - name: Render Book
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
       - name: Commit results
-        if: github.repository == 'ropensci-org/blog-guidance'
         run: |
           cp ghpagescname docs/CNAME
           cp -r favicon/ docs/
