@@ -23,5 +23,5 @@ Imports:
     rvest,
     igraph,
     visNetwork,
-    RefManager,
+    RefManageR,
     knitr
