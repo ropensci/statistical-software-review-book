@@ -4,12 +4,21 @@ author: "Mark Padgham and Noam Ross"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [book.bib]
+bibliography: [statsoft.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: ropenscilabs/statistical-software-review
 url: 'https\://ropensci-blog-guidance.netlify.com/'
 ---
+
+
+```{r getbib, include = FALSE, eval = TRUE}
+if (!file.exists ("statsoft.bib")) {
+   refs <- RefManageR::ReadZotero(group = "2416765",
+                                 .params = list (limit = 100))
+   RefManageR::WriteBib(refs, "statsoft.bib")
+}
+```
 
 # Preface {-}
 

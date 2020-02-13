@@ -38,7 +38,7 @@ We consider two main types of categories:
 This project extends existing an software peer-review process run by rOpenSci
 [rOpenSci](https://ropensci.org), and is primarily intended to target the **R**
 language. Nonetheless, given the popularity if Python in the field (see
-relevant analyses and notes in Appendix A), the impact of developing standards
+relevant analyses and notes in [Appendix A](#python)), the impact of developing standards
 applicable to Python packages must be considered.  rOpenSci also has a close
 collaboration with its sister organization,
 [pyOpenSci](https://www.pyopensci.org).
