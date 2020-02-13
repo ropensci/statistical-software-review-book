@@ -10,6 +10,15 @@ bookdown::gitbook:
           <li><a href="https://github.com/ropenscilabs/statistical-software-review"><i class="fa fa-github"></i> Statistical Software Review</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
+    toolbar:
+      position: fixed
+    search: no
+    sharing:
+      facebook: yes
+      github: yes
+      twitter: yes
+      weibo: yes
+    info: yes
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
