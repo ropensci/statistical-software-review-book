@@ -1,0 +1,193 @@
+# (APPENDIX) Appendix {-}
+
+# Notes on Scope and the Python Statistical Ecosystem {#python}
+
+```{r startup, echo = FALSE, message = FALSE}
+library (dplyr)
+library (ggplot2)
+library (rvest)
+theme_set (theme_minimal ())
+```
+
+Two factors may be usefully noted in this regard:
+
+```{r pypi-projects, echo = FALSE}
+u <- "https://pypi.org/"
+x <- read_html (u) %>%
+    #html_nodes ("div.statistics-bar") %>%
+    html_nodes ("p.statistics-bar__statistic") %>%
+    html_text ()
+pypi_n_projects <- x [grep ("projects", x)] %>%
+    gsub ("projects|[[:space:]]", "", .)
+
+cran_n_projects <- format (nrow (available.packages ()), big.mark = ",")
+
+pypi_cran_ratio <- floor (as.integer (gsub (",", "", pypi_n_projects)) /
+    as.integer (gsub (",", "", cran_n_projects)))
+```
+
+1. The potential number of python packages for statistical analyses is likely
+   to be relatively more restricted than relative numbers of **R** packages.
+   Taking as indicative presentations at the previous three Joint Statistical
+   Meetings (JSMs; 2018-2020), no python packages were referred to in any
+   abstrat, while 32 **R** packages were presented, along with two
+   meta-platforms for **R** packages. Presentations at the Symposium of Data
+   Science and Statistics (SDSS) for 2018-19 similarly including numerous
+   presentations of **R** packages, along with presentation of
+   [https://altair-viz.github.io](   three)
+   [https://github.com/ajboyd2/salmon](   python)
+   [https://github.com/dlsun/symbulate](   packages). It may accordingly be expected that potential expansion to
+   include python packages will demand relatively very little time or effort
+   compared with that devoted to **R** packages as the primary software scope.
+2. In spite of the above, the community of python users is enormously greater,
+   reflected in the currently `r pypi_n_projects` packages compared with
+   `r cran_n_projects` packages on CRAN, or over `r pypi_cran_ratio` times as
+   many python packages. Similarly, 41.7% of all respondents to the
+   [https://insights.stackoverflow.com/survey/2019](   2019 stackoverflow developer survey) nominated python as their most
+   popular language, compared with only 5.8% who nominated **R**.
+
+The relative importance of python is powerfully reflected in temporal trends
+from the
+[https://insights.stackoverflow.com/survey/2019](stackoverflow developer survey) from the previous three years, with results
+shown in the following graphic.
+
+```{r py_v_r, echo = FALSE, message = FALSE}
+theme_set (theme_minimal ())
+year <- 2017:2019
+python_used <- c (31.7, 38.8, 41.7)
+r_used <- c (4.4, 6.1, 5.8)
+python_loved <- c (62.7, 68.0, 73.1)
+r_loved <- c (49.9, 49.4, 51.7)
+
+dat <- rbind (tibble (year = year,
+                      proportion = python_used,
+                      language = "python-used",
+                      context = "used"),
+              tibble (year = year,
+                      proportion = r_used,
+                      language = "R-used",
+                      context = "used"),
+              tibble (year = year,
+                      proportion = python_loved,
+                      language = "python-loved",
+                      context = "loved"),
+              tibble (year = year,
+                      proportion = r_loved,
+                      language = "R-loved",
+                      context = "loved"))
+
+ggplot (dat, aes (x = year, y = proportion, color = language)) +
+    geom_line () +
+    geom_point () +
+    scale_x_continuous (breaks = year)
+```
+
+Python is not only more used and more loved than **R**, but both statistics for
+python have consistently grown at a faster rate over the past three years as
+have equivalent statistics for **R**.
+
+Both languages nevertheless have relative well-defined standards for software
+packaging, python via the
+[https://packaging.python.org/tutorials/packaging-projects](Python Package Index (pypi)), and **R** via
+[https://cran.r-project.org](CRAN). In contrast to CRAN, which runs its own checks on all packages on
+a daily basis, there are no automatic checks for
+[https://packaging.python.org/tutorials/packaging-projects](pypi) packages, and almost any form of package that minimally conforms to
+the standards may be submitted. This much lower effective barrier to entry
+likely partially contributes to the far greater numbers of
+[https://packaging.python.org/tutorials/packaging-projects](pypi) than
+[https://cran.r-project.org](CRAN) packages.
+
+## Analysis of statistical software keywords
+
+The
+[JOSS](https://joss.theoj.org)
+conducts its own peer review process, and publishes textual descriptions of
+accepted software. Each piece of software then has its own web page on the
+journal's site, on which the text is presented as a compiled `.pdf`-format
+document, along with links to the open review, as well as to the software
+repository. The published document must be included within the software
+repository in a file named `paper.md`, which enables automatic extraction and
+analysis of these text descriptions of software. Rather than attempt
+a comprehensive, and unavoidably subjective, categorization of software, these
+textual descriptions were used to identify key words or phrases (hereafter,
+"keywords") which encapsulated the purpose, function, or other general
+descriptive elements of each piece of software. Each paper generally yielded
+multiple keywords. Extracting these from all papers judged to be potentially in
+scope allowed for the construction of a network of topics, in which the nodes
+were the key words and phrases, and the connections between any pair of nodes
+reflected the number of times those two keywords co-occured across all papers.
+
+We extracted all papers accepted and published by JOSS (217 at the time of
+writing in early 2020), and manually determined which of these were broadly
+statistical, reducing the total to 92. We then read through the contents of
+each of these, and recorded as many keywords as possible for each paper. The
+resultant network is shown in the following interactive graphic, in which nodes
+are scaled by numbers of occurrences, and edges by numbers of co-occurrences.
+
+
+```{r message = FALSE}
+x <- readLines ("stat-software-categories.md")
+x <- x [grep ("[0-9]*\\. \\[", x)]
+names <- vapply (x, function (i) {
+                     res <- strsplit (i, "\\[\\`") [[1]]
+                     strsplit (res, "\\`\\]") [[2]] [1] },
+                     character (1), USE.NAMES = FALSE)
+terms <- lapply (x, function (i) {
+                     res <- strsplit (i, ":\\s") [[1]] [2]
+                     res <- strsplit (res, ";\\s") [[1]] [1] # rm "; input"
+                     strsplit (res, ",\\s") [[1]]   })
+input <- lapply (x, function (i) {
+                     res <- strsplit (i, "input: ") [[1]] [2]
+                     res <- strsplit (res, ";\\s") [[1]] [1]
+                     if (grepl (",\\s", res))
+                         res <- strsplit (res, ",\\s") [[1]]
+                     return (res)   })
+output <- lapply (x, function (i) {
+                      res <- strsplit (i, "output: ") [[1]] [2]
+                      if (grepl (",\\s", res))
+                          res <- strsplit (res, ",\\s") [[1]]
+                      return (res)   })
+names (terms) <- names (input) <- names (output) <- names
+
+# Then convert to `visNetwork` nodes and edges tables:
+library (dplyr)
+library (igraph)
+nodes <- table (unlist (terms))
+nodes <- data.frame (id = names (nodes),
+                     label = names (nodes),
+                     value = as.integer (nodes),
+                     stringsAsFactors = FALSE)
+edges <- lapply (terms, function (i) {
+                     if (length (i) > 1) {
+                         res <- sort (i)
+                         n <- combn (seq_along (res), 2)
+                         cbind (res [n [1, ]], res [n [2, ]]) }
+                     })
+edges <- do.call (rbind, edges)
+edges <- data.frame (from = edges [, 1],
+                     to = edges [, 2],
+                     stringsAsFactors = FALSE) %>%
+    group_by (from, to) %>%
+    summarise (width = length (from)) # Remove isolated edges:
+      # annotation, areal weights, binomial distribution, cubature, gene loci,
+      # generalized least squares, misspecification, classification, interpolation,
+      # over-dispersion, integration, random effects, probit model
+cl <- graph_from_data_frame (edges) %>%
+    clusters ()
+out <- names (cl$membership [which (cl$membership != which.max (cl$csize))])
+nodes <- nodes [which (!nodes$id %in% out), ]
+edges <- edges [which (!(edges$from %in% out | edges$to %in% out)), ]
+
+library (visNetwork)
+visNetwork (nodes, edges)
+```
+
+Such a network visualization enables immediate identification of more and less
+central concepts including, in our case, several that we may not otherwise have
+conceived of as having been potentially in scope. We then used this network to
+define our set of key "in scope" concepts. This figure also reveals that many
+of these keywords are somewhat "lower level" than the kinds of concepts we
+might otherwise have used to define scoping categories. For example, keywords
+such as "likelihood" or "probability" are not likely to be useful in defining
+actual categories of statistical software, yet they turned out to lie at the
+centres of relatively well-defined groups of related keywords.
