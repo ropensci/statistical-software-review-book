@@ -9,6 +9,9 @@ biblio-style: apalike
 link-citations: yes
 github-repo: ropenscilabs/statistical-software-review
 url: 'https\://ropensci-blog-guidance.netlify.com/'
+apple-touch-icon: "favicon/apple-touch-icon.png"
+apple-touch-icon-size: 120
+favicon: "favicon/favicon.ico"
 ---
 
 
