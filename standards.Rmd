@@ -161,20 +161,7 @@ testing:
 -   What aspects of tests and test data (both actual and permissible) might be
     worthwhile documenting in some kind of metadata format?
 
-## Software Assessment
-
-To additionally inform the general considerations described in the preceding
-sections, this section presents a general (yet non-exhaustive) overview of
-aspects of software which may be usefully considered for standards-based
-assessment, both for retrospective purposes of peer review, and for prospective
-use in developing software both in general, and in preparation for peer-review.
-It will be important to consider the applicability of each metric to different
-categories of statistical software, as well as the extent to which the
-following aspects may be more or less applicable or relevant at different
-phases of a software lifecycle, or how expected values for, or results of
-applying, metrics may vary throughout a software lifecycle.
-
-### General Software Metrics
+## General Software Metrics
 
 The following is an incomplete list of the kinds of metrics commonly used to
 evaluate software in general, and which might provide useful for assessing
@@ -265,7 +252,7 @@ statistical software in the present project.
 
     -   Range of inputs tested
 
-### Metrics specific to statistical software
+## Metrics specific to statistical software
 
 Metrics specific to statistical software will depend on, and vary in
 applicability or relevance with, the system for categorizing statistical
@@ -282,7 +269,7 @@ be expected to fit within multiple categories, and specific metrics will need
 to be developed to ensure validity for software encompassing any potential
 combination of categories.
 
-### Diagnostics and Reporting
+## Diagnostics and Reporting
 
 While the preceding sub-sections considered *what* might be assessed in
 relation to statistical software, the project will also need to explicitly
