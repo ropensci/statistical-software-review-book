@@ -50,7 +50,7 @@ process. This book serves as a home for collecting research and and developing
 those standards. As the book develops, it will become an extension of
 [rOpenSci Packages: Development, Maintenance, and Peer Review](https://devguide.ropensci.org/),
 documenting not only our guidelines for statistical software but also the process
-of expanding the scope of review may be reproduced in other domains.
+of expanding the scope of review so it may be reproduced in other domains.
 
 You are invited to contribute to this project by filing suggestions as
 [issues in the book's GitHub repository](https://github.com/ropenscilabs/statistical-software-peer-review/issues).
