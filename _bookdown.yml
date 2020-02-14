@@ -2,7 +2,7 @@ book_filename: "statistical-software-peer-review"
 chapter_name: "Chapter "
 repo: https://github.com/ropenscilabs/statistical-software-peer-review
 output_dir: docs
-rmd_files: ["index.Rmd", "framework.Rmd"]
+rmd_files: ["index.Rmd", "framework.Rmd", "reading.Rmd", "scope.Rmd", "appendix.Rmd"]
 clean: [packages.bib, bookdown.bbl]
 new_session: yes
 before_chapter_script: "_common.R"
