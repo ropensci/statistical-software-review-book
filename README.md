@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![GitHub Actions Workflow for commits to master](https://github.com/ropenscilabs/statistical-software-review/workflows/Render-Book-from-master/badge.svg)](https://github.com/ropenscilabs/statistical-software-review/actions?query=workflow%3ARender-Book-from-master)
+[![GitHub Actions Workflow for commits to master](https://github.com/ropenscilabs/statistical-software-peer-review/workflows/Render-Book-from-master/badge.svg)](https://github.com/ropenscilabs/statistical-software-peer-review/actions?query=workflow%3ARender-Book-from-master)
 <!-- badges: end -->
 
 # Meta

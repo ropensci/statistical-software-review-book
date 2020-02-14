@@ -6,7 +6,7 @@ knitr::opts_chunk$set(
 ```
 
 --- 
-title: "rOpenSci Statistial Software Review"
+title: "rOpenSci Statistial Software Peer Review"
 author: "Mark Padgham and Noam Ross"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -14,7 +14,7 @@ documentclass: book
 bibliography: [statsoft.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: ropenscilabs/statistical-software-review
+github-repo: ropenscilabs/statistical-software-peer-review
 url: 'https\://ropensci-blog-guidance.netlify.com/'
 apple-touch-icon: "favicon/apple-touch-icon.png"
 apple-touch-icon-size: 120
