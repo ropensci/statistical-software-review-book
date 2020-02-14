@@ -54,7 +54,7 @@ of expanding this expansion of scope of review may be reproduced in other domain
 
 You are invited to contribute to this project by filing suggestions as
 [issues in the book's GitHub repository](https://github.com/ropenscilabs/statistical-software-peer-review/issues).
-We also have a dedication [area for discussion on the rOpenSci forum](https://discuss.ropensci.org/c/statistical-software-peer-review/28).
+We also have a dedicated [area for discussion on the rOpenSci forum](https://discuss.ropensci.org/c/statistical-software-peer-review/28).
 
 For this project we are lucky to have support of a great steering committee.  The
 commitee's role is to help us with outreach to statistical communities, vetting
