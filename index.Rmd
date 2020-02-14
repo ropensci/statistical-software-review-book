@@ -4,6 +4,12 @@ knitr::opts_chunk$set(
   echo = FALSE
 )
 ```
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  cache = TRUE,
+  echo = FALSE
+)
+```
 
 --- 
 title: "rOpenSci Statistial Software Peer Review"
@@ -32,7 +38,7 @@ if (!file.exists ("statsoft.bib")) {
 
 # Welcome {#welcome}
 
-Welcome to[rOpenSci](https://ropensci.org)'s project
+Welcome to [rOpenSci](https://ropensci.org)'s project
 developing [software peer review](https://ropensci.org/software-review/) system
 for statistical software in R packages and  beyond.  We invite you to join us in
 developing standards for peer-reviewed evaluation of statistical software.

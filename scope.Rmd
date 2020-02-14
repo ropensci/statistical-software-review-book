@@ -62,8 +62,7 @@ an eye towards further adoption by other groups in the future.
 
 ### Structure
 
-R has a [well-defined system](https://cran.r-project.org/doc/manuals/R-exts.html) for structuring software packages"
-Other forms of packaging **R** software may nevertheless be considered within scope. These may include
+R has a [well-defined system](https://cran.r-project.org/doc/manuals/R-exts.html) for structuring software packages. Other forms of packaging **R** software may nevertheless be considered within scope. These may include
 
 1. Python-like systems of
 [modules for **R**](https://github.com/klmr/modules).
@@ -109,7 +108,7 @@ Key themes that emerge from our review include
    [community structure in dynamic networks](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764) and one on
    [Gaussian graphical models](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764).
 
-1. Dimensionality reduction and unsupervised methodss
+1. Dimensionality reduction and unsupervised methods.
    1a. Software for analysing categorical or qualitative data, which can not be
    unambiguously distinguished because many methods for dimensionality
    reduction, and particularly clustering methods, effectively transform data
@@ -478,16 +477,12 @@ submissions have the opportunity to be fast-tracked through the JOSS review proc
  **Proposal:** Educational software will not be in-scope for the project. Relevant
 methods standards may be able to be adopted by JOSE or similar outlets. 
 
-
-
 ### Additional Applied Categories
 
 There will likely be a host of additional categories of software developed for
 particular applied domains. One distinguishing feature of such software appears
 to be the use of custom-developed classes or equivalent representations for
 input (and often output) data.
-
-
 
 Explicit standards are currently considered in a separate document. It is
 envisioned that an author-provided categorisation will guide the selection of

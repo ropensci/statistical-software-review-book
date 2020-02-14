@@ -1,4 +1,4 @@
-# (APPENDIX) Appendix {-}
+# (APPENDIX) Appendices and Miscellaneous Notes {-}
 
 # Notes on Scope and the Python Statistical Ecosystem {#python}
 
