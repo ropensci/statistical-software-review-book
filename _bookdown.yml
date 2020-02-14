@@ -1,4 +1,4 @@
-book_filename: "bookdown-start"
+book_filename: "statistical-software-review"
 chapter_name: "Chapter "
 repo: https://github.com/ropenscilabs/statistical-software-review
 output_dir: docs
