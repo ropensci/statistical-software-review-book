@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 ```
 
 --- 
-title: "rOpenSci Statistial Software Peer Review"
+title: "rOpenSci Statistical Software Peer Review"
 author: "Mark Padgham and Noam Ross"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
