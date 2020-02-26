@@ -566,6 +566,14 @@ software.
     sets](https://www.itl.nist.gov/div898/strd/) with certified computational
     results which statistical software should be able to reproduce.
 
+Specific standards for neural network algorithms have been developed as part of
+a [google 2019 Summer Of Code project](http://www.inmodelia.com/gsoc2019.html),
+resulting in a dedicated R package,
+[`NNbenchmark`](https://akshajverma.com/NNbenchmarkWeb/index.html), and
+accompanying results---their so-called
+["notebooks"](https://akshajverma.com/NNbenchmarkWeb/notebooks.html)---of
+applying their benchmarks to a suite of neural network packages.
+
 We envision the project proceeding from this initial stage by developing
 parallel definitions for both categories of software (defining both *in*-scope
 and *beyond*-scope, above), and specific standards. A simple way to proceed may
