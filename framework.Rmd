@@ -530,7 +530,7 @@ will likely have to be addressed:
     categorization?
 
 The following exemplify a few categories of statistical standards which may be
-considered, emphasising restrictions of applicability to alernative kinds of
+considered, emphasising restrictions of applicability to alternative kinds of
 software.
 
 -   **Numerical standards such as precision or convergence.** These will be
@@ -618,7 +618,7 @@ permit systematic documentation.
 https://github.com/tdwg/vocab/blob/master/sds/documentation-specification.md
 --->
 
-#### 5.3 Testing
+#### Testing
 
 Testing is a critical area for standards, as tests are a concrete manifestation
 of standards and the means by which authors may demonstrate compliance. While
@@ -729,7 +729,7 @@ statistical software in the present project.
 
     -   Description of data used in tests
 
--   Meta struture
+-   Meta structure
 
     -   Dependencies
 
