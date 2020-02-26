@@ -10,6 +10,12 @@ jobs:
       - name: Is this a fork
         run: |
           fork=$(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}");echo "::set-env name=fork::$fork"
+          if $fork == "false"
+          then
+            echo "This is not a fork, we shall deploy a preview."
+          else
+            echo "This is a fork, we shall not deploy a preview."
+          fi
             
       
       - uses: actions/checkout@v1
