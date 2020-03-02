@@ -2,6 +2,8 @@
 # zotero library which have "Note" entries. This enables any entry to be added
 # to the annotated bibliography by simply adding some non-empty Note.
 
+wd0 <- setwd (file.path (here::here (), "scripts"))
+
 # Start by extracting all zotero entries with notes:
 f <- "bibnotes.txt"
 if (!file.exists (f)) { # rm file to update contents
@@ -98,45 +100,64 @@ abstracts <- vapply (index, function (i) dat [[i]]$data$abstractNote, character 
 dates <- vapply (index, function (i) dat [[i]]$data$date, character (1))
 urls <- vapply (index, function (i) dat [[i]]$data$url, character (1))
 
-# Then dump those notes to a single `.md` file:
-out <- c ("---",
-          "title: 'Annotated Bibliography for Statistical Software'",
-          "output:",
-          "    html_document:",
-          "        toc: yes",
-          "        toc_float: yes",
-          "        number_sections: yes",
-          "        theme: flatly",
-          "---",
-          "",
-          "# Bibliography",
-          "", "")
-for (i in seq (notes)) {
-    linkline <- paste (creators [i], " (", dates [i], ") ",
-                       pubTitles [i])
-    if (volumes [i] != "") {
-        lineline <- paste0 (linkline, " **", volumes [i])
-        if (issues [i] != "")
-            linkline <- paste0 (linkline, " (", issues [i], ")")
-        linkline <- paste0 (linkline, ": ", pages [i])
+# sort by [itemType, creator]
+library (dplyr)
+type_order <- c ("book", "journalArticle", "computerProgram", "webpage")
+itemType_text <- c ("Books", "Journal Articles", "Computer Programs",
+                    "Web Pages")
+res <- tibble::tibble (itemType = itemTypes,
+                       title = titles,
+                       creator = creators,
+                       pubTitle = pubTitles,
+                       volume = volumes,
+                       issue = issues,
+                       page = pages,
+                       abstract = abstracts,
+                       date = dates,
+                       url = urls,
+                       type_order = match (itemType, type_order),
+                       note = notes) %>%
+    arrange (type_order, creator)
+res$type_text <- itemType_text [match (res$itemType, type_order)]
+
+# Then dump those notes to a individual `.md` files, one for each `itemType`:
+bdir <- "./bibliography"
+if (!file.exists (bdir))
+    dir.create (bdir)
+setwd (bdir)
+for (it in unique (res$itemType)) {
+    out <- NULL
+    resi <- res [which (res$itemType == it), ]
+    for (i in seq (nrow (resi))) {
+        linkline <- paste (resi$creator [i], " (", resi$date [i], ") ",
+                           resi$pubTitle [i])
+        if (resi$volume [i] != "") {
+            lineline <- paste0 (linkline, " **", resi$volume [i])
+            if (resi$issue [i] != "")
+                linkline <- paste0 (linkline, " (", resi$issue [i], ")")
+            linkline <- paste0 (linkline, ": ", resi$page [i])
+        }
+        out <- c (out, paste0 ("### ", paste0 (resi$title [i], collapse = " ")),
+                  "",
+                  paste0 ("[", linkline, "](", resi$url [i], ")"),
+                  "",
+                  paste0 ("**Abstract** ", resi$abstract [i]),
+                  "")
+        if (!is.null (resi$note [[i]]))
+        {
+            notei <- vapply (resi$note [[i]], function (j)
+                             gsub ("###\\s", "#### ", j),
+                             character (1),
+                             USE.NAMES = FALSE)
+            notei <- vapply (resi$note [[i]], function (j)
+                             gsub ("##\\s", "### ", j),
+                             character (1),
+                             USE.NAMES = FALSE)
+            out <- c (out, "**NOTES**", notei, "")
+        }
     }
-    out <- c (out, paste0 ("## ", paste0 (titles [i], collapse = " ")),
-              "",
-              paste0 ("[", linkline, "](", urls [i], ")"),
-              "",
-              paste0 ("**Abstract** ", abstracts [i]),
-              "")
-    if (!is.null (notes [[i]]))
-        out <- c (out, "**NOTES**", notes [[i]], "")
+    con <- file (paste0 (it, ".md"), "w")
+    writeLines (out, con = con)
+    close (con)
 }
-con <- file ("out.md", "w")
-writeLines (out, con = con)
-close (con)
-
-# That `.md` file can then be manually copy-pasted into `reading.Rmd`, enabling
-# any manual tidying, removing, changing of entries.
-
-# The following lines convert the output to viewable html:
-#rmarkdown::render ("out.md", output_file = "out.html")
-#system2 ("xdg-open", c ("out.html", "&"))
-
+setwd (wd0)
