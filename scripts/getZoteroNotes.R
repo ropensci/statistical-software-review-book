@@ -58,6 +58,13 @@ notes <- lapply (index, function (i) {
                      res <- lapply (res, function (j) strsplit (j, "\\n") [[1]])
                      nc <- unlist (lapply (res, length))
                      res [which (nc == 0)] <- ""
+                     # cut all content after first "---"
+                     n <- grep ("^\\-{3,}", res)
+                     if (length (n) > 0)
+                         res <- res [1:(n [1] - 1)]
+                     # remove terminal empty lines:
+                     if (length (res) > 0)
+                         res <- res [seq (max (which (nchar (res) > 0)))]
                      unlist (res)   })
 
 keys <- vapply (index, function (i) dat [[i]]$data$parentItem, character (1))
