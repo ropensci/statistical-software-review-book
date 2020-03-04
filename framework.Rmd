@@ -156,19 +156,20 @@ corresponding checklist of relevant or applicable standards.
 We now consider a few brief categorical examples, to illustrate the kinds of
 decisions such a process of categorisation will likely face.
 
+---
+
 -   [**gtsummary**](https://github.com/ropensci/software-review/issues/334),
     submitted to rOpenSci and reject as out-of-scope.
 
-<!-- -->
 
--   Creates presentation-ready tables summarizing data sets, regression models,
-    > and more. The code to create the tables is concise and highly
-    > customizable. Data frames can be summarized with any function,
-    > e.g. mean(), median(), even user-written functions. Regression models are
-    > summarized and include the reference rows for categorical variables.
-    > Common regression models, such as logistic regression and Cox proportional
-    > hazards regression, are automatically identified and the tables are
-    > pre-filled with appropriate column headers.
+    Creates presentation-ready tables summarizing data sets, regression models,
+    and more. The code to create the tables is concise and highly
+    customizable. Data frames can be summarized with any function,
+    e.g. mean(), median(), even user-written functions. Regression models are
+    summarized and include the reference rows for categorical variables.
+    Common regression models, such as logistic regression and Cox proportional
+    hazards regression, are automatically identified and the tables are
+    pre-filled with appropriate column headers.
 
     This package appears not to contain any algorithmic implementations, yet is
     clearly aimed at enhancing a purely statistical workflow. Such a submission
@@ -176,16 +177,15 @@ decisions such a process of categorisation will likely face.
     "workflow" only and which does not correspond to any other of the above
     categories, may be deemed in scope?
 
-<!-- -->
+---
 
 -   [greta: simple and scalable statistical modelling in
     R](https://joss.theoj.org/papers/10.21105/joss.01601), published in JOSS.
 
-<!-- -->
 
--   greta is an package for statistical modelling in R (R Core Team, 2019) that
-    > has three core differences to commonly used statistical modelling software
-    > packages:
+    greta is an package for statistical modelling in R (R Core Team, 2019) that
+    has three core differences to commonly used statistical modelling software
+    packages:
 
     -   greta models are written interactively in R code rather than in a
         > compiled domain specific language.
@@ -205,19 +205,18 @@ decisions such a process of categorisation will likely face.
     scope? And if so, to what extent ought aspects of such externally-installed
     software also be directly addressed within a review process?
 
-<!-- -->
+---
 
 -   [**modelStudio**](https://joss.theoj.org/papers/10.21105/joss.01798),
     published in JOSS.
 
-<!-- -->
 
--   The `modelStudio`R package automates the process of model exploration. It
-    > generates advanced interactive and animated model explanations in the form
-    > of a serverless HTML site. It combines R(R Core Team, 2019) with D3.js
-    > (Bostock, 2016) to produce plots and descriptions for various local and
-    > global explanations. Tools for model exploration unite with tools for EDA
-    > to give a broad overview of the model behaviour.
+    The `modelStudio`R package automates the process of model exploration. It
+    generates advanced interactive and animated model explanations in the form
+    of a serverless HTML site. It combines R(R Core Team, 2019) with D3.js
+    (Bostock, 2016) to produce plots and descriptions for various local and
+    global explanations. Tools for model exploration unite with tools for EDA
+    to give a broad overview of the model behaviour.
 
     As with `gtsummary` above, this is clearly a package intended to enhance a
     workflow, and furthermore one which primarily serves to generate summary
@@ -231,6 +230,8 @@ decisions such a process of categorisation will likely face.
     both of these is the extent to which the library being wrapped should also
     be *predominantly statistical* for a package to be in scope? (A requirement
     which `greta` would more easily fulfil than `gtsummary`.)
+
+---
 
 We have compiled a list of the descriptions of [all packages rejected by
 rOpenSci](https://github.com/mpadge/statistical-software/blob/master/abstracts/ropensci-abstracts.md)
@@ -295,11 +296,12 @@ Some core questions we seek to resolve are:
     -   Do we develop and use some kind of "checklist" system, with a list of
         essential properties and practices which must be met prior to
         acceptance, along with potentially additional items reflecting current
-        best practices which may be met?
+        best practices which may be met? (Positive answers lead directly to the
+        likely crucial question of what might be included in such checklists?)
 
     -   To what extent can or should processes and procedures following review
         be formalized (and potentially automated)? This is related to issues of
-        lifecycle considered below.
+        lifecycle considered immediately below.
 
 -   To what extent should the review process be automated or self-certified?
     Stages which might gain from automation include:
@@ -312,7 +314,7 @@ Some core questions we seek to resolve are:
         web scraping, and other means.
 
     -   Directly managing the review process, like current operations of the
-        Journal of Statistical Software.
+        [Journal of Open Source Software](https://joss.theoj.org).
 
     -   Monitoring ongoing use of, and community surrounding, our peer-reviewed
         software.
@@ -339,25 +341,25 @@ open-source projects. Review takes place via an issue thread in our
 GitHub](https://github.com/ropensci/software-review). The review process is
 entirely open, with each issue thread used to manage the entire process,
 coordinated by rOpenSci's editors. After initial screening for scope and minimal
-qualification by editors two reviewers provide comments and feedback on software
+qualification by editors, two reviewers provide comments and feedback on software
 packages. After one or more rounds of revisions, packages reach a point of
 approval, at which point they are "accepted" by rOpenSci, symbolized both
 through a badge system, and (generally) through transferring the software from
-an author's private domain to the [github.com/ropensci
+the authors' private domain to the [github.com/ropensci
 domain](https://github.com/ropensci).
 
-The [Journal of Open Source Software](https://joss.theoj.org/) was based on
-rOpenSci and follows a similar approach, with greater automation and broader
+The [Journal of Open Source Software (JOSS)](https://joss.theoj.org/) was based
+on rOpenSci and follows a similar approach, with greater automation and broader
 scope. The Journal of Statistical Software conducts a closed review of both
-manuscript and software, with fewer prescriptive standards.
-[BioConductor](https://www.bioconductor.org), in reviewing packages for
-acceptance into its repository conducts an [open
+manuscript and software, with fewer prescriptive standards. In reviewing
+packages for acceptance into its repository,
+[BioConductor](https://www.bioconductor.org) conducts an [open
 review](https://www.bioconductor.org/developers/package-submission/) primarily
 aimed at maintaining minimum standards and intercompatibilty.
 
 Other initiatives further afield from academic peer review may offer useful
 models. For instance, the Linux [Core Infrastructure
-Initiative](https://www.coreinfrastructure.org/) provides badges to project
+Initiative](https://www.coreinfrastructure.org/) provides badges to projects
 meeting [development best
 practices](https://github.com/coreinfrastructure/best-practices-badge/blob/master/doc/criteria.md).
 Badges are graded (passing/silver/gold), and awarded by package authors
@@ -385,30 +387,32 @@ practice and published literature on software review [for example,
 @mili_software_2015;@ammann_introduction_2017] generally concludes that
 software review is most effective when it is an ongoing process that is
 structurally embedded within a software lifecycle, and when review occurs as
-frequently as possible. Such a practice contrasts strongly with the singular
+frequently as possible. Such practices contrast strongly with the singular
 nature of review as currently implemented by rOpenSci.
 
 An effective system for peer review of statistical software is thus may lie
-somewhere between the "one-off" practices above, and frequent, ongoing review
-typical of software development in active teams. An [analysis of the effects of
-rOpenSci's review process on a few metrics of software development
+somewhere between the current "one-off" practices of rOpenSci and the JOSS, and
+frequent, ongoing review typical of software development in active teams. An
+[analysis of the effects of rOpenSci's review process on a few metrics of
+software development
 activity](https://github.com/mpadge/statistical-software/tree/master/ros-review-effects)
 revealed that software development tends to stagnate following review. This may
 be interpreted to reflect software having reached a sufficiently stable state
 requiring relatively little ongoing maintenance. However, we note that metrics
 of community engagement with software are generally positively related to the
 metrics of development activity considered there. Slowing of software
-development following review may also accordingly reflect or result in decreases
-in community engagement.
+development following review may also accordingly reflect or result in
+decreases in community engagement.
 
 Potential systems to enhance review of the kind current practiced by rOpenSci,
 and particularly to encourage and enable more ongoing review on smaller scales
-and shorter time frames, include pull-request reviews, and systems for providing
-inline code reviews (such as
+and shorter time frames---and ultimately to encourage the ongoing and active
+development of software following review---include pull-request reviews, and
+systems for providing inline code reviews (such as
 [watson-ruby](https://github.com/nhmood/watson-ruby)). In addition, ongoing
-"review" may be explicit in considering the role of user feedback, for instance,
-in defining and updating the scope of statistical routines (see "Standards for
-Statistical Software" below).
+"review" may be explicit in considering the role of user feedback, for
+instance, in defining and updating the scope of statistical routines (see
+"Standards for Statistical Software" below).
 
 ### Community
 
@@ -473,7 +477,8 @@ Important general questions regarding standards include the following:
 -   What kind of standards might specifically apply to statistical software?
     (See the following sub-section.)
 
--   To what extent should we aim for "verification" or "validation" of software?
+-   To what extent should we aim for "verification" or "validation" of
+  software, and how might be signify such?
 
 We acknowledge that standards of the kind anticipated here will likely be better
 conceived of to reflect ongoing processes of development. As such, of equal
@@ -501,15 +506,15 @@ derived, from the following considerations of *Specific Aspects of Software*.
 
 
 The applicability of any concrete set of standards is likely to differ between
-different categories of statistical. For example, metrics of numerical accuracy
-will likely differ between categories primarily describing analytical algorithms
-and those describing less tractable routines which produce less directly
-reproducible results. Or consider metrics derived from tests, which must be
-interpreted in *qualitatively* different ways for packages entirely dependent on
-their own internal code versus packages largely dependent on the results of
-calls to external data providers (along with additional differences between, for
-example, locally-installed "external" providers versus online sources of
-external data).
+different categories of statistical software. For example, metrics of numerical
+accuracy will likely differ between categories primarily describing analytical
+algorithms and those describing less tractable routines which produce less
+directly reproducible results. Or consider metrics derived from tests, which
+must be interpreted in *qualitatively* different ways for packages entirely
+dependent on their own internal code versus packages largely dependent on the
+results of calls to external data providers (along with additional differences
+between, for example, locally-installed "external" providers versus online
+sources of external data).
 
 Different standards must thus be considered to be differentially applicable to
 different categories of software, and thus the interplay between the scope of
@@ -519,7 +524,7 @@ the project. Such considerations lead to the following kinds of questions which
 will likely have to be addressed:
 
 -   To what extent ought we aim for general standards at the expense of specific
-    ability to assess particular categories of statistical software?
+    abilities to assess particular categories of statistical software?
 
 -   To what extent ought we strive for automation of software assessment, given
     the inherent risk of overseeing qualitative differences between different
@@ -574,17 +579,17 @@ accompanying results---their so-called
 ["notebooks"](https://akshajverma.com/NNbenchmarkWeb/notebooks.html)---of
 applying their benchmarks to a suite of neural network packages.
 
-We envision the project proceeding from this initial stage by developing
-parallel definitions for both categories of software (defining both *in*-scope
-and *beyond*-scope, above), and specific standards. A simple way to proceed may
-be to develop lists for both, along with a representation of inter-connections
-between categories and standards.
+We envision the present project proceeding from this initial stage by
+developing parallel definitions for both categories of software (defining both
+*in*-scope and *beyond*-scope), and specific standards. A simple way to
+proceed may be to develop lists for both, along with a representation of
+inter-connections between categories and standards.
 
 ### Generally Applicable Standards 
 
 In addition to standards specific to the challenges of statistical software, it
 will also be necessary to create or adopt standards governing general aspects of
-software, such as interface, documentation, and testing. @mili_software_2015
+software, such as interfaces, documentation, and testing. @mili_software_2015
 also provides a general list of software design principles, divided between
 *Functional Attributes* (including Correctness and Robustness), *Usability
 Attributes* (including Ease of Use, Ease of Learning, Customizability,
@@ -598,23 +603,23 @@ considered, reviewed, encouraged, or expected. rOpenSci's guide on [package
 development, maintenance, and peer review](https://devguide.ropensci.org/)
 provides standards of this type for R packages, primarily within its first
 chapter. Another notable example is the [tidyverse design
-guide](https://principles.tidyverse.org/), and [Conventions for R Modeling
-Pacakges](https://tidymodels.github.io/model-implementation-principles/)
+guide](https://principles.tidyverse.org/), and the section on [Conventions for
+R Modeling
+Pacakges](https://tidymodels.github.io/model-implementation-principles/) which
 provides guidance for model-fitting APIs.
 
 #### Documentation
 
 Standards will include requirements for form and completeness of documentation.
 As with interface, several sources already provide starting points for
-reasonable documentation.
-
-Some documentation requirements will be specific to the statistical context. For
-instance, it is likely we will have requirements for referencing appropriate
-literature or references for theoretical support of implementations. Another
-area of importance is correctness and clarity of definitions of statistical
-quantities produced by the software, e.g., the definition of null hypotheses or
-confidence intervals. Data included in software -- that used in examples or
-tests -- will also have documentation requirements.
+reasonable documentation. Some documentation requirements will be specific to
+the statistical context. For instance, it is likely we will have requirements
+for referencing appropriate literature or references for theoretical support of
+implementations. Another area of importance is correctness and clarity of
+definitions of statistical quantities produced by the software, e.g., the
+definition of null hypotheses or confidence intervals. Data included in
+software -- that used in examples or tests -- will also have documentation
+requirements.
 
 An additional area for consideration is the creation of tools for documentation
 creation and evaluation based on metadata of statistical method inputs and
@@ -641,9 +646,11 @@ testhtat). A variety of other frameworks and workflows from other languages and
 contexts may be relevant. Almost all testing as currently implemented in R is
 "concrete testing" (Mili 2015), and little consideration has been given in R to
 "stochastic" or "property-based" testing, in which expectation values of inputs
-and outputs are tested, rather than concrete instantiations of such. Other
-languages have developed grammars for stochastic or property-based testing,
-notably through the [hypothesis package for
+and outputs are tested, rather than concrete instantiations of such (the
+notably exception of the apparently abandoned [`fuzzr`
+package](https://github.com/mdlincoln/fuzzr) notwithstanding). Other languages
+have developed grammars for stochastic or property-based testing, notably
+through the [hypothesis package for
 python](https://github.com/HypothesisWorks/hypothesis). These grammars enable
 specification of test assumptions as well as expected test outputs. Assumptions
 in `hypothesis` are declared through simple `@given` statements that might, for
@@ -677,6 +684,11 @@ testing:
 
 -   What aspects of tests and test data (both actual and permissible) might be
     worthwhile documenting in some kind of metadata format?
+
+Extant R package which address some of these issues include
+[`tinytest`](https://github.com/markvanderloo/tinytest),
+[`roxytest`](https://github.com/mikldk/roxytest), and
+[`xpectr`](https://github.com/LudvigOlsen/xpectr).
 
 ## Software Assessment
 
