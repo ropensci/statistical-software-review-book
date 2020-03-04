@@ -1,3 +1,8 @@
+
+```{r getbib, echo = FALSE, eval = TRUE}
+source ("scripts/getZoteroNotes.R")
+```
+
 #  Some Light Reading: An Annotated Bibliography {#reading}
 
 Note that the following annotated bibliography is automatically generated from
@@ -43,22 +48,37 @@ Lots to put here, but some in addition to stuff in current document:
 
 ## Books
 
-```{r child = "./scripts/bibliography/book.md"}
+There is an enormous wealth of books published on software review, software
+assessment (often referred to via concepts of "validation" and/or
+"verification"), and related concepts. Most importantly in the present context,
+almost all such books address closed-source, proprietary software, with no
+published books specifically dedicated to review or assessment of open-source
+software.
+
+---
+
+```{r loadbooks, child = "scripts/bibliography/book.md"}
 ```
 
 ## Journal Articles
 
-```{r child = "./scripts/bibliography/journalArticle.md"}
+---
+
+```{r loadarticles, child = "scripts/bibliography/journalArticle.md"}
 ```
 
 ## Computer Programs
 
-```{r child = "./scripts/bibliography/computerProgram.md"}
+---
+
+```{r loadsoftware, child = "scripts/bibliography/computerProgram.md"}
 ```
 
 ## Web Pages
 
-```{r child = "./scripts/bibliography/webpage.md"}
+---
+
+```{r loadwebpages, child = "scripts/bibliography/webpage.md"}
 ```
 
 

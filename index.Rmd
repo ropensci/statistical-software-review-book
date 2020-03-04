@@ -34,7 +34,6 @@ if (!file.exists ("statsoft.bib")) {
                                  .params = list (limit = 100))
    RefManageR::WriteBib(refs, "statsoft.bib")
 }
-source ("./scripts/getZoteroNotes.R")
 ```
 
 # Welcome {#welcome}

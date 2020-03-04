@@ -103,7 +103,8 @@ creators <- vapply (index, function (i) {
                                           "; and ", cr [length (cr)])
                         return (cr)
             }, character (1))
-abstracts <- vapply (index, function (i) dat [[i]]$data$abstractNote, character (1))
+abstracts <- vapply (index, function (i) dat [[i]]$data$abstractNote,
+                     character (1))
 dates <- vapply (index, function (i) dat [[i]]$data$date, character (1))
 urls <- vapply (index, function (i) dat [[i]]$data$url, character (1))
 
@@ -136,7 +137,7 @@ for (it in unique (res$itemType)) {
     out <- NULL
     resi <- res [which (res$itemType == it), ]
     for (i in seq (nrow (resi))) {
-        linkline <- paste (resi$creator [i], " (", resi$date [i], ") ",
+        linkline <- paste (resi$creator [i], " (", resi$date [i], "). ",
                            resi$pubTitle [i])
         if (resi$volume [i] != "") {
             lineline <- paste0 (linkline, " **", resi$volume [i])
@@ -144,14 +145,16 @@ for (it in unique (res$itemType)) {
                 linkline <- paste0 (linkline, " (", resi$issue [i], ")")
             linkline <- paste0 (linkline, ": ", resi$page [i])
         }
-        out <- c (out, paste0 ("### ", paste0 (resi$title [i], collapse = " ")),
+        this_title <- paste0 ("*", paste0 (resi$title [i], collapse = " "), ".*")
+        out <- c (out, 
                   "",
-                  paste0 ("[", linkline, "](", resi$url [i], ")"),
-                  "",
-                  paste0 ("**Abstract** ", resi$abstract [i]),
-                  "")
+                  this_title,
+                  paste0 (" [", linkline, "](", resi$url [i], ") "))
+                  #paste0 ("**Abstract** ", resi$abstract [i]),
+                  #"")
         if (!is.null (resi$note [[i]]))
         {
+            # reduce any sub-section breaks one level down (just in case):
             notei <- vapply (resi$note [[i]], function (j)
                              gsub ("###\\s", "#### ", j),
                              character (1),
@@ -160,8 +163,13 @@ for (it in unique (res$itemType)) {
                              gsub ("##\\s", "### ", j),
                              character (1),
                              USE.NAMES = FALSE)
-            out <- c (out, "**NOTES**", notei, "")
+            # strip empty lines of note from start and end:
+            notei <- notei [which (nchar (notei) > 0) [1]:length (notei)]
+            notei <- notei [1:tail (which (nchar (notei) > 0), 1)]
+
+            out <- c (out, notei, "")
         }
+        out <- c (out, "", "---", "")
     }
     con <- file (paste0 (it, ".md"), "w")
     writeLines (out, con = con)
