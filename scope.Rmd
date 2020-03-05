@@ -15,18 +15,26 @@ theme_set (theme_minimal ())
 
 # <span style="color:red;">Scope (*Seeking Feedback*)<span> {#scope}
 
-One task in extending the rOpenSci peer review system to statistical software is defining _scope_ - what software is included or excluded. Defining scope requires some grouping of packages into categories.  These categories play key roles in the peer review process and standards-setting
+One task in extending the rOpenSci peer review system to statistical software
+is defining _scope_ - what software is included or excluded. Defining scope
+requires some grouping of packages into categories.  These categories play key
+roles in the peer review process and standards-setting
 
 1. Categorical definitions can determine which kinds of software will be admitted;
-2. Different categories of software will be subject to different standards, so categories are key to developing standards, review guidance, and automated testing
+2. Different categories of software will be subject to different standards, so
+   categories are key to developing standards, review guidance, and automated
+   testing.
 
 Creating a categorization or ontology of statistical software can easily become
-an overwhelming project in itself. Here we attempt to derive categories or descriptors which are *practically useful* in the standards and review process, rather than having formal structure. We use a mix of empirical research and subjective judgement.  
+an overwhelming project in itself. Here we attempt to derive categories or
+descriptors which are *practically useful* in the standards and review process,
+rather than having formal structure. We use a mix of empirical research and
+subjective judgement (and strive to minimise the latter in favour of the former).
 
 We consider two main types of categories:
 
-1. Categories of software structure, referred to as "software
-   types", determined by computer languages and package formats in those languages; and
+1. Categories of software structure, referred to as "software types",
+   determined by computer languages and package formats in those languages; and
 2. Categories defining different types of statistical software, referred to as
    "statistical categories".
 
@@ -36,28 +44,80 @@ We consider two main types of categories:
 
 This project extends existing an software peer-review process run by rOpenSci
 [rOpenSci](https://ropensci.org), and is primarily intended to target the **R**
-language. Nonetheless, given the popularity if Python in the field (see
-relevant analyses and notes in [Appendix A](#python)), the impact of developing standards
-applicable to Python packages must be considered.  rOpenSci also has a close
-collaboration with its sister organization,
+language. Nonetheless, given the popularity of Python in the field (see
+relevant analyses and notes in [Appendix A](#python)), the impact of developing
+standards applicable to Python packages must be considered.  rOpenSci also has
+a close collaboration with its sister organization,
 [pyOpenSci](https://www.pyopensci.org).
 
 In addition it is particularly important to note that many **R** packages
 include code from a variety of other languages. The following table summarises
 statistics for the top ten languages from all `r format (nrow
 (available.packages ()), big.mark = ",")` [CRAN](https://cran.r-project.org)
-packages as of `r format(Sys.time(), "%a %b %d %Y")`.
+packages as of `r format(Sys.time(), "%a %b %d %Y")` (including only code from
+the `/R`, `/src`, and `/inst` directories of each package).
 
-***Key considerations***: Expansion into the Python ecosystem has great
-potential for impact, but goes beyond the general areas of expertise in the
-core ecosystem.  Compiled languages within R packages are core to many
-statistical applications; excluding them would exclude core functionality the
-project aims to addressed
+```{r language-table, message = FALSE, echo = FALSE}
+library (dplyr)
+x <- readRDS ("./scripts/cran-cloc.Rds") %>%
+    select (language, loc) %>%
+    mutate (proportion = loc / sum (loc)) %>%
+    rename ("lines" = loc)
+clines <- sum (x$lines [grep ("^C", x$language [1:8])])
+weblines <- sum (x$lines [x$language %in% c ("HTML", "JavaScript", "CSS")])
+xf <- mutate (x, lines = format (lines, big.mark = ","))
+knitr::kable (xf [1:10, ], digits = c (NA, 0, 3))
+```
 
-***Proposal***: Peer review in the system will be R code and code in the most
-frequently used compiled languages bundled with R. Standards will be written
-so as to separate language-specific and non-language-specific components with
-an eye towards further adoption by other groups in the future.
+Close to one half of all code in all R packages to date has been written in the
+R language, clearly justifying a primary focus upon that language. Collating
+all possible ways of packaging and combining C and C++ code yields
+`r format (clines, big.mark = ",")` lines or code or
+`r round (100 * clines / sum (x$lines))`% of all code, indicating that
+`r round (100 * (clines + x$lines [1]) / sum (x$lines))`% of all code has been
+written in either R or C/C++. Three of these top ten languages are likely
+related to web-based output (HTML, JavaScript, and CSS), representing a total
+of `r round (100 * weblines / sum (x$lines))`% of all code. While this is
+clearly a significant proportion, and while this *may* reflect an equivalent
+high frequency of code devoted to some form of web-based visualisation, these
+statistics represent *all* R packages. There is no simple way to identify which
+of these might be considered statistical packages, but knowing that there are
+packages exclusively constructed to generate web-based visualisations in
+a generic sense suggests that this value ought be taken as an upper limit on
+the likely frequency of visualisation packages (or parts thereof) in the
+context of statistical software.
+
+
+
+
+
+***Key considerations***:
+
+- Expansion into the Python ecosystem has great potential for impact, but goes
+  beyond the general areas of expertise in the core ecosystem. (And Python code
+  represents just
+  `r format (x$lines [grep ("^Python", x$language)], big.mark = ",")`
+  lines of code, or
+  `r format (100 * x$proportion [grep ("^Python", x$language)], digits = 1)`%
+  of all code within all R packages.)
+- Compiled languages within R packages are core to many statistical
+  applications; excluding them would exclude core functionality the project
+  aims to addressed. The majority of compiled code is nevertheless C and/or
+  C++, with Fortran representing under 2% of all code.
+- Languages used for web-based visualisations comprise a significant proportion
+  (`r round (100 * weblines / sum (x$lines))`%) of all code. While this
+  potentially indicates a likely importance of visualisation routines, this
+  figure reflects general code in all R packages, and the corresponding
+  proportion within the specific context of statistical software may be
+  considerably lower.
+
+***Proposal***: Peer review in the system will primarily focus on code written
+in R, C, and C++. Standards will be written so as to separate language-specific
+and non-language-specific components with an eye towards further adoption by
+other groups in the future (in particular groups focussed on the Python
+language). Any decision to include visualisation software and routines within
+our scope will likely entail an extension of linguistic scope to associated
+languages (HTML, JavaScript, and maybe CSS).
 
 ### Structure
 
@@ -69,27 +129,32 @@ Other forms of packaging **R** software may nevertheless be considered within sc
 2. Scripts, such as standalone comand-line scripts
 3. Web applications such as Shiny packages
 
- ***Key considerations**: Allowing non-package forms of code into the peer review
-system could potentially bring in a large pool of code typically published alongside
-scientific manuscripts, and web applications are a growing, new area of practice.
-However, there is far less standardization of code structure to allow for style
-guidelines and automated testing in these cases.
+**Key considerations**: Allowing non-package forms of code into the peer review
+system could potentially bring in a large pool of code typically published
+alongside scientific manuscripts, and web applications are a growing, new area
+of practice. However, there is far less standardization of code structure to
+allow for style guidelines and automated testing in these cases.
 
-***Proposal***: Peer review in the system will be limited to R packages, and
-tools developed will be specific to R package structure.  Standards that may
-apply to non-packaged are code may be noted for use in other contexts.
+**Proposal**: Peer review in the system will be limited to R packages, and
+tools developed will be specific to R package structure, although keeping in
+mind potential future adaptation and adaptability to non-packaged R code.
+Standards that may apply to non-packaged are code may also be noted for use in
+other contexts.
 
 ## Statistical Categories {#statistical-categories}
 
-To better inform potential useful categories of statistical software,  we examined several sources of potential software
-submissions, including all reasonably "statistical" R packages published in the
+To better inform potential useful categories of statistical software,  we
+examined several sources of potential software submissions, including all
+apparently "statistical" R packages published in the
 [Journal of Open Source Software (JOSS](https://joss.theoj.org)), packages
-published in the Journal of Statistical Software, software presented at the
-2018 and 2019 Joint Statistical Meetings (JSM), and Symposia on Data Science and Statistics (SDSS), well as CRAN task views.
-(Several analyses and graphical representations of these raw data are
-included in Appendix B and and [auxiliary github repository](https://github.com/ropenscilabs/statistical-software).)
-From these we extracted the following core themes and categories, which we discuss along with implications
-for scoping and standards-setting. 
+published in the [Journal of Statistical
+Software](https://www.jstatsoft.org/index), software presented at the 2018 and
+2019 Joint Statistical Meetings (JSM), and Symposia on Data Science and
+Statistics (SDSS), well as CRAN task views. (Several analyses and graphical
+representations of these raw data are included an [auxiliary github
+repository](https://github.com/ropenscilabs/statistical-software).) From these
+we extracted the following core themes and categories, which we discuss along
+with implications for scoping and standards-setting. 
 
 ### Methods and Algorithms
 
@@ -97,7 +162,7 @@ for scoping and standards-setting.
 Key themes that emerge from our review include
 
 1. Regression
-1. Network analysis:  Ambiguous examples of such include
+2. Network analysis:  Ambiguous examples of such include
    [`tcherry`](https://github.com/nvihrs14/tcherry) (with accompanying
    [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01480));
    [`grapherator`](https://github.com/jakobbossek/grapherator) (with accompanying
@@ -107,13 +172,12 @@ Key themes that emerge from our review include
    one on
    [community structure in dynamic networks](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764) and one on
    [Gaussian graphical models](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764).
-
-1. Dimensionality reduction and unsupervised methodss
-   1a. Software for analysing categorical or qualitative data, which can not be
-   unambiguously distinguished because many methods for dimensionality
-   reduction, and particularly clustering methods, effectively transform data
-   to categorical forms for subsequent (post-)processing.
-3. Spatial software, because spatial statistics are often analogous to
+3. Dimensionality reduction and unsupervised methods, noting that software for
+   analysing categorical or qualitative data can often not be unambiguously
+   distinguished because many methods for dimensionality reduction, and
+   particularly clustering methods, effectively transform data to categorical
+   forms for subsequent (post-)processing.
+4. Spatial software, because spatial statistics are often analogous to
    non-spatial statistics, yet merely differ by being bound two two orthogonal
    dimensions (arbitrary numbers of additional dimensions notwithstanding).
    
