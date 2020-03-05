@@ -107,6 +107,13 @@ abstracts <- vapply (index, function (i) dat [[i]]$data$abstractNote,
                      character (1))
 dates <- vapply (index, function (i) dat [[i]]$data$date, character (1))
 urls <- vapply (index, function (i) dat [[i]]$data$url, character (1))
+# tags are manually used to sub-divide some sections
+tags <- lapply (index, function (i) {
+                    res <- unlist (lapply (dat [[i]]$data$tags,
+                                           function (j) j$tag))
+                    if (is.null (res)) res <- NA_character_
+                    return (res)
+                     })
 
 # sort by [itemType, creator]
 library (dplyr)
@@ -121,12 +128,26 @@ res <- tibble::tibble (itemType = itemTypes,
                        issue = issues,
                        page = pages,
                        abstract = abstracts,
+                       tag = tags,
                        date = dates,
                        url = urls,
                        type_order = match (itemType, type_order),
                        note = notes) %>%
     arrange (type_order, creator)
 res$type_text <- itemType_text [match (res$itemType, type_order)]
+
+# sub-section for "Computer Programs -- Testing"
+index <- which (res$itemType == "computerProgram" &
+                vapply (res$tag, function (i) "testing" %in% i, logical (1)))
+res$itemType [index] <- "computerProgramTesting"
+res$type_text [index] <- "Computer Programs -- Testing"
+type_order <- c ("book", "journalArticle", "computerProgram",
+                 "computerProgramTesting", "webpage")
+itemType_text <- c ("Books", "Journal Articles", "Computer Programs (General)",
+                    "Computer Programs (Testing)", "Web Pages")
+res$type_text <- itemType_text [match (res$itemType, type_order)]
+res$type_order <- match (res$itemType, type_order)
+res <- res [order (res$type_order), ]
 
 # Then dump those notes to a individual `.md` files, one for each `itemType`:
 bdir <- "./bibliography"

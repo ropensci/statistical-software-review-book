@@ -74,6 +74,15 @@ software.
 ```{r loadsoftware, child = "scripts/bibliography/computerProgram.md"}
 ```
 
+### Computer Programs (Testing)
+
+Software specifically designed for testing.
+
+---
+
+```{r loadsoftware, child = "scripts/bibliography/computerProgramTesting.md"}
+```
+
 ## Web Pages
 
 ---
