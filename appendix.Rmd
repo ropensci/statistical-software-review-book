@@ -6,6 +6,7 @@
 library (dplyr)
 library (ggplot2)
 library (rvest)
+library (igraph)
 theme_set (theme_minimal ())
 ```
 
@@ -30,29 +31,30 @@ pypi_cran_ratio <- floor (as.integer (gsub (",", "", pypi_n_projects)) /
    to be relatively more restricted than relative numbers of **R** packages.
    Taking as indicative presentations at the previous three Joint Statistical
    Meetings (JSMs; 2018-2020), no python packages were referred to in any
-   abstrat, while 32 **R** packages were presented, along with two
+   abstract, while 32 **R** packages were presented, along with two
    meta-platforms for **R** packages. Presentations at the Symposium of Data
    Science and Statistics (SDSS) for 2018-19 similarly including numerous
    presentations of **R** packages, along with presentation of
-   [https://altair-viz.github.io](   three)
-   [https://github.com/ajboyd2/salmon](   python)
-   [https://github.com/dlsun/symbulate](   packages). It may accordingly be expected that potential expansion to
-   include python packages will demand relatively very little time or effort
-   compared with that devoted to **R** packages as the primary software scope.
+   [three](https://altair-viz.github.io)
+   [python](https://github.com/ajboyd2/salmon)
+   [packages](https://github.com/dlsun/symbulate). It may accordingly be
+   expected that potential expansion to include python packages will demand
+   relatively very little time or effort compared with that devoted to **R**
+   packages as the primary software scope.
 2. In spite of the above, the community of python users is enormously greater,
    reflected in the currently `r pypi_n_projects` packages compared with
    `r cran_n_projects` packages on CRAN, or over `r pypi_cran_ratio` times as
-   many python packages. Similarly, 41.7% of all respondents to the
-   [https://insights.stackoverflow.com/survey/2019](   2019 stackoverflow developer survey) nominated python as their most
-   popular language, compared with only 5.8% who nominated **R**.
+   many python packages. Similarly, 41.7% of all respondents to the [2019
+   stackoverflow developer
+   survey](https://insights.stackoverflow.com/survey/2019) nominated python as
+   their most popular language, compared with only 5.8% who nominated **R**.
 
 The relative importance of python is powerfully reflected in temporal trends
-from the
-[https://insights.stackoverflow.com/survey/2019](stackoverflow developer survey) from the previous three years, with results
-shown in the following graphic.
+from the [stackoverflow developer
+survey](https://insights.stackoverflow.com/survey/2019) from the previous three
+years, with results shown in the following graphic.
 
 ```{r py_v_r, echo = FALSE, message = FALSE}
-theme_set (theme_minimal ())
 year <- 2017:2019
 python_used <- c (31.7, 38.8, 41.7)
 r_used <- c (4.4, 6.1, 5.8)
@@ -87,15 +89,17 @@ python have consistently grown at a faster rate over the past three years as
 have equivalent statistics for **R**.
 
 Both languages nevertheless have relative well-defined standards for software
-packaging, python via the
-[https://packaging.python.org/tutorials/packaging-projects](Python Package Index (pypi)), and **R** via
-[https://cran.r-project.org](CRAN). In contrast to CRAN, which runs its own checks on all packages on
-a daily basis, there are no automatic checks for
-[https://packaging.python.org/tutorials/packaging-projects](pypi) packages, and almost any form of package that minimally conforms to
-the standards may be submitted. This much lower effective barrier to entry
-likely partially contributes to the far greater numbers of
-[https://packaging.python.org/tutorials/packaging-projects](pypi) than
-[https://cran.r-project.org](CRAN) packages.
+packaging, python via the [Python Package Index
+(pypi)](https://packaging.python.org/tutorials/packaging-projects), and **R**
+via [CRAN](https://cran.r-project.org). In contrast to CRAN, which runs its own
+checks on all packages on a daily basis, there are no automatic checks for
+[pypi](https://packaging.python.org/tutorials/packaging-projects) packages, and
+almost any form of package that minimally conforms to the standards may be
+submitted. This much lower effective barrier to entry likely partially
+contributes to the far greater numbers of
+[pypi](https://packaging.python.org/tutorials/packaging-projects) 
+(`r pypi_n_projects`) than
+[CRAN](https://cran.r-project.org) (`r cran_n_projects`) packages.
 
 ## Analysis of statistical software keywords
 
@@ -123,7 +127,9 @@ statistical, reducing the total to 92. We then read through the contents of
 each of these, and recorded as many keywords as possible for each paper. The
 resultant network is shown in the following interactive graphic, in which nodes
 are scaled by numbers of occurrences, and edges by numbers of co-occurrences.
-
+(Or [click
+here](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms/index.html)
+for full-screen version with link to code.)
 
 ```{r message = FALSE}
 x <- readLines ("stat-software-categories.md")
@@ -150,8 +156,6 @@ output <- lapply (x, function (i) {
 names (terms) <- names (input) <- names (output) <- names
 
 # Then convert to `visNetwork` nodes and edges tables:
-library (dplyr)
-library (igraph)
 nodes <- table (unlist (terms))
 nodes <- data.frame (id = names (nodes),
                      label = names (nodes),
@@ -191,3 +195,37 @@ might otherwise have used to define scoping categories. For example, keywords
 such as "likelihood" or "probability" are not likely to be useful in defining
 actual categories of statistical software, yet they turned out to lie at the
 centres of relatively well-defined groups of related keywords.
+
+We also examined the forms of both input and output data for each of the 92
+pieces of software described in these JOSS papers, and constructed [an
+additional
+graph](https://ropenscilabs.github.io/statistical-software/abstracts/network-io/index.html)
+directionally relating these different data formats.
+
+```{r io-nodes-edges}
+terms <- table (c (unlist (input), unlist (output)))
+nodes <- data.frame (id = seq_along (terms),
+                     label = names (terms),
+                     value = as.integer (terms),
+                     stringsAsFactors = FALSE)
+edges <- list ()
+for (i in seq_along (input))
+    edges [[i]] <- expand.grid (input [[i]], output [[i]])
+edges <- do.call (rbind, edges) %>%
+    data.frame (from = .$Var1,
+                to = .$Var2) %>%
+    group_by (from, to) %>%
+    summarise (width = length (from))
+edges$from <- nodes$id [match (edges$from, nodes$label)]
+edges$to <- nodes$id [match (edges$to, nodes$label)]
+# remove isolated edges:
+cl <- graph_from_data_frame (edges) %>%
+    clusters ()
+out <- names (cl$membership [which (cl$membership != which.max (cl$csize))])
+nodes <- nodes [which (!nodes$id %in% out), ]
+edges <- edges [which (!(edges$from %in% out | edges$to %in% out)), ]
+
+visNetwork (nodes, edges)
+```
+
+## Bibliography

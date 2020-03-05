@@ -108,8 +108,8 @@ be built."[^1]
 
 [^1]: We explored whether we could usefully define topics of interest in a
     [preliminary text
-    analysis](https://github.com/mpadge/statistical-software/tree/master/jss) of
-    all historical submissions to JSS yet found no notable phrases or topics
+    analysis](https://github.com/mpadge/statistical-software/tree/master/abstracts)
+    of all historical submissions to JSS yet found no notable phrases or topics
     which might be useful to define or categorize statistical software, other
     than topics pertaining to particular areas of application.
 
