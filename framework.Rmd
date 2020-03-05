@@ -619,7 +619,10 @@ implementations. Another area of importance is correctness and clarity of
 definitions of statistical quantities produced by the software, e.g., the
 definition of null hypotheses or confidence intervals. Data included in
 software -- that used in examples or tests -- will also have documentation
-requirements.
+requirements. It is worth noting that the
+[`roxygen`](https://roxygen2.r-lib.org/) system for documenting R packages is
+readily extensible, as exemplified through the [`roxytest`
+package](https://github.com/mikldk/roxytest) for specifying tests *in-line*.
 
 An additional area for consideration is the creation of tools for documentation
 creation and evaluation based on metadata of statistical method inputs and
@@ -711,89 +714,57 @@ evaluate software in general, and which might provide useful for assessing
 statistical software in the present project.
 
 -   Code structure
-
     -   Cyclomatic complexity
-
     -   Codebase size
-
     -   Function size / number
-
     -   Numbers of external calls within functions
-
     -   Numbers and proportions of Exported / non exported functions
-
     -   Code consistency
-
     -   Dynamic metrics derived from function call networks or similar
-
         -   Network-based metrics both for entire packages, for individual
             functions, and derived from analyses of test coverage
-
         -   Functional overlap with other packages
 
 -   Documentation metrics:
-
     -   Numbers of documentation lines per function
-
     -   Proportion of documentation to code lines
-
     -   Presence of examples
-
     -   Vignettes
 
 -   Data documentation metrics
-
     -   Intended and/or permitted kinds of input data
-
     -   Nature of output data
-
     -   Description of data used in tests
 
 -   Meta structure
-
     -   Dependencies
-
     -   Reverse dependencies
 
 -   Meta metrics
-
     -   License (type, availability, compatibility)
-
     -   Version control?
-
     -   Availability of website
-
     -   Availability of source code (beyond CRAN or similar)
-
     -   Community:
-
         -   Software downloads and usage statistics
-
         -   Numbers of active contributors
-
         -   Numbers or rates of issues reported
-
     -   Maintenance:
-
         -   Rate/Numbers of releases
-
         -   Rate of response to reported issues
-
         -   Last commit
-
         -   Commit rate
-
-    -   stars (for github, or equivalent for other platforms)
-
+    -   stars (for github, gitlab, or equivalent for other platforms)
     -   forks
 
 -   Extent of testing
-
     -   Code coverage
-
     -   Examples and their coverage
-
     -   Range of inputs tested
+
+-   Nature of testing
+    -   Testing beyond `R CMD check`?
+    -   Testing beyond concrete testing?
 
 ### Metrics specific to statistical software
 
@@ -835,34 +806,23 @@ diagnostic and reporting tools which may be usefully developed.
 **Collective Tools**
 
 -   Qualitative tools useful in assessing or formalizing categories of software
-
 -   Quantitative tools to retrospectively assess such aspects as:
-
     -   Collective "quality" of software
-
     -   Community engagement
-
     -   Effectiveness (or other metrics) of review
 
 **Singular Tools**
 
 -   Quantitative tools that can be prospectively used to
-
     -   Improve or assure software quality
-
     -   Document aspects of software quality
-
     -   Aid modularity or transferability either of software, or of the tools
         themselves
-
 -   Tools to formalize structural aspects of software such as tests (for
     example, through implementing new frameworks or grammars)
-
 -   Extensions of extant packages such as **lintr**, **covr**, **goodpractice**
-
 -   Comparisons of package metrics to distributions for other packages or
     systems (such as the CRAN archive directories)
-
 -   Diagnostic and report aggregation, design, or automatic creation at any
     stage before, during, or after peer review.
 
