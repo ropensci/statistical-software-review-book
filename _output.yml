@@ -1,5 +1,5 @@
 bookdown::gitbook:
-  fig_caption: false
+    #fig_caption: false
   css: style.css
   split_by: chapter
   toc_depth: 4
