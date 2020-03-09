@@ -66,7 +66,7 @@ x <- readRDS ("./scripts/cran-cloc.Rds") %>%
 clines <- sum (x$lines [grep ("^C", x$language [1:8])])
 weblines <- sum (x$lines [x$language %in% c ("HTML", "JavaScript", "CSS")])
 xf <- mutate (x, lines = format (lines, big.mark = ","))
-knitr::kable (xf [1:10, ], digits = c (NA, 0, 3))
+knitr::kable (xf [1:10, ], digits = c (NA, 0, 3), caption = "Proportion of code lines in different languages in all CRAN packages.")
 ```
 
 Close to one half of all code in all R packages to date has been written in the
@@ -158,7 +158,177 @@ with implications for scoping and standards-setting.
 
 ### Methods and Algorithms
 
-"Methods and Algorithms" comprise the core of topics addressable in this project.
+"Methods and Algorithms" comprise the core of topics addressable in this
+project. The primary empirical data used to inform the following categorisation
+are represented in the [interactive
+graphic](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms/index.html)
+(also included in the [Appendix](#appendix-keywords)), itself derived from
+analyses of abstracts from all statistical software submitted to both rOpenSci
+and JOSS. The primary nodes that emerge from those analyses (with associated
+*relative* sizes in parentheses) are:
+
+```{r top-terms, message = FALSE}
+x <- readLines ("scripts/joss-abstracts/categories.Rmd")
+x <- x [grep ("[0-9]*\\. \\[", x)]
+names <- vapply (x, function (i) {
+                     res <- strsplit (i, "\\[\\`") [[1]]
+                     strsplit (res, "\\`\\]") [[2]] [1] },
+                     character (1),
+                     USE.NAMES = FALSE)
+terms <- lapply (x, function (i) {
+                 res <- strsplit (i, ":\\s") [[1]] [2]
+                 res <- strsplit (res, ";\\s") [[1]] [1] # rm "; input"
+                 strsplit (res, ",\\s") [[1]]   })
+input <- lapply (x, function (i) {
+                     res <- strsplit (i, "input: ") [[1]] [2]
+                     res <- strsplit (res, ";\\s") [[1]] [1]
+                     if (grepl (",\\s", res))
+                         res <- strsplit (res, ",\\s") [[1]]
+                     return (res)   })
+output <- lapply (x, function (i) {
+                     res <- strsplit (i, "output: ") [[1]] [2]
+                     if (grepl (",\\s", res))
+                         res <- strsplit (res, ",\\s") [[1]]
+                     return (res)   })
+names (terms) <- names (input) <- names (output) <- names
+n_abstracts <- length (terms)
+terms0 <- terms # used below
+
+library (dplyr)
+terms <- unlist (terms) %>%
+    table () %>%
+    sort (decreasing = TRUE)
+terms <- data.frame (n = seq_along (terms),
+                     term = names (terms),
+                     prop = as.integer (terms) / n_abstracts)
+knitr::kable (head (terms, n = 15), digits = c (0, NA, 3), caption = "Most frequent key words from all JOSS abstracts for statistical software. Proportions (\"*prop*\") are scaled *per abstract*, with each abstract generally having multiple key words, and so sum of proportions exceeds one.")
+```
+
+The following lists some of the primary categories which might plausibly be
+distinguished from the these terms, and the inter-relationships with the main
+[network
+diagram](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms/index.html).
+We have excluded the key word "Estimates" as being too generic to usefully
+inform standards, and we have also collected a few strongly-connected terms
+into single categories. Importantly, these categories are not mutually
+exclusive, and much software will likely be described by multiple categories.
+
+1.  **Bayesian & Monte Carlo (0.167)**
+2.  **Dimensionality Reduction & Feature Selection** (commonly as a result of
+    ML algorithms; **0.155**)
+3.  **Machine Learning (ML; 0.133)**
+4.  **Regression/Splines/Interpolation (0.122)** including function data analysis
+5.  **Probability Distributions (0.100)** include kernel densities, likelihood
+    estimates and estimators, and sampling routines
+6.  **Categorical Variables (0.078)** including latent variables, and those output from
+    ML algorithms
+7.  **Networks (0.078)**
+8. **Exploratory Data Analysis (EDA; 0.067)** including information statistics
+   such as Akaike's criterion, and techniques such as random forests. Often
+   related to workflow software.
+9. **Survival (0.067)** Strongly related in the empirical data to regression
+   analysis, yet clearly a category of its own.
+10. **Summary Statistics (0.056)** Primarily categorising software for which
+    the major aim is to generate summary statistics of otherwise complex
+    outputs. Also strongly related to EDA, yet differing in being strictly
+    descriptive of software *outputs* whereas EDA may include routines to
+    explore data *inputs* and other pre-output stages of analysis.
+11. **Visualization (0.056)** Primarily related in the empirical data to
+    regression and survival analyses, yet clearly a distinct category of its
+    own.
+12. **Workflow (0.056)** Often related to EDA, and very commonly also to ML.
+13. **Model Selection (0.044)** A important intermediate node between such
+    categories as ML, Bayesian and Monte Carlo techniques, visualisation, and
+    EDA.
+14. **Spatial (0.033)** Also an important intermediate node connecting several
+    other nodes, yet defining its own distinct cluster reflecting a distinct
+    area of expertise.
+
+The full network diagram can then be reduced down to these categories only,
+with interconnections weighted by all first- and second-order interconnections
+between intermediate categories, to give the following, simplified diagram
+(best inspected by dragging individual nodes to see their connections to
+others).
+
+```{r visnetwork-simplified}
+library (dplyr)
+library (igraph)
+nodes <- table (unlist (terms0))
+nodes <- data.frame (id = names (nodes),
+                     label = names (nodes),
+                     value = as.integer (nodes),
+                     stringsAsFactors = FALSE)
+edges <- lapply (terms0, function (i) {
+                     if (length (i) > 1) {
+                         res <- sort (i)
+                         n <- combn (seq_along (res), 2)
+                         cbind (res [n [1, ]],
+                                res [n [2, ]])
+                     }  })
+edges <- do.call (rbind, edges)
+edges <- data.frame (from = edges [, 1],
+                     to = edges [, 2],
+                     stringsAsFactors = FALSE) %>%
+    group_by (from, to) %>%
+    summarise (width = length (from)) %>%
+    ungroup ()
+# Remove isolated edges:
+# annotation, areal weights, binomial distribution, cubature, gene loci,
+# generalized least squares, misspecification, classification, interpolation,
+# over-dispersion, integration, random effects, probit model
+cl <- graph_from_data_frame (edges) %>%
+    clusters ()
+out <- names (cl$membership [which (cl$membership != which.max (cl$csize))])
+nodes <- nodes [which (!nodes$id %in% out), ]
+edges <- edges [which (!(edges$from %in% out | edges$to %in% out)), ]
+
+# manually agglomerate some categories
+from <- c ("Bayesian|Monte Carlo", "dimensionality reduction|feature selection",
+        "^regression|splines")
+to <- c ("Bayes/MC", "dimensionality reduction", "regression")
+for (i in seq_along (from)) {
+    edges$from [grep (from [i], edges$from)] <- to [i]
+    edges$to [grep (from [i], edges$to)] <- to [i]
+    nodes$id [grep (from [i], nodes$label)] <- to [i]
+    nodes$label [grep (from [i], nodes$label)] <- to [i]
+}
+edges <- edges %>%
+    group_by (from, to) %>%
+    summarise (width = sum (width)) %>%
+    ungroup ()
+nodes <- nodes %>%
+    group_by (label) %>%
+    summarise (value = sum (value)) %>%
+    transform (id = label)
+
+g <- graph_from_data_frame (edges)
+dg <- distances (g)
+
+ns <- nodes [order (nodes$value, decreasing = TRUE), ]
+ns <- ns [c (1:5, 7:13, grep ("spatial", ns$label),
+             grep ("model selection", ns$label)), ]
+es <- edges
+for (i in seq (nrow (ns))) {
+    lab <- ns$label [i]
+    dgi <- match (lab, rownames (dg))
+    nbs <- rownames (dg) [which (dg [dgi, ] < 3)]
+    index <- which ((edges$from == lab & edges$to %in% nbs) |
+                    (edges$to == lab & edges$from %in% nbs))
+    ns$value [i] <- sum (edges$width [index])
+    index <- which (edges$from == lab & edges$to %in% nbs)
+    es$width [index] <- sum (edges$width [index])
+}
+es <- es [which (es$from %in% ns$label & es$to %in% ns$label), ]
+es <- es [which (!es$from == es$to), ]
+es$width <- es$width * 5 / max (es$width)
+library (visNetwork)
+visNetwork (ns, es)
+```
+
+We intend, at least initially, to use these categories to define and guide the
+assessment of statistical software.
+
+
 Key themes that emerge from our review include
 
 1. Regression

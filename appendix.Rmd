@@ -101,7 +101,7 @@ contributes to the far greater numbers of
 (`r pypi_n_projects`) than
 [CRAN](https://cran.r-project.org) (`r cran_n_projects`) packages.
 
-## Analysis of statistical software keywords
+## Analysis of statistical software keywords {#appendix-keywords}
 
 The
 [JOSS](https://joss.theoj.org)
