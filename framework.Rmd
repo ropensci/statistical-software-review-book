@@ -26,7 +26,7 @@ from this document are given in condensed form in an accompanying document which
 may be used to structure and enable explicit feedback on the above aspects of
 the project.
 
-### Project Aims
+## Project Aims
 
 -   To foster a community of practice in which users and developers of
     statistical software mutually improve quality, reproducibility, and
@@ -49,7 +49,7 @@ the project.
 
 -   To focus on problems and solutions specific to statistical software.
 
-### Related projects and initiatives
+## Related projects and initiatives
 
 
 The following internal and external projects related projects have bearing on
