@@ -120,7 +120,7 @@ script](https://github.com/ropenscilabs/statistical-software/blob/master/abstrac
 46. [`qtl2pleio`](https://joss.theoj.org/papers/10.21105/joss.01435): gene loci, random effects, generalized least squares; input: genetic data; output: summary statistics
 47. [`modelDown`](https://joss.theoj.org/papers/10.21105/joss.01444): ML, summary statistics, graphical output, education; input: ML data; output: summary web page
 48. [`insight`](https://joss.theoj.org/papers/10.21105/joss.01412): statistical models, summary statistics, algorithm choice; input: data.frame, numeric vector; output: summary statistics
-52. [`ReinforcementLearning`](https://joss.theoj.org/papers/10.21105/joss.01087): reinforcement, ML, sampling, model strategy, dimensionality reduction; input: data.frame, numeric vectors; output: model estimates, summary statistics
+52. [`ReinforcementLearning`](https://joss.theoj.org/papers/10.21105/joss.01087): reinforcement, ML, sampling, model strategy; input: data.frame, numeric vectors; output: model estimates, summary statistics
 55. [`tsfeaturex`](https://joss.theoj.org/papers/10.21105/joss.01279): time series, dimensionality reduction, feature selection; input: time series; output: summary statistics, model estimates
 58. [`areal`](https://joss.theoj.org/papers/10.21105/joss.01221): interpolation, areal weights; input: spatial data; output: model estimates
 64. [`riskclustr`](https://joss.theoj.org/papers/10.21105/joss.01269): risk, clustering, dimensionality reduction; input: data.frame, numeric vectors; output: summary statistics, model estimates
@@ -148,7 +148,7 @@ script](https://github.com/ropenscilabs/statistical-software/blob/master/abstrac
 120. [`logKDE`](https://joss.theoj.org/papers/10.21105/joss.00870): EDA, density estimator, kernel density; input: data.frame, numeric variables; output: model estimates
 124. [`ggeffects`](https://joss.theoj.org/papers/10.21105/joss.00772): regression, interaction terms, marginal effects, visualization; input: data.frame, numeric variables; output: summary statistics, model predictions
 125. [`iml`](https://joss.theoj.org/papers/10.21105/joss.00786): ML, feature selection, education, visualization; input: ML data; output: model estimates
-127. [`rsimsum`](https://joss.theoj.org/papers/10.21105/joss.00739): Monte Carlo, estimates, simulation, wrapper; input: data.frame, ML data; output: summary statistics, visualization
+127. [`rsimsum`](https://joss.theoj.org/papers/10.21105/joss.00739): Monte Carlo, estimates, simulation, wrapper, summary statistics; input: data.frame, ML data; output: summary statistics, visualization
 129. [`philentropy`](https://joss.theoj.org/papers/10.21105/joss.00765): similarity statistics, distance metrics; input: numeric variables, data.frame; output: summary statistics
 130. [`disclapmix`](https://joss.theoj.org/papers/10.21105/joss.00748): probability distributions; input: application-specific data; output: probability estimates, model estimates, summary statistics
 131. [`qicharts2`](https://joss.theoj.org/papers/10.21105/joss.00699): networks, stationarity, visualization; input: data.frame; output: summary statistics, visualization
@@ -167,7 +167,7 @@ script](https://github.com/ropenscilabs/statistical-software/blob/master/abstrac
 158. [`psycho.R`](https://joss.theoj.org/papers/10.21105/joss.00470): reporting, model selection, workflow, scores; input: data.frame, arbitrary data; output: summary statistics, visualization
 160. [`origami`](https://joss.theoj.org/papers/10.21105/joss.00512): cross-validation, ML; input: data.frame; output: model prediction
 162. [`GammaGompertzCR`](https://joss.theoj.org/papers/10.21105/joss.00216): survival, Bayesian, Monte Carlo; input: matrix; output: model prediction
-166. [`BayesianNetwork`](https://joss.theoj.org/papers/10.21105/joss.00425): Bayesian, networks, ML; input: application-specific data format; output: summary statistics, visualization
+166. [`BayesianNetwork`](https://joss.theoj.org/papers/10.21105/joss.00425): Bayesian, networks, ML, wrapper, education, EDA; input: application-specific data format; output: summary statistics, visualization
 174. [`hei`](https://joss.theoj.org/papers/10.21105/joss.00417): index, scores; input: data.frame, application-specific data format; output: index scores
 176. [`mcMST`](https://joss.theoj.org/papers/10.21105/joss.00374): networks, optimization; input: application-specific data format, graph; output: application-specific data format, graph
 178. [`varistran`](https://joss.theoj.org/papers/10.21105/joss.00257): noise, variance; input: application-specific data format; output: summary statistics, model estimates, visualization
