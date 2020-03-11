@@ -8,12 +8,13 @@ knitr::opts_chunk$set(
 
 ```{r startup, echo = FALSE, message = FALSE}
 library (dplyr)
-library (ggplot2)
 library (rvest)
+library (igraph)
+library (ggplot2)
 theme_set (theme_minimal ())
 ```
 
-# <span style="color:red;">Scope (*Seeking Feedback*)<span> {#scope}
+# <span style="color:red;">Scope and Standards (*Seeking Feedback*)<span> {#scope}
 
 One task in extending the rOpenSci peer review system to statistical software
 is defining _scope_ - what software is included or excluded. Defining scope
@@ -143,29 +144,84 @@ other contexts.
 
 ## Statistical Categories {#statistical-categories}
 
-To better inform potential useful categories of statistical software,  we
-examined several sources of potential software submissions, including all
-apparently "statistical" R packages published in the
-[Journal of Open Source Software (JOSS](https://joss.theoj.org)), packages
-published in the [Journal of Statistical
-Software](https://www.jstatsoft.org/index), software presented at the 2018 and
-2019 Joint Statistical Meetings (JSM), and Symposia on Data Science and
-Statistics (SDSS), well as CRAN task views. (Several analyses and graphical
-representations of these raw data are included an [auxiliary github
-repository](https://github.com/ropenscilabs/statistical-software).) From these
-we extracted the following core themes and categories, which we discuss along
-with implications for scoping and standards-setting. 
+As alluded to at the outset of this chapter, a primary task of this project
+will be to categorise statistical software in order to:
 
-### Methods and Algorithms
+- Determine the extent to which software fits within scope
+- Enable fields of application of software to be readily identified
+- Enable determination of applicable standards
+- Enable discernment of appropriate reviewers
 
-"Methods and Algorithms" comprise the core of topics addressable in this
-project. The primary empirical data used to inform the following categorisation
-are represented in the [interactive
+Different categories of statistical software will likely have different
+standards, yet there will nevertheless be general standards applicable
+regardless of categories. General standards may simply require that a piece of
+software is demonstrably superior to otherwise equivalent software in at least
+one (or perhaps more?) specific way(s). Submissions may occasionally be truly
+unique, and therefore devoid of any "otherwise equivalent software". It will
+nevertheless be expected that otherwise equivalent software will generally
+exist, in which cases such standards might accordingly be approached through
+considering the following kinds of questions, made in regard to one or more
+"reference implementations" of otherwise equivalent software, and which
+software authors may be requested to specify:
+
+- [ ] **Efficiency:** Is the software more efficient (faster, simpler, other
+  interpretations of "efficient") than reference implementations?
+- [ ] **Reproducibility or Reliability:** Does the software reproduce
+  sufficiently similar results more frequently than reference implementations
+  (or otherwise satisfy similar interpretations of reproducibility)?
+- [ ] **Accuracy or Precision:** Is the software demonstrably more accurate or
+  precise than reference implementations (such as ?
+- [ ] **Simplicity of Use:** Is the software simpler to use than reference
+  implementations?
+- [ ] **Algorithmic Characteristics:** Does the algorithmic implementation
+  offer characteristics (such as greater simplicity or sensitivity) superior to
+  reference implementations? If so, which?
+- [ ] **Convergence:** Does the software provide faster or otherwise better
+  convergence properties than reference implementations?
+- [ ] **Method Validity:** Does the software overcome demonstrable flaws in
+  previous (reference) implementations? If so, how?
+- [ ] **Method Appliciability:** Does the software enable a statistical method
+  to be applied to a domain in which such application was not previously
+  possible?
+- [ ] **Automation** Does the software automate aspects of statistical analyses
+  which previously (in a reference implementation) required manual intervention?
+- [ ] **Input Data:** Does the software "open up" a method to input data
+  previously unable to be treated by a particular algorithm or method?
+- [ ] **Output Data:** Does the software provide output in forms previously
+  unavailable by reference implementations?
+- [ ] **Reference Standards:** Are there any reference standards, such as the
+  US National Institute of Standards and Technology's
+  [  collection of reference data sets](https://www.itl.nist.gov/div898/strd)
+  against which the software may be compared? If so, which?
+
+***Proposal*** Submissions will be required to check at least one of the
+preceding items, to nominate at least one "reference implementation", and to
+explain how the submitted software is superior (along with a possibility to
+explain why software may be sufficiently unique that there is no reference
+implementation, and so no claims of superiority can be made).
+
+---
+
+We now consider potential categories within the general domain of statistical
+software. In order to derive a realistic categorisation, we used empirical data
+from several sources of potential software submissions, including all
+apparently "statistical" R packages published in the [Journal of Open Source
+Software (JOSS](https://joss.theoj.org)), packages published in the [Journal of
+Statistical Software](https://www.jstatsoft.org/index), software presented at
+the 2018 and 2019 Joint Statistical Meetings (JSM), and Symposia on Data
+Science and Statistics (SDSS), well as CRAN task views.
+
+We allocated one or more key words (or phrases) to each abstract, and use the
+frequencies and inter-connections between these to inform the following
+categorisation are represented in the [interactive
 graphic](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms/index.html)
 (also included in the [Appendix](#appendix-keywords)), itself derived from
 analyses of abstracts from all statistical software submitted to both rOpenSci
-and JOSS. The primary nodes that emerge from those analyses (with associated
-*relative* sizes in parentheses) are:
+and JOSS. (Several additional analyses and graphical representations of these
+raw data are included an [auxiliary github
+repository](https://github.com/ropenscilabs/statistical-software).) The primary
+nodes that emerge from these empirical analyses (with associated *relative*
+sizes in parentheses) are shown in the following table.
 
 ```{r top-terms, message = FALSE}
 x <- readLines ("scripts/joss-abstracts/categories.Rmd")
@@ -194,65 +250,84 @@ names (terms) <- names (input) <- names (output) <- names
 n_abstracts <- length (terms)
 terms0 <- terms # used below
 
-library (dplyr)
 terms <- unlist (terms) %>%
     table () %>%
     sort (decreasing = TRUE)
 terms <- data.frame (n = seq_along (terms),
                      term = names (terms),
-                     prop = as.integer (terms) / n_abstracts)
-knitr::kable (head (terms, n = 15), digits = c (0, NA, 3), caption = "Most frequent key words from all JOSS abstracts for statistical software. Proportions (\"*prop*\") are scaled *per abstract*, with each abstract generally having multiple key words, and so sum of proportions exceeds one.")
+                     proportion = as.integer (terms) / n_abstracts,
+                     stringsAsFactors = FALSE)
+terms$term [terms$term == "scores"] <- "statistical indices and scores"
+n <- max (which (terms$proportion > 0.05))
+knitr::kable (head (terms, n = n), digits = c (0, NA, 3), caption = "Most frequent key words from all JOSS abstracts (N = 92) for statistical software. Proportions are scaled *per abstract*, with each abstract generally having multiple key words, and so sum of proportions exceeds one.")
 ```
 
-The following lists some of the primary categories which might plausibly be
-distinguished from the these terms, and the inter-relationships with the main
-[network
-diagram](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms/index.html).
-We have excluded the key word "Estimates" as being too generic to usefully
-inform standards, and we have also collected a few strongly-connected terms
-into single categories. Importantly, these categories are not mutually
-exclusive, and much software will likely be described by multiple categories.
+```{r collate-categories}
+terms$term [terms$term %in% c ("Bayesian", "Monte Carlo")] <- "Bayesian & Monte Carlo"
+terms$term [terms$term %in% c ("dimensionality reduction", "feature selection")] <- "dimensionality reduction & feature selection"
+terms$term [terms$term %in% c ("regression", "splines", "interpolation")] <- "regression/splines/interpolation"
+terms$term [terms$term == "EDA"] <- "Exploratory Data Analysis (EDA)"
+terms <- terms %>%
+    group_by (term) %>%
+    summarise (proportion = sum (proportion)) %>%
+    arrange (by = desc (proportion))
+```
 
-1.  **Bayesian & Monte Carlo (0.167)**
-2.  **Dimensionality Reduction & Feature Selection** (commonly as a result of
-    ML algorithms; **0.155**)
-3.  **Machine Learning (ML; 0.133)**
-4.  **Regression/Splines/Interpolation (0.122)** including function data analysis
-5.  **Probability Distributions (0.100)** include kernel densities, likelihood
-    estimates and estimators, and sampling routines
-6.  **Categorical Variables (0.078)** including latent variables, and those output from
-    ML algorithms
-7.  **Networks (0.078)**
-8. **Exploratory Data Analysis (EDA; 0.067)** including information statistics
-   such as Akaike's criterion, and techniques such as random forests. Often
-   related to workflow software.
-9. **Survival (0.067)** Strongly related in the empirical data to regression
-   analysis, yet clearly a category of its own.
-10. **Summary Statistics (0.056)** Primarily categorising software for which
-    the major aim is to generate summary statistics of otherwise complex
-    outputs. Also strongly related to EDA, yet differing in being strictly
-    descriptive of software *outputs* whereas EDA may include routines to
-    explore data *inputs* and other pre-output stages of analysis.
-11. **Visualization (0.056)** Primarily related in the empirical data to
-    regression and survival analyses, yet clearly a distinct category of its
-    own.
-12. **Workflow (0.056)** Often related to EDA, and very commonly also to ML.
-13. **Model Selection (0.044)** A important intermediate node between such
-    categories as ML, Bayesian and Monte Carlo techniques, visualisation, and
-    EDA.
-14. **Spatial (0.033)** Also an important intermediate node connecting several
-    other nodes, yet defining its own distinct cluster reflecting a distinct
-    area of expertise.
+
+The top key words and their inter-relationships within the main [network
+diagram](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms/index.html)
+were used to distinguish the following primary categories representing all
+terms which appear in over 5% of all abstracts, along with the two additional
+categories of "spatial" and "education". We have excluded the key word
+"Estimates" as being too generic to usefully inform standards, and have also
+collected a few strongly-connected terms into single categories.
+
+```{r methods-categories}
+out <- data.frame (terms [which (terms$proportion > 0.05), ])
+out <- out [which (!out$term == "estimates"), ]
+out <- rbind (out, terms [which (terms$term == "spatial"), ],
+              terms [which (terms$term == "education"), ])
+out$comment <- ""
+out$comment [out$term == "dimensionality reduction & feature selection"] <-
+    "Commonly as a result of ML algorithms"
+out$comment [out$term == "regression/splines/interpolation"] <-
+    "Including function data analysis"
+out$comment [out$term == "probability distributions"] <-
+    "Including kernel densities, likelihood estimates and estimators, and sampling routines"
+out$comment [out$term == "categorical variables"] <-
+    "Including latent variables, and those output from ML algorithms. Note also that method for dimensionality reduction (such as clustering) often transform data to categorical forms."
+out$comment [out$term == "Exploratory Data Analysis (EDA)"] <-
+    "Including information statistics such as Akaike's criterion, and techniques such as random forests. Often related to workflow software."
+out$comment [out$term == "survival"] <-
+    "strongly related to EDA, yet differing in being strictly descriptive of software *outputs* whereas EDA may include routines to explore data *inputs* and other pre-output stages of analysis."
+out$comment [out$term == "summary statistics"] <-
+    "Primarily related in the empirical data to regression and survival analyses, yet clearly a distinct category of its own."
+out$comment [out$term == "workflow"] <- "Often related to EDA, and very commonly also to ML."
+out$comment [out$term == "model selection"] <-
+    "A important intermediate node between such categories as ML, Bayesian and Monte Carlo techniques, visualisation, and EDA."
+out$comment [out$term == "statistical indices and scores"] <-
+    "Software generally intended to produce specific indices or scores as statistical output"
+out$comment [out$term == "spatial"] <-
+    "Also an important intermediate node connecting several other nodes, yet defining its own distinct cluster reflecting a distinct area of expertise."
+
+out <- data.frame (n = seq (nrow (out)),
+                   term = out$term,
+                   proprtion = out$proportion,
+                   comment = out$comment,
+                   stringsAsFactors = FALSE)
+
+knitr::kable (out, digits = c (0, NA, 3, NA), caption = "Proposed categorisation of statistical software, with corresponding proportions of all JOSS software matching each category")
+```
+
 
 The full network diagram can then be reduced down to these categories only,
 with interconnections weighted by all first- and second-order interconnections
 between intermediate categories, to give the following, simplified diagram
-(best inspected by dragging individual nodes to see their connections to
+(in which "scores" denotes "statistical indices and scores"; with the diagram
+best inspected by dragging individual nodes to see their connections to
 others).
 
 ```{r visnetwork-simplified}
-library (dplyr)
-library (igraph)
 nodes <- table (unlist (terms0))
 nodes <- data.frame (id = names (nodes),
                      label = names (nodes),
@@ -284,7 +359,7 @@ edges <- edges [which (!(edges$from %in% out | edges$to %in% out)), ]
 
 # manually agglomerate some categories
 from <- c ("Bayesian|Monte Carlo", "dimensionality reduction|feature selection",
-        "^regression|splines")
+        "^regression|splines|interpolation")
 to <- c ("Bayes/MC", "dimensionality reduction", "regression")
 for (i in seq_along (from)) {
     edges$from [grep (from [i], edges$from)] <- to [i]
@@ -304,21 +379,25 @@ nodes <- nodes %>%
 g <- graph_from_data_frame (edges)
 dg <- distances (g)
 
-ns <- nodes [order (nodes$value, decreasing = TRUE), ]
-ns <- ns [c (1:5, 7:13, grep ("spatial", ns$label),
-             grep ("model selection", ns$label)), ]
-es <- edges
-for (i in seq (nrow (ns))) {
-    lab <- ns$label [i]
-    dgi <- match (lab, rownames (dg))
-    nbs <- rownames (dg) [which (dg [dgi, ] < 3)]
-    index <- which ((edges$from == lab & edges$to %in% nbs) |
-                    (edges$to == lab & edges$from %in% nbs))
-    ns$value [i] <- sum (edges$width [index])
-    index <- which (edges$from == lab & edges$to %in% nbs)
-    es$width [index] <- sum (edges$width [index])
+# add to edge distances all intermediate distances between O(2) connections
+edges2 <- edges
+dgnames <- rownames (dg)
+for (i in seq (nrow (edges2))) {
+    dgfrom <- match (edges2$from [i], rownames (dg))
+    dgto <- match (edges$to [i], colnames (dg))
+    nbs_from <- dgnames [which (dg [dgfrom, ] < 3)]
+    nbs_to <- dgnames [which (dg [, dgto] < 3)]
+    nbs <- intersect (nbs_from, nbs_to)
+    index <- which (edges$from == edges$from [i] & edges$to %in% nbs)
+    edges2$width [i] <- sum (edges$width [index])
 }
-es <- es [which (es$from %in% ns$label & es$to %in% ns$label), ]
+
+ns <- nodes [order (nodes$value, decreasing = TRUE), ]
+index <- c (which (!grepl ("estimates", ns$label [1:15])),
+            grep ("spatial|education", ns$label))
+ns <- ns [index, ]
+es <- edges2 [which (edges$from %in% ns$label & edges$to %in% ns$label), ]
+#es <- es [which (es$from %in% ns$label & es$to %in% ns$label), ]
 es <- es [which (!es$from == es$to), ]
 es$width <- es$width * 5 / max (es$width)
 library (visNetwork)
@@ -326,80 +405,119 @@ visNetwork (ns, es)
 ```
 
 We intend, at least initially, to use these categories to define and guide the
-assessment of statistical software.
+assessment of statistical software. Standards considered under any of the
+ensuing categories must be developed with reference to inter-relationships
+between categories, and in particular to potential ambiguity within and between
+any categorisation. An example of such ambiguity, and of potential difficulties
+associated with categorisation, is the category of "network" software which
+appropriate describes the
+[`grapherator`](https://github.com/jakobbossek/grapherator) package (with
+accompanying [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00528))
+which is effectively a distribution generator for data represented in
+a particular format that happens to represent a graph; and three JSM
+presentations, one on [network-based clustering of high-dimensional
+data](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=327171),
+one on [community structure in dynamic
+networks](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764)
+and one on [Gaussian graphical
+models](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764).
+Standards derived for network software must accommodate such diversity of
+applications, and must accommodate software for which the "network" category
+may pertain only to some relatively minor aspect, while the primary algorithms
+or routines may not be related to network software in any direct way.
+
+### Bayesian and Monte Carlo Routines
+
+Packages implementing or otherwise relying on Bayesian or Monte Carlo routines
+represent form the central "hub" of all categories in the above diagram,
+indicating that even though this category is roughly equally common to other
+categories, software in this category is more likely to share more other
+categories. In other words, this is the leading "hybrid" category within which
+standards for all other categories must also be kept in mind. Some examples of
+software in this category include:
+
+1. The [`bayestestR`
+   package](https://joss.theoj.org/papers/10.21105/joss.01541) "provides tools
+   to describe ... posterior distributions"
+2. The [`ArviZ` package](https://joss.theoj.org/papers/10.21105/joss.01143) is
+   a python package for exploratory analyses of Bayesian models, particularly
+   posterior distributions.
+3. The [`GammaGompertzCR`
+   package](https://joss.theoj.org/papers/10.21105/joss.00216) features
+   explicit diagnostics of MCMC convergence statistics.
+4. The [`BayesianNetwork`
+   package](https://joss.theoj.org/papers/10.21105/joss.00425) is in many ways
+   a wrapper package primarily serving a `shiny` app, but also accordingly
+   a package in both education and EDA categories.
+5. The [`fmcmc` package](https://joss.theoj.org/papers/10.21105/joss.01427) is
+   a "classic" MCMC package which directly provides its own implementation, and
+   generates its own convergence statistics.
+7. The [`rsimsum` package](https://joss.theoj.org/papers/10.21105/joss.00739)
+   is a package to "summarise results from Monte Carlo simulation studies".
+   Many of the statistics generated by this package may prove useful in
+   assessing and comparing Bayesian and Monte Carlo software in general. (See
+   also the [`MCMCvis`
+   package](https://joss.theoj.org/papers/10.21105/joss.00640), with more of
+   a focus on visualisation.)
+8. The [`walkr` package](https://joss.theoj.org/papers/10.21105/joss.00061) for
+   "MCMC Sampling from Non-Negative Convex Polytopes" is indicative of the
+   difficulties of deriving generally applicable assessments of software in
+   this category, because MCMC *sampling* relies on fundamentally different
+   inputs and outputs than many other MCMC routines.
+
+***Key Considerations*** 
+
+- The extent to which the output of Bayesian routines with uninformative prior inputs can or do
+  reflect equivalent frequentist analyses.
+- Ways to standardise and compare diagnostic statistics for convergence of MCMC
+  routines.
+
+### Dimensionality Reduction and Feature Selection
+
+Many packages either implement or rely upon techniques for dimensionality
+reduction or feature selection. One of the primary problems presented by such
+techniques is that they are constrained to yield a result independent on any
+measure of correctness of accuracy [@estivill-castro_why_2002]. This generally
+precludes any assessment of the accuracy or reliability of such routines.
+Moreover, dimensionality reduction techniques are often developed for
+particular kinds of input data, reducing abilities to compare and contrast
+different implementations, as well as to compare them with any notional
+reference implementations.
 
 
-Key themes that emerge from our review include
+1. [`ivis`](https://joss.theoj.org/papers/10.21105/joss.01596) implements
+   a dimensionality reduction technique using a "Siamese Neural Network
+   architecture.
+2. [`tsfeaturex`](https://joss.theoj.org/papers/10.21105/joss.01279) is
+   a package to automate "time series feature extraction," which also provides
+   an example of a package for which both input and output data are generally
+   incomparable with most other packages in this category.
+3. [`iRF`](https://joss.theoj.org/papers/10.21105/joss.01077) is another
+   example of a generally incomparable package within this category, here one
+   for which the features extracted are the most distinct predictive features
+   extracted from repeated iterations of random forest algorithms.
+4. [`compboost`](https://joss.theoj.org/papers/10.21105/joss.00967) is
+   a package for component-wise gradient boosting which may be sufficient
+   general to potentially allow general application to problems addressed by
+   several packages in this category. 
+10. The [`iml`](https://joss.theoj.org/papers/10.21105/joss.00786) package may
+    offer usable functionality for devising general assessments of software
+    within this category, through offering a "toolbox for making machine
+    learning models interpretable" in a "model agnostic" way.
 
-1. Regression
-2. Network analysis:  Ambiguous examples of such include
-   [`tcherry`](https://github.com/nvihrs14/tcherry) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01480));
-   [`grapherator`](https://github.com/jakobbossek/grapherator) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00528)) which is effectively a distribution generator for data
-   represented in a particular format; and three JSM presentations, one on
-   [network-based clustering of high-dimensional data](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=327171),
-   one on
-   [community structure in dynamic networks](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764) and one on
-   [Gaussian graphical models](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764).
-3. Dimensionality reduction and unsupervised methods, noting that software for
-   analysing categorical or qualitative data can often not be unambiguously
-   distinguished because many methods for dimensionality reduction, and
-   particularly clustering methods, effectively transform data to categorical
-   forms for subsequent (post-)processing.
-4. Spatial software, because spatial statistics are often analogous to
-   non-spatial statistics, yet merely differ by being bound two two orthogonal
-   dimensions (arbitrary numbers of additional dimensions notwithstanding).
-   
-"Machine learning" is also a heavily used keyword, but due to its generic nature,
-not likely to be useful in this application.
+***Key Considerations***
 
-We nevertheless need to somehow map Method and Algorithm software onto
-corresponding standards, with the following checklist intended to exemplify the
-kinds of decisions which will likely need to be made, many in regard to one or
-more "reference implementations" which software authors may be requested to
-specify:
+- There is generally no way to discern the accuracy of reliability of
+  dimensionality reduction techniques.
+- It is difficult to devise general routines to compare and assess different
+  routines in this category, although possible starting points for the
+  development of such may be offered by the
+  [`compboost`](https://joss.theoj.org/papers/10.21105/joss.00967) and
+  [`iml`](https://joss.theoj.org/papers/10.21105/joss.00786) packages.
 
-- [ ] **Efficiency:** Is the software more efficient (faster, simpler, other
-  interpretations of "efficient") than reference implementations?
-- [ ] **Reproducibility or Reliability:** Does the software reproduce
-  sufficiently similar results more frequently than reference simplementations
-  (or otherwise satisfy similar interpretations of reproducibility)?
-- [ ] **Accuracy or Precision:** Is the software demonstrably more accurate or
-  precise than reference implementations?
-- [ ] **Simplicity of Use:** Is the software simpler to use than reference
-  implementations?
-- [ ] **Algorithmic Characteristics:** Does the algorithmic implementation
-  offer characteristics (such as greater simplicity or sensitivity) superior to
-  reference implementations? If so, which?
-- [ ] **Convergence:** Does the software provide faster or otherwise better
-  convergence properties than reference implementations?
-- [ ] **Method Validity:** Does the software overcome demonstrable flaws in
-  previous (reference) implementations? If so, how?
-- [ ] **Method Appliciability:** Does the software enable a statistical method
-  to be applied to a domain in which such application was not previously
-  possible?
-- [ ] **Automation** Does the software automate aspects of statistical analyses
-  which previously (in a reference implementation) required manual intervention?
-- [ ] **Input Data:** Does the software "open up" a method to input data
-  previously unable to be treated by a particular algorithm or method?
-- [ ] **Output Data:** Does the software provide output in forms previously
-  unavailable by reference implementations?
-- [ ] **Reference Standards:** Are there any reference standards, such as the
-  US National Institute of Standards and Technology's
-  [  collection of reference data sets](https://www.itl.nist.gov/div898/strd)
-  against which the software may be compared? If so, which?
+### Machine Learning
 
-Note that software which is described by any of the following categories may
-also directly implement statistical methods or algorithms. Any components of
-any software which do so can potentially be assessed against this checklist,
-and it may accordingly be useful to have a simple "meta" checkbox for all
-software:
-
-- [ ] Does this software directly implement statistical methods or algorithms?
-
-Those components which do so would then be assessed in more detail with regard
-to a detailed checklist like the above.
+### Regression, Splines, and other Interpolation Methods
 
 ### Statistical Indices and Scores
 
@@ -445,72 +563,106 @@ calculations. We may wish to consider some qualitative standard for additional
 utility that such packages would provide.  
 
 
-### Workflow Support
+### Visualisation
 
-"Workflow" software may not implement particular methods or algorithms,
-but rather support tasks around the statsitical process.  In many cases, these
-may be generic tasks that apply across methods. These include:
-
-1. Classes (whether explicit or not) for representing or processing input and
-   output data;
-2. Generic interfaces to multiple statistical methods or algorithms;
-3. Homogeneous reporting of the results of a variety of methods or algorithms;
-   and
-4. Methods to synthesise, visualise, or otherwise collectively report on
-   analytic results.
-
-Methods and Algorithms software may only provide a specific interface to
-a specific method or algorithm, although it may also be more general and offer
-several of the above "workflow" aspects, and so ambiguity may often arise
-between these two categories. We note in particular that the "workflow" node in
-the
-[interactive network diagram](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms)
-mentioned above is very strongly connected to the "machine learning" node,
-generally reflecting software which attempts to unify varied interfaces to
-varied platforms for machine learning.
-
-Among the numerous examples of software in this category are:
+While many may consider software primarily aimed at visualisation to be out of
+scope, there are nevertheless cases which may indeed be within scope, notably
+including the
+[`ggfortify` package](https://github.com/sinhrks/ggfortify) which allows results of statistical tests to be
+"automatically" visualised using the
+[`ggplot2` package](https://ggplot2.tidyverse.org). The list of "fortified" functions on the packages
+[webpage](https://github.com/sinhrks/ggfortify) clearly indicates the very predominantly statistical scope of this
+software which is in effect a package for statistical reporting, yet in visual
+rather than tabular form. Other examples of visualisation software include:
 
 1. The
-   [`mlr3` package](https://github.com/mlr-org/mlr3) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01903)), which provides, "A modern object-oriented machine learning
-   framework in R."
-2. The
-   [`fmcmc` package](https://github.com/USCbiostats/fmcmc)
-   (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01427)), which provides a unified framework and workflow for
-   Markov-Chain Monte Carlo analyses.
+   [`modelStudio` package](https://github.com/ModelOriented/modelStudio) (with accompanying
+   [ JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01798)), which is also very much a workflow package.
 3. The
-   [`bayestestR` package](https://github.com/easystats/bayestestR) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01541))
-   for "describing effects and their uncertainty, existence and significance
-   within the Bayesian framework. While this packages includes its own
-   algorithmic implementations, it is primarily intended to aid general
-   Bayesian workflows through a unified interface.
+   [`shinyEFA` package](https://github.com/PsyChiLin/EFAshiny) (with accompanying
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00567)) which provides a, "User-Friendly Shiny Application for
+   Exploratory Factor Analysis."
+3. The
+   [`autoplotly` package](https://github.com/terrytangyuan/autoplotly) (with accompanying
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00657)) which provides, "Automatic Generation of Interactive
+   Visualisations for Statistical Results", primarily by porting the output of
+   the authors' above-mentioned
+   [`ggfortify` package](https://github.com/sinhrks/ggfortify) to
+   [`plotly.js`](https://github.com/plotly/plotly.js).
 
-Workflows are also commonly required and developed for specific areas of
-application, as exemplified by the
-[`tabular` package](https://github.com/nfrerebeau/tabula) (with accompanying
-[JOSS article](https://joss.theoj.org/papers/10.21105/joss.01821) for "Analysis, Seriation, and visualisation of Archaeological
-Count Data".
+***Key considerations***: The quality or utility visualization techniques can be strongly subjective, but also
+may be evaluated using standardized principles if the community can come to a consensus on those principles. Such considerations
+may be context-dependent - e.g., the requirements of a diagnostic plot designed to
+support model-checking are different from that designed to present raw data or model
+results to a new audience.  This implies that the indented purppose of the visualization
+should be well-defined.
 
- ***Key Considerations:*** Workflow packages are popular and add considerable value
-and efficiency for users.  One challenge in evaluating such packages is the
-importance of API design and potential subjectivity of this.  For instance,
-`mlr3` as well as `tidymodels` have similar uses of providing a common interface
-to multiple predictive models and tools for automating processes across these
-models.  Similar, multiple packages have different approaches for handling MCMC
-data.  Each package makes different choices in design and has different priorities,
-which may or may not agree with reviewers' opinions or applications.  Despite such
-differences, it may be possible to evaluate such packages for *internal* cohesion,
-and adherence to a sufficiently clearly stated design goal. Reviewers may be able
-to evaluate whether the package provides a _more_ unified workflow or interface
-than other packages - this would require a standard of relative improvement over
-the field rather than baseline standards.
+Whether or not visualization is in-scope, many software packages with other
+primary purposes also include functions to visualise output. Visualization will
+thus never be *strictly* out of scope.  However one option is not to include
+*primarily* visualization packages, or only *statistical* visualization packages
+in which visualization is closely tied to another category or purpose. 
 
-These packages also often
-contain numerical routines (cross-validation, performance scoring, model comparison),
-that can be evaluated for correctness or accuracy.  
+Visualisation packages will include numerical or statistical routines for
+transforming data from raw form to graphics, which can be evaluated for correctness
+or accuracy.
+
+### Probability Distributions
+
+### Wrapper Packages
+
+"Wrapper" packages provide an interface to previously-written software, often in
+a different computer language to the original implentation. While this category
+is reasonably unambiguous, there may be instances in which a "wrapper"
+additionally offers extension beyond original implementations, or in which only
+a portion of a package's functionality may be "wrapped."  Rather than internally bundling
+or wrapping software, a package may also serve as a wrapper thorugh providing
+access to some external interface, such as a web server. Examples of potential
+wrapper packages include the following:
+
+1. The
+   [`greta` package](https://github.com/greta-dev/greta)
+   (with accompanying
+   [JOSS article](https://joss.theoj.org/papers/10.21105/joss.01601)) "for writing statistical models and fitting them by MCMC
+   and optimisation" provides a wrapper around google's
+   [`TensorFlow` library](https://www.tensorflow.org). It is also clearly a workflow package, aiming to
+   provide a single, unified workflow for generic machine learning processes
+   and analyses.
+2. The
+   [`nse` package](https://github.com/keblu/nse) (with accompanying
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00172)) which offers "multiple ways to calculate numerical standard
+   errors (NSE) of univariate (or multivariate in some cases) time series,"
+   through providing a unified interface to several other R packages to provide
+   more than 30 NSE estimators. This is an example of a wrapper package which
+   does not wrap either internal code or external interfaces, rather it
+   effectively "wraps" the algorithms of a collection of R packages.
+
+  ***Key Considerations***:  For many wrapper packages it may not be feasible
+for reviewers (or authors) to evaluate the quality or correctness of the wrapped
+software, so review could be limited to the interface or added value provided,
+or the statistical routines within. 
+
+wrapper packages include the extent of functionality represented by wrapped
+code, and the computer language being wrapped. 
+- *Internal or External:* Does the software *internally* wrap of bundle
+  previously developed routines, or does it provide a wrapper around some
+  external service? If the latter, what kind of service (web-based, or some
+  other form of remote access)?
+- *Language:* For internally-bundled routines, in which computer language
+  e the routines written? And how are they bundled? (For R packages: In
+  `./src`? In `./inst`? Elsewhere?)
+- *Testing:* Does the software test the correctness of the wrapped component?
+  Does it rely on tests of the wrapped component elsewhere?
+- *Unique Advances:* What unique advances does the software offer beyond
+  those offered by the (internally or externally) wrapped software?
+  
+  ***Proposal:*** The project will only review packages where the primary
+statistical functionality is in the main source code developed by the authors,
+and not in an external package.  
+
+### Categorical Variables
+
+### Networks
 
 ### Statistical Reporting and Exploratory Data Analysis
 
@@ -575,101 +727,78 @@ unique to statistical reporting software might include the following:
 - [ ] **Exploration:** Does the software enable or otherwise guide exploratory
   stages of a statistical workflow?
 
-### Visualisation
+### Survival Analyses
 
-While many may consider software primarily aimed at visualisation to be out of
-scope, there are nevertheless cases which may indeed be within scope, notably
-including the
-[`ggfortify` package](https://github.com/sinhrks/ggfortify) which allows results of statistical tests to be
-"automatically" visualised using the
-[`ggplot2` package](https://ggplot2.tidyverse.org). The list of "fortified" functions on the packages
-[webpage](https://github.com/sinhrks/ggfortify) clearly indicates the very predominantly statistical scope of this
-software which is in effect a package for statistical reporting, yet in visual
-rather than tabular form. Other examples of visualisation software include:
+### Workflow Support
 
-1. The
-   [`modelStudio` package](https://github.com/ModelOriented/modelStudio) (with accompanying
-   [ JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01798)), which is also very much a workflow package.
-3. The
-   [`shinyEFA` package](https://github.com/PsyChiLin/EFAshiny) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00567)) which provides a, "User-Friendly Shiny Application for
-   Exploratory Factor Analysis."
-3. The
-   [`autoplotly` package](https://github.com/terrytangyuan/autoplotly) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00657)) which provides, "Automatic Generation of Interactive
-   Visualisations for Statistical Results", primarily by porting the output of
-   the authors' above-mentioned
-   [`ggfortify` package](https://github.com/sinhrks/ggfortify) to
-   [`plotly.js`](https://github.com/plotly/plotly.js).
+"Workflow" software may not implement particular methods or algorithms,
+but rather support tasks around the statsitical process.  In many cases, these
+may be generic tasks that apply across methods. These include:
 
- ***Key considerations**: The quality or utility visualization techniques can be strongly subjective, but also
-may be evaluated using standardized principles if the community can come to a consensus on those principles. Such considerations
-may be context-dependent - e.g., the requirements of a diagnostic plot designed to
-support model-checking are different from that designed to present raw data or model
-results to a new audience.  This implies that the indented purppose of the visualization
-should be well-defined.
+1. Classes (whether explicit or not) for representing or processing input and
+   output data;
+2. Generic interfaces to multiple statistical methods or algorithms;
+3. Homogeneous reporting of the results of a variety of methods or algorithms;
+   and
+4. Methods to synthesise, visualise, or otherwise collectively report on
+   analytic results.
 
-Whether or not visualization is in-scope, many software packages with other
-primary purposes also include functions to visualise output. Visualization will
-thus never be *strictly* out of scope.  However one option is not to include
-*primarily* visualization packages, or only *statistical* visualization packages
-in which visualization is closely tied to another category or purpose. 
+Methods and Algorithms software may only provide a specific interface to
+a specific method or algorithm, although it may also be more general and offer
+several of the above "workflow" aspects, and so ambiguity may often arise
+between these two categories. We note in particular that the "workflow" node in
+the
+[interactive network diagram](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms)
+mentioned above is very strongly connected to the "machine learning" node,
+generally reflecting software which attempts to unify varied interfaces to
+varied platforms for machine learning.
 
-Visualisation packages will include numerical or statistical routines for
-transforming data from raw form to graphics, which can be evaluated for correctness
-or accuracy.
-
-
-### Wrapper Packages
-
-"Wrapper" packages provide an interface to previously-written software, often in
-a different computer language to the original implentation. While this category
-is reasonably unambiguous, there may be instances in which a "wrapper"
-additionally offers extension beyond original implementations, or in which only
-a portion of a package's functionality may be "wrapped."  Rather than internally bundling
-or wrapping software, a package may also serve as a wrapper thorugh providing
-access to some external interface, such as a web server. Examples of potential
-wrapper packages include the following:
+Among the numerous examples of software in this category are:
 
 1. The
-   [`greta` package](https://github.com/greta-dev/greta)
-   (with accompanying
-   [JOSS article](https://joss.theoj.org/papers/10.21105/joss.01601)) "for writing statistical models and fitting them by MCMC
-   and optimisation" provides a wrapper around google's
-   [`TensorFlow` library](https://www.tensorflow.org). It is also clearly a workflow package, aiming to
-   provide a single, unified workflow for generic machine learning processes
-   and analyses.
+   [`mlr3` package](https://github.com/mlr-org/mlr3) (with accompanying
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01903)), which provides, "A modern object-oriented machine learning
+   framework in R."
 2. The
-   [`nse` package](https://github.com/keblu/nse) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00172)) which offers "multiple ways to calculate numerical standard
-   errors (NSE) of univariate (or multivariate in some cases) time series,"
-   through providing a unified interface to several other R packages to provide
-   more than 30 NSE estimators. This is an example of a wrapper package which
-   does not wrap either internal code or external interfaces, rather it
-   effectively "wraps" the algorithms of a collection of R packages.
+   [`fmcmc` package](https://github.com/USCbiostats/fmcmc)
+   (with accompanying
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01427)), which provides a unified framework and workflow for
+   Markov-Chain Monte Carlo analyses.
+3. The
+   [`bayestestR` package](https://github.com/easystats/bayestestR) (with accompanying
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01541))
+   for "describing effects and their uncertainty, existence and significance
+   within the Bayesian framework. While this packages includes its own
+   algorithmic implementations, it is primarily intended to aid general
+   Bayesian workflows through a unified interface.
 
-  ***Key Considerations***:  For many wrapper packages it may not be feasible
-for reviewers (or authors) to evaluate the quality or correctness of the wrapped
-software, so review could be limited to the interface or added value provided,
-or the statistical routines within. 
+Workflows are also commonly required and developed for specific areas of
+application, as exemplified by the
+[`tabular` package](https://github.com/nfrerebeau/tabula) (with accompanying
+[JOSS article](https://joss.theoj.org/papers/10.21105/joss.01821) for "Analysis, Seriation, and visualisation of Archaeological
+Count Data".
 
-wrapper packages include the extent of functionality represented by wrapped
-code, and the computer language being wrapped. 
-- *Internal or External:* Does the software *internally* wrap of bundle
-  previously developed routines, or does it provide a wrapper around some
-  external service? If the latter, what kind of service (web-based, or some
-  other form of remote access)?
-- *Language:* For internally-bundled routines, in which computer language
-  e the routines written? And how are they bundled? (For R packages: In
-  `./src`? In `./inst`? Elsewhere?)
-- *Testing:* Does the software test the correctness of the wrapped component?
-  Does it rely on tests of the wrapped component elsewhere?
-- *Unique Advances:* What unique advances does the software offer beyond
-  those offered by the (internally or externally) wrapped software?
-  
-  ***Proposal:*** The project will only review packages where the primary
-statistical functionality is in the main source code developed by the authors,
-and not in an external package.  
+ ***Key Considerations:*** Workflow packages are popular and add considerable value
+and efficiency for users.  One challenge in evaluating such packages is the
+importance of API design and potential subjectivity of this.  For instance,
+`mlr3` as well as `tidymodels` have similar uses of providing a common interface
+to multiple predictive models and tools for automating processes across these
+models.  Similar, multiple packages have different approaches for handling MCMC
+data.  Each package makes different choices in design and has different priorities,
+which may or may not agree with reviewers' opinions or applications.  Despite such
+differences, it may be possible to evaluate such packages for *internal* cohesion,
+and adherence to a sufficiently clearly stated design goal. Reviewers may be able
+to evaluate whether the package provides a _more_ unified workflow or interface
+than other packages - this would require a standard of relative improvement over
+the field rather than baseline standards.
+
+These packages also often contain numerical routines (cross-validation,
+performance scoring, model comparison), that can be evaluated for correctness
+or accuracy.  
+
+### Summary Statistics
+
+### Spatial Analyses
 
 ### Education
 
@@ -710,26 +839,4 @@ submissions have the opportunity to be fast-tracked through the JOSS review proc
 
  **Proposal:** Educational software will not be in-scope for the project. Relevant
 methods standards may be able to be adopted by JOSE or similar outlets. 
-
-
-
-### Additional Applied Categories
-
-There will likely be a host of additional categories of software developed for
-particular applied domains. One distinguishing feature of such software appears
-to be the use of custom-developed classes or equivalent representations for
-input (and often output) data.
-
-
-
-Explicit standards are currently considered in a separate document. It is
-envisioned that an author-provided categorisation will guide the selection of
-appropriate standards which can or should be applied to a given piece of
-software. The categorisation itself will likely occur via some kind of
-checklist, with the possibility of checking multiple potential categories. Each
-of the categories described immediately below includes its own checklist
-intended to guide the mapping of categories to the explicit standards
-considered in the separate document. In all cases, it is likely that authors
-will also be asked to add any additional statements within any chosen category
-on the unique abilities of the software.
 
