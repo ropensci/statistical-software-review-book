@@ -29,8 +29,9 @@ roles in the peer review process and standards-setting
 Creating a categorization or ontology of statistical software can easily become
 an overwhelming project in itself. Here we attempt to derive categories or
 descriptors which are *practically useful* in the standards and review process,
-rather than having formal structure. We use a mix of empirical research and
-subjective judgement (and strive to minimise the latter in favour of the former).
+rather than having using other formal criteria. We use a mix of empirical on
+research on common groupings of software and subjective judgement as to their
+use in the review process.
 
 We consider two main types of categories:
 
@@ -81,15 +82,13 @@ related to web-based output (HTML, JavaScript, and CSS), representing a total
 of `r round (100 * weblines / sum (x$lines))`% of all code. While this is
 clearly a significant proportion, and while this *may* reflect an equivalent
 high frequency of code devoted to some form of web-based visualisation, these
-statistics represent *all* R packages. There is no simple way to identify which
-of these might be considered statistical packages, but knowing that there are
+statistics represent *all* R packages. In many cases this represents extensive
+headers in supplementary documentation. There is no simple way to identify which
+of these might be considered statistical code in web-based languages, but knowing that there are
 packages exclusively constructed to generate web-based visualisations in
 a generic sense suggests that this value ought be taken as an upper limit on
 the likely frequency of visualisation packages (or parts thereof) in the
 context of statistical software.
-
-
-
 
 
 ***Key considerations***:
