@@ -87,10 +87,16 @@ pages <- vapply (index, function (i) {
                       ifelse (length (p) == 0, "", p) }, character (1))
 creators <- vapply (index, function (i) {
                         cr <- dat [[i]]$data$creators
-                        first <- vapply (cr, function (i) i$firstName,
-                                         character (1))
-                        last <- vapply (cr, function (i) i$lastName,
-                                        character (1))
+                        first <- last <- ""
+                        if ("firstName" %in% names (cr [[1]]) &
+                            "lastName" %in% names (cr [[1]])) {
+                            first <- vapply (cr, function (j) j$firstName,
+                                             character (1))
+                            last <- vapply (cr, function (j) j$lastName,
+                                            character (1))
+                        } else if ("name" %in% names (cr [[1]])) {
+                            first <- cr [[1]]$name
+                        }
                         if (length (first) == 1 & first [1] == "")
                             cr <- last
                         else if (length (last) == 1 & last [1] == "")
