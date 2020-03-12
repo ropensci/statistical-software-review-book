@@ -1,4 +1,37 @@
+
+```{r getbib, echo = FALSE, eval = TRUE}
+source ("scripts/getZoteroNotes.R")
+```
+
 #  Some Light Reading: An Annotated Bibliography {#reading}
+
+Note that the following annotated bibliography is automatically generated from
+all entries containing "Note" fields in the [zotero library accompanying this
+project](https://www.zotero.org/groups/2416765/statistical-software?). Please
+feel free to add any additional entries you may see fit to this open library
+according to the following steps:
+
+1. Open your local [zotero client](https://zotero.org) and get a local copy of
+   the [project
+   library](https://www.zotero.org/groups/2416765/statistical-software?);
+2. Enable zotero in your web broswer so that you can click on any webpage to
+   add an entry to the shared library;
+3. Manually add a "Note" to any new entries and they'll automatically appear
+   here the next time this page is updated.
+
+This annotated bibliography extracts all text in all `Note` fields **up to the
+first markdown section break**, itself defined by a single line with a least
+three consecutive dashes as in the following example:
+```{markdown zotero-note-ex, eval = FALSE, echo = TRUE}
+Add some note text to appear in this annotated bibliography
+
+---
+
+This text below the three dashes and any subsequent lines will not appear here.
+```
+
+Notes which do not contain a section break will appear here in their entirety.
+
 
 <!---
 Lots to put here, but some in addition to stuff in current document:
@@ -13,15 +46,48 @@ Lots to put here, but some in addition to stuff in current document:
 -   <https://github.com/coreinfrastructure/best-practices-badge/blob/master/doc/criteria.md>
 -->
 
-Ammann, Paul, and Jeff Offutt. 2017. *Introduction to Software Testing*.
-Cambridge University Press.
+## Books
 
-Mili, Ali. 2015. *Software Testing: Concepts and Operations*.
+There is an enormous wealth of books published on software review, software
+assessment (often referred to via concepts of "validation" and/or
+"verification"), and related concepts. Most importantly in the present context,
+almost all such books address closed-source, proprietary software, with no
+published books specifically dedicated to review or assessment of open-source
+software.
 
-Vogel, David A. 2011. *Medical Device Software Verification, Validation and
-Compliance*. Boston: Artech House. <http://site.ebrary.com/id/10436227>.
+---
 
-Ammann, Paul, and Jeff Offutt. 2017. *Introduction to Software Testing*.
-Cambridge University Press.
+```{r loadbooks, child = "scripts/bibliography/book.md"}
+```
 
-Mili, Ali. 2015. *Software Testing: Concepts and Operations*.
+## Journal Articles
+
+---
+
+```{r loadarticles, child = "scripts/bibliography/journalArticle.md"}
+```
+
+## Computer Programs
+
+---
+
+```{r loadsoftware, child = "scripts/bibliography/computerProgram.md"}
+```
+
+### Computer Programs (Testing)
+
+Software specifically designed for testing.
+
+---
+
+```{r loadsoftware, child = "scripts/bibliography/computerProgramTesting.md"}
+```
+
+## Web Pages
+
+---
+
+```{r loadwebpages, child = "scripts/bibliography/webpage.md"}
+```
+
+
