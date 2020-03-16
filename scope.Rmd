@@ -827,14 +827,66 @@ and not in an external package.
 
 ### Categorical Variables
 
-6. [`perccalc`](https://joss.theoj.org/papers/10.21105/joss.01796)
-16. [`hopit`](https://joss.theoj.org/papers/10.21105/joss.01508)
-21. [`DscoreApp`](https://joss.theoj.org/papers/10.21105/joss.01764)
-23. [`thurstonianIRT`](https://joss.theoj.org/papers/10.21105/joss.01662)
-42. [`tcherry`](https://joss.theoj.org/papers/10.21105/joss.01480)
-89. [`qsort`](https://joss.theoj.org/papers/10.21105/joss.00911)
-104. [`multistateutils`](https://joss.theoj.org/papers/10.21105/joss.00893)
-142. [`comorbidity`](https://joss.theoj.org/papers/10.21105/joss.00648)
+Like the category of probability distributions, software for categorical
+variables also represents an outlier category that nevertheless encapsulates
+unique software. This category is particularly prominent in software developed
+to support social sciences, and its inclusion may be justified on that basis
+alone: The mere inclusion of this category would open up the general process of
+peer-reviewing of statistical software to much broader areas of the social
+sciences than would be admissible without this category.
+
+Most software in this category generally takes categorical input data and
+outputs some form of quantitative response or summary statistic. Input data
+vary from quantitative intervals to discrete orders or ranks to (cross-)tables
+of categorical frequencies. Most packages seek to derive quantitative estimates
+from categorical inputs, although the various estimates are of course in no way
+comparable.
+
+It thus seems exceedingly difficult if not impossible to derive general
+standards for software in this category, even though we current recommend
+inclusion because of the unique importance in the social sciences. Examples of
+software for categorical variables include the following.
+
+1. [`perccalc`](https://joss.theoj.org/papers/10.21105/joss.01796) is, "An
+   R package for estimating percentiles from categorical variables"
+2. [`hopit`](https://joss.theoj.org/papers/10.21105/joss.01508) is "an
+   R package for analysis of reporting behavior using generalized ordered probit
+   models". The input data are assumed to be ordered categorical variables
+   typical of survey responses, and the package translates these into estimates
+   of the equivalent continuous latent variables.
+3. [`DscoreApp`](https://joss.theoj.org/papers/10.21105/joss.01764) is, "an
+   user-friendly web application for computing the Implicit Association Test
+   D-score," where the stated score is a metric of association between
+   categories elucidated in surveys or questionnaires.
+4. [`thurstonianIRT`](https://joss.theoj.org/papers/10.21105/joss.01662)
+   derives a score used to assess forced-choice questionnaires (in which
+   answers must, for example, be either A or B).
+5. [`qsort`](https://joss.theoj.org/papers/10.21105/joss.00911) provides "a new
+   tool for scoring Q-sort Data", where these data are derived by asking survey
+   respondents to sort categories in some specified order. The input data in
+   this case are thus the sorting orders, rather than the categories
+   themselves.
+
+There is also software which takes quantitative input data and outputs discrete
+categorisations, as exemplified by the
+[`multistateutils`](https://joss.theoj.org/papers/10.21105/joss.00893) package,
+which is a biostatistical package useful for distinguishing and categorising
+dynamic trajectories (such as disease or treatment pathways).
+
+***Proposal*** 
+
+1. We seek explicit advise and expertise from somebody with domain expertise on
+   how we might best approach assessing software for categorical variables.
+2. We make this category something of an exception in that we will attempt to
+   develop approaches to standardising assessment in response to any initial
+   submissions we might receive. We would certainly explicitly acknowledge the
+   "trial" nature of this category, and might also productively ask authors of
+   initial packages for constructive input on how this might be achieved.
+3. In the absence of any category-specific standards which may arise or
+   otherwise be deemed applicable, this software ought be assessed under all
+   applicable general categories, with other aspects to be *qualitatively*
+   assessed by editors and reviewers. (This category is the single one, after
+   all, which primarily deals with *qualitative* data.)
 
 
 ### Networks
