@@ -843,7 +843,7 @@ from categorical inputs, although the various estimates are of course in no way
 comparable.
 
 It thus seems exceedingly difficult if not impossible to derive general
-standards for software in this category, even though we current recommend
+standards for software in this category, even though we currently recommend
 inclusion because of the unique importance in the social sciences. Examples of
 software for categorical variables include the following.
 
@@ -890,6 +890,56 @@ dynamic trajectories (such as disease or treatment pathways).
 
 
 ### Networks
+
+Network software is a particular area of application of what might often be
+considered more generic algorithms, as in the example described above of the
+[`grapherator`](https://github.com/jakobbossek/grapherator) package, for which
+this category is appropriate only because the input data are assumed to
+represent a particular form of graphical relationship, while most of the
+algorithms implemented in the package are not necessarily specific to graphs.
+That package might nevertheless be useful in developing standards because it,
+"implements a modular approach to benchmark graph generation focusing on
+undirected, weighted graphs". This package, and indeed several others developed
+by its author [Jakob Bossek](http://www.jakobbossek.de/blog/), may be useful in
+developing benchmarks for comparison of graph or network models and algorithms.
+
+Cases of software which might be assessed using such generic graph generators
+and benchmarks include:
+
+1. [`mcMST`](https://joss.theoj.org/papers/10.21105/joss.00374), which is "a
+   toolbox for the multi-criteria minimum spanning tree problem."
+2. [`gwdegree`](https://joss.theoj.org/papers/10.21105/joss.00036), which is
+   a package for, "improving interpretation of geometrically-weighted degree
+   estimates in exponential random graph models." This package essentially
+   generates one key graph statistic from a particular class of input graphs,
+   yet is clearly amenable to benchmarking, as well as measures of stability in
+   response to variable input structures.
+
+Network software which is likely more difficult to assess or compare in any
+general way includes:
+
+1. [`tcherry`](https://joss.theoj.org/papers/10.21105/joss.01480) is a package
+   for "Learning the structure of tcherry trees," which themselves are
+   particular ways of representing relationships between categorical data. The
+   package uses maximum likelihood techniques to find the best tcherry tree to
+   represent a given input data set. Although very clearly a form of network
+   software, this package might be considered better described by other
+   categories, and accordingly not directly assessed or assessable under any
+   standards derived for this category.
+2. [`BNLearn`](https://www.bnlearn.com/) is a package "for learning the
+   graphical structure of Bayesian networks." It is indubitably a network
+   package, yet the domain of application likely renders it incomparable to
+   other network software, and difficult to assess in any standardised way.
+
+***Proposal***
+
+1. We identify a sub-category of software which accepts *network inputs*, and
+   develop (or adapt) general techniques to generate generic graphs to be used
+   in benchmarking routines.
+2. Other software which falls within this category only because of restricted
+   aspects such as internal data representations (such as `tcherry`) *not* be
+   considered or assessed within this category.
+
 
 ### Statistical Reporting and Exploratory Data Analysis
 
