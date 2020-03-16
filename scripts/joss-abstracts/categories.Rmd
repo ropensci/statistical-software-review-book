@@ -97,7 +97,7 @@ script](https://github.com/ropenscilabs/statistical-software/blob/master/abstrac
 5. [`mlr3`](https://joss.theoj.org/papers/10.21105/joss.01903): ML, workflow, wrapper; input: parameters; output: trained ML model
 6. [`perccalc`](https://joss.theoj.org/papers/10.21105/joss.01796): categorical variables, estimates, scores; input: data.frame; output: numeric vectors, parameters
 7. [`xrnet`](https://joss.theoj.org/papers/10.21105/joss.01761): regression, high-dimensional data; input: data.frame, parameters; output: model estimates
-8. [`univariateML`](https://joss.theoj.org/papers/10.21105/joss.01863): estimates, maximum liklihood, probability density, probability distributions; input: numeric vector; output: model estimates
+8. [`univariateML`](https://joss.theoj.org/papers/10.21105/joss.01863): estimates, maximum likelihood, probability density, probability distributions; input: numeric vector; output: model estimates
 12. [`tabula`](https://joss.theoj.org/papers/10.21105/joss.01821): applied statistics, chronology, discrete data, index; input: matrix; output: summary statistics, visualization
 15. [`memochange`](https://joss.theoj.org/papers/10.21105/joss.01820): time series, non-stationarity; input: numeric vector, time series; output: summary statistics, model estimates
 16. [`hopit`](https://joss.theoj.org/papers/10.21105/joss.01508): discrete data, ordered response data, reporting, summary statistics; input: data.frame, categorical data; output: model estimates, summary statistics
