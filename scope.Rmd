@@ -470,19 +470,20 @@ software in this category include:
   reflect equivalent frequentist analyses.
 - Ways to standardise and compare diagnostic statistics for convergence of MCMC
   routines.
+- Forms and structures of data using in these routines are very variable,
+  likely making comparison among algorithms difficult.
 
 ### Dimensionality Reduction and Feature Selection
 
 Many packages either implement or rely upon techniques for dimensionality
 reduction or feature selection. One of the primary problems presented by such
 techniques is that they are constrained to yield a result independent on any
-measure of correctness of accuracy [@estivill-castro_why_2002]. This generally
-precludes any assessment of the accuracy or reliability of such routines.
-Moreover, dimensionality reduction techniques are often developed for
-particular kinds of input data, reducing abilities to compare and contrast
-different implementations, as well as to compare them with any notional
-reference implementations.
-
+measure of correctness of accuracy [@estivill-castro_why_2002]. This can make
+assessment of the accuracy or reliability of such routines difficult. Moreover,
+dimensionality reduction techniques are often developed for particular kinds of
+input data, reducing abilities to compare and contrast different
+implementations, as well as to compare them with any notional reference
+implementations.
 
 1. [`ivis`](https://joss.theoj.org/papers/10.21105/joss.01596) implements
    a dimensionality reduction technique using a "Siamese Neural Network
@@ -506,7 +507,7 @@ reference implementations.
 
 ***Key Considerations***
 
-- There is generally no way to discern the accuracy of reliability of
+- It is often difficult to discern the accuracy of reliability of
   dimensionality reduction techniques.
 - It is difficult to devise general routines to compare and assess different
   routines in this category, although possible starting points for the
@@ -516,7 +517,138 @@ reference implementations.
 
 ### Machine Learning
 
-### Regression, Splines, and other Interpolation Methods
+Machine Learning (ML) routines play a central role in modern statistical
+analyses, and the ML node in the above diagram is roughly equally central,
+and equally connected, to the Bayesian and Monte Carlo node. Machine Learning
+algorithms represent perhaps some of the most difficult algorithms for which to
+develop standards and methods of comparison. Both input and output data can be
+categorically different or even incomparable, while even where these may be
+comparable, the abiding aims of different ML algorithms can differ sufficiently
+to make comparison of outputs to otherwise equivalent inputs largely
+meaningless. A few potentially fruitful routes towards productive comparison
+may nevertheless be discerned, here according to the sub-domains of input data,
+output data, and algorithms.
+
+***Input Data*** One promising R package which may prove very useful for
+standardising and comparing data used as input to ML algorithms is the
+[`vtreat`](https://joss.theoj.org/papers/10.21105/joss.00584) package that
+"prepares messy real world data for predictive modeling in a reproducible and
+statistically sound manner." The routines in this package perform a series of
+tests for general sanity of input data, and may prove generally useful as part
+of a recommended ML workflow.
+
+***Algorithms*** A number of packages attempt to offer unified interfaces to
+a variety of ML algorithms, and so may be used within the context of the
+present project either as potential recommended standards, or as ways by which
+different algorithms may be compared within a standard workflow. Foremost among
+such packages are 
+[`mlr3`](https://joss.theoj.org/papers/10.21105/joss.01903), which represents
+one of the core R packages for ML, developed by the key developers of previous
+generations of ML software in R. It offers a modular and extensible interface
+for a range of ML routines, and may prove very useful in comparing different ML
+routines and implementations.
+
+***Output Data*** There are several extant packages for (post-)processing data
+output from ML algorithms. Many, perhaps even most, of these primarily aim to
+derive insightful visualisations of output, whether in interactive
+(JavaScript-based) form, as with the
+[`modelStudio`](https://joss.theoj.org/papers/10.21105/joss.01798) or
+[`modelDown`](https://joss.theoj.org/papers/10.21105/joss.01444) packages, or
+more static plots using internal graphical routines from R, as in the [`iml`
+(Interpretable Machine
+Learning)](https://joss.theoj.org/papers/10.21105/joss.00786) package. The
+latter package offers a host of additional functionality useful in interpreting
+the output of ML algorithms, and which may prove useful in general
+standards-based contexts.
+
+Potential "edge cases" which may be difficult to reconcile with the general
+aspects described above include the following:
+
+1. [`ReinforcementLearning`](https://joss.theoj.org/papers/10.21105/joss.01087)
+   is a simulation package employing ML routines to enable agents to learn
+   through trial and error. It is an example of a package with inputs and
+   outputs which may be difficult to compare with other ML software, and
+   difficult to assess via general standards.
+2. [`BoltzMM`](https://joss.theoj.org/papers/10.21105/joss.01193) is an
+   implementation of a particular class of ML algorithms ("Boltmann Machines"),
+   and so provides an obverse example to the above, for which in this case
+   inputs and outputs may be compared in standard ways, yet the core algorithm
+   may be difficult to compare.
+3. [`dml`](https://joss.theoj.org/papers/10.21105/joss.01036) is a collection
+   of different ML algorithms which perform the same task ("distance metric
+   learning"). While comparing algorithms *within* the package is obviously
+   straightforward, comparison in terms of external standards may not be.
+
+### Regression and Interpolation
+
+This category represents the most important intermediate node in the above
+network graphic between ML and Bayesian/Monte Carlo algorithms, as well as
+being strongly connected to several other nodes. While many regression or
+interpolation algorithms are developed as part of general frameworks within
+these contexts, there are nevertheless sufficiently many examples of regression
+and interpolation algorithms unrelated to these contexts to warrant the
+existence of this distinct category. That said, algorithms within this category
+share very little in common, and each implementation is generally devised for
+some explicit applied purpose which may be difficult to relate to any other
+implementations in this category.
+
+Perhaps one feature which almost of the following examples share in common is
+input and output data in (potentially multi-dimensional) vector format, very
+generally (but not exclusively) in numeric form. This may be one category in
+which the development of a system for [property-based
+testing](#framework-testing), like the [`hypothesis` framework for
+python](https://hypothesis.works) may be particularly useful. Such a system
+would facilitate tests in response to a range of differently input
+*structures*, such as values manifesting different distributional properties.
+Property-based testing is likely to be a particularly powerful technique for
+uncovering faults in regression and interpolation algorithms.
+
+Examples of the diversity of software in this category include the following.
+
+1. [`xrnet`](https://joss.theoj.org/papers/10.21105/joss.01761) to perform
+   "hierarchical regularized regression to incorporate external data", where
+   "external data" in this case refers to structured meta-data as applied to
+   genomic features.
+2. [`survPen`](https://joss.theoj.org/papers/10.21105/joss.01434) is, "an
+    R package for hazard and excess hazard modelling with multidimensional
+    penalized splines"
+3. [`areal`](https://joss.theoj.org/papers/10.21105/joss.01221) is, "an
+    R package for areal weighted interpolation".
+4. [`ChiRP`](https://joss.theoj.org/papers/10.21105/joss.01287) is a package
+    for "Chinese Restaurant Process mixtures for regression and clustering",
+    which implements a class of non-parametric Bayesian Monte Carlo models.
+5. [`klrfome`](https://joss.theoj.org/papers/10.21105/joss.00722) is a package
+    for, "kernel logistic regression on focal mean embeddings," with a specific
+    and exclusive application to the prediction of likely archaeological sites.
+6. [`gravity`](https://joss.theoj.org/papers/10.21105/joss.01038) is a package
+    for "estimation methods for gravity models in R," where "gravity models"
+    refers to models of spatial interactions between point locations based on
+    the properties of those locations.
+7. [`compboost`](https://joss.theoj.org/papers/10.21105/joss.00967) is an
+     example of an R package for gradient boosting, which is inherently
+     a regression-based technique, and so standards for regression software
+     ought to consider such applications.
+8. [`ungroup`](https://joss.theoj.org/papers/10.21105/joss.00937) is, "an
+     R package for efficient estimation of smooth distributions from coarsely
+     binned data." As such, this package is an example of regression-based
+     software for which the input data are (effectively) categorical. The
+     package is primarily intended to implement a particular method for
+     "unbinning" the data, and so represents a particular class of
+     interpolation methods.
+9. [`registr`](https://joss.theoj.org/papers/10.21105/joss.00557) is
+     a package for "registration for exponential family functional data," where
+     registration in this context is effectively an interpolation method
+     applied within a functional data analysis context.
+
+
+One package which may be potential general use is the
+[`ggeffects`](https://joss.theoj.org/papers/10.21105/joss.00772) package for
+"tidy data frames of marginal effects from regression models." This package
+aims to make statistics quantifying marginal effects readily understandable,
+and so implements a standard (tidyverse-based) methodology for representing and
+visualising statistics relating to marginal effects.
+
+
 
 ### Statistical Indices and Scores
 
@@ -608,6 +740,40 @@ or accuracy.
 
 ### Probability Distributions
 
+The category of probability distributions is an outlier in the preceding
+network diagram, connected only to ML and regression/interpolation algorithms.
+The latter category was identified as one in which property-based testing was
+likely to be useful, within similar suggestions applying to the present
+category, particularly through enabling routines to be tested for robustness
+against a variety of perturbations to assumed distributional forms.
+
+Packages which fall exclusively within this category and not within any 
+of the other categories considered here include:
+
+1. [`univariateML`](https://joss.theoj.org/papers/10.21105/joss.01863) which
+   is, "an R package for maximum likelihood estimation of univariate
+   densities," which support more than 20 different forms of probability
+   density.
+2. [`kdensity`](https://joss.theoj.org/papers/10.21105/joss.01566) which is,
+   "An R package for kernel density estimation with parametric starts and
+   asymmetric kernels." This package implements an effectively non-parametric
+   approach to estimating probability densities.
+3. [`overlapping`](https://joss.theoj.org/papers/10.21105/joss.01023), which
+   is, "a R package for estimating overlapping in empirical distributions."
+
+The obverse process from estimating or fitting probability distributions is
+arguably drawing samples from defined distributions, of which the 
+[`humanleague`](https://joss.theoj.org/papers/10.21105/joss.00629) package is
+an example. This package has a particular application in synthesis of discrete
+populations, yet the implementation is quite generic and powerful.
+
+***Proposal*** For packages which parameterise or fit probability
+distributions, develop routines to assess and quantify the sensitivity of
+outputs to the distributional properties of inputs, and particularly to
+deviations from assumed distributional properties.
+
+
+
 ### Wrapper Packages
 
 "Wrapper" packages provide an interface to previously-written software, often in
@@ -660,6 +826,16 @@ statistical functionality is in the main source code developed by the authors,
 and not in an external package.  
 
 ### Categorical Variables
+
+6. [`perccalc`](https://joss.theoj.org/papers/10.21105/joss.01796)
+16. [`hopit`](https://joss.theoj.org/papers/10.21105/joss.01508)
+21. [`DscoreApp`](https://joss.theoj.org/papers/10.21105/joss.01764)
+23. [`thurstonianIRT`](https://joss.theoj.org/papers/10.21105/joss.01662)
+42. [`tcherry`](https://joss.theoj.org/papers/10.21105/joss.01480)
+89. [`qsort`](https://joss.theoj.org/papers/10.21105/joss.00911)
+104. [`multistateutils`](https://joss.theoj.org/papers/10.21105/joss.00893)
+142. [`comorbidity`](https://joss.theoj.org/papers/10.21105/joss.00648)
+
 
 ### Networks
 
@@ -727,6 +903,8 @@ unique to statistical reporting software might include the following:
   stages of a statistical workflow?
 
 ### Survival Analyses
+
+1. [`survxai`](https://joss.theoj.org/papers/10.21105/joss.00961)
 
 ### Workflow Support
 
