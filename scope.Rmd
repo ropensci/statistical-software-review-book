@@ -500,7 +500,7 @@ implementations.
    a package for component-wise gradient boosting which may be sufficient
    general to potentially allow general application to problems addressed by
    several packages in this category. 
-10. The [`iml`](https://joss.theoj.org/papers/10.21105/joss.00786) package may
+5. The [`iml`](https://joss.theoj.org/papers/10.21105/joss.00786) package may
     offer usable functionality for devising general assessments of software
     within this category, through offering a "toolbox for making machine
     learning models interpretable" in a "model agnostic" way.
@@ -1006,7 +1006,50 @@ unique to statistical reporting software might include the following:
 
 ### Survival Analyses
 
-1. [`survxai`](https://joss.theoj.org/papers/10.21105/joss.00961)
+Software for survival analyses obtains its own category here due to the
+relatively large number of packages. Survival analysis is a unique category
+only in that it concerns models to process, predict, or analyse time-to-event
+data. In many other ways software for survival analyses crosses over with many
+other categories (including the central ML and Bayes/Monte Carlo categories),
+with aspects presumably covered by standards developed in those respective
+categories. The
+[`multistateutils`](https://joss.theoj.org/papers/10.21105/joss.00893) package,
+for example, is a biostatistical package useful for distinguishing and
+categorising dynamic trajectories (such as disease or treatment pathways).
+Several routines within this package involve assigning these categories to
+states, and estimating times spent in various states. Although these are
+survival analyses in a strict sense, that software is likely more appropriate
+considered under other categories.
+
+Perhaps one thing much survival analysis software has in common is similarity
+of output, at least conceptually, in trying to quantify or predict times to
+some defined event of a dynamic processes. One package that may potentially be
+useful in interpreting and comparing the outputs of different survival routines
+is [`survxai`](https://joss.theoj.org/papers/10.21105/joss.00961), which offers
+"structure-agnostic explanations of survival models," whether survival neural
+networks, survival random forests, or any other approach.
+
+1. [`ccostr`](https://joss.theoj.org/papers/10.21105/joss.01593) "for
+   estimating mean costs with censored data"
+2. [`survPen`](https://joss.theoj.org/papers/10.21105/joss.01434) "for hazard
+   and excess hazard modelling with multidimensional penalized splines", where
+   hazard is interpreted as time-to-event in comparison with some baseline
+   scenario.
+3. [`GammaGompertzCR`](https://joss.theoj.org/papers/10.21105/joss.00216) which
+   fits "a Gamma-Gompertz survival model to capture-recapture data collected on
+   free-ranging animal populations" (and was described under Bayesian and Monte
+   Carlo software, above).
+
+***Key Considerations*** Although survival analysis is a common purpose of
+statistical software, general methodologies may be too diverse to permit
+general comparison and standardisation. This category of software nevertheless
+very generally overlaps strongly with other categories considered here,
+suggesting that this entire category may be safely excluded from consideration,
+with the presumption that primary functional of survival software will be
+addressed by standards devised under the other categories considered here.
+
+***Proposal*** This category be excluded from explicit consideration.
+
 
 ### Workflow Support
 
@@ -1076,6 +1119,12 @@ performance scoring, model comparison), that can be evaluated for correctness
 or accuracy.  
 
 ### Summary Statistics
+
+1. [`SmartEDA`](https://joss.theoj.org/papers/10.21105/joss.01509)
+2. [`modelDown`](https://joss.theoj.org/papers/10.21105/joss.01444)
+3. [`insight`](https://joss.theoj.org/papers/10.21105/joss.01412)
+4. [`rsimsum`](https://joss.theoj.org/papers/10.21105/joss.00739)
+5. [`MCMCvis`](https://joss.theoj.org/papers/10.21105/joss.00640)
 
 ### Spatial Analyses
 
