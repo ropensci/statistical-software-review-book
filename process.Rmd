@@ -1,0 +1,161 @@
+```{r include=FALSE, cache=FALSE}
+
+knitr::opts_chunk$set(
+  cache = TRUE,
+  echo = FALSE
+)
+```
+#  (PART) Software Assessment and Review Process{-}
+
+```{r startup, echo = FALSE, message = FALSE}
+library (dplyr)
+library (rvest)
+library (igraph)
+library (ggplot2)
+theme_set (theme_minimal ())
+```
+
+# Software Assessment and Review Process {#process}
+
+This section attempts to describe the entire workflow envisioned to emerge from
+this project, from tools to enable authors to self-assess packages prior to
+submission, to tools for identifying and assigning reviews, to methods and
+tools for structured review interventions after software has been officially
+accepted. We now step through each of the envisioned phases in sequence.
+
+## Self-Evaluation of Software Prior to Submission {#self-eval}
+
+A strong focus of this project will be the development of tools to assess
+software, both in general and statistical software specifically. One important
+aim to to develop tools able to be used by software authors to assess their own
+software. Such self-assessment, along with associated standardised reporting of
+results, will ease pre-submission enquiries both on the part of submitting
+authors, and editors responsible for assessing such enquiries. Standardised
+reporting is considered in the [submission phase](#submission-phase), while the
+remainder of the present sub-section considers tools for self-assessment.
+
+Current rOpenSci practices expect authors to assess their software using
+[`goorpractice`](https://github.com/mangothecat/goodpractice), a package which
+internally runs [`R CMD
+check`](https://cran.r-project.org/doc/manuals/R-exts.html#Checking-packages)
+and searches for, and highlights, character patterns within the output
+indicative of the three types of CRAN issues (errors, warnings, and messages).
+The output of any issues flagged by
+[`goorpractice`](https://github.com/mangothecat/goodpractice) is expected to be
+pasted into the initial submission. As described above[^gpcomment], we expect
+not to employ [`goorpractice`](https://github.com/mangothecat/goodpractice) any
+further due to the difficulty of extending that software beyond its current
+scope, and will likely instead develop self-evaluation tools around a system
+like the [`PharmaR` project's](https://pharmar.org)
+[`riskmetric`](https://github.com/pharmaR/riskmetric) package. We will refer to
+our hypothetical framework from here on (for the time being at least) as
+a "`riskmetric`-type framework".
+
+[^gpcomment]: TODO: Insert link to that
+
+We anticipate developing a comprehensive system for self-evaluation of
+software, both in generic form able to be widely applied to software regardless
+of category, as well as specific tools for statistical software. Many of these
+generic assessments have been listed at the end of the preceding
+[Framework](#framework), while tools specific to statistical software have been
+considered in the preceding [Scope](#scope) chapter.
+
+
+## Pre-Submission Communication {#presub-comm}
+
+Pre-Submission Communication is the stage currently practised by both rOpenSci
+and the JOSS whereby authors can enquire about whether a potential submission
+is likely to be considered within scope prior to full submission. Full
+submissions can be potentially onerous, and the pre-submission phase represents
+a considerable easing of the burden on authors through enabling them to
+ascertain the potential suitability of a submission prior to completing a full
+submission. For this reason, we intend to adopt and adapt this phase as part of
+the new peer-review system. rOpenSci has github issue templates both for
+[pre-submissions](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/B-submit-a-presubmission-inquiry.md)
+and
+[submissions](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/A-submit-software-for-review.md),
+whereas the both pre-submission enquiries and submissions to the JOSS are
+initiated through an external (non-github) website which automatically opens an
+[issue on github](https://github.com/openjournals/joss-reviews/issues) with
+initial details provided by the submitting author. 
+
+These two systems have two major differences:
+
+1. rOpenSci's pre-submission enquiries are entirely optional, whereas all
+   initial submissions to the JOSS are pre-submission enquiries.
+2. Pre-submission enquiries to rOpenSci serve the singular purposes of
+   determining suitability of a potential full submission, whereas those to the
+   JOSS serve the additional purpose of seeking and assigning reviews. Having
+   found both editors and reviewers, a simple bot command of `@whedon start
+   review` suffices to automatically transform the pre-submission to a full
+   submission (as a new issue).
+
+Note that JOSS pre-submissions may also effectively be completed in fora other
+than their own pre-submission system, such as through an rOpenSci review process,
+in which case the initial entry point to the JOSS process is as a full review.
+The JOSS are also trialling the automatic generation and reporting of initial
+software metrics in response to pre-submission enquiries, as in [this
+example](https://github.com/openjournals/joss-reviews/issues/2149#issuecomment-596179168).
+The generation is triggered by the command `@whedon check repository`, and
+currently generates a [CLOC (Count Lines of
+Code)](https://github.com/AlDanial/cloc) summary of lines devoted to various
+computer languages, and a contribution chart with commits, additions, and
+deletions of each contributor to the repository. The CLOC output is used to
+automatically add labels to the issue identifying the primary computer
+languages. 
+
+
+***Proposals***
+
+1.  All submissions be initiated as mandatory pre-submission enquiries which
+    may be automatically transitioned to full submissions upon successful
+    nomination of editors and reviewers, as for the JOSS. This has the distinct
+    advantage of separating the search for reviewers from the actual review
+    process itself, leaving resultant review issues notably cleaner and more
+    focussed.
+2. The process of pre-submissions be partially automated in a similar manner to
+   the current system of the JOSS, perhaps extended by some form of automated
+   suggestion or identification of appropriate reviewers.
+
+
+## Submission {#submission-phase}
+
+Submission is envisioned to mirror rOpenSci's current submission process to
+a certain degree, although we anticipate a more extensive and structured
+checklist (or equivalent) system, along with the developed of automated tools
+triggered in response to submission. For example, the current rOpenSci system
+requests authors to paste the
+[`goorpractice`](https://github.com/mangothecat/goodpractice) output from their
+code into the opening comment of a new submission issue. Such a process is
+readily automated, and we expect to extend and refine both the automated
+checking [described above](#self-eval), and to collate results within some kind
+of reporting system. The self-identification of appropriate categories may also
+trigger automated checking using software specific to various categories of
+statistical software, with associated output also being automatically inserted
+into an issue.
+
+Although 
+Initial submission to rOpenSci's current system structured via [the
+template](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/A-submit-software-for-review.md),
+yet this is primarily a checklist of broad or general attributes with which
+both software and associated online repositories are expected to comply. In
+contrast, submissions to the [JOSS](https://joss.theoj.org) have a more
+extensive and detailed
+[template](https://github.com/openjournals/joss/blob/master/docs/submitting.md).
+
+## Initial Screening
+
+## Reviewers / Selection
+
+## Review Process
+
+[JOSS review checklist](https://github.com/openjournals/joss/blob/master/docs/review_checklist.md)
+
+## Acceptance / Scoring / Badging
+
+## Post-acceptance Dissemination, Publication, etc. 
+
+## Ongoing Maintenance
+
+## Structured Review beyond Acceptance
+
