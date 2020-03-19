@@ -19,9 +19,23 @@ theme_set (theme_minimal ())
 
 This section attempts to describe the entire workflow envisioned to emerge from
 this project, from tools to enable authors to self-assess packages prior to
-submission, to tools for identifying and assigning reviews, to methods and
+submission, to tools for identifying and assigning reviewers, to methods and
 tools for structured review interventions after software has been officially
-accepted. We now step through each of the envisioned phases in sequence.
+accepted. Although there are several potential general models we could adapt
+for our proposed system, we anticipate the general workflow being based on
+[github](https://github.com), for which two of the most prominent current
+models are rOpenSci's own [submission
+process](https://github.com/ropensci/software-review), and that of the [Journal
+of Open Source Software (JOSS)](https://github.com/openjournals/joss). Both of
+these systems treat submissions as issues within dedicated review repositories,
+an approach we intend to adopt. There are also notable differences between
+these two systems, and so they provide convenient reference points in
+considering many of the following phases we envision developing. It is
+nevertheless important to keep in mind that these examples are based on only
+two systems, and there may be many alternative ways of approaching the kinds of
+issues considered throughout the following phases we envision to comprise our
+system of peer review for statistical software.
+
 
 ## Self-Evaluation of Software Prior to Submission {#self-eval}
 
@@ -60,6 +74,15 @@ generic assessments have been listed at the end of the preceding
 [Framework](#framework), while tools specific to statistical software have been
 considered in the preceding [Scope](#scope) chapter.
 
+***Key Considerations*** The primary consideration here is actually one of the
+primary considerations of the entire project, which is what sort of tools might
+best be developed? It will be possible to develop extremely sophisticated
+tools, but at the expense of compromising progress in other important aspects
+of the project. Perhaps more than any other aspect of this project, answering
+this question will require maintaining a keen awareness of the compromises
+necessary to successfully deliver all desired project outcomes.
+
+
 
 ## Pre-Submission Communication {#presub-comm}
 
@@ -74,15 +97,16 @@ the new peer-review system. rOpenSci has github issue templates both for
 [pre-submissions](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/B-submit-a-presubmission-inquiry.md)
 and
 [submissions](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/A-submit-software-for-review.md),
-whereas the both pre-submission enquiries and submissions to the JOSS are
+whereas the both pre-submission and submission enquiries to the JOSS are
 initiated through an external (non-github) website which automatically opens an
 [issue on github](https://github.com/openjournals/joss-reviews/issues) with
 initial details provided by the submitting author. 
 
 These two systems have two major differences:
 
-1. rOpenSci's pre-submission enquiries are entirely optional, whereas all
-   initial submissions to the JOSS are pre-submission enquiries.
+1. rOpenSci's pre-submission enquiries are entirely optional, whereas initial
+   submissions to the JOSS are by default pre-submission enquiries (unless
+   originating elsewhere, such as from a completed rOpenSci review).
 2. Pre-submission enquiries to rOpenSci serve the singular purposes of
    determining suitability of a potential full submission, whereas those to the
    JOSS serve the additional purpose of seeking and assigning reviews. Having
@@ -90,9 +114,6 @@ These two systems have two major differences:
    review` suffices to automatically transform the pre-submission to a full
    submission (as a new issue).
 
-Note that JOSS pre-submissions may also effectively be completed in fora other
-than their own pre-submission system, such as through an rOpenSci review process,
-in which case the initial entry point to the JOSS process is as a full review.
 The JOSS are also trialling the automatic generation and reporting of initial
 software metrics in response to pre-submission enquiries, as in [this
 example](https://github.com/openjournals/joss-reviews/issues/2149#issuecomment-596179168).
@@ -112,11 +133,16 @@ languages.
     nomination of editors and reviewers, as for the JOSS. This has the distinct
     advantage of separating the search for reviewers from the actual review
     process itself, leaving resultant review issues notably cleaner and more
-    focussed.
+    focussed. It also adds clarity through removing potential ambiguity in
+    deciding between two distinct ways to commence submission.
 2. The process of pre-submissions be partially automated in a similar manner to
-   the current system of the JOSS, perhaps extended by some form of automated
-   suggestion or identification of appropriate reviewers.
+   the current system of the JOSS, with metrics extended and adapted to the
+   unique needs of our own project.
+3. Automation procedures may perhaps be extended by some form of automated
+   identification or suggestion of appropriate reviewers.
 
+
+## Reviewers / Selection
 
 ## Submission {#submission-phase}
 
@@ -134,22 +160,217 @@ trigger automated checking using software specific to various categories of
 statistical software, with associated output also being automatically inserted
 into an issue.
 
-Although 
-Initial submission to rOpenSci's current system structured via [the
+Initial submission to rOpenSci's current system is structured via [the
 template](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/A-submit-software-for-review.md),
-yet this is primarily a checklist of broad or general attributes with which
+which is primarily a checklist of broad or general attributes with which
 both software and associated online repositories are expected to comply. In
 contrast, submissions to the [JOSS](https://joss.theoj.org) have a more
 extensive and detailed
-[template](https://github.com/openjournals/joss/blob/master/docs/submitting.md).
+[template](https://github.com/openjournals/joss/blob/master/docs/review_checklist.md).
+The checklist generated by the template for rOpenSci is expected to be
+completed by submitting authors prior to opening their submission issue,
+whereas the checklist generated for JOSS is initially empty, and actually is
+the review itself, to be completed by reviewers checking appropriate boxes as
+they proceed through a review. This is done by editing the initial issue, so
+that the current status of a JOSS review can always be seen in the first (top)
+comment of an issue, whereas the current status of an rOpenSci review is less
+structured, and must always be surmised by perusing the latest series of
+comments at the bottom of a submission issue.
+
+
+***Key Considerations***
+
+1. Presuming the primary entry point to be via pre-submission enquiries as
+   described above means that considerably more information will be available
+   upon transitioning to actual submissions, and that the information will
+   accordingly be able to be used in a more structured way that better lends
+   itself to automation.
+2. The tools used to generate such structured information will be largely those
+   considered in the first of the above points, as tools able to be used for
+   self-evaluation of software.
+3. As mentioned above, the actual Submission phase is to be entered in to only
+   following successful assignment of willing reviewers (notwithstanding
+   potential alternative paths, exemplified by current path from rOpenSci
+   review to direct JOSS submission).
+
+***Proposal***
+
+1. Progression from pre-submission to submission be automated as for the JOSS.
+2. A checklist be automatically generated as part of the opening issue, yet
+   more reflecting current rOpenSci practices of affirming compliant aspects of
+   a submission, rather than JOSS practices of affirming ultimate reviewer
+   judgements.
+
 
 ## Initial Screening
 
-## Reviewers / Selection
+The development and provision of automated tools for initial software
+assessment will enable considerably more structured information to be provided
+in direct (automated) response to the opening of a submission issue that with
+the current rOpenSci system. The ready provision of such structured information
+will aid all of the preceding steps, and will also greatly ease the burden of
+initial screening of submissions. Software will already have been ascertained
+to be within scope, willing reviewers will already have been assigned, and an
+extensive report will have been automatically generated summarising a variety
+of aspects of software structure, function, and other aspects pertinent to
+a review.
+
+The primary purpose of the initial screening step will accordingly be for
+editors to judge whether or not the totality of submitted data suffices for the
+review process to officially start. An additional purpose could be the
+assignment of due dates for submission of reviews. The JOSS imposes a generic
+review period of two weeks, whereas rOpenSci provides opportunity to discuss
+appropriate due dates with reviewers.
+
+***Proposal*** 
+
+1. Initial screening involve the two tasks of editors 
+   (i) agreeing on submission dates for reviews, and 
+   (ii) officially approving a submission.
+2. The agreement of submission dates be integrated within the official
+   submission issue, rather than the pre-submission issue, so that explicit
+   information on review dates remains within the review issue itself.
+3. Submission dates be negotiated around an initial suggested duration of one
+   month.
+4. An automated command be implemented for the review process to be
+   "officially" started, which will announce the agreed-upon dates and provide
+   any extra information for reviewers. 
+
+Note that JOSS currently implements `@whedon start review` to transition
+a pre-submission to a full submission. The above suggestions effectively
+translate to breaking this into the two commands of `start submission` to
+transition to a full submission and `start review` to commence the actual
+review process once approved by editors.
+
+
 
 ## Review Process
 
-[JOSS review checklist](https://github.com/openjournals/joss/blob/master/docs/review_checklist.md)
+The review processes of rOpenSci and the JOSS are qualitatively different, with
+JOSS submissions guided by extensive automation, and so being strongly
+determined by their
+[checklist](https://github.com/openjournals/joss/blob/master/docs/review_checklist.md),
+whereas rOpenSci reviews are commenced only after authors complete the
+[checklist](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/A-submit-software-for-review.md)
+(or otherwise explain any anomalies). Reviewers of submissions to rOpenSci are
+solicited privately, and privately informed both to read the [*Guide for
+Reviewers* chapter](https://devguide.ropensci.org/reviewerguide.html) in the
+[*Development, Maintenance, and Peer Review*
+Guide](https://devguide.ropensci.org), and that their review must be submitted
+with the [*Review
+Template*](https://devguide.ropensci.org/reviewtemplate.html#reviewtemplate).
+This template serves the same purpose as the automatically-generated JOSS
+template, but is to be pasted by authors themselves into their own comments in
+the review issue, whereas the JOSS checklist is to be filled out by reviewers
+editing the opening comment of the review issue. In short, the rOpenSci
+checklist is an official starting point, with reviews submitted at the end with
+the help of a template; the JOSS checklist is an official endpoint, empty at
+first and progressively completed by each reviewer as they progress through the
+review process. 
+
+We envision a system primarily derived from rOpenSci's current system, with
+reviews completed through the use of a template and pasted as comments at the
+bottom of a github issue. This approach will face on immediate difficulty in
+that templates will likely differ for different kinds of statistical software,
+through software being described by different combinations of the [categories
+described above](#scope). It may suffice to combine a generic "master" template
+with category-specific items to be appended according to the description of
+submitted software within our list of categories, although it is important to
+note that this would exclude review criteria reflecting unique combinations of
+categories (for example, a checklist item appropriate for the visualisation of
+results from ML algorithms).
+
+The preceding consideration exemplifies the extent to which processes developed
+and employed to review statistical software are likely to be strongly
+influenced by the kinds of automated tools we develop, both for automated and
+self assessment along with associated reporting systems, as well as potentially
+for more comprehensive assessments and reporting systems or standards not
+otherwise amenable to automation. In the current initial phase of this project
+prior to the concrete development of any of these kind of tools, the present
+considerations of the review process are accordingly and necessarily generic in
+nature. We anticipate this current sub-section becoming particularly more
+detailed as the project progress and as we develop project-specific tools for
+software assessment.
+
+### Review Templates
+
+As described above, the [JOSS
+checklist](https://github.com/openjournals/joss/blob/master/docs/review_checklist.md)
+is pre-generated with the opening of each review issue, whereas the [rOpenSci
+template](https://devguide.ropensci.org/reviewtemplate.html#reviewtemplate) is
+to be completed and pasted in to the issue by reviewers. The two templates are
+nevertheless broadly similar, both including the following checklist items:
+
+- [ ] The reviewer has no conflict of interests
+
+**Documentation** The software has:
+
+- [ ] A clear statement of need
+- [ ] Installation instructions
+- [ ] Function documentation
+- [ ] Examples
+- [ ] Community guidelines for how to contribute
+
+**Functionality** The software should:
+
+- [ ] Install as documented
+- [ ] Meet its own functional claims
+- [ ] Meet its own performance claims
+- [ ] Have automated tests (considered by the JOSS as part of "Documentation")
+
+In addition, the JOSS requires reviewers:
+
+- [ ] To agree to abide by a reviewer [code of
+   conduct](https://joss.theoj.org/about#code_of_conduct)
+- [ ] To confirm that the source code is in the nominated repository
+- [ ] To confirm that the software has an appropriate license.
+- [ ] To confirm that the submitting author has made major contributions, and that
+   the provided list of authors seems appropriate and complete.
+
+rOpenSci insists in turn on the two additional aspects, that software  
+
+- [ ] Has a vignette demonstrating major functionality; and
+- [ ] Conforms to the rOpenSci packaging guidelines
+
+Perhaps the most influential difference between the two systems is that the
+rOpenSci template concludes with the following lines:
+
+```{r eval = FALSE, echo = TRUE}
+---
+
+### Review Comments
+```
+
+The section break and sub-section heading act in combination as a prompt for
+reviewers to add their own discursive comments, whereas the JOSS template has
+no such field. Accordingly, the majority[^joss-review-claim] of JOSS reviews
+merely consist of a completed checklist, whereas *all* rOpenSci reviews are
+extensively discursive, with reviewers frequently offering very extensive
+comments and analyses of submitted code.
+
+[^joss-review-claim]: That claim has not been substantiated.
+
+
+### Category-Specific Aspects of Reviews
+
+### Reviewer Recommendations
+
+
+
+***Proposal***
+
+1. We adopt the current rOpenSci approach of having reviews based on
+   a pre-defined template to be completed by reviewers and pasted as the latest
+   comment in a review issue, rather than the JOSS model of having reviewers
+   edit the initial, opening comment of a review issue.
+2. We adopt the current rOpenSci approach of having reviewers testify the time
+   spent on their review. We either then:
+   (i) Do not provide any information on typical times devoted by other
+       reviewers; or
+   (ii) Provide summary information including estimates of variation and
+        proviso that such information is only intended to avoid reviewers
+        otherwise feeling obliged to devote unnecessarily *long* times to
+        reviews.
 
 ## Acceptance / Scoring / Badging
 
