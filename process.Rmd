@@ -17,50 +17,54 @@ theme_set (theme_minimal ())
 
 # Software Assessment and Review Process {#process}
 
-This section attempts to describe the entire workflow envisioned to emerge from
-this project, from tools to enable authors to self-assess packages prior to
-submission, to tools for identifying and assigning reviewers, to methods and
-tools for structured review interventions after software has been officially
-accepted. Although there are several potential general models we could adapt
-for our proposed system, we anticipate the general workflow being based on
-[github](https://github.com), for which two of the most prominent current
-models are rOpenSci's own [submission
+This section attempts to briefly describe the entire workflow envisioned to
+emerge from this project, from tools to enable authors to self-assess packages
+prior to submission, to tools for identifying and assigning reviewers, to
+methods and tools for structured review interventions after software has been
+officially accepted. Although there are several potential general models we
+could adapt for our proposed system, we anticipate the general workflow being
+based on [github](https://github.com), for which two of the most prominent
+current models are rOpenSci's own [submission
 process](https://github.com/ropensci/software-review), and that of the [Journal
 of Open Source Software (JOSS)](https://github.com/openjournals/joss). Both of
 these systems treat submissions as issues within dedicated review repositories,
 an approach we intend to adopt. There are also notable differences between
-these two systems, and so they provide convenient reference points in
-considering many of the following phases we envision developing. It is
-nevertheless important to keep in mind that these examples are based on only
-two systems, and there may be many alternative ways of approaching the kinds of
-issues considered throughout the following phases we envision to comprise our
-system of peer review for statistical software.
+these two systems, with contrasts between them often providing convenient
+reference points in considering many of the following phases we envision
+developing. It is nevertheless important to keep in mind that the following
+examples generally refer to these two systems only, and that there may be many
+alternative ways of approaching the kinds of issues considered throughout the
+following phases we envision to comprise our system of peer review for
+statistical software.
 
 
 ## Self-Evaluation of Software Prior to Submission {#self-eval}
 
 A strong focus of this project will be the development of tools to assess
-software, both in general and statistical software specifically. One important
-aim to to develop tools able to be used by software authors to assess their own
-software. Such self-assessment, along with associated standardised reporting of
-results, will ease pre-submission enquiries both on the part of submitting
-authors, and editors responsible for assessing such enquiries. Standardised
-reporting is considered in the [submission phase](#submission-phase), while the
-remainder of the present sub-section considers tools for self-assessment.
+software, both generally and for statistical software specifically. One
+important aim to to develop tools able to be used by software authors to assess
+their own software. Such self-assessment, along with associated standardised
+reporting of results, will ease pre-submission enquiries both on the part of
+submitting authors, and editors responsible for assessing such enquiries.
+Standardised reporting is considered in the [submission
+phase](#submission-phase), while the remainder of the present sub-section
+considers tools for self-assessment.
 
 Current rOpenSci practices expect authors to assess their software using
 [`goorpractice`](https://github.com/mangothecat/goodpractice), a package which
-internally runs [`R CMD
+primarily relies on internally running [`R CMD
 check`](https://cran.r-project.org/doc/manuals/R-exts.html#Checking-packages)
-and searches for, and highlights, character patterns within the output
+and searching for, and highlighing, character patterns within the output
 indicative of the three types of CRAN issues (errors, warnings, and messages).
-The output of any issues flagged by
+The package also calculates test coverage metrics, and runs
+a [linter](https://en.wikipedia.org/wiki/Lint_(software)) to highlight any
+non-compliant lines. The output of any issues flagged by
 [`goorpractice`](https://github.com/mangothecat/goodpractice) is expected to be
 pasted into the initial submission. As described above[^gpcomment], we expect
 not to employ [`goorpractice`](https://github.com/mangothecat/goodpractice) any
 further due to the difficulty of extending that software beyond its current
 scope, and will likely instead develop self-evaluation tools around a system
-like the [`PharmaR` project's](https://pharmar.org)
+like the [`PharmaR` project's](https://pharmar.org) eminently extensible
 [`riskmetric`](https://github.com/pharmaR/riskmetric) package. We will refer to
 our hypothetical framework from here on (for the time being at least) as
 a "`riskmetric`-type framework".
@@ -82,14 +86,21 @@ of the project. Perhaps more than any other aspect of this project, answering
 this question will require maintaining a keen awareness of the compromises
 necessary to successfully deliver all desired project outcomes.
 
+***Proposal***
+
+1. We develop a comprehensive tool for general assessment of software and
+   reporting of analytics, with several modules extending to specific
+   assessment of statistical software.
+2. We simultaneously develop a lightweight infrastructure to enable such
+   assessment and reporting to be provided as an online service.
 
 
 ## Pre-Submission Communication {#presub-comm}
 
 Pre-Submission Communication is the stage currently practised by both rOpenSci
-and the JOSS whereby authors can enquire about whether a potential submission
-is likely to be considered within scope prior to full submission. Full
-submissions can be potentially onerous, and the pre-submission phase represents
+and JOSS whereby authors can enquire about whether a potential submission is
+likely to be considered within scope prior to full submission. Full submissions
+can be potentially onerous, and the pre-submission phase represents
 a considerable easing of the burden on authors through enabling them to
 ascertain the potential suitability of a submission prior to completing a full
 submission. For this reason, we intend to adopt and adapt this phase as part of
@@ -97,31 +108,31 @@ the new peer-review system. rOpenSci has github issue templates both for
 [pre-submissions](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/B-submit-a-presubmission-inquiry.md)
 and
 [submissions](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/A-submit-software-for-review.md),
-whereas the both pre-submission and submission enquiries to the JOSS are
-initiated through an external (non-github) website which automatically opens an
+whereas the both pre-submission and submission enquiries to JOSS are initiated
+through an external (non-github) website which automatically opens an
 [issue on github](https://github.com/openjournals/joss-reviews/issues) with
 initial details provided by the submitting author. 
 
 These two systems have two major differences:
 
 1. rOpenSci's pre-submission enquiries are entirely optional, whereas initial
-   submissions to the JOSS are by default pre-submission enquiries (unless
+   submissions to JOSS are by default pre-submission enquiries (unless
    originating elsewhere, such as from a completed rOpenSci review).
 2. Pre-submission enquiries to rOpenSci serve the singular purposes of
-   determining suitability of a potential full submission, whereas those to the
+   determining suitability of a potential full submission, whereas those to
    JOSS serve the additional purpose of seeking and assigning reviews. Having
    found both editors and reviewers, a simple bot command of `@whedon start
    review` suffices to automatically transform the pre-submission to a full
    submission (as a new issue).
 
-The JOSS are also trialling the automatic generation and reporting of initial
+JOSS is also trialling the automatic generation and reporting of initial
 software metrics in response to pre-submission enquiries, as in [this
 example](https://github.com/openjournals/joss-reviews/issues/2149#issuecomment-596179168).
 The generation is triggered by the command `@whedon check repository`, and
 currently generates a [CLOC (Count Lines of
 Code)](https://github.com/AlDanial/cloc) summary of lines devoted to various
 computer languages, and a contribution chart with commits, additions, and
-deletions of each contributor to the repository. The CLOC output is used to
+deletions from each contributor to the repository. The CLOC output is used to
 automatically add labels to the issue identifying the primary computer
 languages. 
 
@@ -130,19 +141,48 @@ languages.
 
 1.  All submissions be initiated as mandatory pre-submission enquiries which
     may be automatically transitioned to full submissions upon successful
-    nomination of editors and reviewers, as for the JOSS. This has the distinct
+    nomination of editors and reviewers, as for JOSS. This has the distinct
     advantage of separating the search for reviewers from the actual review
     process itself, leaving resultant review issues notably cleaner and more
-    focussed. It also adds clarity through removing potential ambiguity in
-    deciding between two distinct ways to commence submission.
-2. The process of pre-submissions be partially automated in a similar manner to
-   the current system of the JOSS, with metrics extended and adapted to the
-   unique needs of our own project.
+    focussed. Mandatory pre-submission enquiries also add clarity through
+    removing potential ambiguity in deciding between two distinct ways to
+    commence submission.
+2. The process of pre-submission be partially automated in a similar manner to
+   the current system of JOSS, with metrics extended and adapted to the unique
+   needs of our own project. Only cursory metrics pertinent to the
+   pre-submission stage will be generated, as for example the JOSS system of
+   using CLOC output to assign labels identifying primary computer languages.
 3. Automation procedures may perhaps be extended by some form of automated
-   identification or suggestion of appropriate reviewers.
+   identification or suggestion of appropriate reviewers, with some aspects of
+   the processes described in the following section potentially automatically
+   triggered by a pre-submission enquiry.
+
+***Questions***
+
+- Which software metrics might aid the pre-submission process?
 
 
 ## Reviewers / Selection
+
+The solicitation of reviewers is one of the most difficult tasks facing any
+peer review system, including both rOpenSci and JOSS. rOpenSci has built up an
+extensive network of users, participants, and developers, many of whom are
+members of the organisation's [slack](https://slack.com) group. In contrast to
+traditional academic journals, submitting authors are *not* requested to
+recommend potential reviewers. JOSS explicitly states,
+
+>  if you have any suggestions for potential reviewers then please mention them
+here in this thread,
+
+and also points authors of pre-submission enquiries to a curated [list of
+potential reviewers (as a google
+document)](https://docs.google.com/spreadsheets/d/1PAPRJ63yq9aPC1COLjaQp8mHmEq3rZUzwUYxTulyu78/edit#gid=856801822),
+further requesting that authors suggest any potentially appropriate reviewers
+from that list. Being a google document, it is simply progressively extended
+line-by-line, currently amounting to 1,163 names, liking making it not
+particularly easy for authors to find reviewers.
+
+
 
 ## Submission {#submission-phase}
 
@@ -164,8 +204,8 @@ Initial submission to rOpenSci's current system is structured via [the
 template](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/A-submit-software-for-review.md),
 which is primarily a checklist of broad or general attributes with which
 both software and associated online repositories are expected to comply. In
-contrast, submissions to the [JOSS](https://joss.theoj.org) have a more
-extensive and detailed
+contrast, submissions to [JOSS](https://joss.theoj.org) have a more extensive
+and detailed
 [template](https://github.com/openjournals/joss/blob/master/docs/review_checklist.md).
 The checklist generated by the template for rOpenSci is expected to be
 completed by submitting authors prior to opening their submission issue,
@@ -195,7 +235,7 @@ comments at the bottom of a submission issue.
 
 ***Proposal***
 
-1. Progression from pre-submission to submission be automated as for the JOSS.
+1. Progression from pre-submission to submission be automated as for JOSS.
 2. A checklist be automatically generated as part of the opening issue, yet
    more reflecting current rOpenSci practices of affirming compliant aspects of
    a submission, rather than JOSS practices of affirming ultimate reviewer
@@ -218,7 +258,7 @@ a review.
 The primary purpose of the initial screening step will accordingly be for
 editors to judge whether or not the totality of submitted data suffices for the
 review process to officially start. An additional purpose could be the
-assignment of due dates for submission of reviews. The JOSS imposes a generic
+assignment of due dates for submission of reviews. JOSS imposes a generic
 review period of two weeks, whereas rOpenSci provides opportunity to discuss
 appropriate due dates with reviewers.
 
@@ -246,7 +286,7 @@ review process once approved by editors.
 
 ## Review Process
 
-The review processes of rOpenSci and the JOSS are qualitatively different, with
+The review processes of rOpenSci and JOSS are qualitatively different, with
 JOSS submissions guided by extensive automation, and so being strongly
 determined by their
 [checklist](https://github.com/openjournals/joss/blob/master/docs/review_checklist.md),
@@ -316,9 +356,9 @@ nevertheless broadly similar, both including the following checklist items:
 - [ ] Install as documented
 - [ ] Meet its own functional claims
 - [ ] Meet its own performance claims
-- [ ] Have automated tests (considered by the JOSS as part of "Documentation")
+- [ ] Have automated tests (considered by JOSS as part of "Documentation")
 
-In addition, the JOSS requires reviewers:
+In addition, JOSS requires reviewers:
 
 - [ ] To agree to abide by a reviewer [code of
    conduct](https://joss.theoj.org/about#code_of_conduct)
