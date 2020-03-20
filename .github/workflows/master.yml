@@ -12,7 +12,10 @@ jobs:
     if: "!(contains(github.event.head_commit.message, 'ci skip')||contains(github.event.head_commit.message, 'skip ci'))"
     steps:
       - name: Install libcurl
-        run: sudo apt-get install libcurl4-openssl-dev
+        run: |
+            git config -l
+            sudo apt-get install libcurl4-openssl-dev
+            git config -l
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
