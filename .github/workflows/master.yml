@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     if: "!(contains(github.event.head_commit.message, 'ci skip')||contains(github.event.head_commit.message, 'skip ci'))"
     steps:
+      - name: Install libcurl
+        run: apt install libcurl4-openssl-dev
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
