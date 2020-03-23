@@ -209,6 +209,24 @@ Maintaining a generally (yet not necessarily publicly) accessible database of
 personal contact information is inherently difficult, and is something the
 current project would like to do better than its two main precedents.
 
+### Automating the Identification of Potential Reviewers
+
+It may be worthwhile developing automatic tools to aid identifying appropriate
+reviewers. One possibility may be analyses of all openly-available code from
+potential reviewers, to somehow measure degree of similarity with a given
+submission. While this would be almost impossible to do between different
+computer languages, it may be possible within R code alone, through processing
+output from the `utils::getParseData` function to identify frequencies of usage
+of various function calls.
+
+Such an approach may have important advantages, notably in highlighting
+reviewers for reasons other than mere prominence within some form of public
+arena. Appropriate development of such a tool should ultimately enable and
+empower a more equitable system which is actively designed to avoid any
+tendency of submitting authors suggesting similar names of centrally prominent
+developers.
+
+
 ## Submission {#submission-phase}
 
 Submission is envisioned to mirror rOpenSci's current submission process to
