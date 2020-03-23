@@ -180,9 +180,34 @@ document)](https://docs.google.com/spreadsheets/d/1PAPRJ63yq9aPC1COLjaQp8mHmEq3r
 further requesting that authors suggest any potentially appropriate reviewers
 from that list. Being a google document, it is simply progressively extended
 line-by-line, currently amounting to 1,163 names, liking making it not
-particularly easy for authors to find reviewers.
+particularly easy for authors to find appropriate reviewers.
 
+We will of course extend upon our existing pool of reviewers, and also intend
+to cultivate and extend a network of reviewers with expertise in statistical
+software throughout the duration of this project. We would also very much like
+to develop and utilise tools which may aid the process of finding and
+soliciting reviewers, with the remainder of this sub-section exploring a few
+options.
 
+### Database of Potential Reviewers
+
+As described, JOSS maintains a database of potential reviewers within
+a publicly accessible google document, while rOpenSci maintains theirs in an
+[airtable](https://airtable.com). The latter is not ideal, because the first
+suggested login option, via a google account, automatically grants google
+access to all of a user's personal contacts, an invasion of privacy to which
+many may understandably object. While it is possible to view JOSS's google
+document anonymously, anybody who happens to be simultaneously logged in to
+a google account --- notably including by default all Android users --- has
+already assented to google logging all interactions with the table. The mere
+possibility of anonymous viewing nevertheless makes JOSS's approach better in
+many ways, yet illustrates the conflicts inherent in curating such databases of
+personal information, through all personal information within the table being
+both viewable by anybody, and permanently available to google.
+
+Maintaining a generally (yet not necessarily publicly) accessible database of
+personal contact information is inherently difficult, and is something the
+current project would like to do better than its two main precedents.
 
 ## Submission {#submission-phase}
 
@@ -310,15 +335,14 @@ review process.
 
 We envision a system primarily derived from rOpenSci's current system, with
 reviews completed through the use of a template and pasted as comments at the
-bottom of a github issue. This approach will face on immediate difficulty in
-that templates will likely differ for different kinds of statistical software,
-through software being described by different combinations of the [categories
-described above](#scope). It may suffice to combine a generic "master" template
-with category-specific items to be appended according to the description of
-submitted software within our list of categories, although it is important to
-note that this would exclude review criteria reflecting unique combinations of
-categories (for example, a checklist item appropriate for the visualisation of
-results from ML algorithms).
+bottom of a github issue. This approach will face one immediate difficulty in
+that templates will likely differ through software being described by different
+combinations of the [categories described above](#scope). It may suffice to
+combine a generic "master" template with category-specific items to be appended
+according to the description of submitted software within our list of
+categories, although it is important to note that this would exclude review
+criteria reflecting unique combinations of categories (for example, a checklist
+item appropriate for the visualisation of results from ML algorithms).
 
 The preceding consideration exemplifies the extent to which processes developed
 and employed to review statistical software are likely to be strongly
@@ -390,12 +414,44 @@ comments and analyses of submitted code.
 
 [^joss-review-claim]: That claim has not been substantiated.
 
+These differences may plausibly be interpreted to reflect general differences
+in the *cultural practices* of the two review systems, with rOpenSci having
+particularly nurtured the cultural practice of extensively discursive reviews,
+notably through suggesting that prior reviews ought be perused for good
+guidelines on review practices. We intend to continue such cultural practices,
+while at the same time aiming to develop a system for more structured yet
+discursive input, in order both to provide more focussed software reviews, and
+to lessen the burden on reviewers. We anticipate commencing the development of
+such structure in subsequent iterations of the present document.
+
 
 ### Category-Specific Aspects of Reviews
 
+We defer consideration of category-specific aspects of review until we have
+concluded a first round of consultation on the [preceding categorical
+definitions](#scope).
+
 ### Reviewer Recommendations
 
+Both rOpenSci and JOSS currently work with a binary recommendation scheme of
+rejection or acceptance. In both cases, rejection is primarily decided in
+response to a pre-preview (JOSS) or pre-submission enquiry (rOpenSci), and
+usually for the reason of being out-of-scope (in rOpenSci's case because
+software does not fit within the defined categories; and in JOSS's case because
+the software does not have a specific research focus). Having obtained approval
+to proceed from pre-review to full review, both systems generally work with
+package authors to strive for ultimate acceptance. Rejections during this phase
+generally only happen when authors stall or abandon ongoing or requested
+package development. As long as authors continue to be engaged, reviews very
+generally proceed until a submission is accepted.
 
+***Proposal*** While a variety of potential outcomes of the review process are
+considered [immediately below](#review-acceptance), reviewers will only be
+requested to ultimately check a single box indicating their approval for
+software to be accepted. An approved submission may then receive a variety of
+labels in response to binary acceptance, as described below.
+
+---
 
 ***Proposal***
 
@@ -411,8 +467,33 @@ comments and analyses of submitted code.
         proviso that such information is only intended to avoid reviewers
         otherwise feeling obliged to devote unnecessarily *long* times to
         reviews.
+3. We adopt and adapt the general review templates currently used by rOpenSci
+   and JOSS, extending both in order to provides as much structured discursive
+   feedback as possible.
+4. We develop at least examples of category-specific template items to be added
+   to the general review template.
 
-## Acceptance / Scoring / Badging
+## Acceptance / Scoring / Badging {#review-acceptance}
+
+Software being recommended for acceptance by reviews need not be reflected in
+a simple "accepted" label. Particularly in the early stages of our system for
+peer-reviewing statistical software, we may have some kind of checklist from
+which we require authors to ultimately comply with some recommended limited
+number of items, yet not all. It may then be worthwhile have a review outcome
+that flags this compliance level, and indicates that software will be expected
+to retain compliance as our system develops.
+
+Another example may be outcomes which consider the kinds of lifecycle models
+considered above, in which context it may be useful to have an outcome that
+labels software as having passed initial or primary review, yet which will
+still be subject to subsequent review some agreed-upon time later. Such systems
+of re-assessment will nevertheless not necessarily be (equally) applicable to
+all submissions, and so such "progressive labelling" will likely only ever be
+optional, and applicable where appropriate.
+
+***Proposal*** We implement a recommendation system which explicitly flags the
+version of our system's standards with which reviewed software complies.
+
 
 ## Post-acceptance Dissemination, Publication, etc. 
 
