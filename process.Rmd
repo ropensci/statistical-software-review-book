@@ -46,23 +46,27 @@ commonly handled by the primary editors, who delegate subject editors to both
 solicit appropriate reviewers, and to manage the review process. Upon
 completion, the primary editor generally signifies ultimate acceptance. 
 
-Such a model would also likely be beneficial for the present project, although
-attracting sufficient numbers of subject editors may prove difficult. There
-would nevertheless be distinct advantages, foremost among which would be an
-ability to appoint a reasonably large number of "subject editors" (or
-equivalent), for whom such an official designation would be able to be used to
-boost their own careers. As a contrast, rOpenSci current has eight editors who
-handle all submissions, from whom four are staff members. The preceding
-consideration of [categories](#scope) suggests we may end up with around
-a dozen categories, and so potentially be able to offer around three times the
-number of honorary subject editor positions (availability of such
-notwithstanding), along with a concomitant reduction in workload for each of
-them. Engaging such a range of subject editors would also lessen the burden on
-primary editors, perhaps enabling the system to be initially trialled with the
-two or three people primarily engaged in its current developmental phase. The
-engagement of a wider range of subject editors would also enlarge the network
-of people directly engaged with the project, as well as extending its sphere of
-influence to encompass the professional networks of all those involved.
+Such a model would also likely be beneficial for the present project, in spite
+of potential difficulties we may face in attracting sufficient numbers of
+subject editors. Division of labour between primary and secondary editors would
+offer distinct advantages, foremost among which would be an ability to appoint
+a reasonably large number of "subject editors" (or equivalent), for whom such
+an official designation would be able to be used to boost their own careers. As
+a contrast, rOpenSci's editorial processes are handled by a single cohort of
+eight editors, of whom four are staff members, while JOSS currently has [six
+primary editors and 31 "topic"
+editors](https://joss.theoj.org/about#editorial_board).
+
+The preceding consideration of [categories](#scope) suggests we may end up with
+around a dozen categories, and so potentially be able to offer around this
+number (or more) of honorary subject editor positions, along with a concomitant
+reduction in workload for each of these. Engaging such a range of subject
+editors would also lessen the burden on primary editors, perhaps enabling the
+system to be initially trialled with the two or three people primarily engaged
+in its current developmental phase. The engagement of a wider range of subject
+editors would also enlarge the network of people directly engaged with the
+project, as well as extending its sphere of influence to encompass the
+professional networks of all those involved.
 
 ***Proposal***
 
@@ -82,14 +86,14 @@ activities supporting the development of the operating system as a whole. The
 submission and review process for Debian is almost entirely automated, based on
 tools such as their own software checker,
 [`lintian`](https://lintian.debian.org). Debian differs fundamentally from the
-system proposed here in being centred around trusted and verified people rather
-than software. Submission of software to Debian is largely automatic, and
-bug-free software may often progress automatically through various stages of
-acceptance. Software may, however, only be submitted by official Debian
-Maintainers or Developers, for which people must be sponsored by extant
-members, and are then subject to review of the potential contribution they may
-be able to make to the broader Debian community. (Details can be seen in [this
-chapter of the Debian
+system proposed here in being centred around the trust and verification of
+people rather than software. Submission of software to Debian is largely
+automatic, and bug-free software may often progress automatically through
+various stages towards acceptance. Software may, however, only be submitted by
+official Debian Maintainers or Developers. People can only become developers or
+maintainers through being sponsored by existing members, and are then subject
+to review of the potential contribution they may be able to make to the broader
+Debian community. (Details can be seen in [this chapter of the Debian
 handbook](https://debian-handbook.info/browse/stable/sect.becoming-package-maintainer.html).)
 
 While the general process for software submission and acceptance in Debian may
@@ -101,24 +105,26 @@ must comply to the current standards at the time of submission, and are
 labelled with the latest version of the standards to which they comply, [noting
 that](https://www.debian.org/doc/debian-policy/ch-source.html#standards-conformance),
 
-> For a package to have an old Standards-Version value is not itself a bug,
-however. It just means that no-one has yet reviewed the package with changes to
+> For a package to have an old Standards-Version value is not itself a bug ...
+It just means that no-one has yet reviewed the package with changes to
 the standards in mind.
 
-Upgrading to match the ongoing development of standards is always possible, but
-as that quote indicates, is a process subject to ongoing review. Each new
-version of the standards is accompanied by a simple
+Each new version of the standards is accompanied by a simple
 [checklist](https://www.debian.org/doc/debian-policy/upgrading-checklist.html)
 of differences, explicitly indicating differences with and divergences from
-previous versions. We propose to adopt aspects of the Debian system in the
-present project, as described below.
+previous versions. As long as software continues to pass all tests, upgrading
+to current standards remains optional. Failing tests in response to any
+upgrading of standards serve as a trigger for review of software. The nominated
+standards version may only be updated once review has confirmed compliance with
+current standards. We propose to adapt some of these aspects of the Debian
+system in the present project, as described below.
 
 
 ## Self-Evaluation of Software Prior to Submission {#self-eval}
 
 A strong focus of this project will be the development of tools to assess
 software, both generally and for statistical software specifically. One
-important aim to to develop tools able to be used by software authors to assess
+important aim is to develop tools able to be used by software authors to assess
 their own software. Such self-assessment, along with associated standardised
 reporting of results, will ease pre-submission enquiries both on the part of
 submitting authors, and editors responsible for assessing such enquiries.
@@ -296,13 +302,14 @@ The [debian system](https://debian.org) also maintains a comprehensive database
 of developers, maintainers, and other stakeholders. This has a front-facing
 [LDAP](https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol)
 server (at [db.debian.org](https://db.debian.org)), accessible both publicly
-and via password for restricted access.
+and via password for restricted access. This system may be interpreted to
+represent current best-practice standards for maintenance of such databases. 
 
 Maintaining a generally (yet not necessarily publicly) accessible database of
 personal contact information is inherently difficult, and is something the
-current project would like to do better than its two main precedents. Debian's
-LDAP system may be interpreted to represent current best-practice standards for
-maintenance of such databases. 
+current project would like to do better than its two main precedents,
+potentially using something like Debian's system as a worthy goal to strive
+for.
 
 ### Automating the Identification of Potential Reviewers
 
@@ -393,7 +400,7 @@ initial screening of submissions. Software will already have been ascertained
 to be within scope, willing reviewers will already have been assigned, and an
 extensive report will have been automatically generated summarising a variety
 of aspects of software structure, function, and other aspects pertinent to
-a review.
+review.
 
 The primary purpose of the initial screening step will accordingly be for
 editors to judge whether or not the totality of submitted data suffices for the
@@ -455,7 +462,7 @@ that templates will likely differ through software being described by different
 combinations of the [categories described above](#scope). It may suffice to
 combine a generic "master" template with category-specific items to be appended
 according to the description of submitted software within our list of
-categories, although it is important to note that this would exclude review
+categories, although it is important to note that this may exclude review
 criteria reflecting unique combinations of categories (for example, a checklist
 item appropriate for the visualisation of results from ML algorithms).
 
@@ -533,11 +540,12 @@ These differences may plausibly be interpreted to reflect general differences
 in the *cultural practices* of the two review systems, with rOpenSci having
 particularly nurtured the cultural practice of extensively discursive reviews,
 notably through suggesting that prior reviews ought be perused for good
-guidelines on review practices. We intend to continue such cultural practices,
-while at the same time aiming to develop a system for more structured yet
-discursive input, in order both to provide more focussed software reviews, and
-to lessen the burden on reviewers. We anticipate commencing the development of
-such structure in subsequent iterations of the present document.
+guidelines on review practices. We intend to continue to foster and encourage
+such cultural practices, while at the same time aiming to develop a system for
+more structured yet discursive input, in order both to provide more focussed
+software reviews, and to lessen the burden on reviewers. We anticipate
+commencing the development of such structure in subsequent iterations of the
+present document.
 
 
 ### Category-Specific Aspects of Reviews
