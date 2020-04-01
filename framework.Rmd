@@ -95,6 +95,7 @@ advantageous or necessary to develop different procedures for different
 sub-categories, whether in terms of categories of external form or categories of
 statistical software.
 
+
 ### Defining "Statistical Software"
 
 There is no ready definition for "statistical software", but nor may such a
@@ -104,14 +105,9 @@ scope](https://www.jstatsoft.org/pages/view/mission) as "statistical computing
 in all areas of empirical research," with articles describing "comprehensive
 open-source implementations of broad classes of statistical models and
 procedures or computational infrastructure upon which such implementations can
-be built."[^1]
+be built"[^definingfn].
 
-[^1]: We explored whether we could usefully define topics of interest in a
-    [preliminary text
-    analysis](https://github.com/mpadge/statistical-software/tree/master/abstracts)
-    of all historical submissions to JSS yet found no notable phrases or topics
-    which might be useful to define or categorize statistical software, other
-    than topics pertaining to particular areas of application.
+[^definingfn]: We explored whether we could usefully define topics of interest in a [preliminary text analysis](https://github.com/mpadge/statistical-software/tree/master/abstracts) of all historical submissions to JSS yet found no notable phrases or topics which might be useful to define or categorize statistical software, other than topics pertaining to particular areas of application.
 
 It will likely be nevertheless important for the present project to develop some
 scheme for categorization, particularly because the set of standards envisioned
@@ -120,6 +116,7 @@ understanding which standards may or may not apply to a particular piece of
 software will provide important information for review purposes. The following
 points provide examples of the kinds of categories which may be usefully
 considered:
+
 
 -   Supervised / regression models and algorithms
 
