@@ -146,7 +146,7 @@ mind potential future adaptation and adaptability to non-packaged R code.
 Standards that may apply to non-packaged are code may also be noted for use in
 other contexts.
 
-## Statistical Categories {#statistical-categories}
+## Statistical Categories {#scope-categories}
 
 As alluded to at the outset of this chapter, a primary task of this project
 will be to categorise statistical software in order to:

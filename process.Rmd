@@ -5,17 +5,8 @@ knitr::opts_chunk$set(
   echo = FALSE
 )
 ```
-#  (PART) Software Review Process and Software Assessment {-}
 
-```{r startup, echo = FALSE, message = FALSE}
-library (dplyr)
-library (rvest)
-library (igraph)
-library (ggplot2)
-theme_set (theme_minimal ())
-```
-
-# Software Assessment and Review Process {#process}
+# The Review Process {#process}
 
 This section attempts to briefly describe the entire workflow envisioned to
 emerge from this project, from tools to enable authors to self-assess packages
@@ -28,134 +19,7 @@ current models are rOpenSci's own [submission
 process](https://github.com/ropensci/software-review), and that of the [Journal
 of Open Source Software (JOSS)](https://github.com/openjournals/joss). Both of
 these systems treat submissions as issues within dedicated review repositories,
-an approach we intend to adopt. There are also notable differences between
-these two systems, with contrasts between them often providing convenient
-reference points in considering many of the following phases we envision
-developing. The following sub-sections consider these models in a little more
-detail, along with a couple of further models, highlighting aspects which might
-be productively incorporated in peer-review of statistical software.
-
-### rOpenSci
-
-rOpenSci's current software peer-review process, detailed in our [developer
-guide](https://devguide.ropensci.org/softwarereviewintro.html), is based on a
-blend of practices from peer review of academic practices and code review in
-open-source projects. Review takes place via an issue thread in our
-["software-review" repository on
-GitHub](https://github.com/ropensci/software-review). The review process is
-entirely open, with each issue thread used to manage the entire process,
-coordinated by rOpenSci's editors. After initial screening for scope and minimal
-qualification by editors, two reviewers provide comments and feedback on software
-packages. After one or more rounds of revisions, packages reach a point of
-approval, at which point they are "accepted" by rOpenSci, symbolized both
-through a badge system, and (generally) through transferring the software from
-the authors' private domain to the [github.com/ropensci
-domain](https://github.com/ropensci).
-
-### The Journal of Open Source Software
-
-The [Journal of Open Source Software (JOSS)](https://joss.theoj.org/) was based
-on rOpenSci and follows a similar approach, with greater automation and broader
-scope. The Journal of Statistical Software conducts a closed review of both
-manuscript and software, with fewer prescriptive standards. In reviewing
-packages for acceptance into its repository,
-[BioConductor](https://www.bioconductor.org) conducts an [open
-review](https://www.bioconductor.org/developers/package-submission/) primarily
-aimed at maintaining minimum standards and intercompatibilty.
-
-
-### Academic Journal Reviews
-
-One ubiquitous model for processes of peer review is that of "standard"
-academic journals, for which one important aspect of likely relevance for the
-present project is the division of labour between editors. Academic journals
-commonly have a board of (primary) editors, and a field of (secondary) subject
-or specialist editors. The initial and terminal points of review processes are
-commonly handled by the primary editors, who delegate subject editors to both
-solicit appropriate reviewers, and to manage the review process. Upon
-completion, the primary editor generally signifies ultimate acceptance. 
-
-Such a model would also likely be beneficial for the present project, in spite
-of potential difficulties we may face in attracting sufficient numbers of
-subject editors. Division of labour between primary and secondary editors would
-offer distinct advantages, foremost among which would be an ability to appoint
-a reasonably large number of "subject editors" (or equivalent), for whom such
-an official designation would be able to be used to boost their own careers. As
-a contrast, rOpenSci's editorial processes are handled by a single cohort of
-eight editors, of whom four are staff members, while JOSS currently has [six
-primary editors and 31 "topic"
-editors](https://joss.theoj.org/about#editorial_board).
-
-The preceding consideration of [categories](#scope) suggests we may end up with
-around a dozen categories, and so potentially be able to offer around this
-number (or more) of honorary subject editor positions, along with a concomitant
-reduction in workload for each of these. Engaging such a range of subject
-editors would also lessen the burden on primary editors, perhaps enabling the
-system to be initially trialled with the two or three people primarily engaged
-in its current developmental phase. The engagement of a wider range of subject
-editors would also enlarge the network of people directly engaged with the
-project, as well as extending its sphere of influence to encompass the
-professional networks of all those involved.
-
-***Proposal***
-
-1. The rOpenSci staff directly involved in the development of this project
-   serve as primary editors, and we seek to find and nominate subject editors
-   as soon as we have reached agreement on categories of statistical software.
-2. Members of the board may also offer their services in either as primary or
-   secondary editorial capacity.
-
-### The Debian System
-
-The development of software for the open-source [Debian Operating
-System](https://debian.org) is guided by Debian Developers and Debian
-Maintainers. Expressed roughly, maintainers are individuals responsible for the
-maintenance of particular pieces of software, while developers engage with
-activities supporting the development of the operating system as a whole. The
-submission and review process for Debian is almost entirely automated, based on
-tools such as their own software checker,
-[`lintian`](https://lintian.debian.org). Debian differs fundamentally from the
-system proposed here in being centred around the trust and verification of
-people rather than software. Submission of software to Debian is largely
-automatic, and bug-free software may often progress automatically through
-various stages towards acceptance. Software may, however, only be submitted by
-official Debian Maintainers or Developers. People can only become developers or
-maintainers through being sponsored by existing members, and are then subject
-to review of the potential contribution they may be able to make to the broader
-Debian community. (Details can be seen in [this chapter of the Debian
-handbook](https://debian-handbook.info/browse/stable/sect.becoming-package-maintainer.html).)
-
-While the general process for software submission and acceptance in Debian may
-not be of direct relevance, their versioning policy may provide a useful mode.
-The ongoing development of both the Debian system and all associated packages
-proceeds in accordance with a versioned [policy
-manual](https://www.debian.org/doc/debian-policy/index.html). All new packages
-must comply to the current standards at the time of submission, and are
-labelled with the latest version of the standards to which they comply, [noting
-that](https://www.debian.org/doc/debian-policy/ch-source.html#standards-conformance),
-
-> For a package to have an old Standards-Version value is not itself a bug ...
-It just means that no-one has yet reviewed the package with changes to
-the standards in mind.
-
-Each new version of the standards is accompanied by a simple
-[checklist](https://www.debian.org/doc/debian-policy/upgrading-checklist.html)
-of differences, explicitly indicating differences with and divergences from
-previous versions. As long as software continues to pass all tests, upgrading
-to current standards remains optional. Failing tests in response to any
-upgrading of standards serve as a trigger for review of software. The nominated
-standards version may only be updated once review has confirmed compliance with
-current standards. We propose to adapt some of these aspects of the Debian
-system in the present project, as described below.
-
-### Other Potential Models
-
-The Linux [Core Infrastructure Initiative](https://www.coreinfrastructure.org/)
-provides badges to projects meeting [development best
-practices](https://github.com/coreinfrastructure/best-practices-badge/blob/master/doc/criteria.md).
-Badges are graded (passing/silver/gold), and awarded by package authors
-self-certifying that they have implemented items on a checklist. 
-
+an approach we intend to adopt.
 
 ## Self-Evaluation of Software Prior to Submission {#self-eval}
 
