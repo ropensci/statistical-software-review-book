@@ -5,7 +5,7 @@ knitr::opts_chunk$set(
   echo = FALSE
 )
 ```
-#  (PART) Software Assessment and Review Process{-}
+#  (PART) Software Review Process and Software Assessment {-}
 
 ```{r startup, echo = FALSE, message = FALSE}
 library (dplyr)
@@ -31,9 +31,38 @@ these systems treat submissions as issues within dedicated review repositories,
 an approach we intend to adopt. There are also notable differences between
 these two systems, with contrasts between them often providing convenient
 reference points in considering many of the following phases we envision
-developing. The following sub-sections consider a couple of further models,
-highlighting aspects which might be productively incorporated in peer-review of
-statistical software.
+developing. The following sub-sections consider these models in a little more
+detail, along with a couple of further models, highlighting aspects which might
+be productively incorporated in peer-review of statistical software.
+
+### rOpenSci
+
+rOpenSci's current software peer-review process, detailed in our [developer
+guide](https://devguide.ropensci.org/softwarereviewintro.html), is based on a
+blend of practices from peer review of academic practices and code review in
+open-source projects. Review takes place via an issue thread in our
+["software-review" repository on
+GitHub](https://github.com/ropensci/software-review). The review process is
+entirely open, with each issue thread used to manage the entire process,
+coordinated by rOpenSci's editors. After initial screening for scope and minimal
+qualification by editors, two reviewers provide comments and feedback on software
+packages. After one or more rounds of revisions, packages reach a point of
+approval, at which point they are "accepted" by rOpenSci, symbolized both
+through a badge system, and (generally) through transferring the software from
+the authors' private domain to the [github.com/ropensci
+domain](https://github.com/ropensci).
+
+### The Journal of Open Source Software
+
+The [Journal of Open Source Software (JOSS)](https://joss.theoj.org/) was based
+on rOpenSci and follows a similar approach, with greater automation and broader
+scope. The Journal of Statistical Software conducts a closed review of both
+manuscript and software, with fewer prescriptive standards. In reviewing
+packages for acceptance into its repository,
+[BioConductor](https://www.bioconductor.org) conducts an [open
+review](https://www.bioconductor.org/developers/package-submission/) primarily
+aimed at maintaining minimum standards and intercompatibilty.
+
 
 ### Academic Journal Reviews
 
@@ -119,6 +148,14 @@ standards version may only be updated once review has confirmed compliance with
 current standards. We propose to adapt some of these aspects of the Debian
 system in the present project, as described below.
 
+### Other Potential Models
+
+The Linux [Core Infrastructure Initiative](https://www.coreinfrastructure.org/)
+provides badges to projects meeting [development best
+practices](https://github.com/coreinfrastructure/best-practices-badge/blob/master/doc/criteria.md).
+Badges are graded (passing/silver/gold), and awarded by package authors
+self-certifying that they have implemented items on a checklist. 
+
 
 ## Self-Evaluation of Software Prior to Submission {#self-eval}
 
@@ -157,7 +194,7 @@ We anticipate developing a comprehensive system for self-evaluation of
 software, both in generic form able to be widely applied to software regardless
 of category, as well as specific tools for statistical software. Many of these
 generic assessments have been listed at the end of the preceding
-[Framework](#framework), while tools specific to statistical software have been
+[Framework](#overview), while tools specific to statistical software have been
 considered in the preceding [Scope](#scope) chapter.
 
 ***Key Considerations*** The primary consideration here is actually one of the

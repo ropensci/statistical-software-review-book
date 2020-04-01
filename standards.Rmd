@@ -1,0 +1,245 @@
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  cache = TRUE,
+  echo = FALSE
+)
+```
+
+```{r startup, echo = FALSE, message = FALSE}
+library (dplyr)
+library (rvest)
+library (igraph)
+library (ggplot2)
+theme_set (theme_minimal ())
+```
+
+# Standards {#standards}
+
+An important output of the present project a set of standards which serve as
+expectations for software and guides for reviewers to assess software against.
+
+Important general questions regarding standards include the following:
+
+-   What kind of standards might apply to software in general?
+
+-   How might such standards differ between different languages?
+
+-   What kind of standards might specifically apply to statistical software?
+    (See the following sub-section.)
+
+-   To what extent should we aim for "verification" or "validation" of
+  software, and how might be signify such?
+
+We acknowledge that standards of the kind anticipated here will likely be better
+conceived of to reflect ongoing processes of development. As such, of equal
+importance to developing a set of standards *per se* will be developing an
+understanding of the kinds of *processes* which may have the most defining
+effect on resultant standards at any point in time.
+
+The remainder of this document employs a convenient distinction between:
+
+-   "*General Standards*" which may be applied to all software considered within
+    this project, irrespective of how it may be categorized under the times of
+    categories of statistical software listed above; and
+
+-   "*Specific Standards*" which apply to different degrees to statistical
+    software depending on the software category.
+
+It is likely that standards developed under the first category may subsequently
+be deemed to be genuinely *Statistical Standards* yet which are applicable
+across all categories, and we thus anticipate a degree of fluidity between these
+two broad categories. Moreover, we do not pursue *General Standards* any further
+in the present document, and merely presume that these will emerge, or may be
+derived, from the following considerations of *Specific Aspects of Software*.
+
+## Standards Specific to Statistical Software
+
+
+The applicability of any concrete set of standards is likely to differ between
+different categories of statistical software. For example, metrics of numerical
+accuracy will likely differ between categories primarily describing analytical
+algorithms and those describing less tractable routines which produce less
+directly reproducible results. Or consider metrics derived from tests, which
+must be interpreted in *qualitatively* different ways for packages entirely
+dependent on their own internal code versus packages largely dependent on the
+results of calls to external data providers (along with additional differences
+between, for example, locally-installed "external" providers versus online
+sources of external data).
+
+Different standards must thus be considered to be differentially applicable to
+different categories of software, and thus the interplay between the scope of
+statistical software considered above and throughout this project, and the
+standards emerging from the project, will be of critical importance throughout
+the project. Such considerations lead to the following kinds of questions which
+will likely have to be addressed:
+
+-   To what extent ought we aim for general standards at the expense of specific
+    abilities to assess particular categories of statistical software?
+
+-   To what extent ought we strive for automation of software assessment, given
+    the inherent risk of overseeing qualitative differences between different
+    categories?
+
+-   How much effort should be expended both developing a categorization of
+    statistical software, and understanding the potential effects of such a
+    categorization?
+
+The following exemplify a few categories of statistical standards which may be
+considered, emphasising restrictions of applicability to alternative kinds of
+software.
+
+-   **Numerical standards such as precision or convergence.** These will be
+    applicable only to some restricted subset of all potential categories of
+    statistical software (likely including but not limited to analytic and, to
+    some extent, predictive routines) Moreover, even these two categories alone
+    will likely require differing standards for precision or convergence.
+
+-   **Method validity** It may be necessary or useful to develop standards for
+    the *validity* of a chosen method, independent of its implementation.
+    Questions of validity are commonly related to domains of application, and
+    therefore must relate directly to any system for categorising statistical
+    software. A method may (have been demonstrated to) be valid for some
+    particular domain of application, and a software routine may be developed to
+    adapt that method to some previously untried domain. It may then be
+    necessary to consider potential (in)validity of that software, along with
+    potential validity in other domains, themselves potentially not explicitly
+    considered by the software authors.
+
+-   **Software scope** The preceding considerations extend directly to general
+    concerns of *scope*, whether in terms of domains of applicability,
+    properties of input or output data, authorial intentions, or other
+    contextual factors. Scope in all of these senses obviously must directly
+    affect and determine the kinds of standards which may or may not apply to
+    software, just as defining scope in these senses is also effectively an
+    exercise in categorization of the kind described above.
+
+-   **Reference standards** For software which implements or relies on standard
+    routines, it may be necessary to designate reference data or
+    implementations against which to compare outcomes, or guidance in selecting
+    such references. For instance, the National Institute of Standards and
+    Technology of the U.S. provides [a collection of reference data
+    sets](https://www.itl.nist.gov/div898/strd/) with certified computational
+    results which statistical software should be able to reproduce.
+
+Specific standards for neural network algorithms have been developed as part of
+a [google 2019 Summer Of Code project](http://www.inmodelia.com/gsoc2019.html),
+resulting in a dedicated R package,
+[`NNbenchmark`](https://akshajverma.com/NNbenchmarkWeb/index.html), and
+accompanying results---their so-called
+["notebooks"](https://akshajverma.com/NNbenchmarkWeb/notebooks.html)---of
+applying their benchmarks to a suite of neural network packages.
+
+We envision the present project proceeding from this initial stage by
+developing parallel definitions for both categories of software (defining both
+*in*-scope and *beyond*-scope), and specific standards. A simple way to
+proceed may be to develop lists for both, along with a representation of
+inter-connections between categories and standards.
+
+## Generally Applicable Standards 
+
+In addition to standards specific to the challenges of statistical software, it
+will also be necessary to create or adopt standards governing general aspects of
+software, such as interfaces, documentation, and testing. @mili_software_2015
+also provides a general list of software design principles, divided between
+*Functional Attributes* (including Correctness and Robustness), *Usability
+Attributes* (including Ease of Use, Ease of Learning, Customizability,
+Calibrability, and Interoperability), and *Structural Attributes* (including
+Design Integrity, Modularity, Testability, and Adaptability).
+
+### Software Interface
+
+There are likely aspects of overall software interface ("API") that might be
+considered, reviewed, encouraged, or expected. rOpenSci's guide on [package
+development, maintenance, and peer review](https://devguide.ropensci.org/)
+provides standards of this type for R packages, primarily within its first
+chapter. Another notable example is the [tidyverse design
+guide](https://principles.tidyverse.org/), and the section on [Conventions for
+R Modeling
+Pacakges](https://tidymodels.github.io/model-implementation-principles/) which
+provides guidance for model-fitting APIs.
+
+### Documentation
+
+Standards will include requirements for form and completeness of documentation.
+As with interface, several sources already provide starting points for
+reasonable documentation. Some documentation requirements will be specific to
+the statistical context. For instance, it is likely we will have requirements
+for referencing appropriate literature or references for theoretical support of
+implementations. Another area of importance is correctness and clarity of
+definitions of statistical quantities produced by the software, e.g., the
+definition of null hypotheses or confidence intervals. Data included in
+software -- that used in examples or tests -- will also have documentation
+requirements. It is worth noting that the
+[`roxygen`](https://roxygen2.r-lib.org/) system for documenting R packages is
+readily extensible, as exemplified through the [`roxytest`
+package](https://github.com/mikldk/roxytest) for specifying tests *in-line*.
+
+An additional area for consideration is the creation of tools for documentation
+creation and evaluation based on metadata of statistical method inputs and
+outputs and packaged data [@lenhardt_data_2014]. Relationships between data
+and statistical software may be structured in a sufficiently systematic way to
+permit systematic documentation.
+
+<!---
+https://github.com/tdwg/vocab/blob/master/sds/documentation-specification.md
+--->
+
+### Testing {#overview-testing}
+
+Testing is a critical area for standards, as tests are a concrete manifestation
+of standards and the means by which authors may demonstrate compliance. While
+testing is considered best practice and test coverage often used as a measure of
+test completeness, guidance on *what* to test is rare, especially in the context
+of R packages. Thus, standards will need to provide guidance on the types and
+methods of tests required for different statistical software categories.
+
+In addition, statistical software may benefit from means or modes of testing
+beyond the common frameworks used in and for R packages (e.g. R RMD check,
+testhtat). A variety of other frameworks and workflows from other languages and
+contexts may be relevant. Almost all testing as currently implemented in R is
+"concrete testing" (Mili 2015), and little consideration has been given in R to
+"stochastic" or "property-based" testing, in which expectation values of inputs
+and outputs are tested, rather than concrete instantiations of such (the
+notably exception of the apparently abandoned [`fuzzr`
+package](https://github.com/mdlincoln/fuzzr) notwithstanding). Other languages
+have developed grammars for stochastic or property-based testing, notably
+through the [hypothesis package for
+python](https://github.com/HypothesisWorks/hypothesis). These grammars enable
+specification of test assumptions as well as expected test outputs. Assumptions
+in `hypothesis` are declared through simple `@given` statements that might, for
+example, quantify an assumed probability distribution for input data, while
+outputs are specified through equivalent `@expect` statements that might, for
+example, specify expected *distributional properties* of an output rather than
+just concrete values.
+
+The following are likely key questions which we will need to address regarding
+testing:
+
+-   To what extent should testing focus on *functional* or *integration* rather
+    than *unit* testing?
+
+-   Is it sufficient to consider test execution as an integral part of
+    `R CMD check` only? Or might there by a case for developing alternative test
+    execution environments and approaches? For instance, should there be an
+    alternate workflow for long-running tests, tests requiring large data, or
+    tests intended to be executed for other purposes?
+
+-   Is it worthwhile concretely defining one or more goals of testing? (Such as
+    error detection, error frequencies, error tolerance, accuracy.)
+
+-   What are the test data? And how easy is it to input alternative data to
+    tests?
+
+-   Is there scope for "stochastic" or "property-based" testing?
+
+-   What test reporter should be used? Does the `testthat` package and similar
+    suffice? Or might it be worth considering new test reporting systems?
+
+-   What aspects of tests and test data (both actual and permissible) might be
+    worthwhile documenting in some kind of metadata format?
+
+Extant R package which address some of these issues include
+[`tinytest`](https://github.com/markvanderloo/tinytest),
+[`roxytest`](https://github.com/mikldk/roxytest), and
+[`xpectr`](https://github.com/LudvigOlsen/xpectr).
+

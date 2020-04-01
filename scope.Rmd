@@ -14,7 +14,7 @@ library (ggplot2)
 theme_set (theme_minimal ())
 ```
 
-# <span style="color:red;">Scope and Standards (*Seeking Feedback*)<span> {#scope}
+# Scope {#scope}
 
 One task in extending the rOpenSci peer review system to statistical software
 is defining _scope_ - what software is included or excluded. Defining scope
@@ -121,13 +121,18 @@ languages (HTML, JavaScript, and maybe CSS).
 
 ### Structure
 
-R has a [well-defined system](https://cran.r-project.org/doc/manuals/R-exts.html) for structuring software packages"
-Other forms of packaging **R** software may nevertheless be considered within scope. These may include
+R has a [well-defined
+system](https://cran.r-project.org/doc/manuals/R-exts.html) for structuring
+software packages" Other forms of packaging **R** software may nevertheless be
+considered within scope. These may include
 
-1. Python-like systems of
-[modules for **R**](https://github.com/klmr/modules).
-2. Scripts, such as standalone comand-line scripts
-3. Web applications such as Shiny packages
+1. Python-like systems of [modules for **R**](https://github.com/klmr/modules);
+2. Packaging appropriate for other languages (such as Python) yet with some
+   interface with the R language;
+3. R interfaces ("wrappers") to algorithms or software developed independently
+   in different languages, and which may or may not be bundled as a standard
+   R package; and
+4. Web applications such as Shiny packages.
 
 **Key considerations**: Allowing non-package forms of code into the peer review
 system could potentially bring in a large pool of code typically published
@@ -199,6 +204,86 @@ explain how the submitted software is superior (along with a possibility to
 explain why software may be sufficiently unique that there is no reference
 implementation, and so no claims of superiority can be made).
 
+### Examples of Statistical Software
+
+We now consider a few brief categorical examples, to illustrate the kinds of
+decisions such a process of categorisation will likely face.
+
+---
+
+-   [**gtsummary**](https://github.com/ropensci/software-review/issues/334),
+    submitted to rOpenSci and reject as out-of-scope.
+
+
+    Creates presentation-ready tables summarizing data sets, regression models,
+    and more. The code to create the tables is concise and highly
+    customizable. Data frames can be summarized with any function,
+    e.g. mean(), median(), even user-written functions. Regression models are
+    summarized and include the reference rows for categorical variables.
+    Common regression models, such as logistic regression and Cox proportional
+    hazards regression, are automatically identified and the tables are
+    pre-filled with appropriate column headers.
+
+    This package appears not to contain any algorithmic implementations, yet is
+    clearly aimed at enhancing a purely statistical workflow. Such a submission
+    requires answering the question of whether software categorized as
+    "workflow" only and which does not correspond to any other of the above
+    categories, may be deemed in scope?
+
+---
+
+-   [greta: simple and scalable statistical modelling in
+    R](https://joss.theoj.org/papers/10.21105/joss.01601), published in JOSS.
+
+
+    greta is an package for statistical modelling in R (R Core Team, 2019) that
+    has three core differences to commonly used statistical modelling software
+    packages:
+
+    -   greta models are written interactively in R code rather than in a
+        > compiled domain specific language.
+
+    -   greta can be extended by other R packages; providing a fully-featured
+        > package management system for extensions.
+
+    -   greta performs statistical inference using TensorFlow (Abadi et al.,
+        > 2015), enabling it to scale across modern high-performance computing
+        > systems.
+
+    The `greta` package might be considered predominantly an interface to
+    TensorFlow, yet it provides a new way to specify and work with purely
+    statistical models. This might be considered under both workflow and wrapper
+    categories, and serves here to illustrate the question of whether wrappers
+    around, in this case, externally-installed software might be considered in
+    scope? And if so, to what extent ought aspects of such externally-installed
+    software also be directly addressed within a review process?
+
+---
+
+-   [**modelStudio**](https://joss.theoj.org/papers/10.21105/joss.01798),
+    published in JOSS.
+
+
+    The `modelStudio`R package automates the process of model exploration. It
+    generates advanced interactive and animated model explanations in the form
+    of a serverless HTML site. It combines R(R Core Team, 2019) with D3.js
+    (Bostock, 2016) to produce plots and descriptions for various local and
+    global explanations. Tools for model exploration unite with tools for EDA
+    to give a broad overview of the model behaviour.
+
+    As with `gtsummary` above, this is clearly a package intended to enhance a
+    workflow, and furthermore one which primarily serves to generate summary
+    output as a `ht``ml` document, yet the models it considers, and all aspects
+    of output produced, are purely statistical. This package could meet both
+    workflow and visualization categories, and serves here to illustrate
+    difficulties in considering the latter of these. The `D3.``js` library
+    contains numerous indubitably statistical routines, and so this package
+    might be argued to be a wrapper in the same category as `greta` is a wrapper
+    around `TensorFlow`. An important question likely to arise in considering
+    both of these is the extent to which the library being wrapped should also
+    be *predominantly statistical* for a package to be in scope? (A requirement
+    which `greta` would more easily fulfil than `gtsummary`.)
+
 ---
 
 We now consider potential categories within the general domain of statistical
@@ -208,7 +293,14 @@ apparently "statistical" R packages published in the [Journal of Open Source
 Software (JOSS](https://joss.theoj.org)), packages published in the [Journal of
 Statistical Software](https://www.jstatsoft.org/index), software presented at
 the 2018 and 2019 Joint Statistical Meetings (JSM), and Symposia on Data
-Science and Statistics (SDSS), well as CRAN task views.
+Science and Statistics (SDSS), well as CRAN task views. We have also compiled
+a list of the descriptions of [all packages rejected by
+rOpenSci](https://github.com/mpadge/statistical-software/blob/master/abstracts/ropensci-abstracts.md)
+as being out of current scope because of current inability to consider
+statistical packages, along with a selection of [recent statistical
+R packages](https://github.com/mpadge/statistical-software/blob/master/abstracts/joss-abstracts.md)
+accepted by JOSS. (The full list of all R package published by JOSS can be
+viewed at <https://joss.theoj.org/papers//in/R>).
 
 We allocated one or more key words (or phrases) to each abstract, and use the
 frequencies and inter-connections between these to inform the following
@@ -596,7 +688,7 @@ Perhaps one feature which almost of the following examples share in common is
 input and output data in (potentially multi-dimensional) vector format, very
 generally (but not exclusively) in numeric form. This may be one category in
 which the development of a system for [property-based
-testing](#framework-testing), like the [`hypothesis` framework for
+testing](#overview-testing), like the [`hypothesis` framework for
 python](https://hypothesis.works) may be particularly useful. Such a system
 would facilitate tests in response to a range of differently input
 *structures*, such as values manifesting different distributional properties.
