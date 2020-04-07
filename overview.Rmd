@@ -82,13 +82,14 @@ efforts.
 ## Outline of this document
 
 We now briefly summarise the four sections identified at the outset of this
-chapter, and which comprise Chapters 4--7 of this book: Scope; the Peer Review
-Process; Standards; and Software Assessment.
+chapter, and which comprise Chapters 4--5 and 7--8 of this book: Scope; the
+Peer Review Process; Standards; and Software Assessment.
 
 ### Scope of Statistical Software Review
 
-A core task will be to define the kinds of software that will be covered by our
-review process and standards, for which key questions are:
+The scope of statistical software review considers the core task of defining
+the kinds of software that will be covered by our review process and standards,
+for which key questions are:
 
 -   What categories of statistical software might be considered *in scope*?
 
@@ -143,24 +144,19 @@ Our point of departure for our process is the rOpenSci software peer review
 process, which has operated for five years, and has reviewed over >200
 packages, primarily in areas of data lifecycle management. However, we aim to
 reassess this process in light of other models and needs specific to
-statistical software. The following [Chapter 6](#process) on our proposed Peer
-Review Process considers a few analogous processes of peer review, gleaning
-aspects which may be useful to adopt and adapt for our system. It then
-describes the series of steps we currently envision comprising our system,
-drawing parallels throughout to extant systems for peer review of software,
-primarily those of rOpenSci and JOSS. The proposed process relies on, and
-partially reflects, notions of an open source software lifecycle, which we
-accordingly describe in the final section of the current chapter.
+statistical software. The following [Chapter 6](#lifecycle) on our proposed
+Peer Review Process considers a few analogous processes of peer review,
+gleaning aspects which may be useful to adopt and adapt for our system.
+[Chapter 7](#process) then describes the peer review process in terms of the
+series of steps we currently envision comprising our system.
 
 ### Software Assessment
 
-The Software Assessment section in [Chapter 7](#assessment) presents a general
+The Software Assessment section in [Chapter 8](#assessment) presents a general
 (yet non-exhaustive) overview of aspects of software which may be usefully
 considered for standards-based assessment, both for retrospective purposes of
 peer review, and for prospective use in developing software both in general,
-and in preparation for peer-review. It is important to consider how techniques
-and metrics for software assessment may vary at different stages of the
-software lifecycle described in the following section.
+and in preparation for peer-review.
 
 
 ## Community

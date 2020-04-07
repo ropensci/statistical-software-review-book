@@ -1,10 +1,4 @@
-```{r include=FALSE, cache=FALSE}
 
-knitr::opts_chunk$set(
-  cache = TRUE,
-  echo = FALSE
-)
-```
 #  (PART) Software Review Process and Software Assessment {-}
 
 # Software Review and Lifecycle Models {#lifeycle}
