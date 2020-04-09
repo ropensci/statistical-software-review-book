@@ -5,15 +5,56 @@
 wd0 <- setwd (file.path (here::here (), "scripts"))
 
 # Start by extracting all zotero entries with notes:
-f <- "bibnotes.txt"
+f <- "bibnotes.json"
 if (!file.exists (f)) { # rm file to update contents
     u <- paste0 ("https://api.zotero.org/groups/2416765/items")
-    .params <- list (limit = 100)
-    x <- httr::GET (u, query = .params)
-    res <- httr::content (x, as = "text", encoding = "UTF-8")
-    con <- file (f)
+    more <- TRUE
+    out <- NULL
+    limit <- 100L
+    .params <- list (limit = limit)
+    start <- 1
+    files <- NULL
+    while (more) {
+        x <- httr::GET (u, query = .params)
+        res <- httr::content (x, as = "text", encoding = "UTF-8")
+        ftemp <- paste0 ("bibtemp_", start, ".json")
+        con <- file (ftemp)
+        writeLines (res, con = con)
+        close (con)
+        files <- c (files, ftemp)
+
+        links <- strsplit (x$headers$link, ", ") [[1]]
+        nextlink <- links [grep ("\\\"next\\\"", links)]
+        if (length (nextlink) > 0) {
+            newstart <- strsplit (nextlink, "start=") [[1]] [2]
+            newstart <- as.integer (strsplit (newstart, ">;") [[1]] [1])
+            if (newstart > start) {
+                start <- newstart
+                .params <- list (limit = limit, start = start)
+            }
+        } else
+            more <- FALSE
+    }
+
+    # join multiple output files into single json
+    files2rm <- files
+    con <- file (files [1], "r")
+    res <- readLines (con)
+    close (con)
+    files <- files [-1]
+    while (length (files) > 0) {
+        res <- c (res [1:(length (res) - 2)],
+                  "    },")
+        con <- file (files [1], "r")
+        temp <- readLines (con)
+        close (con)
+        res <- c (res, temp [-1])
+        files <- files [-1]
+    }
+    con <- file (f, "w")
     writeLines (res, con = con)
     close (con)
+    chk <- file.remove (files2rm)
 }
 
 # Read the full JSON data for all entries plus notes, noting that the latter are
@@ -21,9 +62,9 @@ if (!file.exists (f)) { # rm file to update contents
 # corresponding "parentItem".
 dat <- jsonlite::read_json (f)
 names (dat) <- vapply (dat, function (i) i$data$key, character (1))
-# index of items with "parentItem"
+# index of notes
 index <- which (vapply (dat, function (i)
-                        "parentItem" %in% names (i$data),
+                        i$data$itemType == "note",
                         logical (1)))
 
 # function to convert zotero list items delineated with <ui><li>-type tags to
