@@ -1,31 +1,16 @@
-```{r include=FALSE, cache=FALSE}
-knitr::opts_chunk$set(
-  cache = TRUE,
-  echo = FALSE
-)
-```
-
-```{r startup, echo = FALSE, message = FALSE}
-library (dplyr)
-library (rvest)
-library (igraph)
-library (ggplot2)
-theme_set (theme_minimal ())
-```
 
 # Standards {#standards}
 
-An important output of the present project a set of standards which serve as
-expectations for software and guides for reviewers to assess software against.
-
-Important general questions regarding standards include the following:
+An important output of the present project is a set of standards which can
+serve as expectations for software and as guides against which developers and
+reviewers can assess software. Important general questions regarding standards
+include the following:
 
 -   What kind of standards might apply to software in general?
 
 -   How might such standards differ between different languages?
 
 -   What kind of standards might specifically apply to statistical software?
-    (See the following sub-section.)
 
 -   To what extent should we aim for "verification" or "validation" of
   software, and how might be signify such?
@@ -47,13 +32,400 @@ The remainder of this document employs a convenient distinction between:
 
 It is likely that standards developed under the first category may subsequently
 be deemed to be genuinely *Statistical Standards* yet which are applicable
-across all categories, and we thus anticipate a degree of fluidity between these
-two broad categories. Moreover, we do not pursue *General Standards* any further
-in the present document, and merely presume that these will emerge, or may be
-derived, from the following considerations of *Specific Aspects of Software*.
+across all categories, and it may also be likely that the development of
+category-specific standards reveals aspects which are common across all
+categories, and which may subsequently be deemed general standards. We
+accordingly anticipate a degree of fluidity between these two broad categories.
+
+There is also a necessary relationship between the Standards described here,
+and processes of Assessment described below in [Chapter 8](#assessment). We
+consider the latter to describe concrete *and generally quantitative* aspects
+of *post hoc* software assessment, while the present Standards provides guides
+and benchmarks against which to *prospectively* compare software during
+development. As this entire document is intended to serve as the defining
+reference for our Standards, that term may in turn be interpreted to reflect
+this entire document, with the current section explicitly describing aspects of
+Standards not covered elsewhere.
+
+As described above, we anticipate the ongoing development of this current
+document to employ a versioning system, with software reviewed and hosted under
+the system mandated to flag the latest version of these standards to which it
+complies.
+
+## Other Standards
+
+Among the noteworthy instances of software standards which might be adapted for
+our purposes, and in addition to entries in our [*Annotated
+Bibliography*](#reading), the following are particularly relevant:
+
+1. The [Core Infrastructure Initiative's Best Practices
+   Badge](https://bestpractices.coreinfrastructure.org/en), which is granted to
+   software meeting an extensive list of
+   [criteria](https://github.com/coreinfrastructure/best-practices-badge/blob/master/doc/criteria.md).
+   This list of criteria provides a singularly useful reference for software
+   standards.
+2. The [Software Sustainability Institute](https://www.software.ac.uk/)'s
+   [*Software Evaulation
+   Guide*](https://www.software.ac.uk/resources/guides-everything/software-evaluation-guide),
+   in particular their guide to [*Criteria-based software
+   evaluation*](http://software.ac.uk/sites/default/files/SSI-SoftwareEvaluationCriteria.pdf),
+   which considers two primary categories of *Usability* and *Sustainability
+   and Maintainability*, each of which is divided into numerous sub-categories.
+   The guide identifies numerous concrete criteria for each sub-category.
+3. The more technical considerations of the [Object Management
+   Group](https://www.omg.org/index.htm)'s [*Automated Source Code CISQ
+   Maintainability Measure*](https://www.omg.org/spec/ASCMM/) (where CISQ
+   refers to the [*Consortium for IT Software
+   Quality*](https://www.it-cisq.org/)). This guide describes a number of
+   measures which can be readily automatically extracted and used to quantify
+   the maintainability of source code. None of these measures are not already
+   considered in one or both of the preceding two documents, but the
+   identification here of those particularly amenable to automated assessment
+   is likely to provide a useful reference.
+
+There is also rOpenSci's guide on [package development, maintenance, and peer
+review](https://devguide.ropensci.org/), which provides standards of this type
+for R packages, primarily within its first chapter. Another notable example is
+the [tidyverse design guide](https://principles.tidyverse.org/), and the
+section on [Conventions for R Modeling
+Pacakges](https://tidymodels.github.io/model-implementation-principles/) which
+provides guidance for model-fitting APIs.
+
+## Generally Applicable Standards 
+
+The project aims to establish and maintain a set of standards governing general
+aspects of software, such as software interfaces, documentation, and testing.
+The following list represents a synthesis of the preceding sets of reference
+standards which might be of use to this project, noting that this is primarily
+derived from the [Software Sustainability
+Institute](https://www.software.ac.uk/)'s guide to [*Criteria-based software
+evaluation*](http://software.ac.uk/sites/default/files/SSI-SoftwareEvaluationCriteria.pdf).
+
+
+
+- 1. Usability
+  - 1.1 Understandability
+    - High level description of what/who the software is for
+    - High level description of what the software does
+    - High level description of how the software works
+    - Design rationale - why the software does things the way it does
+    - Architectural overview with diagrams
+    - Descriptions of intended use cases
+    - Case studies of use
+  - 1.2 Documentation
+    - Provides a high level overview of the software
+    - Partitioned into sections for users, user-developers, and developers
+      (depending on the software)
+    - Lists resources for further information
+    - Is task-oriented
+    - Consists of clear, step-by-step instructions
+    - Gives examples of what the user can see at each step
+    - For problems and error messages, the symptoms and step-by-step solutions
+      are provided
+    - Does not use terms like "intuitive", "user-friendly", "easy to use",
+      "simple", or "obviously" (other than in quotes from satisfied users).
+    - States command names, syntax, parameters, error messages exactly as they
+      appear or should be typed.
+    - Uses ${\tt teletype-style fonts}$ for command line inputs and outputs,
+      source code fragments, function names, class names, etc.
+    - English language descriptions of commands or errors are provided.
+    - Plain text files (e.g. READMEs) use indentation and underlining to
+      structure the text.
+    - Plain text files do not use `TAB` characters to indent the text.
+    - Documentation is complete (includes configuration requirements or properties).
+    - Is held under version control alongside the code
+    - Is on the project web site
+    - Documentation on web site makes it clear what version of software the
+      documentation applies to.
+  - 1.3 Buildability
+    - Straightforward to meet build pre-requisites
+    - Straightforward to build the software
+    - Web site has build instructions
+    - Source distributions have build instructions
+    - Web site lists all third-party dependencies that are not bundled
+    - Source distribution lists all third-party dependencies that are not
+      bundled
+    - All mandatory third-party dependencies are currently available
+    - All optional third-party dependencies are currently available
+  - 1.4 Installability
+    - Web site has installation instructions
+    - Binary distributions have installation instructions
+    - Web site lists all third-party dependencies that are not bundled
+  - 1.5 Learnability
+    - A getting started guide is provided with a basic example
+    - Instructions are provided for many basic use cases
+    - Reference guides are provided for all options
+    - Documentation is provided for user-developers and developers
+  - 1.5 Performance
+- 2. Sustainability &amp; Maintainability
+  - 2.1 Identity
+    - Identity of project is clear and unique both within domain of application
+      and generally.
+    - Project/software has own domain name
+    - Project/software has distinct name within application area (appears
+      within first page of search results when entered with domain keywords).
+    - Project/software has distinct name regardless of application area
+    - Project/software does not throw up embarrassing "Did you mean ..."
+      suggestions on search engines.
+    - Project/software name does not violate a trademark
+    - Project/software name is trademarked
+  - 2.2 Copyright
+    - Web site states copyright
+    - Web sites states developers and funders
+    - If multiple web sites, then all state exactly same copyright, license,
+      authorship
+    - Each source code file has copyright statement
+    - If supported by language, each source file has copyright statement
+      embedded within a constant - 
+    - Each source code file has a license header
+  - 2.3 Licencing
+    - Appropriate licence
+    - Web site states licence
+    - Software has a licence
+    - Software has an open source licence
+    - Software has an Open Software Institute recognised licence
+  - 2.4 Governance
+    - Management is transparent
+    - Project has a defined governance policy
+    - Governance policy is publicly available
+  - 2.5 Community
+    - To what extent does an active user community exist?
+    - Web site has statement of numbers of users/developers/members
+    - Web site has quotes from satisfied users
+    - Web site lists most important partners or collaborators
+    - Web site has list of project publications
+    - Web site lists third-party publications that use the software
+    - Web site lists software that uses/bundles this software
+    - Users are required to cite software if publishing results derived from
+      its use
+    - Users exists who are not members of the project
+    - Developers exists who are not members of the project
+  - 2.6 Accessibility
+    - To what extent is software accessible?
+    - Binary distributions are available
+    - Binary distributions are available without need for registration or
+      authorisation
+    - Source distributions are available
+    - Source distributions are available without need for registration or
+      authorisation
+    - Access to source code repository is available (whether for free, payment,
+      registration)
+    - Anonymous read-only access to source code repository
+    - Ability to browse source code repository online
+    - Repository hosted in sustainable third-party site which will live beyond
+      lifetime of any current funding
+    - Downloads page shows evidence of regular releases
+  - 2.7 Testability
+    - Straightforward to test software to verify modifications
+    - Project has unit tests
+    - Project has integration tests
+    - Project has scripts for testing non-automated scenarios (e.g. GUIs)
+    - Project recommends tools to check conformance to coding standards
+    - Project has automated tests to check conformance to coding standards
+    - Project recommends tools to check test coverage
+    - Project has automated tests to check test coverage
+    - A minimum test coverage level has been defined
+    - There is an automated test for this minimum level
+    - Tests are automatically run nightly
+    - Continuous integration is suported
+    - Test results are visible to all developers/members
+    - Test results are visible publicly
+    - Project specifies how to set up external resources (FTP servers,
+      databases, etc.) for tests
+    - Tests create their own files, database tables, etc.
+  - 2.8 Portability
+    - To what extent can software be used on other platforms? (Checkboxes for
+      various platforms.)
+  - 2.9 Supportability
+    - To what extent will software be supported currently and in the future?
+    - Web site has page describing how to get support
+    - User doc has page describing how to get support
+    - Software describes how to get support (in README)
+    - Project has an e-mail address
+    - Project e-mail address has domain name
+    - E-mails are read by more than one person
+    - E-mails are archived
+    - E-mails archives are publicly readable
+    - E-mail archives are searchable
+    - Project has a ticketing system
+    - Ticketing system is publicly available
+    - Ticketing system is searchable
+    - Web site has a site map or index
+    - Web site has a search facility
+    - Project resources are hosted externally in a sustainable third-part
+      repository which will live beyond lifetime of current project
+    - E-mail archives or ticketing system shows that queries are resounded to
+      (not necessarily fixed) within a week.
+    - If there is a blog, it is regularly used
+    - E-mail lists of forums, if present, have regular posts
+  - 2.10 Analysability
+    - Source code is structured into modules or packages
+    - Source code structure relates clearly to the architecture or design.
+    - Source code repository is in a version control system
+    - Structure of source code repository and how this maps to software's
+      components is documented
+    - Source releases are snapshots of the repository
+    - Source code is commented
+    - Source code comments are written in a document generation mark-up
+      language
+    - Source code is laid out and indented well
+    - Source code uses sensible class, package, and variable names
+    - There are no old or obsolete source code files that should be handled by
+      version control
+    - There is no commented out code
+    - There are not TODOs in the code
+    - Auto-generated source code is in separate directories from other source
+      code
+    - Regeneration of auto-generated source code is documented
+    - Coding standards are recommended by the project
+    - Coding standards are required to be observed
+    - Project-specific coding standards are consistent with community standards
+  - 2.11 Changeability
+    - Project has a defined contributions policy
+    - Contributions policy is publicly available
+    - Contributors retain copyright/IP of their contributions
+    - Users, developer members, and developers who are not members can contribute
+    - Project has a defined and stable deprecation policy
+    - Stability/deprecation policy is publicly available
+    - Releases document deprecated components within release
+    - Releases document removed or changed components within release
+  - 2.12 Evolvability
+    - Web site describes project roadmap, plans, or milestones
+    - Web site describes how project is funded or sustained
+    - Web site describes end date of current funding lines
+  - 2.13 Interoperability
+    - Uses open standards
+    - Uses mature, ratified, non-draft standards
+    - Provides tests demonstrating compliance with standards
+
+
+Other aspects derived from other forms of standards include:
+- Must use https
+- Must be in English
+- Unique version numbering
+- Semantic versioning
+- Release notes
+- Static code analysis (with links to lots of language-specific tools)
+- Dynamic code analysis (with links to lots of language-specific tools)
+- Use of memory check tools, or memory-safe languages
+
+
+
+***Funtionality***
+
+- Function calls that are as simple as possible
+- Function documentation explicitly written to ease understanding and use,
+  including but not restricted to
+  - Function purpose and use explained in a way that can be understood
+    (largely) in isolation, without needing to consult (too many) other
+    functions.
+  - Consistent patterns of input and output used throughout a package
+- Return values of functions clearly documented
+- Functions that are [type
+  stable](https://cran.r-project.org/web/packages/vctrs/vignettes/stability.html)
+  unless explicitly indicated and explained otherwise. (See also the section on
+  type stability in the [tidyverse design
+  guide](https://principles.tidyverse.org/out-type-stability.html).)
+
+
+### Documentation
+
+Standards will include requirements for form and completeness of documentation.
+As with interface, several sources already provide starting points for
+reasonable documentation. Some documentation requirements will be specific to
+the statistical context. For instance, it is likely we will have requirements
+for referencing appropriate literature or references for theoretical support of
+implementations. Another area of importance is correctness and clarity of
+definitions of statistical quantities produced by the software, e.g., the
+definition of null hypotheses or confidence intervals. Data included in
+software -- that used in examples or tests -- will also have documentation
+requirements. It is worth noting that the
+[`roxygen`](https://roxygen2.r-lib.org/) system for documenting R packages is
+readily extensible, as exemplified through the [`roxytest`
+package](https://github.com/mikldk/roxytest) for specifying tests *in-line*.
+
+An additional area for consideration is the creation of tools for documentation
+creation and evaluation based on metadata of statistical method inputs and
+outputs and packaged data [@lenhardt_data_2014]. Relationships between data
+and statistical software may be structured in a sufficiently systematic way to
+permit systematic documentation.
+
+<!---
+https://github.com/tdwg/vocab/blob/master/sds/documentation-specification.md
+--->
+
+<!---
+Each debian release must include a space-separated list of bug report
+   numbers closed by that release.
+--->
+
+### Testing {#overview-testing}
+
+Testing is a critical area for standards, as tests are a concrete manifestation
+of standards and the means by which authors may demonstrate compliance. While
+testing is considered best practice and test coverage often used as a measure of
+test completeness, guidance on *what* to test is rare, especially in the context
+of R packages. Thus, standards will need to provide guidance on the types and
+methods of tests required for different statistical software categories.
+
+In addition, statistical software may benefit from means or modes of testing
+beyond the common frameworks used in and for R packages (e.g. R RMD check,
+testhtat). A variety of other frameworks and workflows from other languages and
+contexts may be relevant. Almost all testing as currently implemented in R is
+"concrete testing" (Mili 2015), and little consideration has been given in R to
+"stochastic" or "property-based" testing, in which expectation values of inputs
+and outputs are tested, rather than concrete instantiations of such (the
+notably exception of the apparently abandoned [`fuzzr`
+package](https://github.com/mdlincoln/fuzzr) notwithstanding). Other languages
+have developed grammars for stochastic or property-based testing, notably
+through the [hypothesis package for
+python](https://github.com/HypothesisWorks/hypothesis). These grammars enable
+specification of test assumptions as well as expected test outputs. Assumptions
+in `hypothesis` are declared through simple `@given` statements that might, for
+example, quantify an assumed probability distribution for input data, while
+outputs are specified through equivalent `@expect` statements that might, for
+example, specify expected *distributional properties* of an output rather than
+just concrete values.
+
+The following are likely key questions which we will need to address regarding
+testing:
+
+-   To what extent should testing focus on *functional* or *integration* rather
+    than *unit* testing?
+
+-   Is it sufficient to consider test execution as an integral part of
+    `R CMD check` only? Or might there by a case for developing alternative test
+    execution environments and approaches? For instance, should there be an
+    alternate workflow for long-running tests, tests requiring large data, or
+    tests intended to be executed for other purposes?
+
+-   Is it worthwhile concretely defining one or more goals of testing? (Such as
+    error detection, error frequencies, error tolerance, accuracy.)
+
+-   What are the test data? And how easy is it to input alternative data to
+    tests?
+
+-   Is there scope for "stochastic" or "property-based" testing?
+
+-   What test reporter should be used? Does the `testthat` package and similar
+    suffice? Or might it be worth considering new test reporting systems?
+
+-   What aspects of tests and test data (both actual and permissible) might be
+    worthwhile documenting in some kind of metadata format?
+
+Extant R package which address some of these issues include
+[`tinytest`](https://github.com/markvanderloo/tinytest),
+[`roxytest`](https://github.com/mikldk/roxytest), and
+[`xpectr`](https://github.com/LudvigOlsen/xpectr).
+
+The "Turing Way" has a useful discussion of [different kinds of software
+tests](https://the-turing-way.netlify.com/testing/testing.html).
+
 
 ## Standards Specific to Statistical Software
 
+Software must specify its area of validity through specifying the specific
+statistical categories.
 
 The applicability of any concrete set of standards is likely to differ between
 different categories of statistical software. For example, metrics of numerical
@@ -134,112 +506,4 @@ developing parallel definitions for both categories of software (defining both
 *in*-scope and *beyond*-scope), and specific standards. A simple way to
 proceed may be to develop lists for both, along with a representation of
 inter-connections between categories and standards.
-
-## Generally Applicable Standards 
-
-In addition to standards specific to the challenges of statistical software, it
-will also be necessary to create or adopt standards governing general aspects of
-software, such as interfaces, documentation, and testing. @mili_software_2015
-also provides a general list of software design principles, divided between
-*Functional Attributes* (including Correctness and Robustness), *Usability
-Attributes* (including Ease of Use, Ease of Learning, Customizability,
-Calibrability, and Interoperability), and *Structural Attributes* (including
-Design Integrity, Modularity, Testability, and Adaptability).
-
-### Software Interface
-
-There are likely aspects of overall software interface ("API") that might be
-considered, reviewed, encouraged, or expected. rOpenSci's guide on [package
-development, maintenance, and peer review](https://devguide.ropensci.org/)
-provides standards of this type for R packages, primarily within its first
-chapter. Another notable example is the [tidyverse design
-guide](https://principles.tidyverse.org/), and the section on [Conventions for
-R Modeling
-Pacakges](https://tidymodels.github.io/model-implementation-principles/) which
-provides guidance for model-fitting APIs.
-
-### Documentation
-
-Standards will include requirements for form and completeness of documentation.
-As with interface, several sources already provide starting points for
-reasonable documentation. Some documentation requirements will be specific to
-the statistical context. For instance, it is likely we will have requirements
-for referencing appropriate literature or references for theoretical support of
-implementations. Another area of importance is correctness and clarity of
-definitions of statistical quantities produced by the software, e.g., the
-definition of null hypotheses or confidence intervals. Data included in
-software -- that used in examples or tests -- will also have documentation
-requirements. It is worth noting that the
-[`roxygen`](https://roxygen2.r-lib.org/) system for documenting R packages is
-readily extensible, as exemplified through the [`roxytest`
-package](https://github.com/mikldk/roxytest) for specifying tests *in-line*.
-
-An additional area for consideration is the creation of tools for documentation
-creation and evaluation based on metadata of statistical method inputs and
-outputs and packaged data [@lenhardt_data_2014]. Relationships between data
-and statistical software may be structured in a sufficiently systematic way to
-permit systematic documentation.
-
-<!---
-https://github.com/tdwg/vocab/blob/master/sds/documentation-specification.md
---->
-
-### Testing {#overview-testing}
-
-Testing is a critical area for standards, as tests are a concrete manifestation
-of standards and the means by which authors may demonstrate compliance. While
-testing is considered best practice and test coverage often used as a measure of
-test completeness, guidance on *what* to test is rare, especially in the context
-of R packages. Thus, standards will need to provide guidance on the types and
-methods of tests required for different statistical software categories.
-
-In addition, statistical software may benefit from means or modes of testing
-beyond the common frameworks used in and for R packages (e.g. R RMD check,
-testhtat). A variety of other frameworks and workflows from other languages and
-contexts may be relevant. Almost all testing as currently implemented in R is
-"concrete testing" (Mili 2015), and little consideration has been given in R to
-"stochastic" or "property-based" testing, in which expectation values of inputs
-and outputs are tested, rather than concrete instantiations of such (the
-notably exception of the apparently abandoned [`fuzzr`
-package](https://github.com/mdlincoln/fuzzr) notwithstanding). Other languages
-have developed grammars for stochastic or property-based testing, notably
-through the [hypothesis package for
-python](https://github.com/HypothesisWorks/hypothesis). These grammars enable
-specification of test assumptions as well as expected test outputs. Assumptions
-in `hypothesis` are declared through simple `@given` statements that might, for
-example, quantify an assumed probability distribution for input data, while
-outputs are specified through equivalent `@expect` statements that might, for
-example, specify expected *distributional properties* of an output rather than
-just concrete values.
-
-The following are likely key questions which we will need to address regarding
-testing:
-
--   To what extent should testing focus on *functional* or *integration* rather
-    than *unit* testing?
-
--   Is it sufficient to consider test execution as an integral part of
-    `R CMD check` only? Or might there by a case for developing alternative test
-    execution environments and approaches? For instance, should there be an
-    alternate workflow for long-running tests, tests requiring large data, or
-    tests intended to be executed for other purposes?
-
--   Is it worthwhile concretely defining one or more goals of testing? (Such as
-    error detection, error frequencies, error tolerance, accuracy.)
-
--   What are the test data? And how easy is it to input alternative data to
-    tests?
-
--   Is there scope for "stochastic" or "property-based" testing?
-
--   What test reporter should be used? Does the `testthat` package and similar
-    suffice? Or might it be worth considering new test reporting systems?
-
--   What aspects of tests and test data (both actual and permissible) might be
-    worthwhile documenting in some kind of metadata format?
-
-Extant R package which address some of these issues include
-[`tinytest`](https://github.com/markvanderloo/tinytest),
-[`roxytest`](https://github.com/mikldk/roxytest), and
-[`xpectr`](https://github.com/LudvigOlsen/xpectr).
 
