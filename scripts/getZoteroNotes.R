@@ -147,9 +147,10 @@ index <- which (res$itemType == "computerProgram" &
                 vapply (res$tag, function (i) "testing" %in% i, logical (1)))
 res$itemType [index] <- "computerProgramTesting"
 res$type_text [index] <- "Computer Programs -- Testing"
-type_order <- c ("book", "journalArticle", "computerProgram",
+type_order <- c ("book", "journalArticle", "report", "computerProgram",
                  "computerProgramTesting", "webpage")
-itemType_text <- c ("Books", "Journal Articles", "Computer Programs (General)",
+itemType_text <- c ("Books", "Journal Articles", "Technical Reports",
+                    "Computer Programs (General)",
                     "Computer Programs (Testing)", "Web Pages")
 res$type_text <- itemType_text [match (res$itemType, type_order)]
 res$type_order <- match (res$itemType, type_order)

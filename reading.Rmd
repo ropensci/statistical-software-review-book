@@ -67,6 +67,13 @@ software.
 ```{r loadarticles, child = "scripts/bibliography/journalArticle.md"}
 ```
 
+## Technical Reports
+
+---
+
+```{r loadarticles, child = "scripts/bibliography/report.md"}
+```
+
 ## Computer Programs
 
 ---
