@@ -10,4 +10,4 @@ open: docs/$(TARGET).html
 	xdg-open docs/$(TARGET).html &
 
 clean:
-	rm -r docs scripts/bibnotes.txt scripts/bibliography/*
+	rm -r docs scripts/bibnotes.json scripts/bibliography/*
