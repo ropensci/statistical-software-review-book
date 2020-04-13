@@ -8,9 +8,9 @@ include the following:
 
 -   What kind of standards might apply to software in general?
 
--   How might such standards differ between different languages?
-
 -   What kind of standards might specifically apply to statistical software?
+
+-   How might such standards differ between different languages?
 
 -   To what extent should we aim for "verification" or "validation" of
   software, and how might be signify such?
@@ -71,17 +71,20 @@ Bibliography*](#reading), the following are particularly relevant:
    evaluation*](http://software.ac.uk/sites/default/files/SSI-SoftwareEvaluationCriteria.pdf),
    which considers two primary categories of *Usability* and *Sustainability
    and Maintainability*, each of which is divided into numerous sub-categories.
-   The guide identifies numerous concrete criteria for each sub-category.
+   The guide identifies numerous concrete criteria for each sub-category,
+   explicitly detailed below in order to provide an example of the kind of
+   standards that might be adapted and developed for application to the present
+   project.
 3. The more technical considerations of the [Object Management
    Group](https://www.omg.org/index.htm)'s [*Automated Source Code CISQ
    Maintainability Measure*](https://www.omg.org/spec/ASCMM/) (where CISQ
    refers to the [*Consortium for IT Software
    Quality*](https://www.it-cisq.org/)). This guide describes a number of
-   measures which can be readily automatically extracted and used to quantify
-   the maintainability of source code. None of these measures are not already
+   measures which can be automatically extracted and used to quantify the
+   maintainability of source code. None of these measures are not already
    considered in one or both of the preceding two documents, but the
-   identification here of those particularly amenable to automated assessment
-   is likely to provide a useful reference.
+   identification of measures particularly amenable to automated assessment
+   provides a particularly useful reference.
 
 There is also rOpenSci's guide on [package development, maintenance, and peer
 review](https://devguide.ropensci.org/), which provides standards of this type
@@ -96,11 +99,30 @@ provides guidance for model-fitting APIs.
 The project aims to establish and maintain a set of standards governing general
 aspects of software, such as software interfaces, documentation, and testing.
 The following list represents a synthesis of the preceding sets of reference
-standards which might be of use to this project, noting that this is primarily
-derived from the [Software Sustainability
-Institute](https://www.software.ac.uk/)'s guide to [*Criteria-based software
+standards which might be of use to this project, primarily derived from the
+[Software Sustainability Institute](https://www.software.ac.uk/)'s guide to
+[*Criteria-based software
 evaluation*](http://software.ac.uk/sites/default/files/SSI-SoftwareEvaluationCriteria.pdf).
 
+This list is provided as an example of the kinds of standards considered in
+other domains, and developed in order to be generally applicable to software.
+At the present initial stage of this project, we merely present the following
+list as exemplary, and aim to use it to stimulate and guide discussion
+regarding the potential utility of adapting, adopting, or otherwise developing
+an equivalent, and/or equivalently detailed, list of standards.
+
+Prior to detailing the exemplary standards adapted from those of the 
+[Software Sustainability Institute](https://www.software.ac.uk/), we note that
+both these standards, and influential sources such as @mili_software_2015,
+consider software in terms of qualitative aspects such as *Usability*,
+*Sustainability* and *Maintainability*, rather than in the kinds of concrete
+standards otherwise commonly considered such as those describing
+*Documentation*, *Testing*, *Code Structure*, other other aspects of software
+design. The use of qualitative categories in defining and guiding standards is
+preferred and adopted here particularly because it facilitates and encourages
+consideration of those properties as they pertain to multiple aspects of
+software design, and is likely to better facilitate the design and development
+of more consistent and unified software.
 
 
 - 1. Usability
@@ -298,8 +320,26 @@ evaluation*](http://software.ac.uk/sites/default/files/SSI-SoftwareEvaluationCri
     - Uses mature, ratified, non-draft standards
     - Provides tests demonstrating compliance with standards
 
+In contrast to these qualitative aspects, @mili_software_2015 identifies the
+following attributes of *Software Quality*:
+
+- 1. Functional Attributes
+    - 1.1 Correctness
+    - 1.2 Robustness
+- 2. Useability Attributes
+    - 2.1 Ease of Use
+    - 2.2 Ease of Learning
+    - 2.3 Customizability
+    - 2.4 Calibrability
+    - 2.5 Interoperability
+- 3. Structural Attributes
+    - 3.1 Design Integrity
+    - 3.2 Modularity (including "cohesion" and "coupling")
+    - 3.3 Testability
+    - 3.4 Adaptability
 
 Other aspects derived from other forms of standards include:
+
 - Must use https
 - Must be in English
 - Unique version numbering
@@ -308,41 +348,12 @@ Other aspects derived from other forms of standards include:
 - Static code analysis (with links to lots of language-specific tools)
 - Dynamic code analysis (with links to lots of language-specific tools)
 - Use of memory check tools, or memory-safe languages
-
-
-
-***Funtionality***
-
-- Function calls that are as simple as possible
-- Function documentation explicitly written to ease understanding and use,
-  including but not restricted to
-  - Function purpose and use explained in a way that can be understood
-    (largely) in isolation, without needing to consult (too many) other
-    functions.
-  - Consistent patterns of input and output used throughout a package
-- Return values of functions clearly documented
 - Functions that are [type
   stable](https://cran.r-project.org/web/packages/vctrs/vignettes/stability.html)
   unless explicitly indicated and explained otherwise. (See also the section on
   type stability in the [tidyverse design
   guide](https://principles.tidyverse.org/out-type-stability.html).)
 
-
-### Documentation
-
-Standards will include requirements for form and completeness of documentation.
-As with interface, several sources already provide starting points for
-reasonable documentation. Some documentation requirements will be specific to
-the statistical context. For instance, it is likely we will have requirements
-for referencing appropriate literature or references for theoretical support of
-implementations. Another area of importance is correctness and clarity of
-definitions of statistical quantities produced by the software, e.g., the
-definition of null hypotheses or confidence intervals. Data included in
-software -- that used in examples or tests -- will also have documentation
-requirements. It is worth noting that the
-[`roxygen`](https://roxygen2.r-lib.org/) system for documenting R packages is
-readily extensible, as exemplified through the [`roxytest`
-package](https://github.com/mikldk/roxytest) for specifying tests *in-line*.
 
 An additional area for consideration is the creation of tools for documentation
 creation and evaluation based on metadata of statistical method inputs and
@@ -366,7 +377,9 @@ of standards and the means by which authors may demonstrate compliance. While
 testing is considered best practice and test coverage often used as a measure of
 test completeness, guidance on *what* to test is rare, especially in the context
 of R packages. Thus, standards will need to provide guidance on the types and
-methods of tests required for different statistical software categories.
+methods of tests required for different statistical software categories. (The
+"Turing Way" has a useful discussion of [different kinds of software
+tests](https://the-turing-way.netlify.com/testing/testing.html).)
 
 In addition, statistical software may benefit from means or modes of testing
 beyond the common frameworks used in and for R packages (e.g. R RMD check,
@@ -418,14 +431,25 @@ Extant R package which address some of these issues include
 [`roxytest`](https://github.com/mikldk/roxytest), and
 [`xpectr`](https://github.com/LudvigOlsen/xpectr).
 
-The "Turing Way" has a useful discussion of [different kinds of software
-tests](https://the-turing-way.netlify.com/testing/testing.html).
+
+### Documentation
+
+Standards will include requirements for form and completeness of documentation.
+As with interface, several sources already provide starting points for
+reasonable documentation. Some documentation requirements will be specific to
+the statistical context. For instance, it is likely we will have requirements
+for referencing appropriate literature or references for theoretical support of
+implementations. Another area of importance is correctness and clarity of
+definitions of statistical quantities produced by the software, e.g., the
+definition of null hypotheses or confidence intervals. Data included in
+software -- that used in examples or tests -- will also have documentation
+requirements. It is worth noting that the
+[`roxygen`](https://roxygen2.r-lib.org/) system for documenting R packages is
+readily extensible, as exemplified through the [`roxytest`
+package](https://github.com/mikldk/roxytest) for specifying tests *in-line*.
 
 
 ## Standards Specific to Statistical Software
-
-Software must specify its area of validity through specifying the specific
-statistical categories.
 
 The applicability of any concrete set of standards is likely to differ between
 different categories of statistical software. For example, metrics of numerical
@@ -493,6 +517,16 @@ software.
     sets](https://www.itl.nist.gov/div898/strd/) with certified computational
     results which statistical software should be able to reproduce.
 
+
+The project may benefit from collaboration with the ongoing development of the
+[*Transparent Statistics
+Guidelines*](https://transparentstats.github.io/guidelines/), by the "HCI
+(Human Computer Interaction) Working Group". While currently only in its
+beginning phases, that document aims to provide concrete guidance on
+"transparent statistical communication." If its development continues, it is
+likely to provide useful guidelines on best practices for how statistical
+software produces and reports results.
+
 Specific standards for neural network algorithms have been developed as part of
 a [google 2019 Summer Of Code project](http://www.inmodelia.com/gsoc2019.html),
 resulting in a dedicated R package,
@@ -506,4 +540,18 @@ developing parallel definitions for both categories of software (defining both
 *in*-scope and *beyond*-scope), and specific standards. A simple way to
 proceed may be to develop lists for both, along with a representation of
 inter-connections between categories and standards.
+
+## Proposals
+
+1. We develop a concrete list of standards like those of the [Software
+   Sustainability Institute](https://www.software.ac.uk/) given above.
+2. We identify which items in the resultant list are amenable to automatic
+   assessment, and implement procedures to automate such assessment as far as
+   practicable.
+3. Our standards will be versioned, and software will be aligned with the most
+   recent version of these standards with which it complies.
+4. We initially develop a minimal set of standards applicable to different
+   categories of statistical software, and aim to develop such
+   category-specific standards throughout the ongoing development of the
+   project.
 
