@@ -1,18 +1,26 @@
 
 # Assessment {#assessment}
 
-To additionally inform the general considerations described in the preceding
-sections, this section presents a general (yet non-exhaustive) overview of
-aspects of software which may be usefully considered for standards-based
-assessment, both for retrospective purposes of peer review, and for prospective
-use in developing software both in general, and in preparation for peer-review.
-It will be important to consider the applicability of each metric to different
-categories of statistical software, as well as the extent to which the
-following aspects may be more or less applicable or relevant at different
-phases of a software lifecycle, or how expected values for, or results of
-applying, metrics may vary throughout a software lifecycle.
+The preceding [*Standards* section](#standards) primarily served (in its
+current form) to illustrate one possible approach to standards used to
+prospectively guide software during development. In contrast, the present
+section lists aspects of software, both general and specific to statistical
+software, which may usefully assessed in order to give insight into structure,
+function, and other aspects. The following list of assessments is ultimately
+intended to inform our development of a stand-alone tool, and potentially also
+a publicly available service, which can be used by any developers to assess
+their own software.
 
-#### General Software Metrics
+We accordingly intend the following standards to be used both for retrospective
+purposes of peer review, and for prospective use in developing software both in
+general, and in preparation for peer-review. It is important to consider the
+applicability of each metric to different categories of statistical software,
+as well as the extent to which the following aspects may be more or less
+applicable or relevant at different phases of a software life cycle, or how
+expected values for, or results of applying, metrics may vary throughout
+a software life cycle.
+
+## General Software Metrics
 
 The following is an incomplete list of the kinds of metrics commonly used to
 evaluate software in general, and which might provide useful for assessing
@@ -71,7 +79,7 @@ statistical software in the present project.
     -   Testing beyond `R CMD check`?
     -   Testing beyond concrete testing?
 
-#### Metrics specific to statistical software
+## Metrics specific to statistical software
 
 Metrics specific to statistical software will depend on, and vary in
 applicability or relevance with, the system for categorizing statistical
@@ -88,7 +96,7 @@ be expected to fit within multiple categories, and specific metrics will need
 to be developed to ensure validity for software encompassing any potential
 combination of categories.
 
-#### Diagnostics and Reporting
+## Diagnostics and Reporting
 
 
 While the preceding sub-sections considered *what* might be assessed in
@@ -140,11 +148,31 @@ the following aspects:
 - Wider communities of users or developers
 - The adaptation of our system to other domains
 
-A good example for the
-effectiveness of automation in the kinds of peer review processes envisioned to
-emerge from this project is provided by submissions to the [Journal of Open
-Source Software](https://joss.theoj.org/), which features [open
-reviews](https://github.com/openjournals/joss-reviews/issues), many aspects of
-which are automated by a custom-developed bot called
-["whedon"](https://github.com/whedon).
+## Proposals and Aims
+
+1. We develop a system to automatically assess aspects of software detailed in
+   the above list (and more).<br>**AIM:** *To assess software in as much detail
+   as possible, while reducing the burden on developers of manual assessment.*
+2. The development of this system extend from the
+   [`riskmetric`](https://github.com/pharmar/riskmetric) package developed by
+   the [PharmaR group](https://pharmar.org).<br>**AIM:** *To efficiently re-use
+   work, prevent duplication, and develop our system as quickly as possible.*
+3. We provide this assessment both as a stand-alone R package, and a publicly
+   available service which receives text links to publicly available
+   repositories (and does not enable upload of binary software).<br>**AIM:**
+   *To extend engagement with the present project beyond just those directly
+   interested in submitting software for review, and so to enhance broader
+   community engagement with both this project, and rOpenSci in general.*
+4. Considerable effort be devoted to developing a coherent and adaptable system
+   to summarise and report on software assessment.<br>**AIM:** *To devise
+   a reporting system which imposes a low cognitive burden on both developers
+   and reviewers needing to assess packages.*
+5. We simultaneously develop a system for assessing historical development of
+   all available metrics, through applying our assessment system to all
+   packages in the CRAN and bioconductor archives, and we use comparisons with
+   these historical patterns to inform and guide our reporting
+   system.<br>**AIM:** *To ensure standards and assessments reflect enacted
+   practices, rather than just theoretical assumptions, and to ensure that
+   standards and assessments keep apace with ongoing developments of
+   practices.*
 
