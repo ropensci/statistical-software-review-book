@@ -104,14 +104,9 @@ context of statistical software.
   figure reflects general code in all R packages, and the corresponding
   proportion within the specific context of statistical software may be
   considerably lower.
-
-***Proposal***: Peer review in the system will primarily focus on code written
-in R, C, and C++. Standards will be written so as to separate language-specific
-and non-language-specific components with an eye towards further adoption by
-other groups in the future (in particular groups focussed on the Python
-language). Any decision to include visualisation software and routines within
-our scope will likely entail an extension of linguistic scope to associated
-languages (HTML, JavaScript, and maybe CSS).
+- Any decision to include visualisation software and routines within our scope
+  will likely entail an extension of linguistic scope to associated languages
+  (HTML, JavaScript, and maybe CSS).
 
 ### Structure
 
@@ -134,11 +129,6 @@ alongside scientific manuscripts, and web applications are a growing, new area
 of practice. However, there is far less standardization of code structure to
 allow for style guidelines and automated testing in these cases.
 
-**Proposal**: Peer review in the system will be limited to R packages, and
-tools developed will be specific to R package structure, although keeping in
-mind potential future adaptation and adaptability to non-packaged R code.
-Standards that may apply to non-packaged are code may also be noted for use in
-other contexts.
 
 ## Statistical Categories {#scope-categories}
 
@@ -191,12 +181,6 @@ software authors may be requested to specify:
   US National Institute of Standards and Technology's
   [  collection of reference data sets](https://www.itl.nist.gov/div898/strd)
   against which the software may be compared? If so, which?
-
-***Proposal*** Submissions will be required to check at least one of the
-preceding items, to nominate at least one "reference implementation", and to
-explain how the submitted software is superior (along with a possibility to
-explain why software may be sufficiently unique that there is no reference
-implementation, and so no claims of superiority can be made).
 
 ### Examples of Statistical Software
 
@@ -853,11 +837,6 @@ arguably drawing samples from defined distributions, of which the
 an example. This package has a particular application in synthesis of discrete
 populations, yet the implementation is quite generic and powerful.
 
-***Proposal*** For packages which parameterise or fit probability
-distributions, develop routines to assess and quantify the sensitivity of
-outputs to the distributional properties of inputs, and particularly to
-deviations from assumed distributional properties.
-
 
 
 ### Wrapper Packages
@@ -907,9 +886,6 @@ code, and the computer language being wrapped.
 - *Unique Advances:* What unique advances does the software offer beyond
   those offered by the (internally or externally) wrapped software?
   
-  ***Proposal:*** The project will only review packages where the primary
-statistical functionality is in the main source code developed by the authors,
-and not in an external package.  
 
 ### Categorical Variables
 
@@ -959,20 +935,10 @@ categorisations, as exemplified by the
 which is a biostatistical package useful for distinguishing and categorising
 dynamic trajectories (such as disease or treatment pathways).
 
-***Proposal*** 
+We propose to exclude this as an explicit category, reflecting an assumption
+that software within this category will generally able to be assessed under
+other categories listed here.
 
-1. We seek explicit advise and expertise from somebody with domain expertise on
-   how we might best approach assessing software for categorical variables.
-2. We make this category something of an exception in that we will attempt to
-   develop approaches to standardising assessment in response to any initial
-   submissions we might receive. We would certainly explicitly acknowledge the
-   "trial" nature of this category, and might also productively ask authors of
-   initial packages for constructive input on how this might be achieved.
-3. In the absence of any category-specific standards which may arise or
-   otherwise be deemed applicable, this software ought be assessed under all
-   applicable general categories, with other aspects to be *qualitatively*
-   assessed by editors and reviewers. (This category is the single one, after
-   all, which primarily deals with *qualitative* data.)
 
 
 ### Networks
@@ -1017,14 +983,6 @@ general way includes:
    package, yet the domain of application likely renders it incomparable to
    other network software, and difficult to assess in any standardised way.
 
-***Proposal***
-
-1. We identify a sub-category of software which accepts *network inputs*, and
-   develop (or adapt) general techniques to generate generic graphs to be used
-   in benchmarking routines.
-2. Other software which falls within this category only because of restricted
-   aspects such as internal data representations (such as `tcherry`) *not* be
-   considered or assessed within this category.
 
 
 ### Statistical Reporting and Exploratory Data Analysis
@@ -1251,6 +1209,55 @@ submissions have the opportunity to be fast-tracked through the JOSS review proc
   If so, is the interactivity primarily graphical (for example, web-based),
   text-based, or other?
 
- **Proposal:** Educational software will not be in-scope for the project. Relevant
-methods standards may be able to be adopted by JOSE or similar outlets. 
+## Proposals
+
+1. Peer review in the system will primarily focus on code written in R, C, and
+   C++. Standards will be written so as to separate language-specific and
+   non-language-specific components with an eye towards further adoption by
+   other groups in the future (in particular groups focussed on the Python
+   language). 
+2. The system will be limited to R packages, and tools developed will be
+   specific to R package structure, although keeping in mind potential future
+   adaptation and adaptability to non-packaged R code. Standards that may apply
+   to non-packaged are code may also be noted for use in other contexts.
+3. Submissions will be required to nominate at least one statistical category,
+   to nominate at least one "reference implementation", and to explain how the
+   submitted software is superior (along with a possibility to explain why
+   software may be sufficiently unique that there is no reference
+   implementation, and so no claims of superiority can be made).
+4. We will only review packages where the primary statistical functionality is
+   in the main source code developed by the authors, and not in an external
+   package.  
+5. The following 11 categories of statistical software be defined, and be
+   considered in scope:
+    - 1. Bayesian and Monte Carlo algorithms
+    - 2. Dimensionality Reduction and Feature Selection
+    - 3. Machine Learning
+    - 4. Regression and Interpolation
+    - 5. Probability Distributions
+    - 6. Wrapper Packages
+    - 7. Networks
+    - 8. Exploratory Data Analysis
+    - 9. Workflow Software
+    - 10. Summary Statistics
+    - 11. Spatial Statistics
+6. The following categories be considered, at least initially, to be
+   out-of-scope:
+    - 1. Educational Software
+    - 2. Visualisation Software
+
+
+Beyond these general *Proposals*, the following lists *Proposals* specific to
+particular categories of statistical software:
+
+1. For packages which parameterise or fit probability distributions, develop
+   routines to assess and quantify the sensitivity of outputs to the
+   distributional properties of inputs, and particularly to deviations from
+   assumed distributional properties.
+2. We identify a sub-category of software which accepts *network inputs*, and
+   develop (or adapt) general techniques to generate generic graphs to be used
+   in benchmarking routines. Other software which falls within the category of
+   *Network Software* only because of restricted aspects such as internal data
+   representations (such as `tcherry`) *not* be considered or assessed within
+   that category.
 

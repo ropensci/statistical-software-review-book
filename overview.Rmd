@@ -13,17 +13,22 @@ community feedback for the project. It consists of the following sections:
     standards which might be developed and applied to assess statistical
     software.
 
+-   **[Software Assessment](#assessment)** in which we provide a partial list
+    of attributes and measures of software which might be usefully considered.
+
 -   **[Statistical Software Peer Review Process](#process)** in which we
     consider questions regarding the possible forms and practices a peer review
     process might adopt.
 
--   **[Software Assessment](#assessment)** in which we provide a partial list
-    of attributes and measures of software which might be usefully considered.
-
 Each of these sections aims to highlight what we consider some of the most
-important questions which the project will have to address. A primary aim of
-the project (described immediately below) is to build community, an aspect
-considered in further detail towards the end of the present chapter.
+important questions and issues which the project will have to address. We
+generally do so by posing a list of "*Proposals*" at the end of each of the
+above-listed chapters. Each of these is intended to serve as a starting point
+for debate, and should be considered entirely open to discussion, modification,
+enhancement, removal, or any other suggestion which may arise. The *Proposals*
+are primarily intended in current form to provide focal points for further
+consideration and discussion prior to any concrete implementation.
+
 
 <!--
 The central questions which emerge from this document are given in condensed
@@ -131,12 +136,21 @@ regarding standards include the following:
 
 -   What kind of standards might apply to software in general?
 
--   How might such standards differ between different languages?
-
 -   What kind of standards might specifically apply to statistical software?
+
+-   How might such standards differ between different languages?
 
 -   To what extent should we aim for "verification" or "validation" of
     software, and how might be signify such?
+
+### Software Assessment
+
+The Software Assessment section in [Chapter 6](#assessment) presents a general
+(yet non-exhaustive) overview of aspects of software which may be usefully
+considered for standards-based assessment, both for retrospective purposes of
+peer review, and for prospective use in developing software both in general,
+and in preparation for peer-review.
+
 
 ### Statistical Software Peer Review Process
 
@@ -144,20 +158,11 @@ Our point of departure for our process is the rOpenSci software peer review
 process, which has operated for five years, and has reviewed over >200
 packages, primarily in areas of data lifecycle management. However, we aim to
 reassess this process in light of other models and needs specific to
-statistical software. The following [Chapter 6](#lifecycle) on our proposed
+statistical software. The following [Chapter 7](#lifecycle) on our proposed
 Peer Review Process considers a few analogous processes of peer review,
 gleaning aspects which may be useful to adopt and adapt for our system.
-[Chapter 7](#process) then describes the peer review process in terms of the
+[Chapter 8](#process) then describes the peer review process in terms of the
 series of steps we currently envision comprising our system.
-
-### Software Assessment
-
-The Software Assessment section in [Chapter 8](#assessment) presents a general
-(yet non-exhaustive) overview of aspects of software which may be usefully
-considered for standards-based assessment, both for retrospective purposes of
-peer review, and for prospective use in developing software both in general,
-and in preparation for peer-review.
-
 
 ## Community
 
@@ -206,4 +211,9 @@ consideration at the end of this document.
 In each case the project will strive to cultivate diverse, inclusive, and
 geographically expansive communities, and metrics to describe such aspects may
 also be important, as may automated tools to monitor community engagement and
-development.
+development. Note that these aspects of community are not explicitly addressed
+throughout any of the remainder of this document. It is important the future
+revisions return to this point, and ensure that each of the following sections
+are appropriately modified to ensure effective consideration and incorporation
+of the concerns listed immediately above.
+
