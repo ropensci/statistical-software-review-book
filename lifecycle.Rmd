@@ -3,9 +3,9 @@
 
 # Software Review and Lifecycle Models {#lifeycle}
 
-Prior to describing the review system we indent to develop, we briefly digress
+Prior to describing the review system we indend to develop, we briefly digress
 to describe analogous review systems, aiming to emphasise aspects which may be
-useful to adopt within our system. This chapter conclude with succinct
+useful to adopt within our system. This chapter concludes with succinct
 proposals of aspects of these prior systems which we intend to adopt within our
 system, and for which we are explicitly seeking feedback. There are notable
 differences between the systems described here, with contrasts between them

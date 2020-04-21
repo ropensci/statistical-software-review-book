@@ -62,8 +62,8 @@ explicit feedback on the above aspects of the project.
 ## Related projects and initiatives
 
 
-The following internal and external projects related projects have bearing on
-our work:
+The following internal and external projects related projects have (non-excluive) 
+bearing on our work:
 
 rOpenSci is simultaneously working on improving the automation and documentation
 of infrastructure to support software peer reviews. This will support many of
@@ -158,9 +158,8 @@ Our point of departure for our process is the rOpenSci software peer review
 process, which has operated for five years, and has reviewed over >200
 packages, primarily in areas of data lifecycle management. However, we aim to
 reassess this process in light of other models and needs specific to
-statistical software. The following [Chapter 7](#lifecycle) on our proposed
-Peer Review Process considers a few analogous processes of peer review,
-gleaning aspects which may be useful to adopt and adapt for our system.
+statistical software. [Chapter 7](#lifecycle) considers a few analogous processes
+of peer review, gleaning aspects which may be useful to adopt and adapt for our system.
 [Chapter 8](#process) then describes the peer review process in terms of the
 series of steps we currently envision comprising our system.
 
