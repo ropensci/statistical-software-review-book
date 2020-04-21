@@ -26,28 +26,18 @@ Standardised reporting is considered in the [submission
 phase](#submission-phase), while the remainder of the present sub-section
 considers tools for self-assessment.
 
-Current rOpenSci practices expect authors to assess their software using
-[`goorpractice`](https://github.com/mangothecat/goodpractice), a package which
-primarily relies on internally running [`R CMD
+Current rOpenSci practices expect authors to assess their software using our
+package standards, then editors perform automated assessment using 
+[`goodpractice`](https://github.com/mangothecat/goodpractice), a package which
+runs [`R CMD
 check`](https://cran.r-project.org/doc/manuals/R-exts.html#Checking-packages)
-and searching for, and highlighing, character patterns within the output
-indicative of the three types of CRAN issues (errors, warnings, and messages).
-The package also calculates test coverage metrics, and runs
-a [linter](https://en.wikipedia.org/wiki/Lint_(software)) to highlight any
-non-compliant lines. The output of any issues flagged by
-[`goorpractice`](https://github.com/mangothecat/goodpractice) is expected to be
-pasted into the initial submission. As described above[^gpcomment], we expect
-not to employ [`goorpractice`](https://github.com/mangothecat/goodpractice) any
-further due to the difficulty of extending that software beyond its current
-scope, and will likely instead develop self-evaluation tools around a system
-like the [`PharmaR` project's](https://pharmar.org) eminently extensible
-[`riskmetric`](https://github.com/pharmaR/riskmetric) package. We will refer to
-our hypothetical framework from here on (for the time being at least) as
-a "`riskmetric`-type framework".
+as well as other tests including calculating test coverage, [linting](https://en.wikipedia.org/wiki/Lint_(software)),
+and checking for some common coding anti-patterns.
+The [`PharmaR` project's](https://pharmar.org) [`riskmetric`](https://github.com/pharmaR/riskmetric) package performs similar functions as well as providing more development-based metrics and providing a more extensible framework.
+While authors commonly use the `goodpractice` assessment tool, demonstrated self-assessment is not
+currently required at submission.
 
-[^gpcomment]: TODO: Insert link to that
-
-We anticipate developing a comprehensive system for self-evaluation of
+We anticipate developing a system for self-evaluation of
 software, both in generic form able to be widely applied to software regardless
 of category, as well as specific tools for statistical software. Many of these
 generic assessments have been listed at the end of the preceding
@@ -64,11 +54,13 @@ necessary to successfully deliver all desired project outcomes.
 
 ***Proposal***
 
-1. We develop a comprehensive tool for general assessment of software and
+1. Authors will be expected to run automated self-assessments prior to submission.
+2. We develop a tool for general assessment of software and
    reporting of analytics, with several modules extending to specific
    assessment of statistical software.
-2. We simultaneously develop a lightweight infrastructure to enable such
-   assessment and reporting to be provided as an online service.
+3. We simultaneously develop a lightweight infrastructure to enable such
+   assessment and reporting to be provided as an online service, so that authors
+   can run assessment in the same environment as it will be run at submission.
 
 
 ## Pre-Submission Communication {#presub-comm}
@@ -96,7 +88,7 @@ These two systems have two major differences:
    originating elsewhere, such as from a completed rOpenSci review).
 2. Pre-submission enquiries to rOpenSci serve the singular purposes of
    determining suitability of a potential full submission, whereas those to
-   JOSS serve the additional purpose of seeking and assigning reviews. Having
+   JOSS serve the additional purpose of seeking and assigning reviewers. Having
    found both editors and reviewers, a simple bot command of `@whedon start
    review` suffices to automatically transform the pre-submission to a full
    submission (as a new issue).
@@ -179,31 +171,12 @@ options.
 
 As described, JOSS maintains a database of potential reviewers within
 a publicly accessible google document, while rOpenSci maintains theirs in an
-[airtable](https://airtable.com). The latter is not ideal, because this is
-linked with rOpenSci's google-based email system, via which the act of logging
-in grants [airtable](https://airtable.com) access to all of a user's personal
-contacts, an invasion of privacy to which many may understandably object. While
-it is possible to view JOSS's google document anonymously, anybody who happens
-to be simultaneously logged in to a google account --- notably including by
-default all Android users --- has already assented to google logging all
-interactions with the table and beyond. The mere possibility of anonymous
-viewing nevertheless makes JOSS's approach better, yet illustrates the
-conflicts inherent in curating such databases, because in order to facilitate
-anonymous interaction, all personal information within the table must be made
-both viewable by anybody, and permanently available to google.
-
-The [debian system](https://debian.org) also maintains a comprehensive database
-of developers, maintainers, and other stakeholders. This has a front-facing
-[LDAP](https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol)
-server (at [db.debian.org](https://db.debian.org)), accessible both publicly
-and via password for restricted access. This system may be interpreted to
-represent current best-practice standards for maintenance of such databases. 
-
-Maintaining a generally (yet not necessarily publicly) accessible database of
-personal contact information is inherently difficult, and is something the
-current project would like to do better than its two main precedents,
-potentially using something like Debian's system as a worthy goal to strive
-for.
+private [airtable](https://airtable.com). The [debian system](https://debian.org) also maintains a comprehensive database
+of developers, maintainers, and other stakeholders, publically accessible for
+search and via password for restricted access. Private directories have the advantage
+of allowing for including notes such as review quality and timeliness that may
+not, but also thus need to be more aggressively managed under standards such
+as GPDR.  Different database platforms also have different privacy advantages.
 
 ### Automating the Identification of Potential Reviewers
 
@@ -229,9 +202,9 @@ Submission is envisioned to mirror rOpenSci's current submission process to
 a certain degree, although we anticipate a more extensive and structured
 checklist (or equivalent) system, along with the development of automated tools
 triggered in response to submission. For example, the current rOpenSci system
-requests authors to paste the
-[`goorpractice`](https://github.com/mangothecat/goodpractice) output from their
-code into the opening comment of a new submission issue. Such a process is
+requires editors run diagnostics locally and to paste the
+[`goodpractice`](https://github.com/mangothecat/goodpractice) output after
+submission. Such a process is
 readily automated (as exemplified by JOSS's current [experimental
 system](https://github.com/openjournals/joss-reviews/issues/2149#issuecomment-596179168)),
 and we expect to extend and refine both the automated checking [described
@@ -241,23 +214,15 @@ automated checking using software specific to various categories of statistical
 software, with associated output also being automatically inserted into an
 issue.
 
-Initial submission to rOpenSci's current system is structured via [the
+For both JOSS and rOpenSci's, current submissions occur via GitHub Issue [
 template](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/A-submit-software-for-review.md),
 which is primarily a checklist of broad or general attributes with which
-both software and associated online repositories are expected to comply. In
-contrast, submissions to [JOSS](https://joss.theoj.org) have a more extensive
-and detailed
-[template](https://github.com/openjournals/joss/blob/master/docs/review_checklist.md).
-The checklist generated by the template for rOpenSci is expected to be
-completed by submitting authors prior to opening their submission issue,
-whereas the checklist generated for JOSS is initially empty, and actually is
-the review itself, to be completed by reviewers checking appropriate boxes as
-they proceed through a review. This is done by editing the initial issue, so
-that the current status of a JOSS review can always be seen in the first (top)
-comment of an issue, whereas the current status of an rOpenSci review is less
-structured, and must always be surmised by perusing the latest series of
-comments at the bottom of a submission issue.
-
+both software and associated online repositories are expected to comply. 
+Submissions to [JOSS](https://joss.theoj.org) have a more extensive
+and detailed [template](https://github.com/openjournals/joss/blob/master/docs/review_checklist.md),
+which is filled out after initial submission form.  We may explore submission
+via a other mechanisms, forms that automatically generate templates, or an R-based
+workflows similar to `devtools::release()`. 
 
 ***Key Considerations***
 
