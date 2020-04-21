@@ -1,5 +1,5 @@
 
-# <span style="color:red;">The Review Process</span> {#process}
+# <span style="color:red;">The Review Process [SEEKING FEEDBACK]</span> {#process}
 
 This section attempts to briefly describe the entire workflow envisioned to
 emerge from this project, from tools to enable authors to self-assess packages
