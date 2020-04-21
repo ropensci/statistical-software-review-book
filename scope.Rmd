@@ -13,7 +13,7 @@ theme_set (theme_minimal ())
 One task in extending the rOpenSci peer review system to statistical software
 is defining _scope_ - what software is included or excluded. Defining scope
 requires some grouping of packages into categories.  These categories play key
-roles in the peer review process and standards-setting
+roles in the peer review process and standards-setting.
 
 1. Categorical definitions can determine which kinds of software will be admitted;
 2. Different categories of software will be subject to different standards, so
@@ -23,7 +23,7 @@ roles in the peer review process and standards-setting
 Creating a categorization or ontology of statistical software can easily become
 an overwhelming project in itself. Here we attempt to derive categories or
 descriptors which are *practically useful* in the standards and review process,
-rather than having using other formal criteria. We use a mix of empirical on
+rather than a formally coherent system. We use a mix of empirical
 research on common groupings of software and subjective judgement as to their
 use in the review process.
 
@@ -38,7 +38,7 @@ We consider two main types of categories:
 
 ### Languages
 
-This project extends existing an software peer-review process run by rOpenSci
+This project extends existing an software peer-review process run by 
 [rOpenSci](https://ropensci.org), and is primarily intended to target the **R**
 language. Nonetheless, given the popularity of Python in the field (see
 relevant analyses and notes in [Appendix A](#python)), the impact of developing
@@ -79,9 +79,9 @@ high frequency of code devoted to some form of web-based visualisation, these
 statistics represent *all* R packages. In many cases this represents extensive
 headers in supplementary documentation. There is no simple way to identify which
 of these might be considered statistical code in web-based languages, but knowing that there are
-packages exclusively constructed to generate web-based visualisations in
-a generic sense suggests that this value ought be taken as an upper limit on
-the likely frequency of visualisation packages (or parts thereof) in the
+packages exclusively constructed to generate web-based visualisations and documentation in
+a generic sense suggests that this value may be taken as an upper limit on
+the likely frequency of these types of visualisation packages (or parts thereof) in the
 context of statistical software.
 
 
@@ -142,45 +142,7 @@ will be to categorise statistical software in order to:
 
 Different categories of statistical software will likely have different
 standards, yet there will nevertheless be general standards applicable
-regardless of categories. General standards may simply require that a piece of
-software is demonstrably superior to otherwise equivalent software in at least
-one (or perhaps more?) specific way(s). Submissions may occasionally be truly
-unique, and therefore devoid of any "otherwise equivalent software". It will
-nevertheless be expected that otherwise equivalent software will generally
-exist, in which cases such standards might accordingly be approached through
-considering the following kinds of questions, made in regard to one or more
-"reference implementations" of otherwise equivalent software, and which
-software authors may be requested to specify:
-
-- [ ] **Efficiency:** Is the software more efficient (faster, simpler, other
-  interpretations of "efficient") than reference implementations?
-- [ ] **Reproducibility or Reliability:** Does the software reproduce
-  sufficiently similar results more frequently than reference implementations
-  (or otherwise satisfy similar interpretations of reproducibility)?
-- [ ] **Accuracy or Precision:** Is the software demonstrably more accurate or
-  precise than reference implementations (such as ?
-- [ ] **Simplicity of Use:** Is the software simpler to use than reference
-  implementations?
-- [ ] **Algorithmic Characteristics:** Does the algorithmic implementation
-  offer characteristics (such as greater simplicity or sensitivity) superior to
-  reference implementations? If so, which?
-- [ ] **Convergence:** Does the software provide faster or otherwise better
-  convergence properties than reference implementations?
-- [ ] **Method Validity:** Does the software overcome demonstrable flaws in
-  previous (reference) implementations? If so, how?
-- [ ] **Method Appliciability:** Does the software enable a statistical method
-  to be applied to a domain in which such application was not previously
-  possible?
-- [ ] **Automation** Does the software automate aspects of statistical analyses
-  which previously (in a reference implementation) required manual intervention?
-- [ ] **Input Data:** Does the software "open up" a method to input data
-  previously unable to be treated by a particular algorithm or method?
-- [ ] **Output Data:** Does the software provide output in forms previously
-  unavailable by reference implementations?
-- [ ] **Reference Standards:** Are there any reference standards, such as the
-  US National Institute of Standards and Technology's
-  [  collection of reference data sets](https://www.itl.nist.gov/div898/strd)
-  against which the software may be compared? If so, which?
+regardless of categories. 
 
 ### Examples of Statistical Software
 

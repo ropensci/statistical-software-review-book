@@ -361,6 +361,49 @@ outputs and packaged data [@lenhardt_data_2014]. Relationships between data
 and statistical software may be structured in a sufficiently systematic way to
 permit systematic documentation.
 
+### Demonstration of innovation, novelty, or advancement
+
+The standards listed above largely refer to _minimum_ requirements for software,
+but following common practice in academic publishing, one may also possibly require
+that a piece of software is demonstrably superior to otherwise equivalent software in at least
+one (or perhaps more?) specific way(s).  (In current rOpenSci standards, packages
+are required to 
+[demonstrate signicant improvement](https://devguide.ropensci.org/policies.html#overlap)
+over similar packages). If such a "relative improvement" requirement is included
+in the process, authors may be required to demonstrate how their software
+exceeds existing or reference implementations of similar tools in some of the
+following ways:
+
+- [ ] **Efficiency:** Is the software more efficient (faster, simpler, other
+  interpretations of "efficient") than reference implementations?
+- [ ] **Reproducibility or Reliability:** Does the software reproduce
+  sufficiently similar results more frequently than reference implementations
+  (or otherwise satisfy similar interpretations of reproducibility)?
+- [ ] **Accuracy or Precision:** Is the software demonstrably more accurate or
+  precise than reference implementations (such as ?
+- [ ] **Simplicity of Use:** Is the software simpler to use than reference
+  implementations?
+- [ ] **Algorithmic Characteristics:** Does the algorithmic implementation
+  offer characteristics (such as greater simplicity or sensitivity) superior to
+  reference implementations? If so, which?
+- [ ] **Convergence:** Does the software provide faster or otherwise better
+  convergence properties than reference implementations?
+- [ ] **Method Validity:** Does the software overcome demonstrable flaws in
+  previous (reference) implementations? If so, how?
+- [ ] **Method Appliciability:** Does the software enable a statistical method
+  to be applied to a domain in which such application was not previously
+  possible?
+- [ ] **Automation** Does the software automate aspects of statistical analyses
+  which previously (in a reference implementation) required manual intervention?
+- [ ] **Input Data:** Does the software "open up" a method to input data
+  previously unable to be treated by a particular algorithm or method?
+- [ ] **Output Data:** Does the software provide output in forms previously
+  unavailable by reference implementations?
+- [ ] **Reference Standards:** Are there any reference standards, such as the
+  US National Institute of Standards and Technology's
+  [  collection of reference data sets](https://www.itl.nist.gov/div898/strd)
+  against which the software may be compared? If so, which?
+
 <!---
 https://github.com/tdwg/vocab/blob/master/sds/documentation-specification.md
 --->
