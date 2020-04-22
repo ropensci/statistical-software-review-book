@@ -1,9 +1,9 @@
 
 #  (PART) Software Review Process and Software Assessment {-}
 
-# <span style="color:red;">Software Review and Lifecycle Models [Seeking Feedback]</span> {#lifeycle}
+# <span style="color:red;">Software Review and Life Cycle Models [Seeking Feedback]</span> {#lifeycle}
 
-Prior to describing the review system we indend to develop, we briefly digress
+Prior to describing the review system we intend to develop, we briefly digress
 to describe analogous review systems, aiming to emphasise aspects which may be
 useful to adopt within our system. This chapter concludes with succinct
 proposals of aspects of these prior systems which we intend to adopt within our
@@ -11,7 +11,7 @@ system, and for which we are explicitly seeking feedback. There are notable
 differences between the systems described here, with contrasts between them
 often providing convenient reference points in considering many of the
 subsequent review phases we envision developing. The present chapter then
-concludes with brief consideration of what a model of the lifecycle of open
+concludes with brief consideration of what a model of the life cycle of open
 source software might look like. This is important in guiding the structure of
 the proposed review process.
 
@@ -43,7 +43,7 @@ manuscript and software, with fewer prescriptive standards. In reviewing
 packages for acceptance into its repository,
 [BioConductor](https://www.bioconductor.org) conducts an [open
 review](https://www.bioconductor.org/developers/package-submission/) primarily
-aimed at maintaining minimum standards and intercompatibilty.
+aimed at maintaining minimum standards and inter-compatibility.
 
 
 ### Academic Journal Reviews
@@ -201,14 +201,14 @@ self-certifying that they have implemented items on a checklist.
 
 ## Software Life Cycle Considerations
 
-The importance of considering Software "lifecycles" has long been recognized for
-closed-source proprietary software, yet lifecycles have only been given scant
+The importance of considering Software "life cycles" has long been recognized for
+closed-source proprietary software, yet life cycles have only been given scant
 consideration in contexts of open source software [exceptions include
 @stokes_21_2012;@lenhardt_data_2014]. A long history and tradition in both
 practice and published literature on software review [for example,
 @mili_software_2015;@ammann_introduction_2017] generally concludes that
 software review is most effective when it is an ongoing process that is
-structurally embedded within a software lifecycle, and when review occurs as
+structurally embedded within a software life cycle, and when review occurs as
 frequently as possible. Such practices contrast strongly with the singular
 nature of review as currently implemented by rOpenSci.
 

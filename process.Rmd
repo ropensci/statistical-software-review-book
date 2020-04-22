@@ -172,7 +172,7 @@ options.
 As described, JOSS maintains a database of potential reviewers within
 a publicly accessible google document, while rOpenSci maintains theirs in an
 private [airtable](https://airtable.com). The [debian system](https://debian.org) also maintains a comprehensive database
-of developers, maintainers, and other stakeholders, publically accessible for
+of developers, maintainers, and other stakeholders, publicly accessible for
 search and via password for restricted access. Private directories have the advantage
 of allowing for including notes such as review quality and timeliness that may
 not, but also thus need to be more aggressively managed under standards such
@@ -465,7 +465,7 @@ number of items, yet not all. It may then be worthwhile have a review outcome
 that flags this compliance level, and indicates that software will be expected
 to retain compliance as our system develops.
 
-Another example may be outcomes which consider the kinds of lifecycle models
+Another example may be outcomes which consider the kinds of life cycle models
 considered above, in which context it may be useful to have an outcome that
 labels software as having passed initial or primary review, yet which will
 still be subject to subsequent review some agreed-upon time later. Such systems

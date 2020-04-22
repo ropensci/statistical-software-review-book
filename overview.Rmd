@@ -62,7 +62,7 @@ explicit feedback on the above aspects of the project.
 ## Related projects and initiatives
 
 
-The following internal and external projects related projects have (non-excluive) 
+The following internal and external projects related projects have (non-exclusive) 
 bearing on our work:
 
 rOpenSci is simultaneously working on improving the automation and documentation
@@ -156,7 +156,7 @@ and in preparation for peer-review.
 
 Our point of departure for our process is the rOpenSci software peer review
 process, which has operated for five years, and has reviewed over >200
-packages, primarily in areas of data lifecycle management. However, we aim to
+packages, primarily in areas of data life cycle management. However, we aim to
 reassess this process in light of other models and needs specific to
 statistical software. [Chapter 7](#lifecycle) considers a few analogous processes
 of peer review, gleaning aspects which may be useful to adopt and adapt for our system.

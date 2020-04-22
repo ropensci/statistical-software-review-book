@@ -685,13 +685,13 @@ visualising statistics relating to marginal effects.
 ### Statistical Indices and Scores
 
 Many packages are designed to provide one or more specific statistical indices,
-scores, or summary statistics from some assumed type of input data. Mthodology used to
-derive indices or scores may draw on many of the methods or algorithms
-considered in the first category above or are often field-specific, arthimetic
-calculations.  Such software may
-likely be considered within its own category through a singular aim to provide
-particular indices or scores, in contrast with more generic "Methods and Algorithms"
-software which offers more abstraction or modeled approach.  Some examples include:
+scores, or summary statistics from some assumed type of input data. Methodology
+used to derive indices or scores may draw on many of the methods or algorithms
+considered in the first category above or are often field-specific, arithmetic
+calculations.  Such software may likely be considered within its own category
+through a singular aim to provide particular indices or scores, in contrast
+with more generic "Methods and Algorithms" software which offers more
+abstraction or modeled approach.  Some examples include:
 
 1. The
    [`spatialwarnings` package](https://github.com/spatial-ews/spatialwarnings) which provides "early-warning signal of
@@ -753,12 +753,13 @@ rather than tabular form. Other examples of visualisation software include:
    [`ggfortify` package](https://github.com/sinhrks/ggfortify) to
    [`plotly.js`](https://github.com/plotly/plotly.js).
 
-***Key considerations***: The quality or utility visualization techniques can be strongly subjective, but also
-may be evaluated using standardized principles if the community can come to a consensus on those principles. Such considerations
-may be context-dependent - e.g., the requirements of a diagnostic plot designed to
-support model-checking are different from that designed to present raw data or model
-results to a new audience.  This implies that the indented purppose of the visualization
-should be well-defined.
+***Key considerations***: The quality or utility visualization techniques can
+be strongly subjective, but also may be evaluated using standardized principles
+if the community can come to a consensus on those principles. Such
+considerations may be context-dependent - e.g., the requirements of
+a diagnostic plot designed to support model-checking are different from that
+designed to present raw data or model results to a new audience.  This implies
+that the intended purpose of the visualization should be well-defined.
 
 Whether or not visualization is in-scope, many software packages with other
 primary purposes also include functions to visualise output. Visualization will
@@ -803,38 +804,40 @@ populations, yet the implementation is quite generic and powerful.
 
 ### Wrapper Packages
 
-"Wrapper" packages provide an interface to previously-written software, often in
-a different computer language to the original implentation. While this category
-is reasonably unambiguous, there may be instances in which a "wrapper"
+"Wrapper" packages provide an interface to previously-written software, often
+in a different computer language to the original implementation. While this
+category is reasonably unambiguous, there may be instances in which a "wrapper"
 additionally offers extension beyond original implementations, or in which only
-a portion of a package's functionality may be "wrapped."  Rather than internally bundling
-or wrapping software, a package may also serve as a wrapper thorugh providing
-access to some external interface, such as a web server. Examples of potential
-wrapper packages include the following:
+a portion of a package's functionality may be "wrapped."  Rather than
+internally bundling or wrapping software, a package may also serve as a wrapper
+thorough providing access to some external interface, such as a web server.
+Examples of potential wrapper packages include the following:
 
 1. The
    [`greta` package](https://github.com/greta-dev/greta)
    (with accompanying
-   [JOSS article](https://joss.theoj.org/papers/10.21105/joss.01601)) "for writing statistical models and fitting them by MCMC
-   and optimisation" provides a wrapper around google's
+   [JOSS article](https://joss.theoj.org/papers/10.21105/joss.01601)) "for
+   writing statistical models and fitting them by MCMC and optimisation"
+   provides a wrapper around google's
    [`TensorFlow` library](https://www.tensorflow.org). It is also clearly a workflow package, aiming to
    provide a single, unified workflow for generic machine learning processes
    and analyses.
 2. The
    [`nse` package](https://github.com/keblu/nse) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00172)) which offers "multiple ways to calculate numerical standard
-   errors (NSE) of univariate (or multivariate in some cases) time series,"
-   through providing a unified interface to several other R packages to provide
-   more than 30 NSE estimators. This is an example of a wrapper package which
-   does not wrap either internal code or external interfaces, rather it
-   effectively "wraps" the algorithms of a collection of R packages.
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00172)) which
+   offers "multiple ways to calculate numerical standard errors (NSE) of
+   univariate (or multivariate in some cases) time series," through providing
+   a unified interface to several other R packages to provide more than 30 NSE
+   estimators. This is an example of a wrapper package which does not wrap
+   either internal code or external interfaces, rather it effectively "wraps"
+   the algorithms of a collection of R packages.
 
-  ***Key Considerations***:  For many wrapper packages it may not be feasible
+***Key Considerations***:  For many wrapper packages it may not be feasible
 for reviewers (or authors) to evaluate the quality or correctness of the wrapped
 software, so review could be limited to the interface or added value provided,
 or the statistical routines within. 
 
-wrapper packages include the extent of functionality represented by wrapped
+Wrapper packages include the extent of functionality represented by wrapped
 code, and the computer language being wrapped. 
 - *Internal or External:* Does the software *internally* wrap of bundle
   previously developed routines, or does it provide a wrapper around some
@@ -1001,7 +1004,7 @@ unique to statistical reporting software might include the following:
   insight into, statistics or important aspects of data or analytic processes
   which were previously not (directly) accessible using reference
   implementations?
-- [ ] **Comparison:** Does the software provide or enable standardisedB
+- [ ] **Comparison:** Does the software provide or enable standardised
   comparison of inputs, processes, models, or outputs which could previously
   (in reference implementations) only be accessed or compared some comparably
   unstandardised form?
@@ -1060,7 +1063,7 @@ addressed by standards devised under the other categories considered here.
 ### Workflow Support
 
 "Workflow" software may not implement particular methods or algorithms,
-but rather support tasks around the statsitical process.  In many cases, these
+but rather support tasks around the statistical process.  In many cases, these
 may be generic tasks that apply across methods. These include:
 
 1. Classes (whether explicit or not) for representing or processing input and
@@ -1132,7 +1135,7 @@ or accuracy.
 4. [`rsimsum`](https://joss.theoj.org/papers/10.21105/joss.00739)
 5. [`MCMCvis`](https://joss.theoj.org/papers/10.21105/joss.00640)
 
-### Spatial Analyses
+## Spatial Analyses
 
 ### Education
 
@@ -1155,9 +1158,10 @@ may be via graphical or web interfaces, text interaction or some other form.
 
 The [Journal of Open Source Education](https://jose.theoj.org) accepts both educational
 software and curricula, and has a peer review system (almost)
-identical to [JOSS](https://joss.theoj.org). Educational statistical software reviewed by rOpenSci could thus
-potentially be fast-tracked through JOSE reviews just as current
-submissions have the opportunity to be fast-tracked through the JOSS review process. 
+identical to [JOSS](https://joss.theoj.org). Educational statistical software
+reviewed by rOpenSci could thus potentially be fast-tracked through JOSE
+reviews just as current submissions have the opportunity to be fast-tracked
+through the JOSS review process. 
 
 - *Demand:* Does the software meet a clear demand otherwise absent from
   educational material? If so, how?

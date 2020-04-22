@@ -249,7 +249,7 @@ of more consistent and unified software.
     - A minimum test coverage level has been defined
     - There is an automated test for this minimum level
     - Tests are automatically run nightly
-    - Continuous integration is suported
+    - Continuous integration is supported
     - Test results are visible to all developers/members
     - Test results are visible publicly
     - Project specifies how to set up external resources (FTP servers,
@@ -570,7 +570,7 @@ following ways:
   convergence properties than reference implementations?
 -  **Method Validity:** Does the software overcome demonstrable flaws in
   previous (reference) implementations? If so, how?
--  **Method Appliciability:** Does the software enable a statistical method
+-  **Method Applicability:** Does the software enable a statistical method
   to be applied to a domain in which such application was not previously
   possible?
 -  **Automation** Does the software automate aspects of statistical analyses
