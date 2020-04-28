@@ -8,12 +8,21 @@ name: Render-Book-from-master
 jobs:
   bookdown:
     name: Render-Book
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     if: "!(contains(github.event.head_commit.message, 'ci skip')||contains(github.event.head_commit.message, 'skip ci'))"
     steps:
-      - uses: actions/checkout@v1
-      - uses: r-lib/actions/setup-r@v1
-      - uses: r-lib/actions/setup-pandoc@v1
+      - name: Install libcurl
+        run: sudo apt-get install libcurl4-openssl-dev
+
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v1
+
+      - name: Setup pandoc
+        uses: r-lib/actions/setup-pandoc@v1
+
       - name: Query dependencies
         run:
           Rscript -e "install.packages('remotes')" -e "saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds', version = 2)"
@@ -31,10 +40,13 @@ jobs:
 
       - name: Render Book
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
+
       - name: Commit results
         run: |
           cp -r favicon/ docs/
           cd docs
+          git config --global user.email ${{secrets.EMAIL}}
+          git config --global user.name "gh-pages committer"
           git init
           git add .
           git commit -m 'update book'
