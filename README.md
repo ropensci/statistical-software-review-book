@@ -26,7 +26,7 @@ commitee's role is to help us with outreach to statistical communities, vetting
 community input and prioritizing our work. They are:
 
 -   [Ben Bolker](https://ms.mcmaster.ca/~bolker/) ([\@bolkerb](https://twitter.com/bolkerb)) McMaster University
--   [Rebecca Killick](http://www.lancs.ac.uk/~killick/), Lacncaster University
+-   [Rebecca Killick](http://www.lancs.ac.uk/~killick/), Lancaster University
 -   [Stephanie Hicks](https://www.stephaniehicks.com/) ([\@stephaniehicks](https://twitter.com/stephaniehicks)), Johns Hopkins University
 -   [Max Kuhn](http://appliedpredictivemodeling.com/) ([\@topepos](https://twitter.com/topepos)), RStudio
 -   [Martin Morgan](https://www.roswellpark.org/martin-morgan) ([\@mt_morgan](https://twitter.com/mt_morgan)), Roswell Park Comprehensive Cancer Center
