@@ -62,7 +62,7 @@ Software specifically designed for testing.
 ```{r loadwebpages, child = "scripts/bibliography/webpage.md"}
 ```
 
-## Contributing to the bibliography
+## Contributing to the bibliography {#contributing-to-the-biblopgraphy}
 
 This annotated bibliography is automatically generated from entries containing
 "Note" fields in the [zotero library accompanying this
