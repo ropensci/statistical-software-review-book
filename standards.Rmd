@@ -117,7 +117,7 @@ both these standards, and influential sources such as @mili_software_2015,
 consider software in terms of qualitative aspects such as *Usability*,
 *Sustainability* and *Maintainability*, rather than in the kinds of concrete
 standards otherwise commonly considered such as those describing
-*Documentation*, *Testing*, *Code Structure*, other other aspects of software
+*Documentation*, *Testing*, *Code Structure*, and other aspects of software
 design. The use of qualitative categories in defining and guiding standards is
 preferred and adopted here particularly because it facilitates and encourages
 consideration of those properties as they pertain to multiple aspects of
