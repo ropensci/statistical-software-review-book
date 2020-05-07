@@ -38,7 +38,7 @@ We consider two main types of categories:
 
 ### Languages
 
-This project extends existing an software peer-review process run by 
+This project extends an existing software peer-review process run by 
 [rOpenSci](https://ropensci.org), and is primarily intended to target the **R**
 language. Nonetheless, given the popularity of Python in the field (see
 relevant analyses and notes in [Appendix A](#python)), the impact of developing
@@ -204,7 +204,7 @@ decisions such a process of categorisation will likely face.
     published in JOSS.
 
 
-    The `modelStudio`R package automates the process of model exploration. It
+    The `modelStudio` R package automates the process of model exploration. It
     generates advanced interactive and animated model explanations in the form
     of a serverless HTML site. It combines R(R Core Team, 2019) with D3.js
     (Bostock, 2016) to produce plots and descriptions for various local and
@@ -213,10 +213,10 @@ decisions such a process of categorisation will likely face.
 
     As with `gtsummary` above, this is clearly a package intended to enhance a
     workflow, and furthermore one which primarily serves to generate summary
-    output as a `ht``ml` document, yet the models it considers, and all aspects
+    output as a `html` document, yet the models it considers, and all aspects
     of output produced, are purely statistical. This package could meet both
     workflow and visualization categories, and serves here to illustrate
-    difficulties in considering the latter of these. The `D3.``js` library
+    difficulties in considering the latter of these. The `D3.js` library
     contains numerous indubitably statistical routines, and so this package
     might be argued to be a wrapper in the same category as `greta` is a wrapper
     around `TensorFlow`. An important question likely to arise in considering
