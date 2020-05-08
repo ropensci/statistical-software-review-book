@@ -1137,6 +1137,35 @@ or accuracy.
 
 ### Spatial Analyses
 
+Spatial analyses have a long tradition in R, as summarised and reflected in the
+CRAN Task Views on [Spatial](https://cran.r-project.org/web/views/Spatial.html)
+and [Spatio-Temporal](https://cran.r-project.org/web/views/SpatioTemporal.html)
+data and analyses. Those task views also make immediately apparent that the
+majority of development in both of these domains has been in *representations*
+of spatial data, rather than in statistical analyses *per se*. 
+Spatial statistical analyses have nevertheless been very strong in R, notably
+through the [`spatstat`](https://cran.r-project.org/package=spatstat) and
+[`gstat`](https://cran.r-project.org/package=gstat) packages, first published
+in 2002 and 2003, respectively.
+
+Spatial analyses entail a number of aspects which, while not necessarily unique
+in isolation, when considered in combination offer sufficiently unique
+challenges for this to warrant its own category. Some of these unique aspects
+include:
+
+- A generally firm embeddedness in two dimensions
+- Frequent assumptions of continuous rather than discrete processes
+  (point-pattern processes notwithstanding)
+- A pervasive decrease in statistical similarity with increasing distance - the
+  so-called "First Law of Geography" - which is the observe of pervasive
+  difficulties arising from auto-correlated observations.
+- A huge variety of statistical techniques such as kriging and triangulation
+  which have been developed for almost exclusive application in spatial
+  domains.
+- The unique challenges arising in the domain of [Spatial Temporal
+  Analyses](https://cran.r-project.org/web/views/SpatioTemporal.html).
+
+
 ### Education
 
 A prominent class of statistical software is *educational* software designed to
@@ -1149,7 +1178,7 @@ specific regard to the educational components of software, the follow checklist
 items may be relevant.
 A prominent example is the [`LearnBayes` package](https://cran.r-project.org/web/packages/LearnBayes/index.html). 
 
- ***Key Considerations:*** Correctness of implementation of educational or tutorial
+***Key Considerations:*** Correctness of implementation of educational or tutorial
 software is important. Evaluation of such software extends considerably beyond correctness,
 with heavy emphasis on documentation, interactive interface, and pedagogical soundness
 of the software.  These areas enter a very different class of standards.  It is
