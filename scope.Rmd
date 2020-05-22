@@ -137,97 +137,35 @@ will be to categorise statistical software in order to:
 
 - Determine the extent to which software fits within scope
 - Enable fields of application of software to be readily identified
-- Enable determination of applicable standards
+- Enable determination of applicable standards and assessment procedures
 - Enable discernment of appropriate reviewers
 
-Different categories of statistical software will likely have different
-standards, yet there will nevertheless be general standards applicable
-regardless of categories. 
+Any piece of statistical software need not necessarily be described by a single
+category, rather the categories proposed below are intended to serve as
+a checklist, with submitting authors ticking *all* applicable categories.
+A software submission will then be assessed with reference to the set of
+Standards and Assessment Procedures (S&APs) corresponding to all categories
+describing that software.
 
-### Examples of Statistical Software
+Our definition of categories is particularly guided by a need to develop
+applicable S&APs. Each of the categories that follow has accordingly been
+proposed because it has been judged to reflect a domain within which S&APs are
+likely to be both unique and important. These categories are not intended to
+reflect an attempt to define *statistical software* in general, rather an
+attempt to define areas in which S&APs for statistical software may be
+productively developed and applied.
 
-We now consider a few brief categorical examples, to illustrate the kinds of
-decisions such a process of categorisation will likely face.
+We anticipate throughout our development of S&APs that aspects will emerge
+which are common to several categories. It may be deemed to elevate such S&APs
+to general procedures (largely) independent of specific categories. More
+generally, although we aim for category-specific S&APs which are as independent
+of the other categories as possible, S&APs in any one category will often be
+related to those from other categories, and co-development of procedures in
+multiple categories may be necessary.
 
----
+### Empirical Derivation of Categories
 
--   [**gtsummary**](https://github.com/ropensci/software-review/issues/334),
-    submitted to rOpenSci and reject as out-of-scope.
-
-
-    Creates presentation-ready tables summarizing data sets, regression models,
-    and more. The code to create the tables is concise and highly
-    customizable. Data frames can be summarized with any function,
-    e.g. mean(), median(), even user-written functions. Regression models are
-    summarized and include the reference rows for categorical variables.
-    Common regression models, such as logistic regression and Cox proportional
-    hazards regression, are automatically identified and the tables are
-    pre-filled with appropriate column headers.
-
-    This package appears not to contain any algorithmic implementations, yet is
-    clearly aimed at enhancing a purely statistical workflow. Such a submission
-    requires answering the question of whether software categorized as
-    "workflow" only and which does not correspond to any other of the above
-    categories, may be deemed in scope?
-
----
-
--   [greta: simple and scalable statistical modelling in
-    R](https://joss.theoj.org/papers/10.21105/joss.01601), published in JOSS.
-
-
-    greta is an package for statistical modelling in R (R Core Team, 2019) that
-    has three core differences to commonly used statistical modelling software
-    packages:
-
-    -   greta models are written interactively in R code rather than in a
-        > compiled domain specific language.
-
-    -   greta can be extended by other R packages; providing a fully-featured
-        > package management system for extensions.
-
-    -   greta performs statistical inference using TensorFlow (Abadi et al.,
-        > 2015), enabling it to scale across modern high-performance computing
-        > systems.
-
-    The `greta` package might be considered predominantly an interface to
-    TensorFlow, yet it provides a new way to specify and work with purely
-    statistical models. This might be considered under both workflow and wrapper
-    categories, and serves here to illustrate the question of whether wrappers
-    around, in this case, externally-installed software might be considered in
-    scope? And if so, to what extent ought aspects of such externally-installed
-    software also be directly addressed within a review process?
-
----
-
--   [**modelStudio**](https://joss.theoj.org/papers/10.21105/joss.01798),
-    published in JOSS.
-
-
-    The `modelStudio` R package automates the process of model exploration. It
-    generates advanced interactive and animated model explanations in the form
-    of a serverless HTML site. It combines R(R Core Team, 2019) with D3.js
-    (Bostock, 2016) to produce plots and descriptions for various local and
-    global explanations. Tools for model exploration unite with tools for EDA
-    to give a broad overview of the model behaviour.
-
-    As with `gtsummary` above, this is clearly a package intended to enhance a
-    workflow, and furthermore one which primarily serves to generate summary
-    output as a `html` document, yet the models it considers, and all aspects
-    of output produced, are purely statistical. This package could meet both
-    workflow and visualization categories, and serves here to illustrate
-    difficulties in considering the latter of these. The `D3.js` library
-    contains numerous indubitably statistical routines, and so this package
-    might be argued to be a wrapper in the same category as `greta` is a wrapper
-    around `TensorFlow`. An important question likely to arise in considering
-    both of these is the extent to which the library being wrapped should also
-    be *predominantly statistical* for a package to be in scope? (A requirement
-    which `greta` would more easily fulfil than `gtsummary`.)
-
----
-
-We now consider potential categories within the general domain of statistical
-software. In order to derive a realistic categorisation, we used empirical data
+We attempted to derive a realistic categorisation through using empirical data
 from several sources of potential software submissions, including all
 apparently "statistical" R packages published in the [Journal of Open Source
 Software (JOSS](https://joss.theoj.org)), packages published in the [Journal of
@@ -454,6 +392,87 @@ Standards derived for network software must accommodate such diversity of
 applications, and must accommodate software for which the "network" category
 may pertain only to some relatively minor aspect, while the primary algorithms
 or routines may not be related to network software in any direct way.
+
+### Examples of Statistical Software
+
+We now consider a few brief categorical examples, to illustrate the kinds of
+decisions such a process of categorisation will likely face.
+
+---
+
+-   [**gtsummary**](https://github.com/ropensci/software-review/issues/334),
+    submitted to rOpenSci and reject as out-of-scope.
+
+
+    Creates presentation-ready tables summarizing data sets, regression models,
+    and more. The code to create the tables is concise and highly
+    customizable. Data frames can be summarized with any function,
+    e.g. mean(), median(), even user-written functions. Regression models are
+    summarized and include the reference rows for categorical variables.
+    Common regression models, such as logistic regression and Cox proportional
+    hazards regression, are automatically identified and the tables are
+    pre-filled with appropriate column headers.
+
+    This package appears not to contain any algorithmic implementations, yet is
+    clearly aimed at enhancing a purely statistical workflow. Such a submission
+    requires answering the question of whether software categorized as
+    "workflow" only and which does not correspond to any other of the above
+    categories, may be deemed in scope?
+
+---
+
+-   [greta: simple and scalable statistical modelling in
+    R](https://joss.theoj.org/papers/10.21105/joss.01601), published in JOSS.
+
+
+    greta is an package for statistical modelling in R (R Core Team, 2019) that
+    has three core differences to commonly used statistical modelling software
+    packages:
+
+    -   greta models are written interactively in R code rather than in a
+        > compiled domain specific language.
+
+    -   greta can be extended by other R packages; providing a fully-featured
+        > package management system for extensions.
+
+    -   greta performs statistical inference using TensorFlow (Abadi et al.,
+        > 2015), enabling it to scale across modern high-performance computing
+        > systems.
+
+    The `greta` package might be considered predominantly an interface to
+    TensorFlow, yet it provides a new way to specify and work with purely
+    statistical models. This might be considered under both workflow and wrapper
+    categories, and serves here to illustrate the question of whether wrappers
+    around, in this case, externally-installed software might be considered in
+    scope? And if so, to what extent ought aspects of such externally-installed
+    software also be directly addressed within a review process?
+
+---
+
+-   [**modelStudio**](https://joss.theoj.org/papers/10.21105/joss.01798),
+    published in JOSS.
+
+
+    The `modelStudio` R package automates the process of model exploration. It
+    generates advanced interactive and animated model explanations in the form
+    of a serverless HTML site. It combines R(R Core Team, 2019) with D3.js
+    (Bostock, 2016) to produce plots and descriptions for various local and
+    global explanations. Tools for model exploration unite with tools for EDA
+    to give a broad overview of the model behaviour.
+
+    As with `gtsummary` above, this is clearly a package intended to enhance a
+    workflow, and furthermore one which primarily serves to generate summary
+    output as a `html` document, yet the models it considers, and all aspects
+    of output produced, are purely statistical. This package could meet both
+    workflow and visualization categories, and serves here to illustrate
+    difficulties in considering the latter of these. The `D3.js` library
+    contains numerous indubitably statistical routines, and so this package
+    might be argued to be a wrapper in the same category as `greta` is a wrapper
+    around `TensorFlow`. An important question likely to arise in considering
+    both of these is the extent to which the library being wrapped should also
+    be *predominantly statistical* for a package to be in scope? (A requirement
+    which `greta` would more easily fulfil than `gtsummary`.)
+
 
 ## Statistical Categories {#scope-categories}
 
