@@ -130,7 +130,7 @@ of practice. However, there is far less standardization of code structure to
 allow for style guidelines and automated testing in these cases.
 
 
-## Statistical Categories {#scope-categories}
+## Statistical Categories -- Background {#scope-categories-bg}
 
 As alluded to at the outset of this chapter, a primary task of this project
 will be to categorise statistical software in order to:
@@ -435,13 +435,11 @@ library (visNetwork)
 visNetwork (ns, es)
 ```
 
-We intend, at least initially, to use these categories to define and guide the
-assessment of statistical software. Standards considered under any of the
-ensuing categories must be developed with reference to inter-relationships
-between categories, and in particular to potential ambiguity within and between
-any categorisation. An example of such ambiguity, and of potential difficulties
-associated with categorisation, is the category of "network" software which
-appropriate describes the
+Standards considered under any of the ensuing categories must be developed with
+reference to inter-relationships between categories, and in particular to
+potential ambiguity within and between any categorisation. An example of such
+ambiguity, and of potential difficulties associated with categorisation, is the
+category of "network" software which appropriate describes the
 [`grapherator`](https://github.com/jakobbossek/grapherator) package (with
 accompanying [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00528))
 which is effectively a distribution generator for data represented in
@@ -456,6 +454,14 @@ Standards derived for network software must accommodate such diversity of
 applications, and must accommodate software for which the "network" category
 may pertain only to some relatively minor aspect, while the primary algorithms
 or routines may not be related to network software in any direct way.
+
+## Statistical Categories {#scope-categories}
+
+Based on the preceding categories, along with contributions via our [discussion
+forum](https://discuss.ropensci.org/t/statistical-software-peer-review-categories/2068), 
+we propose the following categories intended by define and guide the assessment
+of statistical software. These categories are intended to serve as checklist
+items, with each submission likely to check several categories.
 
 ### Bayesian and Monte Carlo Routines
 
@@ -505,7 +511,7 @@ software in this category include:
 - Forms and structures of data using in these routines are very variable,
   likely making comparison among algorithms difficult.
 
-### Dimensionality Reduction and Feature Selection
+### Dimensionality Reduction, Clustering, and Unsupervised Learning
 
 Many packages either implement or rely upon techniques for dimensionality
 reduction or feature selection. One of the primary problems presented by such
@@ -611,7 +617,7 @@ aspects described above include the following:
    learning"). While comparing algorithms *within* the package is obviously
    straightforward, comparison in terms of external standards may not be.
 
-### Regression and Interpolation
+### Regression and Supervised Learning
 
 This category represents the most important intermediate node in the above
 network graphic between ML and Bayesian/Monte Carlo algorithms, as well as
@@ -681,107 +687,17 @@ and so implements a standard (tidyverse-based) methodology for representing and
 visualising statistics relating to marginal effects.
 
 
-
-### Statistical Indices and Scores
-
-Many packages are designed to provide one or more specific statistical indices,
-scores, or summary statistics from some assumed type of input data. Methodology
-used to derive indices or scores may draw on many of the methods or algorithms
-considered in the first category above or are often field-specific, arithmetic
-calculations.  Such software may likely be considered within its own category
-through a singular aim to provide particular indices or scores, in contrast
-with more generic "Methods and Algorithms" software which offers more
-abstraction or modeled approach.  Some examples include:
-
-1. The
-   [`spatialwarnings` package](https://github.com/spatial-ews/spatialwarnings) which provides "early-warning signal of
-   ecosystem degradation," where these signals and associated indices are
-   highly domain-specific.
-1. The
-   [`heatsaveR` package](https://github.com/robwschlegel/heatwaveR) which calculates and displays marine heatwaves using
-   specific indices established in previously-published literature.
-1. The
-   [`hhi` package](https://github.com/pdwaggoner/hhi) which calculates and visualizes "Herfindahl-Hirschman Index
-   Scores," which are measures of numeric concentration.
-1. The
-   [`DscoreApp` package](https://github.com/OttaviaE/DscoreApp) which provides an index (the "D-Score") to quantify
-   the results of
-   [Implicit Association Tests](https://en.wikipedia.org/wiki/Implicit-association_test).
-1. The
-   [`thurstonianIRT` package](https://github.com/paul-buerkner/thurstonianIRT) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01662)) for score forced-choice questionnaires using
-   ["Item Response Theory"](https://en.wikipedia.org/wiki/Item_response_theory).
-
-
- ***Key Considerations***:  Such packages can generally be reviewed for correctness
-(or accuracy/precision) in comparison to pseudocode, reference implementations, or reference data sets
-and in this way have can be straightforwardly  evaluated. More complex indices and
-scores will require many of the considerations in the "methods and algorithms"
-category above. In many cases,
-the field-specific nature of indices and scores may tightly tie the algorithm
-implementation to certain data input formats or workflows common to practitioners.
-They may have considerable overlap with workflow packages (below). There is
-also the possibility that some indices could be considered "trivial" arithmetic
-calculations. We may wish to consider some qualitative standard for additional
-utility that such packages would provide.  
-
-
-### Visualisation
-
-While many may consider software primarily aimed at visualisation to be out of
-scope, there are nevertheless cases which may indeed be within scope, notably
-including the
-[`ggfortify` package](https://github.com/sinhrks/ggfortify) which allows results of statistical tests to be
-"automatically" visualised using the
-[`ggplot2` package](https://ggplot2.tidyverse.org). The list of "fortified" functions on the packages
-[webpage](https://github.com/sinhrks/ggfortify) clearly indicates the very predominantly statistical scope of this
-software which is in effect a package for statistical reporting, yet in visual
-rather than tabular form. Other examples of visualisation software include:
-
-1. The
-   [`modelStudio` package](https://github.com/ModelOriented/modelStudio) (with accompanying
-   [ JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01798)), which is also very much a workflow package.
-3. The
-   [`shinyEFA` package](https://github.com/PsyChiLin/EFAshiny) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00567)) which provides a, "User-Friendly Shiny Application for
-   Exploratory Factor Analysis."
-3. The
-   [`autoplotly` package](https://github.com/terrytangyuan/autoplotly) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00657)) which provides, "Automatic Generation of Interactive
-   Visualisations for Statistical Results", primarily by porting the output of
-   the authors' above-mentioned
-   [`ggfortify` package](https://github.com/sinhrks/ggfortify) to
-   [`plotly.js`](https://github.com/plotly/plotly.js).
-
-***Key considerations***: The quality or utility visualization techniques can
-be strongly subjective, but also may be evaluated using standardized principles
-if the community can come to a consensus on those principles. Such
-considerations may be context-dependent - e.g., the requirements of
-a diagnostic plot designed to support model-checking are different from that
-designed to present raw data or model results to a new audience.  This implies
-that the intended purpose of the visualization should be well-defined.
-
-Whether or not visualization is in-scope, many software packages with other
-primary purposes also include functions to visualise output. Visualization will
-thus never be *strictly* out of scope.  However one option is not to include
-*primarily* visualization packages, or only *statistical* visualization packages
-in which visualization is closely tied to another category or purpose. 
-
-Visualisation packages will include numerical or statistical routines for
-transforming data from raw form to graphics, which can be evaluated for correctness
-or accuracy.
-
 ### Probability Distributions
 
 The category of probability distributions is an outlier in the preceding
 network diagram, connected only to ML and regression/interpolation algorithms.
-The latter category was identified as one in which property-based testing was
-likely to be useful, within similar suggestions applying to the present
-category, particularly through enabling routines to be tested for robustness
-against a variety of perturbations to assumed distributional forms.
+It is nevertheless included here as a distinct category because we anticipate
+software which explicitly represents or relies on probability distributions to
+be subject to distinct standards and assessment procedures, particularly
+through enabling routines to be tested for robustness against a variety of
+perturbations to assumed distributional forms.
 
-Packages which fall exclusively within this category and not within any 
-of the other categories considered here include:
+Packages which fall within this category  include:
 
 1. [`univariateML`](https://joss.theoj.org/papers/10.21105/joss.01863) which
    is, "an R package for maximum likelihood estimation of univariate
@@ -852,59 +768,6 @@ code, and the computer language being wrapped.
   those offered by the (internally or externally) wrapped software?
   
 
-### Categorical Variables
-
-Like the category of probability distributions, software for categorical
-variables also represents an outlier category that nevertheless encapsulates
-unique software. This category is particularly prominent in software developed
-to support social sciences, and its inclusion may be justified on that basis
-alone: The mere inclusion of this category would open up the general process of
-peer-reviewing of statistical software to much broader areas of the social
-sciences than would be admissible without this category.
-
-Most software in this category generally takes categorical input data and
-outputs some form of quantitative response or summary statistic. Input data
-vary from quantitative intervals to discrete orders or ranks to (cross-)tables
-of categorical frequencies. Most packages seek to derive quantitative estimates
-from categorical inputs, although the various estimates are of course in no way
-comparable.
-
-It thus seems exceedingly difficult if not impossible to derive general
-standards for software in this category, even though we currently recommend
-inclusion because of the unique importance in the social sciences. Examples of
-software for categorical variables include the following.
-
-1. [`perccalc`](https://joss.theoj.org/papers/10.21105/joss.01796) is, "An
-   R package for estimating percentiles from categorical variables"
-2. [`hopit`](https://joss.theoj.org/papers/10.21105/joss.01508) is "an
-   R package for analysis of reporting behavior using generalized ordered probit
-   models". The input data are assumed to be ordered categorical variables
-   typical of survey responses, and the package translates these into estimates
-   of the equivalent continuous latent variables.
-3. [`DscoreApp`](https://joss.theoj.org/papers/10.21105/joss.01764) is, "an
-   user-friendly web application for computing the Implicit Association Test
-   D-score," where the stated score is a metric of association between
-   categories elucidated in surveys or questionnaires.
-4. [`thurstonianIRT`](https://joss.theoj.org/papers/10.21105/joss.01662)
-   derives a score used to assess forced-choice questionnaires (in which
-   answers must, for example, be either A or B).
-5. [`qsort`](https://joss.theoj.org/papers/10.21105/joss.00911) provides "a new
-   tool for scoring Q-sort Data", where these data are derived by asking survey
-   respondents to sort categories in some specified order. The input data in
-   this case are thus the sorting orders, rather than the categories
-   themselves.
-
-There is also software which takes quantitative input data and outputs discrete
-categorisations, as exemplified by the
-[`multistateutils`](https://joss.theoj.org/papers/10.21105/joss.00893) package,
-which is a biostatistical package useful for distinguishing and categorising
-dynamic trajectories (such as disease or treatment pathways).
-
-We propose to exclude this as an explicit category, reflecting an assumption
-that software within this category will generally able to be assessed under
-other categories listed here.
-
-
 
 ### Networks
 
@@ -950,46 +813,51 @@ general way includes:
 
 
 
-### Statistical Reporting and Exploratory Data Analysis
+### Exploratory Data Analysis (EDA) and Summary Statistics
 
 Many packages aim to simplify and facilitate the reporting of complex
-statistical results or exploratory summaries of data. Such reporting commonly involves visualisation, and there
-is direct overlap between this and the Visualisation category (below). This roughly breaks out into software
-that summarizes and presents _raw_ data, and software that reports complex data derived from statistical routines.
-However, this break is often not clean, as raw data exploration may involve an algorithmic or modeling step
-(e.g., projection pursuit.). Examples include:
+statistical results or exploratory summaries of data. Such reporting commonly
+involves visualisation, and there is direct overlap between this and the
+Visualisation category (below). This roughly breaks out into software that
+summarizes and presents _raw_ data, and software that reports complex data
+derived from statistical routines. However, this break is often not clean, as
+raw data exploration may involve an algorithmic or modeling step (e.g.,
+projection pursuit.). Examples include:
 
 1.  A package rejected by rOpenSci as out-of-scope,
-[`gtsummary`](https://github.com/ddsjoberg/gtsummary), which provides, "Presentation-ready data summary and analytic
-result tables." Other examples include:
-1. The
-   [`smartEDA` package](https://github.com/daya6489/SmartEDA) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01509)) "for automated exploratory data analysis". The package,
-   "automatically selects the variables and performs the related descriptive
-   statistics. Moreover, it also analyzes the information value, the weight of
-   evidence, custom tables, summary statistics, and performs graphical
-   techniques for both numeric and categorical variables." This package is
-   potentially as much a workflow package as it is a statistical reporting
-   package, and illustrates the ambiguity between these two categories.
-2. The
-   [`modeLLtest` package](https://github.com/ShanaScogin/modeLLtest) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01542)) is "An R Package for Unbiased Model Comparison using Cross
-   Validation." Its main functionality allows different statistical models to
-   be compared, likely implying that this represents a kind of meta package.
-3. The
-   [`insight` package](https://github.com/easystats/insight) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01412) provides "a unified interface to access information from
-   model objects in R," with a strong focus on unified and consistent reporting
-   of statistical results.
-4. The
-   [`arviz` software for python](https://github.com/arviz-devs/arviz) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01143) provides "a unified library for exploratory analysis of
-   Bayesian models in Python."
-5. The
-   [`iRF` package](https://github.com/sumbose/iRF) (with accompanying
-   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01077) enables "extracting interactions from random forests", yet
-   also focusses primarily on enabling interpretation of random forests through
-   reporting on interaction terms.
+    [`gtsummary`](https://github.com/ddsjoberg/gtsummary), which provides,
+    "Presentation-ready data summary and analytic result tables." Other
+    examples include:
+1. The [`smartEDA` package](https://github.com/daya6489/SmartEDA) (with
+   accompanying [JOSS
+   paper](https://joss.theoj.org/papers/10.21105/joss.01509)) "for automated
+   exploratory data analysis". The package, "automatically selects the
+   variables and performs the related descriptive statistics. Moreover, it also
+   analyzes the information value, the weight of evidence, custom tables,
+   summary statistics, and performs graphical techniques for both numeric and
+   categorical variables." This package is potentially as much a workflow
+   package as it is a statistical reporting package, and illustrates the
+   ambiguity between these two categories.
+2. The [`modeLLtest` package](https://github.com/ShanaScogin/modeLLtest) (with
+   accompanying [JOSS
+   paper](https://joss.theoj.org/papers/10.21105/joss.01542)) is "An R Package
+   for Unbiased Model Comparison using Cross Validation." Its main
+   functionality allows different statistical models to be compared, likely
+   implying that this represents a kind of meta package.
+3. The [`insight` package](https://github.com/easystats/insight) (with
+   accompanying [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01412)
+   provides "a unified interface to access information from model objects in
+   R," with a strong focus on unified and consistent reporting of statistical
+   results.
+4. The [`arviz` software for python](https://github.com/arviz-devs/arviz) (with
+   accompanying [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01143)
+   provides "a unified library for exploratory analysis of Bayesian models in
+   Python."
+5. The [`iRF` package](https://github.com/sumbose/iRF) (with accompanying [JOSS
+   paper](https://joss.theoj.org/papers/10.21105/joss.01077) enables
+   "extracting interactions from random forests", yet also focusses primarily
+   on enabling interpretation of random forests through reporting on
+   interaction terms.
 
 In addition to potential overlap with the Visualisation category, potential
 standards for Statistical Reporting and Meta-Software are likely to overlap to
@@ -1012,52 +880,6 @@ unique to statistical reporting software might include the following:
   otherwise abstruse processes or statistical results?
 - [ ] **Exploration:** Does the software enable or otherwise guide exploratory
   stages of a statistical workflow?
-
-### Survival Analyses
-
-Software for survival analyses obtains its own category here due to the
-relatively large number of packages. Survival analysis is a unique category
-only in that it concerns models to process, predict, or analyse time-to-event
-data. In many other ways software for survival analyses crosses over with many
-other categories (including the central ML and Bayes/Monte Carlo categories),
-with aspects presumably covered by standards developed in those respective
-categories. The
-[`multistateutils`](https://joss.theoj.org/papers/10.21105/joss.00893) package,
-for example, is a biostatistical package useful for distinguishing and
-categorising dynamic trajectories (such as disease or treatment pathways).
-Several routines within this package involve assigning these categories to
-states, and estimating times spent in various states. Although these are
-survival analyses in a strict sense, that software is likely more appropriate
-considered under other categories.
-
-Perhaps one thing much survival analysis software has in common is similarity
-of output, at least conceptually, in trying to quantify or predict times to
-some defined event of a dynamic processes. One package that may potentially be
-useful in interpreting and comparing the outputs of different survival routines
-is [`survxai`](https://joss.theoj.org/papers/10.21105/joss.00961), which offers
-"structure-agnostic explanations of survival models," whether survival neural
-networks, survival random forests, or any other approach.
-
-1. [`ccostr`](https://joss.theoj.org/papers/10.21105/joss.01593) "for
-   estimating mean costs with censored data"
-2. [`survPen`](https://joss.theoj.org/papers/10.21105/joss.01434) "for hazard
-   and excess hazard modelling with multidimensional penalized splines", where
-   hazard is interpreted as time-to-event in comparison with some baseline
-   scenario.
-3. [`GammaGompertzCR`](https://joss.theoj.org/papers/10.21105/joss.00216) which
-   fits "a Gamma-Gompertz survival model to capture-recapture data collected on
-   free-ranging animal populations" (and was described under Bayesian and Monte
-   Carlo software, above).
-
-***Key Considerations*** Although survival analysis is a common purpose of
-statistical software, general methodologies may be too diverse to permit
-general comparison and standardisation. This category of software nevertheless
-very generally overlaps strongly with other categories considered here,
-suggesting that this entire category may be safely excluded from consideration,
-with the presumption that primary functional of survival software will be
-addressed by standards devised under the other categories considered here.
-
-***Proposal*** This category be excluded from explicit consideration.
 
 
 ### Workflow Support
@@ -1127,14 +949,6 @@ These packages also often contain numerical routines (cross-validation,
 performance scoring, model comparison), that can be evaluated for correctness
 or accuracy.  
 
-### Summary Statistics
-
-1. [`SmartEDA`](https://joss.theoj.org/papers/10.21105/joss.01509)
-2. [`modelDown`](https://joss.theoj.org/papers/10.21105/joss.01444)
-3. [`insight`](https://joss.theoj.org/papers/10.21105/joss.01412)
-4. [`rsimsum`](https://joss.theoj.org/papers/10.21105/joss.00739)
-5. [`MCMCvis`](https://joss.theoj.org/papers/10.21105/joss.00640)
-
 ### Spatial Analyses
 
 Spatial analyses have a long tradition in R, as summarised and reflected in the
@@ -1165,6 +979,63 @@ include:
 - The unique challenges arising in the domain of [Spatial Temporal
   Analyses](https://cran.r-project.org/web/views/SpatioTemporal.html).
 
+
+### Time Series Analyses
+
+We will also consider time series software as a distinct category, owing to
+unique ways of representing and processing such data.
+
+
+## Out Of Scope Categories
+
+The following categories arise in the preceding empirical analyses, yet have
+been deemed to lie beyond the scope of the project as currently envisioned.
+
+
+### Visualisation
+
+While many may consider software primarily aimed at visualisation to be out of
+scope, there are nevertheless cases which may indeed be within scope, notably
+including the
+[`ggfortify` package](https://github.com/sinhrks/ggfortify) which allows results of statistical tests to be
+"automatically" visualised using the
+[`ggplot2` package](https://ggplot2.tidyverse.org). The list of "fortified" functions on the packages
+[webpage](https://github.com/sinhrks/ggfortify) clearly indicates the very predominantly statistical scope of this
+software which is in effect a package for statistical reporting, yet in visual
+rather than tabular form. Other examples of visualisation software include:
+
+1. The
+   [`modelStudio` package](https://github.com/ModelOriented/modelStudio) (with accompanying
+   [ JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01798)), which is also very much a workflow package.
+3. The
+   [`shinyEFA` package](https://github.com/PsyChiLin/EFAshiny) (with accompanying
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00567)) which provides a, "User-Friendly Shiny Application for
+   Exploratory Factor Analysis."
+3. The
+   [`autoplotly` package](https://github.com/terrytangyuan/autoplotly) (with accompanying
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00657)) which provides, "Automatic Generation of Interactive
+   Visualisations for Statistical Results", primarily by porting the output of
+   the authors' above-mentioned
+   [`ggfortify` package](https://github.com/sinhrks/ggfortify) to
+   [`plotly.js`](https://github.com/plotly/plotly.js).
+
+***Key considerations***: The quality or utility visualization techniques can
+be strongly subjective, but also may be evaluated using standardized principles
+if the community can come to a consensus on those principles. Such
+considerations may be context-dependent - e.g., the requirements of
+a diagnostic plot designed to support model-checking are different from that
+designed to present raw data or model results to a new audience.  This implies
+that the intended purpose of the visualization should be well-defined.
+
+Whether or not visualization is in-scope, many software packages with other
+primary purposes also include functions to visualise output. Visualization will
+thus never be *strictly* out of scope.  However one option is not to include
+*primarily* visualization packages, or only *statistical* visualization packages
+in which visualization is closely tied to another category or purpose. 
+
+Visualisation packages will include numerical or statistical routines for
+transforming data from raw form to graphics, which can be evaluated for correctness
+or accuracy.
 
 ### Education
 
