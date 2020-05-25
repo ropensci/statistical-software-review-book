@@ -480,9 +480,21 @@ Based on the preceding categories, along with contributions via our [discussion
 forum](https://discuss.ropensci.org/t/statistical-software-peer-review-categories/2068), 
 we propose the following categories intended by define and guide the assessment
 of statistical software. These categories are intended to serve as checklist
-items, with each submission likely to check several categories.
+items, with each submission likely to check several categories. The categories are:
 
-### Bayesian and Monte Carlo Routines
+1. [Bayesian and Monte Carlo Routines](#scope-category-bayesian)
+2. [Dimensionality Reduction, Clustering, and Unsupervised Learning](#scope-category-unsupervised)
+3. [Machine Learning](#scope-category-ML)
+4. [Regression and Supervised Learning](#scope-category-supervised)
+5. [Probability Distributions](#scope-category-distributions)
+6. [Wrapper Packages](#scope-category-wrapper)
+7. [Networks](#scope-category-networks)
+8. [Exploratory Data Analysis (EDA) and Summary Statistics](#scope-category-EDA)
+9. [Workflow Support](#scope-category-workflow)
+10. [Spatial Analyses](#scope-category-spatial)
+11. [Time Series Analyses](#scope-category-time)
+
+### Bayesian and Monte Carlo Routines {#scope-category-bayesian}
 
 Packages implementing or otherwise relying on Bayesian or Monte Carlo routines
 represent form the central "hub" of all categories in the above diagram,
@@ -530,7 +542,7 @@ software in this category include:
 - Forms and structures of data using in these routines are very variable,
   likely making comparison among algorithms difficult.
 
-### Dimensionality Reduction, Clustering, and Unsupervised Learning
+### Dimensionality Reduction, Clustering, and Unsupervised Learning {#scope-category-unsupervised}
 
 Many packages either implement or rely upon techniques for dimensionality
 reduction or feature selection. One of the primary problems presented by such
@@ -572,7 +584,7 @@ implementations.
   [`compboost`](https://joss.theoj.org/papers/10.21105/joss.00967) and
   [`iml`](https://joss.theoj.org/papers/10.21105/joss.00786) packages.
 
-### Machine Learning
+### Machine Learning {#scope-category-ML}
 
 Machine Learning (ML) routines play a central role in modern statistical
 analyses, and the ML node in the above diagram is roughly equally central,
@@ -636,7 +648,7 @@ aspects described above include the following:
    learning"). While comparing algorithms *within* the package is obviously
    straightforward, comparison in terms of external standards may not be.
 
-### Regression and Supervised Learning
+### Regression and Supervised Learning {#scope-category-supervised}
 
 This category represents the most important intermediate node in the above
 network graphic between ML and Bayesian/Monte Carlo algorithms, as well as
@@ -706,7 +718,7 @@ and so implements a standard (tidyverse-based) methodology for representing and
 visualising statistics relating to marginal effects.
 
 
-### Probability Distributions
+### Probability Distributions {#scope-category-distributions}
 
 The category of probability distributions is an outlier in the preceding
 network diagram, connected only to ML and regression/interpolation algorithms.
@@ -737,7 +749,7 @@ populations, yet the implementation is quite generic and powerful.
 
 
 
-### Wrapper Packages
+### Wrapper Packages {#scope-category-wrapper}
 
 "Wrapper" packages provide an interface to previously-written software, often
 in a different computer language to the original implementation. While this
@@ -788,7 +800,7 @@ code, and the computer language being wrapped.
   
 
 
-### Networks
+### Networks {#scope-category-networks}
 
 Network software is a particular area of application of what might often be
 considered more generic algorithms, as in the example described above of the
@@ -832,7 +844,7 @@ general way includes:
 
 
 
-### Exploratory Data Analysis (EDA) and Summary Statistics
+### Exploratory Data Analysis (EDA) and Summary Statistics {#scope-category-EDA}
 
 Many packages aim to simplify and facilitate the reporting of complex
 statistical results or exploratory summaries of data. Such reporting commonly
@@ -901,7 +913,7 @@ unique to statistical reporting software might include the following:
   stages of a statistical workflow?
 
 
-### Workflow Support
+### Workflow Support {#scope-category-workflow}
 
 "Workflow" software may not implement particular methods or algorithms,
 but rather support tasks around the statistical process.  In many cases, these
@@ -968,7 +980,7 @@ These packages also often contain numerical routines (cross-validation,
 performance scoring, model comparison), that can be evaluated for correctness
 or accuracy.  
 
-### Spatial Analyses
+### Spatial Analyses {#scope-category-spatial}
 
 Spatial analyses have a long tradition in R, as summarised and reflected in the
 CRAN Task Views on [Spatial](https://cran.r-project.org/web/views/Spatial.html)
@@ -999,7 +1011,7 @@ include:
   Analyses](https://cran.r-project.org/web/views/SpatioTemporal.html).
 
 
-### Time Series Analyses
+### Time Series Analyses {#scope-category-time}
 
 We will also consider time series software as a distinct category, owing to
 unique ways of representing and processing such data.
