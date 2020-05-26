@@ -42,3 +42,59 @@ The structure of this book was derived from rOpenSci's [Blog Guidelines for Auth
 
 All of the content of this repository is licensed 
 [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+This project follows the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+
+<table>
+
+<tr>
+<td align="center">
+<a href="https://github.com/mpadge">
+<img src="https://avatars1.githubusercontent.com/u/6697851?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-peer-review/commits?author=mpadge">mpadge</a>
+</td>
+<td align="center">
+<a href="https://github.com/noamross">
+<img src="https://avatars1.githubusercontent.com/u/571752?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-peer-review/commits?author=noamross">noamross</a>
+</td>
+<td align="center">
+<a href="https://github.com/maelle">
+<img src="https://avatars0.githubusercontent.com/u/8360597?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-peer-review/commits?author=maelle">maelle</a>
+</td>
+<td align="center">
+<a href="https://github.com/richfitz">
+<img src="https://avatars1.githubusercontent.com/u/1558093?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-peer-review/commits?author=richfitz">richfitz</a>
+</td>
+<td align="center">
+<a href="https://github.com/elong0527">
+<img src="https://avatars0.githubusercontent.com/u/465246?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-peer-review/commits?author=elong0527">elong0527</a>
+</td>
+<td align="center">
+<a href="https://github.com/Pakillo">
+<img src="https://avatars0.githubusercontent.com/u/1597843?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-peer-review/commits?author=Pakillo">Pakillo</a>
+</td>
+</tr>
+
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
