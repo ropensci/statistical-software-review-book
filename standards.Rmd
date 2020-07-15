@@ -55,7 +55,14 @@ Bibliography*](#reading), the following are particularly relevant:
    explicitly detailed below in order to provide an example of the kind of
    standards that might be adapted and developed for application to the present
    project.
-3. The more technical considerations of the [Object Management
+3. The [*Transparent Statistics
+   Guidelines*](https://transparentstats.github.io/guidelines/), by the "HCI
+   (Human Computer Interaction) Working Group". While currently only in its
+   beginning phases, that document aims to provide concrete guidance on
+   "transparent statistical communication." If its development continues, it is
+   likely to provide useful guidelines on best practices for how statistical
+   software produces and reports results.
+4. The more technical considerations of the [Object Management
    Group](https://www.omg.org/index.htm)'s [*Automated Source Code CISQ
    Maintainability Measure*](https://www.omg.org/spec/ASCMM/) (where CISQ
    refers to the [*Consortium for IT Software
@@ -73,6 +80,15 @@ the [tidyverse design guide](https://principles.tidyverse.org/), and the
 section on [Conventions for R Modeling
 Pacakges](https://tidymodels.github.io/model-implementation-principles/) which
 provides guidance for model-fitting APIs.
+
+
+Specific standards for neural network algorithms have also been developed as
+part of a [google 2019 Summer Of Code
+project](http://www.inmodelia.com/gsoc2019.html), resulting in a dedicated
+R package, [`NNbenchmark`](https://akshajverma.com/NNbenchmarkWeb/index.html),
+and accompanying results---their so-called
+["notebooks"](https://akshajverma.com/NNbenchmarkWeb/notebooks.html)---of
+applying their benchmarks to a suite of neural network packages.
 
 ## Generally Applicable Standards 
 
@@ -305,7 +321,7 @@ tests of the following types:
 - Export data sets used for testing in the package for user confirmation and examples
 
 
-#### 4.1 Extended tests
+#### Extended tests
 
 Tests on large data, tests with many permutations and other conditions are
 often ill-suited to workflows of unit tests run continuously with every code
@@ -321,153 +337,49 @@ expected runtime, and artifacts produced that may need manual inspection,
 should be described in developer documentation such as a `CONTRIBUTING.md`
 file. 
 
-## Standards Specific to Statistical Software
-
-The applicability of any concrete set of standards is likely to differ between
-different categories of statistical software. For example, metrics of numerical
-accuracy will likely differ between categories primarily describing analytical
-algorithms and those describing less tractable routines which produce less
-directly reproducible results. Or consider metrics derived from tests, which
-must be interpreted in *qualitatively* different ways for packages entirely
-dependent on their own internal code versus packages largely dependent on the
-results of calls to external data providers (along with additional differences
-between, for example, locally-installed "external" providers versus online
-sources of external data).
-
-Different standards must thus be considered to be differentially applicable to
-different categories of software, and thus the interplay between the scope of
-statistical software considered above and throughout this project, and the
-standards emerging from the project, will be of critical importance throughout
-the project. Such considerations lead to the following kinds of questions which
-will likely have to be addressed:
-
--   To what extent ought we aim for general standards at the expense of specific
-    abilities to assess particular categories of statistical software?
-
--   To what extent ought we strive for automation of software assessment, given
-    the inherent risk of overseeing qualitative differences between different
-    categories?
-
--   How much effort should be expended both developing a categorization of
-    statistical software, and understanding the potential effects of such a
-    categorization?
-
-The following exemplify a few categories of statistical standards which may be
-considered, emphasising restrictions of applicability to alternative kinds of
-software.
-
--   **Numerical standards such as precision or convergence.** These will be
-    applicable only to some restricted subset of all potential categories of
-    statistical software (likely including but not limited to analytic and, to
-    some extent, predictive routines) Moreover, even these two categories alone
-    will likely require differing standards for precision or convergence.
-
--   **Method validity** It may be necessary or useful to develop standards for
-    the *validity* of a chosen method, independent of its implementation.
-    Questions of validity are commonly related to domains of application, and
-    therefore must relate directly to any system for categorising statistical
-    software. A method may (have been demonstrated to) be valid for some
-    particular domain of application, and a software routine may be developed to
-    adapt that method to some previously untried domain. It may then be
-    necessary to consider potential (in)validity of that software, along with
-    potential validity in other domains, themselves potentially not explicitly
-    considered by the software authors.
-
--   **Software scope** The preceding considerations extend directly to general
-    concerns of *scope*, whether in terms of domains of applicability,
-    properties of input or output data, authorial intentions, or other
-    contextual factors. Scope in all of these senses obviously must directly
-    affect and determine the kinds of standards which may or may not apply to
-    software, just as defining scope in these senses is also effectively an
-    exercise in categorization of the kind described above.
-
--   **Reference standards** For software which implements or relies on standard
-    routines, it may be necessary to designate reference data or
-    implementations against which to compare outcomes, or guidance in selecting
-    such references. For instance, the National Institute of Standards and
-    Technology of the U.S. provides [a collection of reference data
-    sets](https://www.itl.nist.gov/div898/strd/) with certified computational
-    results which statistical software should be able to reproduce.
-
-
-The project may benefit from collaboration with the ongoing development of the
-[*Transparent Statistics
-Guidelines*](https://transparentstats.github.io/guidelines/), by the "HCI
-(Human Computer Interaction) Working Group". While currently only in its
-beginning phases, that document aims to provide concrete guidance on
-"transparent statistical communication." If its development continues, it is
-likely to provide useful guidelines on best practices for how statistical
-software produces and reports results.
-
-Specific standards for neural network algorithms have been developed as part of
-a [google 2019 Summer Of Code project](http://www.inmodelia.com/gsoc2019.html),
-resulting in a dedicated R package,
-[`NNbenchmark`](https://akshajverma.com/NNbenchmarkWeb/index.html), and
-accompanying results---their so-called
-["notebooks"](https://akshajverma.com/NNbenchmarkWeb/notebooks.html)---of
-applying their benchmarks to a suite of neural network packages.
-
-We envision the present project proceeding from this initial stage by
-developing parallel definitions for both categories of software (defining both
-*in*-scope and *beyond*-scope), and specific standards. A simple way to
-proceed may be to develop lists for both, along with a representation of
-inter-connections between categories and standards.
-
 ### Demonstration of innovation, novelty, or advancement
 
-The standards listed above largely refer to _minimum_ requirements for software,
-but following common practice in academic publishing, one may also possibly require
-that a piece of software is demonstrably superior to otherwise equivalent software in at least
-one (or perhaps more?) specific way(s).  (In current rOpenSci standards, packages
-are required to 
-[demonstrate signicant improvement](https://devguide.ropensci.org/policies.html#overlap)
-over similar packages). If such a "relative improvement" requirement is included
-in the process, authors may be required to demonstrate how their software
-exceeds existing or reference implementations of similar tools in some of the
-following ways:
+The standards listed above largely refer to _minimum_ requirements for
+software, but following common practice in academic publishing, one may also
+possibly require that a piece of software is demonstrably superior to otherwise
+equivalent software in at least one (or perhaps more?) specific way(s).  (In
+current rOpenSci standards, packages are required to [demonstrate signicant
+improvement](https://devguide.ropensci.org/policies.html#overlap) over similar
+packages). If such a "relative improvement" requirement is included in the
+process, authors may be required to demonstrate how their software exceeds
+existing or reference implementations of similar tools in some of the following
+ways:
 
 -  **Efficiency:** Is the software more efficient (faster, simpler, other
-  interpretations of "efficient") than reference implementations?
--  **Reproducibility or Reliability:** Does the software reproduce
-  sufficiently similar results more frequently than reference implementations
-  (or otherwise satisfy similar interpretations of reproducibility)?
+   interpretations of "efficient") than reference implementations?
+-  **Reproducibility or Reliability:** Does the software reproduce sufficiently
+  similar results more frequently than reference implementations (or otherwise
+  satisfy similar interpretations of reproducibility)?
 -  **Accuracy or Precision:** Is the software demonstrably more accurate or
   precise than reference implementations (such as ?
 -  **Simplicity of Use:** Is the software simpler to use than reference
   implementations?
--  **Algorithmic Characteristics:** Does the algorithmic implementation
-  offer characteristics (such as greater simplicity or sensitivity) superior to
+-  **Algorithmic Characteristics:** Does the algorithmic implementation offer
+  characteristics (such as greater simplicity or sensitivity) superior to
   reference implementations? If so, which?
 -  **Convergence:** Does the software provide faster or otherwise better
   convergence properties than reference implementations?
 -  **Method Validity:** Does the software overcome demonstrable flaws in
   previous (reference) implementations? If so, how?
--  **Method Applicability:** Does the software enable a statistical method
-  to be applied to a domain in which such application was not previously
-  possible?
+-  **Method Applicability:** Does the software enable a statistical method to
+  be applied to a domain in which such application was not previously possible?
 -  **Automation** Does the software automate aspects of statistical analyses
-  which previously (in a reference implementation) required manual intervention?
+  which previously (in a reference implementation) required manual
+  intervention?
 -  **Input Data:** Does the software "open up" a method to input data
   previously unable to be treated by a particular algorithm or method?
 -  **Output Data:** Does the software provide output in forms previously
   unavailable by reference implementations?
--  **Reference Standards:** Are there any reference standards, such as the
-  US National Institute of Standards and Technology's
-  [collection of reference data sets](https://www.itl.nist.gov/div898/strd)
-  against which the software may be compared? If so, which?
+-  **Reference Standards:** Are there any reference standards, such as the US
+  National Institute of Standards and Technology's [collection of reference
+  data sets](https://www.itl.nist.gov/div898/strd) against which the software
+  may be compared? If so, which?
 
+## Standards Specific to Statistical Software
 
-## Proposals
-
-1. We develop a concrete list of standards like those of the [Software
-   Sustainability Institute](https://www.software.ac.uk/) given above.
-2. We identify which items in the resultant list are amenable to automatic
-   assessment, and implement procedures to automate such assessment as far as
-   practicable.
-3. Our standards will be versioned, and software will be aligned with the most
-   recent version of these standards with which it complies.
-4. We initially develop a minimal set of standards applicable to different
-   categories of statistical software, and aim to develop such
-   category-specific standards throughout the ongoing development of the
-   project.
 
