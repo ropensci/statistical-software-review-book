@@ -53,6 +53,17 @@ statistics for the top ten languages from all `r format (nrow
 packages as of `r format(Sys.time(), "%a %b %d %Y")` (including only code from
 the `/R`, `/src`, and `/inst` directories of each package).
 
+```{r cran-cloc, message = FALSE, echo = FALSE, eval = FALSE}
+x <- readRDS ("./scripts/cran-cloc-all.Rds") %>%
+    group_by (language) %>%
+    summarise (loc = sum (loc),
+               file_count = sum (file_count),
+               comment_lines = sum (comment_lines)) %>%
+    arrange (desc (loc))
+saveRDS (x, "./scripts/cran-cloc.Rds")
+```
+
+
 ```{r language-table, message = FALSE, echo = FALSE}
 library (dplyr)
 x <- readRDS ("./scripts/cran-cloc.Rds") %>%
