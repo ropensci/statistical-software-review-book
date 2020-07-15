@@ -16,6 +16,8 @@ favicon: "favicon/favicon.ico"
 
 
 ```{r getbib, include = FALSE, eval = TRUE}
+# RefManageR is no longer sufficiently reliable, so bibliography is manually
+# downloaded for the moment
 if (!file.exists ("statsoft.bib")) {
    refs <- RefManageR::ReadZotero(group = "2416765",
                                  .params = list (limit = 100))
