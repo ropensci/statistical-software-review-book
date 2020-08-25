@@ -834,7 +834,7 @@ Bayesian Software may:
 - BS6.6 Provide abilities to plot both sequences of posterior samples and
   distributional estimates together in single graphic
 
-## Testing
+#### Testing
 
 - Parameter recoveery tests:
    -   Recover the prior woth no data or data with no information, especially where priors are implicit.  
