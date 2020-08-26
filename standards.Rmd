@@ -869,50 +869,50 @@ standard prefixed with "RE".
 
 #### Input data structures and validation
 
-- RE1.0 Regression Software should enable models to be specified via a formula
+- **RE1.0** Regression Software should enable models to be specified via a formula
   interface, unless reasons for *not* doing so are explicitly documented.
-- RE1.1 Regression Software should document how formula interfaces are
+- **RE1.1** Regression Software should document how formula interfaces are
   converted to matrix representations of input data. See Max Kuhn's [RStudio
   blog
   post](https://rviews.rstudio.com/2017/02/01/the-r-formula-method-the-good-parts/)
   for examples.
-- RE1.2 Regression Software should document expected format (types or classes)
+- **RE1.2** Regression Software should document expected format (types or classes)
   for inputting predictor variables, including descriptions of types or classes
   which are not accepted; for example, specification that software accepts only
   numeric inputs in `vector` or `matrix` form, or that all inputs must be in
   `data.frame` form with both column and row names.
-- RE1.3 Regression Software should explicitly document any aspects of input
+- **RE1.3** Regression Software should explicitly document any aspects of input
   data (such as row names) which are not used in model construction.
-- RE1.4 Regression Software should document any assumptions made with regard to
+- **RE1.4** Regression Software should document any assumptions made with regard to
   input data; for example distributional assumptions, or assumptions that
   predictor data have mean values of zero. Implications of violations of these
   assumptions should be both documented and tested.
 
 #### Pre-processing and Variable Transformation
 
-- RE2.0 Regression Software should document any transformations applied to
+- **RE2.0** Regression Software should document any transformations applied to
   input data, for example conversion of label-values to `factor`, and should
   provide ways to explicitly avoid any default transformations (with error or
   warning conditions where appropriate).
-- RE2.1 Regression Software should implement explicit parameters controlling
+- **RE2.1** Regression Software should implement explicit parameters controlling
   the processing of missing values, ideally distinguishing `NA` or `NaN` values
   from `Inf` values (for example, through use of `na.omit()` and related
   functions from the `stats` package).
-- RE2.2 Regression Software should provide different options for processing
+- **RE2.2** Regression Software should provide different options for processing
   missing values in *predictor* and *response* data. For example, it should be
   possible to fit a model with no missing predictor data in order to generate
   values for all associated response points, even where submitted response
   values may be missing.
-- RE2.3 Where applicable, Regression Software should enable data to be centred
+- **RE2.3** Where applicable, Regression Software should enable data to be centred
   (for example, through converting to zero-mean equivalent values; or to
   z-scores) or offset (for example, to zero-intercept equivalent values) via
   additional parameters, with the effects of any such parameters clearly
   documented and tested.
-- RE2.4 Regression Software should implement pre-processing routines to
+- **RE2.4** Regression Software should implement pre-processing routines to
   identify whether aspects of input data are perfectly collinear, notably
   including:
-    - RE2.4a Perfect collinearity among predictor variables
-    - RE2.4b Perfect collinearity between independent and dependent variables
+    - **RE2.4a** Perfect collinearity among predictor variables
+    - **RE2.4b** Perfect collinearity between independent and dependent variables
 
 These pre-processing routines should also be tested as described below.
 
@@ -922,24 +922,24 @@ The following standards apply to the model fitting algorithms of Regression
 Software which implements or relies on iterative algorithms which are expected
 to converge to generate model statistics. Regression Software which implements or relies on iterative convergence algorithms should:
 
-- RE3.0 Issue appropriate warnings or other diagnostic messages for models
+- **RE3.0** Issue appropriate warnings or other diagnostic messages for models
   which fail to converge.
-- RE3.1 Enable such messages to be optionally suppressed, yet should ensure
+- **RE3.1** Enable such messages to be optionally suppressed, yet should ensure
   that the resultant model object nevertheless includes sufficient data to
   identify lack of convergence.
-- RE3.2 Ensure that convergence thresholds have sensible default values,
+- **RE3.2** Ensure that convergence thresholds have sensible default values,
   demonstrated through explicit documentation.
-- RE3.3 Allow explicit setting of convergence thresholds, unless reasons
+- **RE3.3** Allow explicit setting of convergence thresholds, unless reasons
   against doing so are explicitly documented.
 
 
 #### Return Results
 
-- RE4.0 Regression Software should return some form of "model" object,
+- **RE4.0** Regression Software should return some form of "model" object,
   generally through using or modifying existing class structures for model
   objects (such as `lm`, `glm`, or model objects from other packages), or
   creating a new class of model objects.
-- RE4.1 Regression Software may enable an ability to generate a model object
+- **RE4.1** Regression Software may enable an ability to generate a model object
   without actually fitting values. This may be useful for controlling batch
   processing of computationally intensive fitting algorithms.
 
@@ -954,13 +954,13 @@ parentheses in each of the following standards.
 The model objects should include, or otherwise enable effectively immediate
 access to, 
 
-- RE4.2 Model coefficients (via `coeff()` / `coefficients()`)
-- RE4.3 Confidence intervals on those coefficients (via `confint()`)
-- RE4.4 The specification of the model, generally as a formula (via
+- **RE4.2** Model coefficients (via `coeff()` / `coefficients()`)
+- **RE4.3** Confidence intervals on those coefficients (via `confint()`)
+- **RE4.4** The specification of the model, generally as a formula (via
   `formula()`)
-- RE4.5 Numbers of observations submitted to model (via `nobs()`)
-- RE4.6 The variance-covariance matrix of the model parameters (via `vcov()`)
-- RE4.7 Where appropriate, convergence statistics
+- **RE4.5** Numbers of observations submitted to model (via `nobs()`)
+- **RE4.6** The variance-covariance matrix of the model parameters (via `vcov()`)
+- **RE4.7** Where appropriate, convergence statistics
 
 
 Regression Software *should* provide simple and direct methods to return or
@@ -968,36 +968,36 @@ otherwise access the following form of data and metadata, where the latter
 includes information on any transformations which may have been applied to the
 data prior to submission to modelling routines.
 
-- RE4.8 Response variables, and associated "metadata" where applicable.
-- RE4.9 Modelled values of response variables.
-- RE4.10 Model Residuals, including sufficient documentation to enable
+- **RE4.8** Response variables, and associated "metadata" where applicable.
+- **RE4.9** Modelled values of response variables.
+- **RE4.10** Model Residuals, including sufficient documentation to enable
   interpretation of residuals, and to enable users to submit residuals to their
   own tests.
-- RE4.11 Goodness-of-fit and other statistics associated such as effect sizes
+- **RE4.11** Goodness-of-fit and other statistics associated such as effect sizes
   with model coefficients.
-- RE4.12 Where appropriate, functions used to transform input data, and
+- **RE4.12** Where appropriate, functions used to transform input data, and
   associated inverse transform functions.
 
 Regression software *may* provide simple and direct methods to return or
 otherwise access the following:
 
-- RE4.13 Predictor variables, and associated "metadata" where applicable.
+- **RE4.13** Predictor variables, and associated "metadata" where applicable.
 
 **Extrapolation and Forecasting**
 
-- RE4.14 Where Regression Software is intended to, or can, be used to
+- **RE4.14** Where Regression Software is intended to, or can, be used to
   extrapolate or forecast values, values should also be provided for
   extrapolation or forecast *errors*.
-- RE4.15 Sufficient documentation and/or testing should be provided to
+- **RE4.15** Sufficient documentation and/or testing should be provided to
   demonstrate that forecast errors, confidence intervals, or equivalent values
   increase with forecast horizons.
 
 **Reporting Return Results**
 
-- RE4.16 Model objects returned by Regression Software should implement or
+- **RE4.16** Model objects returned by Regression Software should implement or
   appropriately extend a default `print` method which provides an on-screen
   summary of model (input) parameters and (output) coefficients.
-- RE4.17 Regression Software may also implement `summary` methods for model
+- **RE4.17** Regression Software may also implement `summary` methods for model
   objects, and in particular *should* implement distinct `summary` methods for
   any cases in which calculation of summary statistics is computationally
   non-trivial (for example, for bootstrapped estimates of confidence
@@ -1009,38 +1009,41 @@ Beyond the general standards for documentation, Regression Software should
 explicitly describe the following aspects, and ideally provide extended
 documentation including graphical output: 
 
-- RE5.0 Scaling relationships between sizes of input data (numbers of
+- **RE5.0** Scaling relationships between sizes of input data (numbers of
   observations, with potential extension to numbers of variables/columns) and
   speed of algorithm.
 
 #### Visualization
 
-- RE6.0 Model objects returned by Regression Software (see RE3.0) should have
+- **RE6.0** Model objects returned by Regression Software (see RE3.0) should have
   default `plot` methods, either through explicit implementation, extension of
   methods for existing model objects, or through ensuring default methods work
   appropriately.
-- RE6.1 The default `plot` method should produce a plot of the `fitted` values
+- **RE6.1** Where the default `plot` method is **NOT** a generic `plot` method
+  dispatched on the class of return objects (that is, through
+  a `plot.<myclass>` function), that method dispatch should nevertheless exist
+  in order to explicitly direct users to the appropriate function.
+- **RE6.2** The default `plot` method should produce a plot of the `fitted` values
   of the model, with optional visualisation of confidence intervals or
   equivalent.
-- RE6.2 Where a model object is used to generate a forecast (for example,
+- **RE6.3** Where a model object is used to generate a forecast (for example,
   through a `predict()` method), the default `plot` method should provide clear
   visual distinction between modelled (interpolated) and forecast
   (extrapolated) values.
-
 
 #### Testing
 
 Tests for Regression Software should include the following conditions and cases:
 
 
-- RE7.0 Tests with noiseless, exact relationships between predictor
+- **RE7.0** Tests with noiseless, exact relationships between predictor
   (independent) data.
-    - RE7.0a In particular, these tests should confirm that model fitting is at
+    - **RE7.0a** In particular, these tests should confirm that model fitting is at
       least as fast or (preferably) faster than testing with equivalent noisy
       data (see RE2.4a).
-- RE7.1 Tests with noiseless, exact relationships between predictor
+- **RE7.1** Tests with noiseless, exact relationships between predictor
   (independent) and response (dependent) data.
-    - RE7.1a In particular, these tests should confirm that model fitting is at
+    - **RE7.1a** In particular, these tests should confirm that model fitting is at
       least as fast or (preferably) faster than testing with equivalent noisy
       data (see RE2.4b).
 
@@ -1080,10 +1083,10 @@ documentation.
 The *Primary Documentation* (`README` and/or vignette(s)) of EDA software
 should:
 
-- EA1.0 Identify one or more target audiences for whom the software is intended
-- EA1.1 Identify the kinds of data the software is capable of analysing (see
+- **EA1.0** Identify one or more target audiences for whom the software is intended
+- **EA1.1** Identify the kinds of data the software is capable of analysing (see
   *Kinds of Data* below).
-- EA1.2 Identify the kinds of questions the software is intended to help
+- **EA1.2** Identify the kinds of questions the software is intended to help
   explore; for example, are these questions:
     - inferential?
     - predictive?
@@ -1094,7 +1097,7 @@ should:
 The *Secondary Documentation* (within individual functions) of EDA software
 should:
 
-- EA1.3 Identify the kinds of data each function is intended to accept as input
+- **EA1.3** Identify the kinds of data each function is intended to accept as input
 
 #### Input Data
 
