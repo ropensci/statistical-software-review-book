@@ -8,7 +8,7 @@ library (ggplot2)
 theme_set (theme_minimal ())
 ```
 
-# <span style="color:red;">Scope [SEEKING FEEDBACK]<span> {#scope}
+# Scope {#scope}
 
 One task in extending the rOpenSci peer review system to statistical software
 is defining _scope_ - what software is included or excluded. Defining scope
