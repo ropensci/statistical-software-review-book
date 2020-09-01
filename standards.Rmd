@@ -166,15 +166,21 @@ Given this, inputs expected to be univariate should:
   of all vector inputs (see the above list).
 - **G2.2** Appropriately prohibit or restrict submission of multivariate input to
   parameters expected to be univariate.
-- **G2.3** Provide appropriate mechanisms to convert between different *data
+- **G2.3** For univariate character input:
+    - **G2.3a** Use `match.arg()` or equivalent where applicable to only permit
+      expected values.
+    - **G2.3b** Either: use `tolower()` or equivalent to ensure input of
+      character parameters is not case dependent; or explicitly document that
+      parameters are strictly case-sensitive.
+- **G2.4** Provide appropriate mechanisms to convert between different *data
   types*, potentially including:
-    - **G2.3a** explicit conversion to `integer` via `as.integer()`
-    - **G2.3b** explicit conversion to continuous via `as.numeric()`
-    - **G2.3c** explicit conversion to character via `as.character()` (and not
+    - **G2.4a** explicit conversion to `integer` via `as.integer()`
+    - **G2.4b** explicit conversion to continuous via `as.numeric()`
+    - **G2.4c** explicit conversion to character via `as.character()` (and not
       `paste` or `paste0`)
-    - **G2.3d** explicit conversion to factor via `as.factor()`
-    - **G2.3e** explicit conversion from factor via `as...()` functions
-- **G2.4** Where inputs are expected to be of `factor` type, secondary
+    - **G2.4d** explicit conversion to factor via `as.factor()`
+    - **G2.4e** explicit conversion from factor via `as...()` functions
+- **G2.5** Where inputs are expected to be of `factor` type, secondary
   documentation should explicitly state whether these should be `ordered` or
   not, and those inputs should provide appropriate error or other routines to
   ensure inputs follow these expectations.
@@ -330,11 +336,11 @@ following types:
    comparisons using binding frameworks such as
    [RStata](https://github.com/lbraglia/RStata)).
     - **G4.2a** For new methods, it can be difficult to separate out
-       correctness of the the method from the correctness of the
+       correctness of the method from the correctness of the
        implementation, as there may not be reference for comparison.  In this
        case, testing may be implemented against simple, trivial cases or
        against multiple implementations such as an initial R implementation
-       compared with results from a C/C++ impelementation.
+       compared with results from a C/C++ implementation.
     - **G4.2b** For new implementations of existing methods, correctness tests
       should include tests against previous implementations.  Such testing may
       explicitly call those implementations in testing, preferably from
@@ -396,7 +402,7 @@ should adhere to the following standards:
 - **G4.10** Any conditions necessary to run extended tests such as platform
   requirements, memory, expected runtime, and artefacts produced that may need
   manual inspection, should be described in developer documentation such as a
-  `CONTRIBUTING.md` file. 
+  `CONTRIBUTING.md` or `tests/README.md` file. 
 
 
 ## Standards Specific to Statistical Software
@@ -852,15 +858,23 @@ Bayesian Software may:
 ### Regression and Supervised Learning {#standards-category-supervised}
 
 This document details standards for Regression and Supervised Learning
-Software. Common purposes of Regression and Supervised Learning Software --
-referred to from here on for simplicity as "Regression Software" -- are to fit
-models to estimate relationships or to make predictions between specified
-inputs and outputs. Regression Software includes tools with inferential or
-predictive foci, Bayesian, frequentist, or probability-free Machine Learning
-(ML) approaches, parametric or or non-parametric approaches, discrete outputs
-(such as in classification tasks) or continuous outputs, and models and
-algorithms specific to applications or data such as time series or spatial
-data.  In many cases other standards specific to these subcategories may apply.
+Software -- referred to from here on for simplicity as "Regression Software".
+Regression Software implements algorithms which aim to construct or analyse one
+or more mappings between two defined data sets (for example, a set of
+"independent" data, $X$, and a set of "dependent" data, $Y$). In contrast, the
+analogous category of Unsupervised Learning Software aims to construct or
+analyse one or more mappings between a defined set of input or independent
+data, and a second set of "output" data which are not necessarily known or
+given prior to the analysis.
+
+Common purposes of Regression Software are to fit models to estimate
+relationships or to make predictions between specified inputs and outputs.
+Regression Software includes tools with inferential or predictive foci,
+Bayesian, frequentist, or probability-free Machine Learning (ML) approaches,
+parametric or or non-parametric approaches, discrete outputs (such as in
+classification tasks) or continuous outputs, and models and algorithms specific
+to applications or data such as time series or spatial data.  In many cases
+other standards specific to these subcategories may apply.
 
 The following standards are divided among several sub-categories, with each
 standard prefixed with "RE".
@@ -920,7 +934,8 @@ These pre-processing routines should also be tested as described below.
 
 The following standards apply to the model fitting algorithms of Regression
 Software which implements or relies on iterative algorithms which are expected
-to converge to generate model statistics. Regression Software which implements or relies on iterative convergence algorithms should:
+to converge to generate model statistics. Regression Software which implements
+or relies on iterative convergence algorithms should:
 
 - **RE3.0** Issue appropriate warnings or other diagnostic messages for models
   which fail to converge.
@@ -1034,7 +1049,6 @@ documentation including graphical output:
 #### Testing
 
 Tests for Regression Software should include the following conditions and cases:
-
 
 - **RE7.0** Tests with noiseless, exact relationships between predictor
   (independent) data.
