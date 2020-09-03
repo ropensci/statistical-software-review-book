@@ -56,7 +56,7 @@ x <- data.frame (matrix (1:10, ncol = 2))
 x
 ```
 
-Generic rownames are almost always simple integer sequences, which the
+Generic row names are almost always simple integer sequences, which the
 following condition confirms.
 
 ```{r rowname-check}
@@ -98,7 +98,7 @@ An example of a function according with UL1.3 is
 hc <- hclust (dist (USArrests))
 head (cutree (hc, 10))
 ```
-The rownames of `USArrests` are transferred to the output object. In contrast,
+The row names of `USArrests` are transferred to the output object. In contrast,
 some routines from the [`cluster`
 package](https://cran.r-project.org/package=cluster) do not comply with this standard:
 

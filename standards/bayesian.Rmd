@@ -416,11 +416,11 @@ Bayesian Software may:
   distributional estimates together in single graphic*
 
 
-### 
+### Tests
 
-- Parameter recoveery tests:
-   -   Recover the prior woth no data or data with no information, especially where priors are implicit.  
-   -   Even in empirical bayes, recover the estimated prior
+- Parameter recovery tests:
+   -   Recover the prior with no data or data with no information, especially where priors are implicit.  
+   -   Even in empirical Bayes, recover the estimated prior
    -   Recover posterior given expected data *and* prior
 
 -  Algorithmic scaling tests with data - is it linear, log, etc
