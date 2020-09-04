@@ -73,7 +73,7 @@ Given this, inputs expected to be univariate should:
 - **G2.0** *Provide explicit secondary documentation of any expectations on lengths
   of inputs (generally implying identifying whether an input is expected to be
   single- or multi-valued)*
-- **G2.1** *Provide explicit secondary documentation of expectations on *data types*
+- **G2.1** *Provide explicit secondary documentation of expectations on data types
   of all vector inputs (see the above list).*
 - **G2.2** *Appropriately prohibit or restrict submission of multivariate input to
   parameters expected to be univariate.*
