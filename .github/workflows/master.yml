@@ -41,7 +41,7 @@ jobs:
           Rscript -e "library(remotes)" -e "deps <- readRDS('depends.Rds')" -e "deps[['installed']] <- vapply(deps[['package']], remotes:::local_sha, character(1))" -e "update(deps)"
 
       - name: Render Book
-        run: Rscript -e 'bookdown::render_book("index.Rmd")'
+        run: Rscript -e 'bookdown::render_book("index.Rmd", output_format = c ("bookdown::gitbook", "bookdown::pdf_book"))'
 
       - name: Commit results
         run: |
