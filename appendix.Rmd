@@ -5,28 +5,28 @@
 ## Notes on Scope and the Python Statistical Ecosystem {#python}
 
 ```{r startup-appendix, echo = FALSE, message = FALSE}
-library (dplyr)
-library (ggplot2)
-library (rvest)
-library (igraph)
-theme_set (theme_minimal ())
+library(dplyr)
+library(ggplot2)
+library(rvest)
+library(igraph)
+theme_set(theme_minimal())
 ```
 
 Two factors may be usefully noted in this regard:
 
 ```{r pypi-projects, echo = FALSE}
 u <- "https://pypi.org/"
-x <- read_html (u) %>%
-    #html_nodes ("div.statistics-bar") %>%
-    html_nodes ("p.statistics-bar__statistic") %>%
-    html_text ()
-pypi_n_projects <- x [grep ("projects", x)] %>%
-    gsub ("projects|[[:space:]]", "", .)
+x <- read_html(u) %>%
+  # html_nodes ("div.statistics-bar") %>%
+  html_nodes("p.statistics-bar__statistic") %>%
+  html_text()
+pypi_n_projects <- x [grep("projects", x)] %>%
+  gsub("projects|[[:space:]]", "", .)
 
-cran_n_projects <- format (nrow (available.packages ()), big.mark = ",")
+cran_n_projects <- format(nrow(available.packages()), big.mark = ",")
 
-pypi_cran_ratio <- floor (as.integer (gsub (",", "", pypi_n_projects)) /
-    as.integer (gsub (",", "", cran_n_projects)))
+pypi_cran_ratio <- floor(as.integer(gsub(",", "", pypi_n_projects)) /
+  as.integer(gsub(",", "", cran_n_projects)))
 ```
 
 1. The potential number of python packages for statistical analyses is likely
@@ -58,32 +58,42 @@ years, with results shown in the following graphic.
 
 ```{r py_v_r, echo = FALSE, message = FALSE}
 year <- 2017:2019
-python_used <- c (31.7, 38.8, 41.7)
-r_used <- c (4.4, 6.1, 5.8)
-python_loved <- c (62.7, 68.0, 73.1)
-r_loved <- c (49.9, 49.4, 51.7)
+python_used <- c(31.7, 38.8, 41.7)
+r_used <- c(4.4, 6.1, 5.8)
+python_loved <- c(62.7, 68.0, 73.1)
+r_loved <- c(49.9, 49.4, 51.7)
 
-dat <- rbind (tibble (year = year,
-                      proportion = python_used,
-                      language = "python-used",
-                      context = "used"),
-              tibble (year = year,
-                      proportion = r_used,
-                      language = "R-used",
-                      context = "used"),
-              tibble (year = year,
-                      proportion = python_loved,
-                      language = "python-loved",
-                      context = "loved"),
-              tibble (year = year,
-                      proportion = r_loved,
-                      language = "R-loved",
-                      context = "loved"))
+dat <- rbind(
+  tibble(
+    year = year,
+    proportion = python_used,
+    language = "python-used",
+    context = "used"
+  ),
+  tibble(
+    year = year,
+    proportion = r_used,
+    language = "R-used",
+    context = "used"
+  ),
+  tibble(
+    year = year,
+    proportion = python_loved,
+    language = "python-loved",
+    context = "loved"
+  ),
+  tibble(
+    year = year,
+    proportion = r_loved,
+    language = "R-loved",
+    context = "loved"
+  )
+)
 
-ggplot (dat, aes (x = year, y = proportion, color = language)) +
-    geom_line () +
-    geom_point () +
-    scale_x_continuous (breaks = year)
+ggplot(dat, aes(x = year, y = proportion, color = language)) +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks = year)
 ```
 
 Python is not only more used and more loved than **R**, but both statistics for
@@ -121,7 +131,7 @@ descriptive elements of each piece of software. Each paper generally yielded
 multiple keywords. Extracting these from all papers judged to be potentially in
 scope allowed for the construction of a network of topics, in which the nodes
 were the key words and phrases, and the connections between any pair of nodes
-reflected the number of times those two keywords co-occured across all papers.
+reflected the number of times those two keywords co-occurred across all papers.
 
 We extracted all papers accepted and published by JOSS (217 at the time of
 writing in early 2020), and manually determined which of these were broadly
@@ -133,59 +143,72 @@ are scaled by numbers of occurrences, and edges by numbers of co-occurrences.
 here](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms/index.html)
 for full-screen version with link to code.)
 
-```{r, message = FALSE}
-x <- readLines ("stat-software-categories.md")
-x <- x [grep ("[0-9]*\\. \\[", x)]
-names <- vapply (x, function (i) {
-                     res <- strsplit (i, "\\[\\`") [[1]]
-                     strsplit (res, "\\`\\]") [[2]] [1] },
-                     character (1), USE.NAMES = FALSE)
-terms <- lapply (x, function (i) {
-                     res <- strsplit (i, ":\\s") [[1]] [2]
-                     res <- strsplit (res, ";\\s") [[1]] [1] # rm "; input"
-                     strsplit (res, ",\\s") [[1]]   })
-input <- lapply (x, function (i) {
-                     res <- strsplit (i, "input: ") [[1]] [2]
-                     res <- strsplit (res, ";\\s") [[1]] [1]
-                     if (grepl (",\\s", res))
-                         res <- strsplit (res, ",\\s") [[1]]
-                     return (res)   })
-output <- lapply (x, function (i) {
-                      res <- strsplit (i, "output: ") [[1]] [2]
-                      if (grepl (",\\s", res))
-                          res <- strsplit (res, ",\\s") [[1]]
-                      return (res)   })
-names (terms) <- names (input) <- names (output) <- names
+```{r visNetwork, message = FALSE}
+x <- readLines("stat-software-categories.md")
+x <- x [grep("[0-9]*\\. \\[", x)]
+names <- vapply(x, function(i) {
+  res <- strsplit(i, "\\[\\`") [[1]]
+  strsplit(res, "\\`\\]") [[2]] [1]
+},
+character(1),
+USE.NAMES = FALSE
+)
+terms <- lapply(x, function(i) {
+  res <- strsplit(i, ":\\s") [[1]] [2]
+  res <- strsplit(res, ";\\s") [[1]] [1] # rm "; input"
+  strsplit(res, ",\\s") [[1]]
+})
+input <- lapply(x, function(i) {
+  res <- strsplit(i, "input: ") [[1]] [2]
+  res <- strsplit(res, ";\\s") [[1]] [1]
+  if (grepl(",\\s", res)) {
+    res <- strsplit(res, ",\\s") [[1]]
+  }
+  return(res)
+})
+output <- lapply(x, function(i) {
+  res <- strsplit(i, "output: ") [[1]] [2]
+  if (grepl(",\\s", res)) {
+    res <- strsplit(res, ",\\s") [[1]]
+  }
+  return(res)
+})
+names(terms) <- names(input) <- names(output) <- names
 
 # Then convert to `visNetwork` nodes and edges tables:
-nodes <- table (unlist (terms))
-nodes <- data.frame (id = names (nodes),
-                     label = names (nodes),
-                     value = as.integer (nodes),
-                     stringsAsFactors = FALSE)
-edges <- lapply (terms, function (i) {
-                     if (length (i) > 1) {
-                         res <- sort (i)
-                         n <- combn (seq_along (res), 2)
-                         cbind (res [n [1, ]], res [n [2, ]]) }
-                     })
-edges <- do.call (rbind, edges)
-edges <- data.frame (from = edges [, 1],
-                     to = edges [, 2],
-                     stringsAsFactors = FALSE) %>%
-    group_by (from, to) %>%
-    summarise (width = length (from)) # Remove isolated edges:
-      # annotation, areal weights, binomial distribution, cubature, gene loci,
-      # generalized least squares, misspecification, classification, interpolation,
-      # over-dispersion, integration, random effects, probit model
-cl <- graph_from_data_frame (edges) %>%
-    clusters ()
-out <- names (cl$membership [which (cl$membership != which.max (cl$csize))])
-nodes <- nodes [which (!nodes$id %in% out), ]
-edges <- edges [which (!(edges$from %in% out | edges$to %in% out)), ]
+nodes <- table(unlist(terms))
+nodes <- data.frame(
+  id = names(nodes),
+  label = names(nodes),
+  value = as.integer(nodes),
+  stringsAsFactors = FALSE
+)
+edges <- lapply(terms, function(i) {
+  if (length(i) > 1) {
+    res <- sort(i)
+    n <- combn(seq_along(res), 2)
+    cbind(res [n [1, ]], res [n [2, ]])
+  }
+})
+edges <- do.call(rbind, edges)
+edges <- data.frame(
+  from = edges [, 1],
+  to = edges [, 2],
+  stringsAsFactors = FALSE
+) %>%
+  group_by(from, to) %>%
+  summarise(width = length(from)) # Remove isolated edges:
+# annotation, areal weights, binomial distribution, cubature, gene loci,
+# generalized least squares, misspecification, classification, interpolation,
+# over-dispersion, integration, random effects, probit model
+cl <- graph_from_data_frame(edges) %>%
+  clusters()
+out <- names(cl$membership [which(cl$membership != which.max(cl$csize))])
+nodes <- nodes [which(!nodes$id %in% out), ]
+edges <- edges [which(!(edges$from %in% out | edges$to %in% out)), ]
 
-library (visNetwork)
-visNetwork (nodes, edges)
+library(visNetwork)
+visNetwork(nodes, edges)
 ```
 
 Such a network visualization enables immediate identification of more and less
@@ -205,29 +228,34 @@ graph](https://ropenscilabs.github.io/statistical-software/abstracts/network-io/
 directionally relating these different data formats.
 
 ```{r io-nodes-edges}
-terms <- table (c (unlist (input), unlist (output)))
-nodes <- data.frame (id = seq_along (terms),
-                     label = names (terms),
-                     value = as.integer (terms),
-                     stringsAsFactors = FALSE)
-edges <- list ()
-for (i in seq_along (input))
-    edges [[i]] <- expand.grid (input [[i]], output [[i]])
-edges <- do.call (rbind, edges) %>%
-    data.frame (from = .$Var1,
-                to = .$Var2) %>%
-    group_by (from, to) %>%
-    summarise (width = length (from))
-edges$from <- nodes$id [match (edges$from, nodes$label)]
-edges$to <- nodes$id [match (edges$to, nodes$label)]
+terms <- table(c(unlist(input), unlist(output)))
+nodes <- data.frame(
+  id = seq_along(terms),
+  label = names(terms),
+  value = as.integer(terms),
+  stringsAsFactors = FALSE
+)
+edges <- list()
+for (i in seq_along(input)) {
+  edges [[i]] <- expand.grid(input [[i]], output [[i]])
+}
+edges <- do.call(rbind, edges) %>%
+  data.frame(
+    from = .$Var1,
+    to = .$Var2
+  ) %>%
+  group_by(from, to) %>%
+  summarise(width = length(from))
+edges$from <- nodes$id [match(edges$from, nodes$label)]
+edges$to <- nodes$id [match(edges$to, nodes$label)]
 # remove isolated edges:
-cl <- graph_from_data_frame (edges) %>%
-    clusters ()
-out <- names (cl$membership [which (cl$membership != which.max (cl$csize))])
-nodes <- nodes [which (!nodes$id %in% out), ]
-edges <- edges [which (!(edges$from %in% out | edges$to %in% out)), ]
+cl <- graph_from_data_frame(edges) %>%
+  clusters()
+out <- names(cl$membership [which(cl$membership != which.max(cl$csize))])
+nodes <- nodes [which(!nodes$id %in% out), ]
+edges <- edges [which(!(edges$from %in% out | edges$to %in% out)), ]
 
-visNetwork (nodes, edges)
+visNetwork(nodes, edges)
 ```
 
 ## Other Software Standards {#other-software-standards}

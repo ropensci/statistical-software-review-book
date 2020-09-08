@@ -24,7 +24,13 @@ dupl_chunk_names <- function () {
         message ("Repeated chunk name [", unname (r),
                  "] in [", paste0 (n, collapse = ", "), "]")
     }
-    return (length (repeats) == 0)
+
+    blanks <- vapply (names (chunk_names) [which (chunk_names == "")], function (i)
+                      substring (i, 1, nchar (i) - 1), character (1), USE.NAMES = FALSE)
+    if (length (blanks) > 0)
+        message ("There are unnamed chunks in [", paste0 (blanks, collapse = ", "), "]")
+
+    return (length (repeats) == 0 & length (blanks) == 0)
 }
 if (!dupl_chunk_names ())
-    stop ("Files contain duplicated chunk names")
+    stop ("Files contain duplicated or blank chunk names")
