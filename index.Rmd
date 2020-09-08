@@ -18,10 +18,12 @@ favicon: "favicon/favicon.ico"
 ```{r getbib, include = FALSE, eval = TRUE}
 # RefManageR is no longer sufficiently reliable, so bibliography is manually
 # downloaded for the moment
-if (!file.exists ("statsoft.bib")) {
-   refs <- RefManageR::ReadZotero(group = "2416765",
-                                 .params = list (limit = 100))
-   RefManageR::WriteBib(refs, "statsoft.bib")
+if (!file.exists("statsoft.bib")) {
+  refs <- RefManageR::ReadZotero(
+    group = "2416765",
+    .params = list(limit = 100)
+  )
+  RefManageR::WriteBib(refs, "statsoft.bib")
 }
 ```
 ```{r updates, echo = FALSE}
@@ -29,8 +31,8 @@ if (!file.exists ("statsoft.bib")) {
 # https://bookdown.org/yihui/bookdown/html-widgets.html
 install.packages("webshot")
 webshot::install_phantomjs()
-install.packages("tinytex")
-tinytex::tlmgr_update()
+# install.packages("tinytex")
+# tinytex::tlmgr_update()
 ```
 
 
@@ -126,5 +128,3 @@ This project follows the [all-contributors](https://allcontributors.org) specifi
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
-
