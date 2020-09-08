@@ -2,9 +2,14 @@
 
 dupl_chunk_names <- function () {
     x <- readLines ("_bookdown.yml")
-    rmd <- gsub ("rmd_files:\\s?|\\[|\\]", "", x [grep ("^rmd_files", x)])
-    rmd <- vapply (strsplit (rmd, ", ") [[1]], function (i)
-                   gsub ("\"", "", i), character (1), USE.NAMES = FALSE)
+
+    rmd1 <- grep ("^rmd_files", x)
+    rmd2 <- grep ("\\]$", x)
+    rmd2 <- rmd2 [which (rmd2 >= rmd1 [1])] [1]
+    rmd <- gsub ("rmd_files:\\s?|\\[|\\]", "", x [rmd1:rmd2])
+
+    rmd <- unlist (lapply (rmd, function (i)
+                   gsub ("\"|^\\s+", "", strsplit (i, ",") [[1]])))
 
     ptn <- "^\\`\\`\\`\\{r\\s?"
     chunk_names <- list ()
@@ -17,12 +22,12 @@ dupl_chunk_names <- function () {
     names (chunk_names) <- rmd
     chunk_names <- unlist (chunk_names)
 
-    repeats <- chunk_names [which (duplicated (chunk_names))]
+    repeats <- chunk_names [which (duplicated (chunk_names [chunk_names != ""]))]
     for (r in repeats) {
         n <- vapply (names (chunk_names) [which (chunk_names == r)], function (i)
-                     substring (i, 1, nchar (i) - 1), character (1), USE.NAMES = FALSE)
+                     gsub ("[0-9]+$", "", i), character (1), USE.NAMES = FALSE)
         message ("Repeated chunk name [", unname (r),
-                 "] in [", paste0 (n, collapse = ", "), "]")
+                 "] in [", paste0 (unique (n), collapse = ", "), "]")
     }
 
     blanks <- vapply (names (chunk_names) [which (chunk_names == "")], function (i)
