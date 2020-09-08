@@ -32,11 +32,6 @@ repos:
           .*\.sh|
           .*\.RData
           )$
-    -   id: lintr
-    -   id: readme-rmd-rendered
-    -   id: parsable-R
-    -   id: no-browser-statement
-    -   id: deps-in-desc
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
     hooks: 
@@ -51,4 +46,9 @@ repos:
         entry: Cannot commit .Rhistory, .RData, .Rds or .rds.
         language: fail
         files: '\.Rhistory|\.RData|\.Rds|\.rds$'
+        # `exclude: <regex>` to allow committing specific files.
+    -   id: chunk-names
+        name: All chunk names are unique
+        entry: ./scripts/chunknames
+        language: script
         # `exclude: <regex>` to allow committing specific files.

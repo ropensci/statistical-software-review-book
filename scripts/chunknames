@@ -1,0 +1,30 @@
+#!/usr/bin/env Rscript
+
+dupl_chunk_names <- function () {
+    x <- readLines ("_bookdown.yml")
+    rmd <- gsub ("rmd_files:\\s?|\\[|\\]", "", x [grep ("^rmd_files", x)])
+    rmd <- vapply (strsplit (rmd, ", ") [[1]], function (i)
+                   gsub ("\"", "", i), character (1), USE.NAMES = FALSE)
+
+    ptn <- "^\\`\\`\\`\\{r\\s?"
+    chunk_names <- list ()
+    for (f in rmd) {
+        x <- readLines (f)
+        x <- gsub (ptn, "", x [grep (ptn, x)])
+        # then remove all stuff after first comma
+        chunk_names [[length (chunk_names) + 1]] <- gsub (",.*$", "", x)
+    }
+    names (chunk_names) <- rmd
+    chunk_names <- unlist (chunk_names)
+
+    repeats <- chunk_names [which (duplicated (chunk_names))]
+    for (r in repeats) {
+        n <- vapply (names (chunk_names) [which (chunk_names == r)], function (i)
+                     substring (i, 1, nchar (i) - 1), character (1), USE.NAMES = FALSE)
+        message ("Repeated chunk name [", unname (r),
+                 "] in [", paste0 (n, collapse = ", "), "]")
+    }
+    return (length (repeats) == 0)
+}
+if (!dupl_chunk_names ())
+    stop ("Files contain duplicated chunk names")
