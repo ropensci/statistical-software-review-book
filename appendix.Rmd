@@ -4,7 +4,7 @@
 
 ## Notes on Scope and the Python Statistical Ecosystem {#python}
 
-```{r startup, echo = FALSE, message = FALSE}
+```{r startup-appendix, echo = FALSE, message = FALSE}
 library (dplyr)
 library (ggplot2)
 library (rvest)
@@ -133,7 +133,7 @@ are scaled by numbers of occurrences, and edges by numbers of co-occurrences.
 here](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms/index.html)
 for full-screen version with link to code.)
 
-```{r message = FALSE}
+```{r, message = FALSE}
 x <- readLines ("stat-software-categories.md")
 x <- x [grep ("[0-9]*\\. \\[", x)]
 names <- vapply (x, function (i) {

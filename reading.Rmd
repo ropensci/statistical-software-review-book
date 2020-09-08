@@ -36,14 +36,14 @@ software.
 
 ---
 
-```{r loadarticles, child = "scripts/bibliography/report.md"}
+```{r loadreports, child = "scripts/bibliography/report.md"}
 ```
 
 ## Computer Programs
 
 ---
 
-```{r loadsoftware, child = "scripts/bibliography/computerProgram.md"}
+```{r loadsoftware-general, child = "scripts/bibliography/computerProgram.md"}
 ```
 
 ### Computer Programs (Testing)
@@ -52,7 +52,7 @@ Software specifically designed for testing.
 
 ---
 
-```{r loadsoftware, child = "scripts/bibliography/computerProgramTesting.md"}
+```{r loadsoftware-testing, child = "scripts/bibliography/computerProgramTesting.md"}
 ```
 
 ## Web Pages

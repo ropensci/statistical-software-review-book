@@ -9,7 +9,7 @@ output:
         theme: flatly
 ---
 
-```{r options, echo = FALSE}
+```{r, options, echo = FALSE}
 knitr::opts_chunk$set(
   out.width = "100%",
   collapse = TRUE,
@@ -388,7 +388,7 @@ close (con)
 
 Then do a similar network analysis relating input and output data forms
 
-```{r io-nodes-edges}
+```{r io-nodes-edges-net}
 library (dplyr)
 terms <- table (c (unlist (input), unlist (output)))
 nodes <- data.frame (id = seq_along (terms),

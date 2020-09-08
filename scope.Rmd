@@ -1,6 +1,6 @@
 #  (PART) Scope and Standards {-}
 
-```{r startup, echo = FALSE, message = FALSE}
+```{r startup-scope, echo = FALSE, message = FALSE}
 library (dplyr)
 library (rvest)
 library (igraph)

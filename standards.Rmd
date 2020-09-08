@@ -90,21 +90,21 @@ and accompanying results---their so-called
 ["notebooks"](https://akshajverma.com/NNbenchmarkWeb/notebooks.html)---of
 applying their benchmarks to a suite of neural network packages.
 
-```{r test, child = "standards/general.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-gen, child = "standards/general.Rmd", eval = TRUE, echo = TRUE}
 ```
 
-```{r test, child = "standards/bayesian.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-bayes, child = "standards/bayesian.Rmd", eval = TRUE, echo = TRUE}
 ```
 
-```{r test, child = "standards/regression.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-reg, child = "standards/regression.Rmd", eval = TRUE, echo = TRUE}
 ```
 
-```{r test, child = "standards/unsupervised.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-unsup, child = "standards/unsupervised.Rmd", eval = TRUE, echo = TRUE}
 ```
 
-```{r test, child = "standards/eda.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-eda, child = "standards/eda.Rmd", eval = TRUE, echo = TRUE}
 ```
 
-```{r test, child = "standards/time-series.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-ts, child = "standards/time-series.Rmd", eval = TRUE, echo = TRUE}
 ```
 
