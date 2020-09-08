@@ -1,5 +1,5 @@
 
-```{r getbib, echo = FALSE, message = FALSE, eval = TRUE}
+```{r getbib-reading, echo = FALSE, message = FALSE, eval = TRUE}
 source ("scripts/getZoteroNotes.R")
 ```
 

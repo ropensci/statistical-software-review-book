@@ -380,11 +380,9 @@ rOpenSci insists in turn on the two additional aspects, that software
 Perhaps the most influential difference between the two systems is that the
 rOpenSci template concludes with the following lines:
 
-```{r eval = FALSE, echo = TRUE}
 ---
 
 ### Review Comments
-```
 
 The section break and sub-section heading act in combination as a prompt for
 reviewers to add their own discursive comments, whereas the JOSS template has
