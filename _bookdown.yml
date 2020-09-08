@@ -4,5 +4,5 @@ repo: https://github.com/ropenscilabs/statistical-software-peer-review
 output_dir: docs
 rmd_files: ["index.Rmd", "overview.Rmd", "reading.Rmd", "scope.Rmd", "standards.Rmd", "assessment.Rmd", "lifecycle.Rmd", "process.Rmd", "appendix.Rmd"]
 clean: [packages.bib, bookdown.bbl]
-new_session: yes
+#new_session: yes
 before_chapter_script: "_common.R"
