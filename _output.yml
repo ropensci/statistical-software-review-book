@@ -10,7 +10,7 @@ bookdown::gitbook:
           <li><a href="https://github.com/ropenscilabs/statistical-software-peer-review"><i class="fa fa-github"></i> Statistical Software Peer Review</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
-    download: [pdf]
+        #download: [pdf]
     edit:
         link: https://github.com/ropenscilabs/statistical-software-peer-review/edit/master/%s
         text: "Edit this chapter"

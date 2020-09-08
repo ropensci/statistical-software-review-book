@@ -43,8 +43,8 @@ jobs:
       - name: Render Book html
         run: Rscript -e 'bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook")'
 
-      - name: Render Book pdf
-        run: Rscript -e 'bookdown::render_book("index.Rmd", new_session = FALSE, output_format = "bookdown::pdf_book")'
+        #- name: Render Book pdf
+        #run: Rscript -e 'bookdown::render_book("index.Rmd", new_session = FALSE, output_format = "bookdown::pdf_book")'
 
       - name: Commit results
         run: |
