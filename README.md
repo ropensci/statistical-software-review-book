@@ -29,7 +29,6 @@ community input and prioritizing our work. They are:
 -   [Rebecca Killick](http://www.lancs.ac.uk/~killick/), Lancaster University
 -   [Stephanie Hicks](https://www.stephaniehicks.com/) ([\@stephaniehicks](https://twitter.com/stephaniehicks)), Johns Hopkins University
 -   [Max Kuhn](http://appliedpredictivemodeling.com/) ([\@topepos](https://twitter.com/topepos)), RStudio
--   [Martin Morgan](https://www.roswellpark.org/martin-morgan) ([\@mt_morgan](https://twitter.com/mt_morgan)), Roswell Park Comprehensive Cancer Center
 
 This work is [
 supported by the Sloan Foundation](https://ropensci.org/blog/2019/07/15/expanding-software-review/)
