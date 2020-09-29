@@ -47,9 +47,10 @@ a close collaboration with its sister organization,
 [pyOpenSci](https://www.pyopensci.org).
 
 ```{r cloc-stats, echo = FALSE}
-x <- readRDS("./scripts/cran-cloc-all.Rds")
-cloc_n <- length(unique(x$package))
-cloc_date <- format(as.Date(file.info("./scripts/cran-cloc-all.Rds")$mtime),
+# x <- readRDS("./scripts/cran-cloc-all.Rds")
+# cloc_n <- length(unique(x$package))
+cloc_n <- 15735 # TODO: Add that from cran-cloc-all as attribute of cran-cloc summary
+cloc_date <- format(as.Date(file.info("./scripts/cran-cloc.Rds")$mtime),
   format = "%d %b %Y"
 )
 ```
