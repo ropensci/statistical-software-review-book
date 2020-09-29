@@ -1,6 +1,6 @@
-book_filename: "statistical-software-peer-review"
+book_filename: "statistical-software-review-book"
 chapter_name: "Chapter "
-repo: https://github.com/ropenscilabs/statistical-software-peer-review
+repo: https://github.com/ropenscilabs/statistical-software-review-book
 output_dir: docs
 rmd_files: ["index.Rmd", "overview.Rmd", "reading.Rmd", "scope.Rmd", "standards.Rmd", "assessment.Rmd", "lifecycle.Rmd", "process.Rmd", "appendix.Rmd"]
 clean: [packages.bib, bookdown.bbl]

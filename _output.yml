@@ -7,12 +7,12 @@ bookdown::gitbook:
     toc:
       collapse: subsection
       before: |
-          <li><a href="https://github.com/ropenscilabs/statistical-software-peer-review"><i class="fa fa-github"></i> Statistical Software Peer Review</a></li>
+          <li><a href="https://github.com/ropenscilabs/statistical-software-review-book"><i class="fa fa-github"></i> Statistical Software Peer Review</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
         #download: [pdf]
     edit:
-        link: https://github.com/ropenscilabs/statistical-software-peer-review/edit/master/%s
+        link: https://github.com/ropenscilabs/statistical-software-review-book/edit/master/%s
         text: "Edit this chapter"
     toolbar:
       position: fixed

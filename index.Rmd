@@ -7,7 +7,7 @@ documentclass: book
 bibliography: [statsoft.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: ropenscilabs/statistical-software-peer-review
+github-repo: ropenscilabs/statistical-software-review-book
 url: 'https\://ropensci-blog-guidance.netlify.com/'
 apple-touch-icon: "favicon/apple-touch-icon.png"
 apple-touch-icon-size: 120
@@ -53,7 +53,7 @@ documenting not only our guidelines for statistical software but also the proces
 of expanding the scope of review so it may be reproduced in other domains.
 
 You are invited to contribute to this project by filing suggestions as
-[issues in the book's GitHub repository](https://github.com/ropenscilabs/statistical-software-peer-review/issues).
+[issues in the book's GitHub repository](https://github.com/ropenscilabs/statistical-software-review-book/issues).
 We also have a dedicated [area for discussion on the rOpenSci forum](https://discuss.ropensci.org/c/statistical-software-peer-review/28).
 We have noted in the chapters we're actively seeking more input and feedback by
 highlighting them their titles in <span style="color:red;">red and adding
@@ -89,37 +89,37 @@ This project follows the [all-contributors](https://allcontributors.org) specifi
 <a href="https://github.com/mpadge">
 <img src="https://avatars1.githubusercontent.com/u/6697851?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-peer-review/commits?author=mpadge">mpadge</a>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=mpadge">mpadge</a>
 </td>
 <td align="center">
 <a href="https://github.com/noamross">
 <img src="https://avatars1.githubusercontent.com/u/571752?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-peer-review/commits?author=noamross">noamross</a>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=noamross">noamross</a>
 </td>
 <td align="center">
 <a href="https://github.com/maelle">
 <img src="https://avatars0.githubusercontent.com/u/8360597?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-peer-review/commits?author=maelle">maelle</a>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=maelle">maelle</a>
 </td>
 <td align="center">
 <a href="https://github.com/richfitz">
 <img src="https://avatars1.githubusercontent.com/u/1558093?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-peer-review/commits?author=richfitz">richfitz</a>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=richfitz">richfitz</a>
 </td>
 <td align="center">
 <a href="https://github.com/elong0527">
 <img src="https://avatars0.githubusercontent.com/u/465246?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-peer-review/commits?author=elong0527">elong0527</a>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=elong0527">elong0527</a>
 </td>
 <td align="center">
 <a href="https://github.com/Pakillo">
 <img src="https://avatars0.githubusercontent.com/u/1597843?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-peer-review/commits?author=Pakillo">Pakillo</a>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=Pakillo">Pakillo</a>
 </td>
 </tr>
 
