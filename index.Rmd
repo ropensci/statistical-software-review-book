@@ -76,11 +76,14 @@ and is organized under an
 
 ## Contributors
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 
-This project follows the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+This project uses the [`allcontributor` package](https://github.com/mpadge/allcontributor) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+
+## Code
 
 <table>
 
@@ -120,6 +123,28 @@ This project follows the [all-contributors](https://allcontributors.org) specifi
 <img src="https://avatars0.githubusercontent.com/u/1597843?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=Pakillo">Pakillo</a>
+</td>
+</tr>
+
+</table>
+
+
+## Issue Authors
+
+<table>
+
+<tr>
+<td align="center">
+<a href="https://github.com/elimillera">
+<img src="https://avatars1.githubusercontent.com/u/24767886?u=16d22ed97b442cfa1847d0f110b7dbf5c190c5a5&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/issues?q=is%3Aissue+author%3Aelimillera">elimillera</a>
+</td>
+<td align="center">
+<a href="https://github.com/IndrajeetPatil">
+<img src="https://avatars0.githubusercontent.com/u/11330453?u=6eb9f03fe4cc5a2a67633252acda215b113234be&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/issues?q=is%3Aissue+author%3AIndrajeetPatil">IndrajeetPatil</a>
 </td>
 </tr>
 
