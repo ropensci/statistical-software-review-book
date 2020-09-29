@@ -2,9 +2,9 @@
 
 #  Project Overview {#overview}
 
-This chapter lays out key considerations, outstanding
-questions, and tasks for our first year of work, for purposes of generating
-community feedback for the project. It consists of the following sections:
+This chapter lays out key considerations, outstanding questions and tasks for
+purposes of generating community feedback for the project. It consists of the
+following sections:
 
 -   **[Scope of Statistical Software Review](#scope)** in which we address the
     scope of the project, and scopes of definition of "statistical software".
@@ -42,19 +42,20 @@ explicit feedback on the above aspects of the project.
     statistical software mutually improve quality, reproducibility, and
     reliability of research.
 
--   To provide software creators with a set of tools to assess the quality of
-    their work, and a process by which to improve it.
+-   To provide software creators with a set of tools and standards to assess
+    the quality of their work, and processes by which to improve it.
 
 -   To provide statistical software developers, users, and consumers of results
     a discoverable "badge" that transparently conveys a level of assurance of
-    software quality and may be usable as professional credit.
+    software quality and that may also serve as a symbol of professional
+    credit.
 
 -   To create a set of standards that may be adopted and adapted by open source
     and private groups, academic journals, or other statistical software
     evaluation projects.
 
--   To focus on R as primary language, but separate language-specific from
-    language-agnostic components so as to maximize adaptability to other
+-   To focus on R as primary language, but also to separate language-specific
+    from language-agnostic components so as to maximize adaptability to other
     contexts.
 
 -   To focus on problems and solutions specific to statistical software.
@@ -215,4 +216,3 @@ throughout any of the remainder of this document. It is important the future
 revisions return to this point, and ensure that each of the following sections
 are appropriately modified to ensure effective consideration and incorporation
 of the concerns listed immediately above.
-

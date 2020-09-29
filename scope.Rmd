@@ -1,11 +1,11 @@
 #  (PART) Scope and Standards {-}
 
 ```{r startup-scope, echo = FALSE, message = FALSE}
-library (dplyr)
-library (rvest)
-library (igraph)
-library (ggplot2)
-theme_set (theme_minimal ())
+library(dplyr)
+library(rvest)
+library(igraph)
+library(ggplot2)
+theme_set(theme_minimal())
 ```
 
 # Scope {#scope}
@@ -46,34 +46,44 @@ standards applicable to Python packages must be considered.  rOpenSci also has
 a close collaboration with its sister organization,
 [pyOpenSci](https://www.pyopensci.org).
 
+```{r cloc-stats, echo = FALSE}
+x <- readRDS("./scripts/cran-cloc-all.Rds")
+cloc_n <- length(unique(x$package))
+cloc_date <- format(as.Date(file.info("./scripts/cran-cloc-all.Rds")$mtime),
+  format = "%d %b %Y"
+)
+```
+
 In addition it is particularly important to note that many **R** packages
 include code from a variety of other languages. The following table summarises
-statistics for the top ten languages from all `r format (nrow
-(available.packages ()), big.mark = ",")` [CRAN](https://cran.r-project.org)
-packages as of `r format(Sys.time(), "%a %b %d %Y")` (including only code from
-the `/R`, `/src`, and `/inst` directories of each package).
+statistics for the top ten languages from all `r format (cloc_n, big.mark
+= ",")` [CRAN](https://cran.r-project.org) packages as of `r cloc_date`
+(including only code from the `/R`, `/src`, and `/inst` directories of each
+package).
 
 ```{r cran-cloc, message = FALSE, echo = FALSE, eval = FALSE}
-x <- readRDS ("./scripts/cran-cloc-all.Rds") %>%
-    group_by (language) %>%
-    summarise (loc = sum (loc),
-               file_count = sum (file_count),
-               comment_lines = sum (comment_lines)) %>%
-    arrange (desc (loc))
-saveRDS (x, "./scripts/cran-cloc.Rds")
+x <- readRDS("./scripts/cran-cloc-all.Rds") %>%
+  group_by(language) %>%
+  summarise(
+    loc = sum(loc),
+    file_count = sum(file_count),
+    comment_lines = sum(comment_lines)
+  ) %>%
+  arrange(desc(loc))
+saveRDS(x, "./scripts/cran-cloc.Rds")
 ```
 
 
 ```{r language-table, message = FALSE, echo = FALSE}
-library (dplyr)
-x <- readRDS ("./scripts/cran-cloc.Rds") %>%
-    select (language, loc) %>%
-    mutate (proportion = loc / sum (loc)) %>%
-    rename ("lines" = loc)
-clines <- sum (x$lines [grep ("^C", x$language [1:8])])
-weblines <- sum (x$lines [x$language %in% c ("HTML", "JavaScript", "CSS")])
-xf <- mutate (x, lines = format (lines, big.mark = ","))
-knitr::kable (xf [1:10, ], digits = c (NA, 0, 3), caption = "Proportion of code lines in different languages in all CRAN packages.")
+library(dplyr)
+x <- readRDS("./scripts/cran-cloc.Rds") %>%
+  select(language, loc) %>%
+  mutate(proportion = loc / sum(loc)) %>%
+  rename("lines" = loc)
+clines <- sum(x$lines [grep("^C", x$language [1:8])])
+weblines <- sum(x$lines [x$language %in% c("HTML", "JavaScript", "CSS")])
+xf <- mutate(x, lines = format(lines, big.mark = ","))
+knitr::kable(xf [1:10, ], digits = c(NA, 0, 3), caption = "Proportion of code lines in different languages in all CRAN packages.")
 ```
 
 Close to one half of all code in all R packages to date has been written in the
@@ -204,53 +214,62 @@ nodes that emerge from these empirical analyses (with associated *relative*
 sizes in parentheses) are shown in the following table.
 
 ```{r top-terms, message = FALSE}
-x <- readLines ("scripts/joss-abstracts/categories.Rmd")
-x <- x [grep ("[0-9]*\\. \\[", x)]
-names <- vapply (x, function (i) {
-                     res <- strsplit (i, "\\[\\`") [[1]]
-                     strsplit (res, "\\`\\]") [[2]] [1] },
-                     character (1),
-                     USE.NAMES = FALSE)
-terms <- lapply (x, function (i) {
-                 res <- strsplit (i, ":\\s") [[1]] [2]
-                 res <- strsplit (res, ";\\s") [[1]] [1] # rm "; input"
-                 strsplit (res, ",\\s") [[1]]   })
-input <- lapply (x, function (i) {
-                     res <- strsplit (i, "input: ") [[1]] [2]
-                     res <- strsplit (res, ";\\s") [[1]] [1]
-                     if (grepl (",\\s", res))
-                         res <- strsplit (res, ",\\s") [[1]]
-                     return (res)   })
-output <- lapply (x, function (i) {
-                     res <- strsplit (i, "output: ") [[1]] [2]
-                     if (grepl (",\\s", res))
-                         res <- strsplit (res, ",\\s") [[1]]
-                     return (res)   })
-names (terms) <- names (input) <- names (output) <- names
-n_abstracts <- length (terms)
+x <- readLines("scripts/joss-abstracts/categories.Rmd")
+x <- x [grep("[0-9]*\\. \\[", x)]
+names <- vapply(x, function(i) {
+  res <- strsplit(i, "\\[\\`") [[1]]
+  strsplit(res, "\\`\\]") [[2]] [1]
+},
+character(1),
+USE.NAMES = FALSE
+)
+terms <- lapply(x, function(i) {
+  res <- strsplit(i, ":\\s") [[1]] [2]
+  res <- strsplit(res, ";\\s") [[1]] [1] # rm "; input"
+  strsplit(res, ",\\s") [[1]]
+})
+input <- lapply(x, function(i) {
+  res <- strsplit(i, "input: ") [[1]] [2]
+  res <- strsplit(res, ";\\s") [[1]] [1]
+  if (grepl(",\\s", res)) {
+    res <- strsplit(res, ",\\s") [[1]]
+  }
+  return(res)
+})
+output <- lapply(x, function(i) {
+  res <- strsplit(i, "output: ") [[1]] [2]
+  if (grepl(",\\s", res)) {
+    res <- strsplit(res, ",\\s") [[1]]
+  }
+  return(res)
+})
+names(terms) <- names(input) <- names(output) <- names
+n_abstracts <- length(terms)
 terms0 <- terms # used below
 
-terms <- unlist (terms) %>%
-    table () %>%
-    sort (decreasing = TRUE)
-terms <- data.frame (n = seq_along (terms),
-                     term = names (terms),
-                     proportion = as.integer (terms) / n_abstracts,
-                     stringsAsFactors = FALSE)
+terms <- unlist(terms) %>%
+  table() %>%
+  sort(decreasing = TRUE)
+terms <- data.frame(
+  n = seq_along(terms),
+  term = names(terms),
+  proportion = as.integer(terms) / n_abstracts,
+  stringsAsFactors = FALSE
+)
 terms$term [terms$term == "scores"] <- "statistical indices and scores"
-n <- max (which (terms$proportion > 0.05))
-knitr::kable (head (terms, n = n), digits = c (0, NA, 3), caption = "Most frequent key words from all JOSS abstracts (N = 92) for statistical software. Proportions are scaled *per abstract*, with each abstract generally having multiple key words, and so sum of proportions exceeds one.")
+n <- max(which(terms$proportion > 0.05))
+knitr::kable(head(terms, n = n), digits = c(0, NA, 3), caption = "Most frequent key words from all JOSS abstracts (N = 92) for statistical software. Proportions are scaled *per abstract*, with each abstract generally having multiple key words, and so sum of proportions exceeds one.")
 ```
 
 ```{r collate-categories}
-terms$term [terms$term %in% c ("Bayesian", "Monte Carlo")] <- "Bayesian & Monte Carlo"
-terms$term [terms$term %in% c ("dimensionality reduction", "feature selection")] <- "dimensionality reduction & feature selection"
-terms$term [terms$term %in% c ("regression", "splines", "interpolation")] <- "regression/splines/interpolation"
+terms$term [terms$term %in% c("Bayesian", "Monte Carlo")] <- "Bayesian & Monte Carlo"
+terms$term [terms$term %in% c("dimensionality reduction", "feature selection")] <- "dimensionality reduction & feature selection"
+terms$term [terms$term %in% c("regression", "splines", "interpolation")] <- "regression/splines/interpolation"
 terms$term [terms$term == "EDA"] <- "Exploratory Data Analysis (EDA)"
 terms <- terms %>%
-    group_by (term) %>%
-    summarise (proportion = sum (proportion)) %>%
-    arrange (by = desc (proportion))
+  group_by(term) %>%
+  summarise(proportion = sum(proportion)) %>%
+  arrange(by = desc(proportion))
 ```
 
 
@@ -263,40 +282,44 @@ categories of "spatial" and "education". We have excluded the key word
 collected a few strongly-connected terms into single categories.
 
 ```{r methods-categories}
-out <- data.frame (terms [which (terms$proportion > 0.05), ])
-out <- out [which (!out$term == "estimates"), ]
-out <- rbind (out, terms [which (terms$term == "spatial"), ],
-              terms [which (terms$term == "education"), ])
+out <- data.frame(terms [which(terms$proportion > 0.05), ])
+out <- out [which(!out$term == "estimates"), ]
+out <- rbind(
+  out, terms [which(terms$term == "spatial"), ],
+  terms [which(terms$term == "education"), ]
+)
 out$comment <- ""
 out$comment [out$term == "dimensionality reduction & feature selection"] <-
-    "Commonly as a result of ML algorithms"
+  "Commonly as a result of ML algorithms"
 out$comment [out$term == "regression/splines/interpolation"] <-
-    "Including function data analysis"
+  "Including function data analysis"
 out$comment [out$term == "probability distributions"] <-
-    "Including kernel densities, likelihood estimates and estimators, and sampling routines"
+  "Including kernel densities, likelihood estimates and estimators, and sampling routines"
 out$comment [out$term == "categorical variables"] <-
-    "Including latent variables, and those output from ML algorithms. Note also that method for dimensionality reduction (such as clustering) often transform data to categorical forms."
+  "Including latent variables, and those output from ML algorithms. Note also that method for dimensionality reduction (such as clustering) often transform data to categorical forms."
 out$comment [out$term == "Exploratory Data Analysis (EDA)"] <-
-    "Including information statistics such as Akaike's criterion, and techniques such as random forests. Often related to workflow software."
+  "Including information statistics such as Akaike's criterion, and techniques such as random forests. Often related to workflow software."
 out$comment [out$term == "survival"] <-
-    "strongly related to EDA, yet differing in being strictly descriptive of software *outputs* whereas EDA may include routines to explore data *inputs* and other pre-output stages of analysis."
+  "strongly related to EDA, yet differing in being strictly descriptive of software *outputs* whereas EDA may include routines to explore data *inputs* and other pre-output stages of analysis."
 out$comment [out$term == "summary statistics"] <-
-    "Primarily related in the empirical data to regression and survival analyses, yet clearly a distinct category of its own."
+  "Primarily related in the empirical data to regression and survival analyses, yet clearly a distinct category of its own."
 out$comment [out$term == "workflow"] <- "Often related to EDA, and very commonly also to ML."
 out$comment [out$term == "model selection"] <-
-    "A important intermediate node between such categories as ML, Bayesian and Monte Carlo techniques, visualisation, and EDA."
+  "A important intermediate node between such categories as ML, Bayesian and Monte Carlo techniques, visualisation, and EDA."
 out$comment [out$term == "statistical indices and scores"] <-
-    "Software generally intended to produce specific indices or scores as statistical output"
+  "Software generally intended to produce specific indices or scores as statistical output"
 out$comment [out$term == "spatial"] <-
-    "Also an important intermediate node connecting several other nodes, yet defining its own distinct cluster reflecting a distinct area of expertise."
+  "Also an important intermediate node connecting several other nodes, yet defining its own distinct cluster reflecting a distinct area of expertise."
 
-out <- data.frame (n = seq (nrow (out)),
-                   term = out$term,
-                   proprtion = out$proportion,
-                   comment = out$comment,
-                   stringsAsFactors = FALSE)
+out <- data.frame(
+  n = seq(nrow(out)),
+  term = out$term,
+  proprtion = out$proportion,
+  comment = out$comment,
+  stringsAsFactors = FALSE
+)
 
-knitr::kable (out, digits = c (0, NA, 3, NA), caption = "Proposed categorisation of statistical software, with corresponding proportions of all JOSS software matching each category")
+knitr::kable(out, digits = c(0, NA, 3, NA), caption = "Proposed categorisation of statistical software, with corresponding proportions of all JOSS software matching each category")
 ```
 
 
@@ -308,80 +331,91 @@ best inspected by dragging individual nodes to see their connections to
 others).
 
 ```{r visnetwork-simplified}
-nodes <- table (unlist (terms0))
-nodes <- data.frame (id = names (nodes),
-                     label = names (nodes),
-                     value = as.integer (nodes),
-                     stringsAsFactors = FALSE)
-edges <- lapply (terms0, function (i) {
-                     if (length (i) > 1) {
-                         res <- sort (i)
-                         n <- combn (seq_along (res), 2)
-                         cbind (res [n [1, ]],
-                                res [n [2, ]])
-                     }  })
-edges <- do.call (rbind, edges)
-edges <- data.frame (from = edges [, 1],
-                     to = edges [, 2],
-                     stringsAsFactors = FALSE) %>%
-    group_by (from, to) %>%
-    summarise (width = length (from)) %>%
-    ungroup ()
+nodes <- table(unlist(terms0))
+nodes <- data.frame(
+  id = names(nodes),
+  label = names(nodes),
+  value = as.integer(nodes),
+  stringsAsFactors = FALSE
+)
+edges <- lapply(terms0, function(i) {
+  if (length(i) > 1) {
+    res <- sort(i)
+    n <- combn(seq_along(res), 2)
+    cbind(
+      res [n [1, ]],
+      res [n [2, ]]
+    )
+  }
+})
+edges <- do.call(rbind, edges)
+edges <- data.frame(
+  from = edges [, 1],
+  to = edges [, 2],
+  stringsAsFactors = FALSE
+) %>%
+  group_by(from, to) %>%
+  summarise(width = length(from)) %>%
+  ungroup()
 # Remove isolated edges:
 # annotation, areal weights, binomial distribution, cubature, gene loci,
 # generalized least squares, misspecification, classification, interpolation,
 # over-dispersion, integration, random effects, probit model
-cl <- graph_from_data_frame (edges) %>%
-    clusters ()
-out <- names (cl$membership [which (cl$membership != which.max (cl$csize))])
-nodes <- nodes [which (!nodes$id %in% out), ]
-edges <- edges [which (!(edges$from %in% out | edges$to %in% out)), ]
+cl <- graph_from_data_frame(edges) %>%
+  clusters()
+out <- names(cl$membership [which(cl$membership != which.max(cl$csize))])
+nodes <- nodes [which(!nodes$id %in% out), ]
+edges <- edges [which(!(edges$from %in% out | edges$to %in% out)), ]
 
 # manually agglomerate some categories
-from <- c ("Bayesian|Monte Carlo", "dimensionality reduction|feature selection",
-        "^regression|splines|interpolation")
-to <- c ("Bayes/MC", "dimensionality reduction", "regression")
-for (i in seq_along (from)) {
-    edges$from [grep (from [i], edges$from)] <- to [i]
-    edges$to [grep (from [i], edges$to)] <- to [i]
-    nodes$id [grep (from [i], nodes$label)] <- to [i]
-    nodes$label [grep (from [i], nodes$label)] <- to [i]
+from <- c(
+  "Bayesian|Monte Carlo", "dimensionality reduction|feature selection",
+  "^regression|splines|interpolation"
+)
+to <- c("Bayes/MC", "dimensionality reduction", "regression")
+for (i in seq_along(from)) {
+  edges$from [grep(from [i], edges$from)] <- to [i]
+  edges$to [grep(from [i], edges$to)] <- to [i]
+  nodes$id [grep(from [i], nodes$label)] <- to [i]
+  nodes$label [grep(from [i], nodes$label)] <- to [i]
 }
 edges <- edges %>%
-    group_by (from, to) %>%
-    summarise (width = sum (width)) %>%
-    ungroup ()
+  group_by(from, to) %>%
+  summarise(width = sum(width)) %>%
+  ungroup()
 nodes <- nodes %>%
-    group_by (label) %>%
-    summarise (value = sum (value)) %>%
-    transform (id = label)
+  group_by(label) %>%
+  summarise(value = sum(value)) %>%
+  transform(id = label)
 
-g <- graph_from_data_frame (edges)
-dg <- distances (g)
+g <- graph_from_data_frame(edges)
+dg <- distances(g)
 
 # add to edge distances all intermediate distances between O(2) connections
 edges2 <- edges
-dgnames <- rownames (dg)
-for (i in seq (nrow (edges2))) {
-    dgfrom <- match (edges2$from [i], rownames (dg))
-    dgto <- match (edges$to [i], colnames (dg))
-    nbs_from <- dgnames [which (dg [dgfrom, ] < 3)]
-    nbs_to <- dgnames [which (dg [, dgto] < 3)]
-    nbs <- intersect (nbs_from, nbs_to)
-    index <- which (edges$from == edges$from [i] & edges$to %in% nbs)
-    edges2$width [i] <- sum (edges$width [index])
+dgnames <- rownames(dg)
+for (i in seq(nrow(edges2))) {
+  dgfrom <- match(edges2$from [i], rownames(dg))
+  dgto <- match(edges$to [i], colnames(dg))
+  nbs_from <- dgnames [which(dg [dgfrom, ] < 3)]
+  nbs_to <- dgnames [which(dg [, dgto] < 3)]
+  nbs <- intersect(nbs_from, nbs_to)
+  index <- which(edges$from == edges$from [i] & edges$to %in% nbs)
+  edges2$width [i] <- sum(edges$width [index])
 }
 
-ns <- nodes [order (nodes$value, decreasing = TRUE), ]
-index <- c (which (!grepl ("estimates", ns$label [1:15])),
-            grep ("spatial|education", ns$label))
+ns <- nodes [order(nodes$value, decreasing = TRUE), ]
+index <- c(
+  which(!grepl("estimates", ns$label [1:15])),
+  grep("spatial|education", ns$label)
+)
 ns <- ns [index, ]
-es <- edges2 [which (edges$from %in% ns$label & edges$to %in% ns$label), ]
-#es <- es [which (es$from %in% ns$label & es$to %in% ns$label), ]
-es <- es [which (!es$from == es$to), ]
-es$width <- es$width * 5 / max (es$width)
-library (visNetwork)
-visNetwork (ns, es)
+es <- edges2 [which(edges$from %in% ns$label & edges$to %in% ns$label), ]
+# es <- es [which (es$from %in% ns$label & es$to %in% ns$label), ]
+es <- es [which(!es$from == es$to), ]
+es$width <- es$width * 5 / max(es$width)
+library(visNetwork)
+visNetwork(ns, es)
 ```
 
 Standards considered under any of the ensuing categories must be developed with
@@ -1168,4 +1202,3 @@ particular categories of statistical software:
    *Network Software* only because of restricted aspects such as internal data
    representations (such as `tcherry`) *not* be considered or assessed within
    that category.
-
