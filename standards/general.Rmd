@@ -13,6 +13,10 @@ R language itself between the following:
 - Factor
 - Ordered Factor
 
+The standards also refer to **tabular data**, intended to connote any
+rectangular data form, including but not limited to `matrix`, two-dimensional
+`array`, `data.frame`, and any extensions thereof such as `tibble`.
+
 
 ### Documentation
 
@@ -288,4 +292,3 @@ should adhere to the following standards:
   requirements, memory, expected runtime, and artefacts produced that may need
   manual inspection, should be described in developer documentation such as a
   `CONTRIBUTING.md` or `tests/README.md` file.*
-

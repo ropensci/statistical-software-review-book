@@ -81,7 +81,7 @@ first standards concerns the range of possible generic forms for input *data*:
     - **BS2.1b** *`data.frame` or equivalent objects which have list columns should ensure that those columns are appropriately pre-processed either through being removed, converted to equivalent vector columns where appropriate, or some other appropriate treatment. This behaviour should be tested.*
 - **BS2.2** *Bayesian Software should implement pre-processing routines to ensure
   all input data is dimensionally commensurate, for example by ensuring
-  commensurate lengths of vectors or numbers of rows of rectangular inputs.*
+  commensurate lengths of vectors or numbers of rows of tabular inputs.*
 
 #### Prior Distributions, Model Specifications, and Hyperparameters
 

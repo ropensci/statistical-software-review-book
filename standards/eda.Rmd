@@ -70,7 +70,7 @@ unique index index into any and all rows of that table. Index columns ensure
 the universal applicability of standard table join operations, such as those
 implemented via the [`dplyr` package](https://dplyr.tidyverse.org).
 
-- **EA2.0** *EDA Software which accepts standard rectangular data and implements or
+- **EA2.0** *EDA Software which accepts standard tabular data and implements or
   relies upon extensive table filter and join operations should utilise an
   **index column** system*
 - **EA2.1** *All values in an index column must be unique, and this uniqueness
@@ -143,15 +143,15 @@ storage.mode (sum (x))
 #> [1] "integer"
 ```
 
-Rectangular inputs in `data.frame` class may contain columns which are
+Tabular inputs in `data.frame` class may contain columns which are
 themselves defined by custom classes, and which possess additional attributes.
-EDA Software which accepts rectangular inputs should accordingly ensure:
+EDA Software which accepts tabular inputs should accordingly ensure:
 
-- **EA2.8** *EDA routines appropriately process rectangular input of custom classes,
+- **EA2.8** *EDA routines appropriately process tabular input of custom classes,
   ideally by means of a single pre-processing routine which converts
-  rectangular input to some standard form subsequently passed to all analytic
+  tabular input to some standard form subsequently passed to all analytic
   routines.*
-- **EA2.9** *EDA routines accept and appropriately process rectangular input in
+- **EA2.9** *EDA routines accept and appropriately process tabular input in
   which individual columns may be of custom sub-classes including additional
   attributes.*
 
@@ -221,4 +221,3 @@ applied, with an aim to minimise
 - **EA5.5** *Any packages which internally bundle libraries used for dynamic
   visualization and which are also bundled in other, pre-existing R packages,
   should explain the necessity and advantage of re-bundling that library.*
-
