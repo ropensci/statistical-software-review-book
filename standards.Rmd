@@ -45,7 +45,7 @@ Bibliography*](#reading), the following are particularly relevant:
    This list of criteria provides a singularly useful reference for software
    standards.
 2. The [Software Sustainability Institute](https://www.software.ac.uk/)'s
-   [*Software Evaulation
+   [*Software Evaluation
    Guide*](https://www.software.ac.uk/resources/guides-everything/software-evaluation-guide),
    in particular their guide to [*Criteria-based software
    evaluation*](http://software.ac.uk/sites/default/files/SSI-SoftwareEvaluationCriteria.pdf),
@@ -78,7 +78,7 @@ review](https://devguide.ropensci.org/), which provides standards of this type
 for R packages, primarily within its first chapter. Another notable example is
 the [tidyverse design guide](https://principles.tidyverse.org/), and the
 section on [Conventions for R Modeling
-Pacakges](https://tidymodels.github.io/model-implementation-principles/) which
+Packages](https://tidymodels.github.io/model-implementation-principles/) which
 provides guidance for model-fitting APIs.
 
 
@@ -108,3 +108,5 @@ applying their benchmarks to a suite of neural network packages.
 ```{r standards-ts, child = "standards/time-series.Rmd", eval = TRUE, echo = TRUE}
 ```
 
+```{r standards-ml, child = "standards/ml.Rmd", eval = TRUE, echo = TRUE}
+```
