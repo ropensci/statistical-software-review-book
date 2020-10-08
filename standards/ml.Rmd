@@ -192,11 +192,11 @@ Learning software is one for which there have been other notable attempts to
 develop standards. A particularly useful reference is the [MLPerf
 organization](https://www.mlperf.org/) which, among other activities, hosts
 several [github repositories](https://github.com/mlperf) providing reference
-datasets and benchmark conditions for comparing ML software. While such
-reference or benchmark standards are not explicitly referred in the current
-version of the following standards, we expect them to be gradually adapted and
-incorporated as we start to apply and refine these standards in application to
-software submitted to our review system.
+datasets and benchmark conditions for comparing performance aspects of ML
+software. While such reference or benchmark standards are not explicitly
+referred to in the current version of the following standards, we expect them
+to be gradually adapted and incorporated as we start to apply and refine our
+standards in application to software submitted to our review system.
 
 ### Input Data Specification
 
