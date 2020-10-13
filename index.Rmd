@@ -71,7 +71,7 @@ community input and prioritizing our work. They are:
 -   [Stephanie Hicks](https://www.stephaniehicks.com/) ([\@stephaniehicks](https://twitter.com/stephaniehicks)), Johns Hopkins University
 -   [Max Kuhn](http://appliedpredictivemodeling.com/) ([\@topepos](https://twitter.com/topepos)), RStudio
 -   [Paula Moraga](http://www.paulamoraga.com/), King Abdullah University of Science and Technology, Saudi Arabia
--   [Leonardo Collado-Torres](http://lcolladotor.github.io/), Lieber Institute for Brain Development, USA
+-   [Leonardo Collado-Torres](http://lcolladotor.github.io/) ([\@lcolladotor](https://twitter.com/lcolladotor)), Lieber Institute for Brain Development, USA
 
 This work is [
 supported by the Sloan Foundation](https://ropensci.org/blog/2019/07/15/expanding-software-review/)
