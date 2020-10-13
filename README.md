@@ -44,8 +44,8 @@ The structure of this book was derived from rOpenSci's [Blog Guidelines for Auth
 All of the content of this repository is licensed 
 [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 
-## Contributors
 
+## Contributors
 
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -54,7 +54,7 @@ All of the content of this repository is licensed
 
 This project uses the [`allcontributor` package](https://github.com/mpadge/allcontributor) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
 
-## Code
+## Content
 
 <table>
 

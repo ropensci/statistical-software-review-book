@@ -78,8 +78,8 @@ supported by the Sloan Foundation](https://ropensci.org/blog/2019/07/15/expandin
 and is organized under an
 [R Consortium Working Group](https://www.r-consortium.org/projects/isc-working-groups).
 
-## Contributors
 
+## Contributors
 
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -88,7 +88,7 @@ and is organized under an
 
 This project uses the [`allcontributor` package](https://github.com/mpadge/allcontributor) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
 
-## Code
+## Content
 
 <table>
 
