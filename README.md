@@ -47,6 +47,7 @@ All of the content of this repository is licensed
 ## Contributors
 
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -93,6 +94,12 @@ This project uses the [`allcontributor` package](https://github.com/mpadge/allco
 <img src="https://avatars0.githubusercontent.com/u/1597843?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=Pakillo">Pakillo</a>
+</td>
+<td align="center">
+<a href="https://github.com/briatte">
+<img src="https://avatars2.githubusercontent.com/u/322533?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=briatte">briatte</a>
 </td>
 </tr>
 
