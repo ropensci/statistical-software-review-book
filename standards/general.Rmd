@@ -6,16 +6,24 @@
 These standards refer to **Data Types** as the fundamental types defined by the
 R language itself between the following:
 
-- Continuous (numeric)
+- Continuous (`class = "numeric"`, `typeof = "double"`)
 - Integer
 - String / character
 - Date/Time
 - Factor
 - Ordered Factor
 
-The standards also refer to **tabular data**, intended to connote any
-rectangular data form, including but not limited to `matrix`, two-dimensional
-`array`, `data.frame`, and any extensions thereof such as `tibble`.
+The continuous type has a `typeof` of "double" because that represents the
+storage mode in the C representation of such objects, while the `class` as
+defined within R is referred to as "numeric". While `typeof` is not the same as
+`class`, with reference to continuous variables, "numeric" may be considered
+identical to "double" throughout.
+
+The term "character" is interpreted here to refer to a vector each element of
+which is an individual "character" object. The term "string" does not relate to
+any official R nomenclature, but is used here to refer for convenience to
+a character vector of length one; in other words, a "string" is the sole
+element of a single-length "character" vector.
 
 
 ### Documentation
@@ -34,6 +42,11 @@ requirements. It is worth noting that the
 readily extensible, as exemplified through the [`roxytest`
 package](https://github.com/mikldk/roxytest) for specifying tests *in-line*.
 
+- **G1.0** *Software should use [`roxygen`](https://roxygen2.r-lib.org/) for all
+  documentation.*
+    - **G1.0a** *All internal (non-exported) functions should also be documented
+      in standard [`roxygen`](https://roxygen2.r-lib.org/) format.*
+
 The following standards describe several forms of what might be considered
 "Supplementary Material". While there are many places within an R package where
 such material may be included, common locations include vignettes, or in
@@ -44,13 +57,13 @@ Where software supports a publication, all claims made in the publication with
 regard to software performance (for example, claims of algorithmic scaling or
 efficiency; or claims of accuracy), the following standard applies:
 
-- **G1.0** *Software should include all code necessary to reproduce results which
+- **G1.1** *Software should include all code necessary to reproduce results which
   form the basis of performance claims made in associated publications.*
 
 Where claims regarding aspects of software performance are made with respect to
 other extant R packages, the following standard applies:
 
-- **G1.1** *Software should include code necessary to compare performance claims
+- **G1.2** *Software should include code necessary to compare performance claims
   with alternative implementations in other R packages.*
 
 
@@ -217,7 +230,7 @@ of input classes.
 
 - **G3.0** *Statistical Software which enables outputs to be written to local files
   should parse parameters specifying file names to ensure appropriate file
-  suffixes are automatically generated where not provided.*
+  suffices are automatically generated where not provided.*
 
 ### Testing 
 
