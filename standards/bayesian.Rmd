@@ -5,16 +5,16 @@
 Bayesian and Monte Carlo Software (hereafter referred to for simplicity as
 "Bayesian Software") is presumed to perform one or more of the following steps:
 
-- 1. Document how to specify inputs including:
+1. Document how to specify inputs including:
     - 1.1 Data
     - 1.2 Hyperparameters determining prior distributions
     - 1.3 Parameters determining the computational processes
-- 2. Accept and validate all of forms of input
-- 3. Apply data transformation and pre-processing steps
-- 4. Apply one or more analytic algorithms, generally sampling algorithms used to
+2. Accept and validate all of forms of input
+3. Apply data transformation and pre-processing steps
+4. Apply one or more analytic algorithms, generally sampling algorithms used to
    generate estimates of posterior distributions
-- 5. Return the result of that algorithmic application
-- 6. Offer additional functionality such as printing or summarising return results
+5. Return the result of that algorithmic application
+6. Offer additional functionality such as printing or summarising return results
 
 This document details standards for each of these steps, each prefixed with "BS".
 
