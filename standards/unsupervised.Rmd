@@ -34,9 +34,9 @@ The following code demonstrates an example of a routine from the base `stats`
 package which fails to meet this standard.
 
 ```{r hclust-fail, eval = TRUE, error = TRUE}
-d <- dist(USArrests) # example from help file for 'hclust' function
-hc <- hclust(d) # okay
-hc <- hclust(as.matrix(d))
+d <- dist (USArrests) # example from help file for 'hclust' function
+hc <- hclust (d) # okay
+hc <- hclust (as.matrix (d))
 ```
 
 The latter fails, yet issues an uninformative error message that clearly
@@ -52,7 +52,7 @@ The following code provides simple examples of checks whether row and column
 names appear to have generic default values.
 
 ```{r row-col-names}
-x <- data.frame(matrix(1:10, ncol = 2))
+x <- data.frame (matrix (1:10, ncol = 2))
 x
 ```
 
@@ -60,7 +60,7 @@ Generic row names are almost always simple integer sequences, which the
 following condition confirms.
 
 ```{r rowname-check}
-identical(rownames(x), as.character(seq(nrow(x))))
+identical (rownames (x), as.character (seq (nrow (x))))
 ```
 
 Generic column names may come in a variety of formats. The following code uses
@@ -69,9 +69,8 @@ zero followed by a generic sequence of column numbers, appropriate for matching
 column names produced by generic construction of `data.frame` objects.
 
 ```{r colname-check}
-all(vapply(seq(ncol(x)), function(i) {
-  grepl(paste0("[[:alpha:]]0?", i), colnames(x) [i])
-}, logical(1)))
+all (vapply (seq (ncol (x)), function (i)
+             grepl (paste0 ("[[:alpha:]]0?", i), colnames (x) [i]), logical (1)))
 ```
 
 Messages should be issued in both of these cases. The following code
@@ -80,9 +79,9 @@ assertions, rather it silently returns an object with default labels.
 
 ```{r row-col-names2}
 u <- USArrests
-rownames(u) <- seq(nrow(u))
-hc <- hclust(dist(u))
-head(hc$labels)
+rownames (u) <- seq (nrow (u))
+hc <- hclust (dist (u))
+head (hc$labels)
 ```
 
 - **UL1.3** *Unsupervised Learning Software should transfer all relevant aspects
@@ -96,17 +95,17 @@ An example of a function according with UL1.3 is
 [`stats::cutree()`](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/cutree.html)
 
 ```{r}
-hc <- hclust(dist(USArrests))
-head(cutree(hc, 10))
+hc <- hclust (dist (USArrests))
+head (cutree (hc, 10))
 ```
 The row names of `USArrests` are transferred to the output object. In contrast,
 some routines from the [`cluster`
 package](https://cran.r-project.org/package=cluster) do not comply with this standard:
 
 ```{r}
-library(cluster)
-ac <- agnes(USArrests) # agglomerative nesting
-head(cutree(ac, 10))
+library (cluster)
+ac <- agnes (USArrests) # agglomerative nesting
+head (cutree (ac, 10))
 ```
 The case labels are not appropriately carried through to the object returned by
 [`agnes()`](https://stat.ethz.ch/R-manual/R-devel/library/cluster/html/agnes.html)
@@ -169,8 +168,8 @@ function](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/cutree.html
 does not accord with this standard:
 
 ```{r cutree}
-hc <- hclust(dist(USArrests))
-table(cutree(hc, k = 10))
+hc <- hclust (dist (USArrests))
+table (cutree (hc, k = 10))
 ```
 
 The [`cutree()`
@@ -187,8 +186,8 @@ The
 function accords with this standard:
 
 ```{r prcomp}
-z <- prcomp(eurodist, rank = 5) # return maximum of 5 components
-summary(z)
+z <- prcomp (eurodist, rank = 5) # return maximum of 5 components
+summary (z)
 ```
 
 The proportion of variance explained by each component decreasing with
@@ -214,16 +213,16 @@ function](https://stat.ethz.ch/R-manual/R-devel/library/class/html/knn.html).
 (This is intended to illustrate only one of many possible approaches.)
 
 ```{r knn}
-library(class)
-hc <- hclust(dist(iris [, -5]))
-groups <- cutree(hc, k = 3)
+library (class)
+hc <- hclust (dist (iris [, -5]))
+groups <- cutree (hc, k = 3)
 # function to randomly select part of a data.frame and # add some randomness
-sample_df <- function(x, n = 5) {
-  x [sample(nrow(x), size = n), ] + runif(ncol(x) * n)
+sample_df <- function (x, n = 5) {
+    x [sample (nrow (x), size = n), ] + runif (ncol (x) * n)
 }
-iris_new <- sample_df(iris [, -5], n = 5)
+iris_new <- sample_df (iris [, -5], n = 5)
 # use knn to predict membership of those new points:
-knnClust <- knn(train = iris [, -5], test = iris_new, k = 1, cl = groups)
+knnClust <- knn (train = iris [, -5], test = iris_new , k = 1, cl = groups)
 knnClust
 ```
 
@@ -232,9 +231,9 @@ function](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/prcomp.html)
 implements its own `predict()` method which conforms to this standard:
 
 ```{r predict-prcomp}
-res <- prcomp(USArrests)
-arrests_new <- sample_df(USArrests, n = 5)
-predict(res, newdata = arrests_new)
+res <- prcomp (USArrests)
+arrests_new <- sample_df (USArrests, n = 5)
+predict (res, newdata = arrests_new)
 ```
 
 #### Group Distributions and Associated Statistics
@@ -246,19 +245,18 @@ illustrates that the return object records the standard deviations associated
 with each component:
 
 ```{r prcomp-return}
-res <- prcomp(USArrests)
+res <- prcomp (USArrests)
 print(res)
-summary(res)
+summary (res)
 ```
 
 Such output accords with the following standard:
 
 - **UL3.5** *Objects returned from Unsupervised Learning Software which labels,
-  categorise, or partitions data into discrete groups should include
-  quantitative information on intra-group variances or equivalent, as well as
-  on inter-group relationships where applicable. (In lieu of directly including
-  such information in return objects, additional methods may be developed to
-  provide access.)*
+  categorise, or partitions data into discrete groups should include, or
+  provide immediate access to, quantitative information on intra-group
+  variances or equivalent, as well as on inter-group relationships where
+  applicable.*
 
 The above example of principal components is one where there are no inter-group
 relationships, and so that standard is fulfilled by providing information on
@@ -275,8 +273,8 @@ however, does yield defined numbers of clusters, yet devoid of any quantitative
 information on variances or equivalent.
 
 ```{r}
-res <- hclust(dist(USArrests))
-str(cutree(res, k = 5))
+res <- hclust (dist (USArrests))
+str (cutree (res, k = 5))
 ```
 
 Compare that with the output of a largely equivalent routine, the [`clara()`
@@ -284,8 +282,8 @@ function](https://stat.ethz.ch/R-manual/R-devel/library/cluster/html/clara.html)
 from the [`cluster` package](https://cran.r-project.org/package=cluster).
 
 ```{r}
-library(cluster)
-cl <- clara(USArrests, k = 10) # direct clustering into specified number of clusters
+library (cluster)
+cl <- clara (USArrests, k = 10) # direct clustering into specified number of clusters
 cl$clusinfo
 ```
 
