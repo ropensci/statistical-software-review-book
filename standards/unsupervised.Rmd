@@ -214,6 +214,7 @@ function](https://stat.ethz.ch/R-manual/R-devel/library/class/html/knn.html).
 
 ```{r knn}
 library (class)
+set.seed (1)
 hc <- hclust (dist (iris [, -5]))
 groups <- cutree (hc, k = 3)
 # function to randomly select part of a data.frame and # add some randomness
