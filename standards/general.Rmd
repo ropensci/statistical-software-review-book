@@ -41,7 +41,7 @@ implementations should be provided.
 
 #### Statistical Terminology
 
-- **G1.0** *All statistical terminology should be clarified and unambiguously
+- **G1.1** *All statistical terminology should be clarified and unambiguously
   defined.*
 
 Developers should not presume anywhere in the documentation of software that
@@ -72,9 +72,9 @@ package](https://github.com/mikldk/roxytest) for specifying tests *in-line*.
 
 #### Function-level Documentation
 
-- **G1.0** *Software should use [`roxygen`](https://roxygen2.r-lib.org/) to
+- **G1.2** *Software should use [`roxygen`](https://roxygen2.r-lib.org/) to
   documentation all functions.*
-    - **G1.0a** *All internal (non-exported) functions should also be documented
+    - **G1.2a** *All internal (non-exported) functions should also be documented
       in standard [`roxygen`](https://roxygen2.r-lib.org/) format, along with
       a final `@noRd` tag to suppress automatic generation of `.Rd` files.*
 
@@ -90,13 +90,13 @@ Where software supports a publication, all claims made in the publication with
 regard to software performance (for example, claims of algorithmic scaling or
 efficiency; or claims of accuracy), the following standard applies:
 
-- **G1.1** *Software should include all code necessary to reproduce results which
+- **G1.3** *Software should include all code necessary to reproduce results which
   form the basis of performance claims made in associated publications.*
 
 Where claims regarding aspects of software performance are made with respect to
 other extant R packages, the following standard applies:
 
-- **G1.2** *Software should include code necessary to compare performance claims
+- **G1.4** *Software should include code necessary to compare performance claims
   with alternative implementations in other R packages.*
 
 
