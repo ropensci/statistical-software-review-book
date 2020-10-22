@@ -6,7 +6,7 @@
 These standards refer to **Data Types** as the fundamental types defined by the
 R language itself between the following:
 
-- Continuous (`class = "numeric"`, `typeof = "double"`)
+- Continuous (`class = "numeric"` / `typeof = "double"`)
 - Integer
 - String / character
 - Date/Time
@@ -28,6 +28,34 @@ element of a single-length "character" vector.
 
 ### Documentation
 
+- **G1.0** *Statistical Software should list at least one primary reference
+  from published academic literature.*
+
+We consider that statistical software submitted under our system will either
+(i) implement or extend prior methods, in which case the *primary reference*
+will be to the most relevant published version(s) of prior methods; or (ii) be
+an implementation of some new method. In the second case, it will be expected
+that the software will eventually form the basis of an academic publication.
+Until that time, the most suitable reference for equivalent algorithms or
+implementations should be provided.
+
+#### Statistical Terminology
+
+- **G1.0** *All statistical terminology should be clarified and unambiguously
+  defined.*
+
+Developers should not presume anywhere in the documentation of software that
+specific statistical terminology may be “generally understood”, and therefore
+not need explicit clarification. Even terms which many may consider
+sufficiently generic as to not require such clarification, such as “null
+hypotheses” or “confidence intervals”, will generally need explicit
+clarification. For example, both the estimation and interpretation of
+confidence intervals are dependent on distributional properties and associated
+assumptions. Any particular implementation of procedures to estimate or report
+on confidence intervals will accordingly reflect assumptions on distributional
+properties (among other aspects), both the nature and implications of which
+must be explicitly clarified.
+
 Standards will include requirements for form and completeness of documentation.
 As with interface, several sources already provide starting points for
 reasonable documentation. Some documentation requirements will be specific to
@@ -42,10 +70,15 @@ requirements. It is worth noting that the
 readily extensible, as exemplified through the [`roxytest`
 package](https://github.com/mikldk/roxytest) for specifying tests *in-line*.
 
-- **G1.0** *Software should use [`roxygen`](https://roxygen2.r-lib.org/) for all
-  documentation.*
+#### Function-level Documentation
+
+- **G1.0** *Software should use [`roxygen`](https://roxygen2.r-lib.org/) to
+  documentation all functions.*
     - **G1.0a** *All internal (non-exported) functions should also be documented
-      in standard [`roxygen`](https://roxygen2.r-lib.org/) format.*
+      in standard [`roxygen`](https://roxygen2.r-lib.org/) format, along with
+      a final `@noRd` tag to suppress automatic generation of `.Rd` files.*
+
+#### Supplementary Documentation
 
 The following standards describe several forms of what might be considered
 "Supplementary Material". While there are many places within an R package where
@@ -148,9 +181,9 @@ more of these tabular inputs are then that:
 
 - **G2.6** *Software should accept as input as many of the above standard tabular
   forms as possible, including extension to domain-specific forms.*
-- **G2.7** *Software should provide appropriate conversion routines as part of initial
-  pre-processing to ensure that all other sub-functions of a package receive
-  inputs of a single defined class or type.*
+- **G2.7** *Software should provide appropriate conversion or dispatch routines
+  as part of initial pre-processing to ensure that all other sub-functions of
+  a package receive inputs of a single defined class or type.*
 - **G2.8** *Software should issue diagnostic messages for type conversion in which
   information is lost (such as conversion of variables from factor to
   character; standardisation of variable names; or removal of meta-data such as
