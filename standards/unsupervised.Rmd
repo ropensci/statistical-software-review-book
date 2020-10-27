@@ -357,3 +357,46 @@ objects containing large numbers of numeric entries.
   (for example, through attempting to place too many labels).*
 
 ### Testing
+
+Unsupervised Learning Software should test the following properties and
+behaviours:
+
+- **UL7.0** *Inappropriate types of input data are rejected with expected error
+  messages.*
+
+#### Input Scaling
+
+The following tests should be implement for Unsupervised Learning Software for
+which inputs are presumed or required to be scaled in any particular ways (such
+as having mean values of zero).
+
+- **UL7.1** *Tests should demonstrate that violations of assumed input
+  properties yield unreliable or invalid outputs, and should clarify how such
+  unreliability or invalidity is manifest through the properties of returned
+  objects.*
+
+#### Output Labelling
+
+With regard to labelling of output data, tests for Unsupervised Learning
+Software should:
+
+- **UL7.2** *Demonstrate that labels placed on output data follow decreasing
+  group sizes (**UL3.1**)*
+- **UL7.3** *Demonstrate that labels on input data are propagated to, or may be
+  recovered from, output data (see **UL3.3**).*
+
+#### Prediction
+
+With regard to prediction, tests for Unsupervised Learning Software should:
+
+- **UL7.4** *Demonstrate that submission of new data to a previously fitted
+  model can generate results more efficiently than initial model fitting.*
+
+#### Batch Processing
+
+For Unsupervised Learning Software which implements batch processing routines:
+
+- **UL7.5** *Batch processing routines should be explicitly tested, commonly via
+  extended tests (see **G4.10**--**G4.12**).*
+    - **UL7.5a** *Tests of batch processing routines should demonstrate that
+      equivalent results are obtained from direct (non-batch) processing.*

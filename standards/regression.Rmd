@@ -217,15 +217,35 @@ conditions described prior to those standards.
 
 ### Testing
 
+#### Input Data
+
 Tests for Regression Software should include the following conditions and cases:
 
 - **RE7.0** *Tests with noiseless, exact relationships between predictor
   (independent) data.*
-    - **RE7.0a** *In particular, these tests should confirm that model fitting is at
-      least as fast or (preferably) faster than testing with equivalent noisy
-      data (see RE2.4a).*
+    - **RE7.0a** In particular, these tests should confirm ability to reject
+      perfectly noiseless input data.
 - **RE7.1** *Tests with noiseless, exact relationships between predictor
   (independent) and response (dependent) data.*
     - **RE7.1a** *In particular, these tests should confirm that model fitting is at
       least as fast or (preferably) faster than testing with equivalent noisy
       data (see RE2.4b).*
+
+#### Diagnostic Messages
+
+- **RE7.2** All error and warning messages should be explicitly triggered in
+  tests, including explicit testing for the content of those diagnostic
+  messages.
+
+#### Return Results
+
+Tests for Regression Software should
+
+- **RE7.3** Demonstrate that output objects retain aspects of input data such
+  as row or case names (see **RE1.3**).
+- **RE7.4** Demonstrate and test expected behaviour when objects returned from
+  regression software are submitted to the accessor methods of
+  **RE4.2**--**RE4.7**.
+- **RE7.5** Extending directly from **RE4.15**, where appropriate, tests should
+  demonstrate and confirm that forecast errors, confidence intervals, or
+  equivalent values increase with forecast horizons.
