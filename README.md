@@ -48,11 +48,12 @@ All of the content of this repository is licensed
 ## Contributors
 
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 
-This project uses the [`allcontributor` package](https://github.com/mpadge/allcontributor) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+This project uses the [`allcontributors` package](https://github.com/mpadge/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
 
 ## Content
 
@@ -100,6 +101,16 @@ This project uses the [`allcontributor` package](https://github.com/mpadge/allco
 <img src="https://avatars2.githubusercontent.com/u/322533?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=briatte">briatte</a>
+</td>
+</tr>
+
+
+<tr>
+<td align="center">
+<a href="https://github.com/lcolladotor">
+<img src="https://avatars2.githubusercontent.com/u/2288213?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=lcolladotor">lcolladotor</a>
 </td>
 </tr>
 
