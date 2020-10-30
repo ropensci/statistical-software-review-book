@@ -3,15 +3,28 @@
 
 ## General Standards for Statistical Software
 
-These standards refer to **Data Types** as the fundamental types defined by the
-R language itself between the following:
+<details>
+<summary>
+click for initial notes on nomenclature
+</summary>
+<p>
 
-- Continuous (`class = "numeric"` / `typeof = "double"`)
+These standards refer to **Data Types** as the fundamental types defined by the
+[R language](https://cran.r-project.org/doc/manuals/R-lang.html) itself between
+the following:
+
+- Logical
 - Integer
+- Continuous (`class = "numeric"` / `typeof = "double"`)
+- Complex
 - String / character
-- Date/Time
+
+The base R system also includes what are considered here to be direct
+extensions of fundamental types to include:
+
 - Factor
 - Ordered Factor
+- Date/Time
 
 The continuous type has a `typeof` of "double" because that represents the
 storage mode in the C representation of such objects, while the `class` as
@@ -25,6 +38,10 @@ any official R nomenclature, but is used here to refer for convenience to
 a character vector of length one; in other words, a "string" is the sole
 element of a single-length "character" vector.
 
+----
+
+</p>
+</details><br>
 
 ### Documentation
 
@@ -120,11 +137,13 @@ It is important to note for univariate data that single values in R are vectors
 with a length of one, and that `1` is of exactly the same *data type* as `1:n`.
 Given this, inputs expected to be univariate should:
 
-- **G2.0** *Provide explicit secondary documentation of any expectations on lengths
-  of inputs (generally implying identifying whether an input is expected to be
-  single- or multi-valued)*
-- **G2.1** *Provide explicit secondary documentation of expectations on data types
-  of all vector inputs (see the above list).*
+- **G2.0** *Implement assertions on lengths of inputs, particularly through asserting that inputs expected to be single- or multi-valued are indeed so.*
+    - **G2.0a** Provide explicit secondary documentation of any expectations on
+      lengths of inputs
+- **G2.1** *Implement assertions on types of inputs (see the initial point on
+  nomenclature above).*
+    - **G2.1a** *Provide explicit secondary documentation of expectations on
+      data types of all vector inputs.*
 - **G2.2** *Appropriately prohibit or restrict submission of multivariate input to
   parameters expected to be univariate.*
 - **G2.3** *For univariate character input:*
@@ -140,6 +159,13 @@ Given this, inputs expected to be univariate should:
   documentation should explicitly state whether these should be `ordered` or
   not, and those inputs should provide appropriate error or other routines to
   ensure inputs follow these expectations.*
+
+A few packages implement R versions of "static type" forms common in other
+languages, whereby the type of a variable must be explicitly specified prior to
+assignment. Use of such approaches is encouraged, including but not restricted
+to approaches documented in packages such as
+[`vctrs`](https://vctrs.r-lib.org), or the experimental package
+[`typed`](https://github.com/moodymudskipper/typed).
 
 
 #### Tabular Input
@@ -172,12 +198,16 @@ Given this, tabular inputs may be in one or or more of the following forms:
       [`tsibble`](https://tsibble.tidyverts.org) for time series, or
       [`sf`](https://r-spatial.github.io/sf/) for spatial data.
 
-The term "`data.frame`-type tabular forms" is assumed to refer to data
-represented in either the `base::data.frame` format, and/or any of the classes
-listed in the final of the above points.
+Both `matrix` and `array` forms are actually stored as vectors with a single
+`storage.mode`, and so all of the preceding standards **G2.0**--**G2.5** apply.
+The other rectangular forms are not stored as vectors, and do not necessarily
+have a single `storage.mode` for all columns. These forms are referred to
+throughout these standards as "`data.frame`-type tabular forms", which may be
+assumed to refer to data represented in either the `base::data.frame` format,
+and/or any of the classes listed in the final of the above points.
 
 General Standards applicable to software which is intended to accept any one or
-more of these tabular inputs are then that:
+more of these `data.frame`-type tabular inputs are then that:
 
 - **G2.6** *Software should accept as input as many of the above standard tabular
   forms as possible, including extension to domain-specific forms.*
