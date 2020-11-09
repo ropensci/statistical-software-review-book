@@ -7,22 +7,22 @@ Authors@R:
              role = c("cre", "aut"),
              email = "mark.padgham@email.com",
              comment = c(ORCID = "0000-0003-2172-5265")),
-        person(given = "Noam",
+      person(given = "Noam",
              family = "Ross",
              role = "aut",
              email = "ross@ecohealthalliance.org"))
-Description: Documentation of rOpenSci's project on expanding software peer review to include statistical software
+Description: Documentation of rOpenSci's project on
+    expanding software peer review to include statistical software
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-Roxygen: list(markdown = TRUE)
 Imports: 
     bookdown,
     dplyr,
     ggplot2,
     here,
-    rvest,
     igraph,
-    visNetwork,
-    RefManageR,
-    knitr
+    knitr,
+    rvest,
+    visNetwork
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
