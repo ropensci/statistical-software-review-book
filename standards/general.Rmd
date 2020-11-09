@@ -43,6 +43,22 @@ element of a single-length "character" vector.
 </p>
 </details><br>
 
+Examples of application of the following standards may be viewed as separate
+[`hackmd.io` files](https://hackmd.io) by clicking on the following links:
+
+- [Application of Bayesian and Monte Carlo Standards](https://hackmd.io/zVWTAl9ZQeCcj_bvMGcmMQ)
+- [Application of Regression and Supervised Learning Standards](https://hackmd.io/VZ-wgQtZRV2pb-wFZNDM5g)
+- [Application of Dimensionality Reduction, Clustering, and Unsupervised Learning Standards](https://hackmd.io/iOZD_oCpT86zoY5z4memaQ)
+- [Application of Exploratory Data Analysis Standards](https://hackmd.io/K8F1RIhdQeuZFqMnzdqNVw)
+- [Application of Machine Learning Software Standards](https://hackmd.io/Ix1YwD8YTWGuzdiXsVQadA)
+
+Each of those files compares both general and category-specific standards
+against selected R packages within those categories. These comparisons are
+intended for illustrative purposes only, and are in no way intended to
+represent evaluations of the software. They are presented in the hope of
+demonstrating how the standards presented here may be applied to software, and
+what the results of such application may look like.
+
 ### Documentation
 
 - **G1.0** *Statistical Software should list at least one primary reference

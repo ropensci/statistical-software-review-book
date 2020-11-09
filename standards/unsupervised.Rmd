@@ -2,6 +2,10 @@
 
 ## Dimensionality Reduction, Clustering, and Unsupervised Learning
 
+Click on the following link to view a demonstration [Application of
+Dimensionality Reduction, Clustering, and Unsupervised Learning
+Standards](https://hackmd.io/iOZD_oCpT86zoY5z4memaQ).
+
 This document details standards for Dimensionality Reduction, Clustering, and
 Unsupervised Learning Software -- referred to from here on for simplicity as
 "Unsupervised Learning Software". Software in this category is distinguished

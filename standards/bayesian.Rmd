@@ -2,6 +2,9 @@
 
 ## Bayesian and Monte Carlo Software
 
+Click on the following link to view a demonstration [Application of Bayesian
+and Monte Carlo Standards](https://hackmd.io/zVWTAl9ZQeCcj_bvMGcmMQ).
+
 Bayesian and Monte Carlo Software (hereafter referred to for simplicity as
 "Bayesian Software") is presumed to perform one or more of the following steps:
 

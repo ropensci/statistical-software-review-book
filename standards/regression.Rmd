@@ -2,6 +2,9 @@
 
 ## Regression and Supervised Learning
 
+Click on the following link to view a demonstration [Application of Regression
+and Supervised Learning Standards](https://hackmd.io/VZ-wgQtZRV2pb-wFZNDM5g).
+
 This document details standards for Regression and Supervised Learning
 Software -- referred to from here on for simplicity as "Regression Software".
 Regression Software implements algorithms which aim to construct or analyse one
