@@ -49,13 +49,14 @@ All of the content of this repository is licensed
 
 
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 
-This project uses the [`allcontributors` package](https://github.com/ropenscilabs/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+All contributions to this project are gratefully acknowledged using the [`allcontributors` package](https://github.com/ropenscilabs/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
 
-## Content
+### Content
 
 <table>
 
@@ -117,7 +118,7 @@ This project uses the [`allcontributors` package](https://github.com/ropenscilab
 </table>
 
 
-## Issue Authors
+### Issue Authors
 
 <table>
 
