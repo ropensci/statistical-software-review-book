@@ -31,6 +31,7 @@ steps:
 2. Apply one or more analytic algorithms
 3. Return the result of that algorithmic application
 4. Offer additional functionality such as printing or summarising return results
+5. Testing
 
 Each standard for spatial software is prefixed with "**SP**".
 
@@ -49,16 +50,17 @@ sense, not necessarily confined to geographic systems alone.
 It is important to distinguish these two domains because many algorithms and
 procedures devised in one of these two domains are not necessarily (directly)
 applicable in the other, most commonly because geometric algorithms presume
-space to be rectilinear, while geographic algorithms presume it be have
-a specific curvilinear form. Algorithms designed for rectilinear space may not
-be directly applicable in curvilinear space, and vice-versa.
+space to be rectilinear, while geographic algorithms (generally) presume it be
+have a specific curvilinear form. Algorithms designed for rectilinear space may
+not be directly applicable in curvilinear space, and vice-versa.
 
 Moreover, spatial software and algorithms might be intended to apply in spaces
 of arbitrary dimensionality. The phrase "rectilinear" refers to any space of
 arbitrary dimensionality in which all dimensions are described by straight
 lines; dimensions in a curvilinear space or arbitrary dimensionality are
 described by curved lines. A planar geometry is a two-dimensional rectilinear
-space; a spherical geometry is a two-dimensional curvilinear space.
+space; a spherical geometry is a two- (or maybe three-)dimensional curvilinear
+space.
 
 One of the earliest and still most widely used R spatial packages,
 [`spatstat`](https://cran.r-project.org/web/packages/spatstat/) (first released
@@ -108,18 +110,19 @@ and relies on defined classes can often validate input through affirming
 appropriate class(es). Software which does not use or rely on class systems
 will generally need specific routines to validate input data structures.
 
-While the standards for [Time-Series
+These standards for Spatial Software do not explicitly recommend or require
+that class systems be used, unlike our standards for [Time-Series
 Software](https://ropenscilabs.github.io/statistical-software-review-book/standards.html#time-series-software)
-recommend that explicit class systems be used, these standards for Spatial
-Software do not make such an explicit recommendation. This is because
-time series data can often be represented in a single dimension only in which
-data may be presumed to be temporally regular. Representation as a simple
-vector negates any ability to assert or test whether input data are indeed
-regular or not, whereas class systems for time series data directly enable such
-assertions. In contrast, spatial data are both inherently multi-dimensional and
-rarely regular, and so properties of input data can be more readily asserted
-and tested even without explicit class systems. (An important form of regular
-spatial data is raster data, for which the following standard also applies.)
+which do recommend the use of explicit class systems. The latter recommendation
+is because time series data can often be represented in a single dimension only
+in which developers may assume that data are temporally regular. Representation
+as a simple vector negates any ability to assert or test whether input data are
+indeed regular or not, whereas class systems for time series data directly
+enable such assertions. In contrast, spatial data are both inherently
+multi-dimensional and rarely regular, and so properties of input data can be
+more readily asserted and tested even without explicit class systems. (An
+important form of regular spatial data is raster data, for which the following
+standard also applies.)
 
 - **SP2.0** *Spatial software should adhere to one or the other of the
   following standards, dependent on whether input data may be generic
@@ -135,16 +138,15 @@ spatial data is raster data, for which the following standard also applies.)
       when such assertions fail.*
 
 
-Implementation of the second of the above standards is left up to the
-developers. A failure to assert that input columns do not describe curvilinear
-or spherical data may have different implications for different software, with
-actions ranging from automatic transformation to planar form to an outright
-error condition. The following illustrate warning messages issued by the 
-[`sf` package](https://cran.r-project.org/package=sf) when operations which
-assume planar data are applied to spherical data. Both examples impose a
-spherical coordinate reference system (`crs`) on the data before applying
-operations which assume planar data, with the developers opting in both cases
-to issue warnings.
+A failure to assert that input columns do not describe curvilinear or spherical
+data may have different implications for different software, with actions
+ranging from automatic transformation to planar form to outright errors. The
+following illustrate warning messages issued by the [`sf`
+package](https://cran.r-project.org/package=sf) when operations which assume
+planar data are applied to spherical data (defined via `crs = 4326`).
+Both examples impose a spherical coordinate reference system (`crs`) on the
+data before applying operations which assume planar data, with the developers
+opting in both cases to issue warnings.
 
 ```{r sf-warnings, message = FALSE}
 library (sf)
@@ -177,7 +179,7 @@ alongside that, notably including the [`GDAL` ("Geospatial Data Abstraction
 Library")](https://gdal.org) and [`geos` ("Geometry Engine, Open
 Source")](https://trac.osgeo.org/geos/) libraries. These libraries are used by,
 and integrated within, most geographical spatial software commonly used today,
-and are likely to continue to be used.
+and will likely continue to be used.
 
 While not a standard in itself, it is expected that spatial software should
 not, absent very convincing and explicit justification, attempt to reconstruct
@@ -300,6 +302,11 @@ nevertheless be adhered to:
 
 ### Algorithms
 
+The following standards will be conditionally applicable to some but not all
+spatial software. Procedures for standards deemed not applicable are described
+in the [R package of this
+project](https://github.com/ropenscilabs/statistical-software-review).
+
 - **SP3.0** *Spatial software which considers spatial neighbours should enable
   user control over neighbourhood forms and sizes. In particular:*
     - **SP3.0a** *Neighbours (able to be expressed) on regular grids should be
@@ -312,18 +319,22 @@ nevertheless be adhered to:
 - **SP3.1** *Spatial software which considers spatial neighbours should enable
   neighbour contributions to be weighted by distance (or other weighting
   variable), and not rely on a uniform-weight rectangular cut-off.*
+- **SP3.2** *Spatial software which relies on sampling from input data (even if
+  only of spatial coordinates) should enable sampling procedures to be based on
+  local spatial densities of those input data.*
 
 Algorithms for spatial software are often related to other categories of
 statistical software, and it is anticipated that spatial software will commonly
 also be subject to standards from these other categories. Nevertheless, because
 spatial analyses frequently face unique challenges, some of these
-category-specific standards also have extension standards in when applied to
+category-specific standards also have extension standards when applied to
 spatial software. The following standards will be applicable for any spatial
-software which also fits any of the listed sub-categories.
+software which also fits any of the other listed categories of statistical
+software.
 
 **Regression Software**
 
-- **SP3.0** *Spatial regression software should explicitly quantify and
+- **SP3.3** *Spatial regression software should explicitly quantify and
   distinguish autocovariant or autoregressive processes from those covariant or
   regressive processes not directly related to spatial structure alone.*
 
@@ -332,7 +343,7 @@ software which also fits any of the listed sub-categories.
 The following standard applies to any spatial unsupervised learning software
 which uses clustering algorithms.
 
-- **SP3.1** *Spatial clustering should not use standard non-spatial clustering
+- **SP3.4** *Spatial clustering should not use standard non-spatial clustering
   algorithms in which spatial proximity is merely represented by an additional
   weighting factor. Rather, clustering schemes should be derived from
   explicitly spatial algorithms.*
@@ -340,18 +351,20 @@ which uses clustering algorithms.
 **Machine Learning Software**
 
 One common application in which machine learning algorithms are applied to
-spatial software is in analyses of raster images. Because the individual cells
-or pixels of these raster images represent fixed spatial coordinates, the
-following standard applies (and also renders **ML2.1** inapplicable).
+spatial software is in analyses of raster images. The first of the following
+standards applies because the individual cells or pixels of these raster images
+represent fixed spatial coordinates. (This standard also renders **ML2.1**
+inapplicable).
 
-- **SP3.2** *Spatial machine learning software should ensure that broadcasting
+
+- **SP3.5** *Spatial machine learning software should ensure that broadcasting
   procedures for reconciling inputs of different dimensions are **not**
   applied*.
-- **SP3.3** *Spatial machine learning software should ensure that test and
-  training data are spatially distinct, and not simply sampled uniform from
+- **SP3.6** *Spatial machine learning software should ensure that test and
+  training data are spatially distinct, and not simply sampled uniformly from
   a common region.*
 
-The latter standard, **SP1.3**, is commonly met by applying some form of
+The latter standard, **SP3.6**, is commonly met by applying some form of
 spatial partitioning to data, and using spatially distinct partitions to define
 test and training data.
 
@@ -426,3 +439,27 @@ results to such extreme coordinates, software which is unable to generate
 reliable results to such inputs should nevertheless include tests to indicate
 both approximate bounds of reliability, and the expected characteristics of
 unreliable results.
+
+The remaining standards for testing Spatial Software extend directly from the
+preceding Algorithmic Standards (**SP3**), with the same sub-section headings
+used here.
+
+- **SP6.3** *Spatial Software which considers spatial neighbours should
+  explicitly test all possible ways of defining them, and should explicitly
+  compare quantitative effects of different ways of defining neighbours.*
+- **SP6.4** *Spatial Software which considers spatial neighbours should
+  explicitly test effects of different schemes to weight neighbours by spatial
+  proximity.*
+
+**Unsupervised Learning Software**
+
+- **SP6.5** *Spatial Unsupervised Learning Software which uses clustering
+  algorithms should implement tests which explicitly compare results with
+  equivalent results obtained with a non-spatial clustering algorithm.*
+
+**Machine Learning Software**
+
+- **SP6.6** *Spatial Machine Learning Software should implement tests which
+  explicitly demonstrate the detrimental consequences of sampling test and
+  training data from the same spatial region, rather than from spatially
+  distinct regions.
