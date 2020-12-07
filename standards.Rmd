@@ -110,3 +110,6 @@ applying their benchmarks to a suite of neural network packages.
 
 ```{r standards-ml, child = "standards/ml.Rmd", eval = TRUE, echo = TRUE}
 ```
+
+```{r standards-sp, child = "standards/spatial.Rmd", eval = TRUE, echo = TRUE}
+```
