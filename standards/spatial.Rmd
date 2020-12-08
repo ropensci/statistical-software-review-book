@@ -148,14 +148,18 @@ Both examples impose a spherical coordinate reference system (`crs`) on the
 data before applying operations which assume planar data, with the developers
 opting in both cases to issue warnings.
 
-```{r sf-warnings, message = FALSE}
+```{r sf-warnings, eval = FALSE}
 library (sf)
 p <- rbind (c (0, 0), c (1, 0), c (3, 2), c (2, 4), c (1, 4), c (0, 0))
 pol <- st_sfc (st_polygon (list (p)), crs = 4326)
 cent <- st_centroid (pol)
+#> Warning in st_centroid.sfc(pol): st_centroid does not give correct centroids for
+#> longitude/latitude data
 
 pt <- st_sfc (st_point (c (0, 0)), crs = 4326)
 buf <- st_buffer (pt, 1)
+#> Warning in st_buffer.sfc(pt, 1): st_buffer does not correctly buffer longitude/
+#> latitude data
 ```
 
 These warnings are able to be appropriately issued because the functions
