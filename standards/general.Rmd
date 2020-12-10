@@ -309,17 +309,17 @@ of input classes.
 
 - **G3.0** *Statistical software should never compare floating point numbers
   for equality. All numeric equality comparisons should first ensure that
-  objects are `integer` class or `storage.mode`.*
+  objects are of class (or `storage.mode`) `integer`.*
 
-That standard applies to all computer languages included in any package. While
+This standard applies to all computer languages included in any package. While
 `storage.mode` and `integer` class are specific to R, extensions to other
 languages are direct. Moreover, within R, functions such as
 [`duplicated()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/duplicated.html)
 and
 [`unique()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/unique.html)
 rely on equality comparisons, and this standard extends to require that
-software should not apply any functions such as these to floating point
-numbers.
+software should not apply any functions which themselves rely on equality
+comparisons to floating point numbers.
 
 
 ### Output Structures
