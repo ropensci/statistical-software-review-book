@@ -35,8 +35,7 @@ complies.
 ## Other Standards
 
 Among the noteworthy instances of software standards which might be adapted for
-our purposes, and in addition to entries in our [*Annotated
-Bibliography*](#reading), the following are particularly relevant:
+our purposes, the following are particularly relevant:
 
 1. The [Core Infrastructure Initiative's Best Practices
    Badge](https://bestpractices.coreinfrastructure.org/en), which is granted to
