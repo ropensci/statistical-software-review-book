@@ -41,7 +41,7 @@ jobs:
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
         
       - uses: actions/setup-node@v1
-        #if: $fork == 'false'
+        if: "${{fork}}" == 'false'
         with:
           node-version: "12.x"
           
