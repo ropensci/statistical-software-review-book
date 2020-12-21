@@ -12,9 +12,6 @@ jobs:
           fork=$(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}")
           #echo "::set-env name=fork::$fork"
             
-      - name: Install libcurl
-        run: sudo apt-get install libcurl4-openssl-dev
-      
       - name: Checkout repo
         uses: actions/checkout@v2
         
