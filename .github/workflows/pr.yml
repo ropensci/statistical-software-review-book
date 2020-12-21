@@ -47,7 +47,7 @@ jobs:
           node-version: "12.x"
           
       - name: Install Netlify CLI
-        if: $fork == 'false'
+        if: $fork == "false"
         run: npm install netlify-cli -g
         
       - name: Deploy to Netlify (test)
