@@ -41,16 +41,20 @@ jobs:
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
         
       - uses: actions/setup-node@v1
+        if: $fork == 'false'
         with:
           node-version: "12.x"
           
       - name: Install Netlify CLI
+        if: $fork == 'false'
         run: npm install netlify-cli -g
         
       - name: Deploy to Netlify (test)
+        if: $fork == 'false'
         run: DEPLOY_URL=$(netlify deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --dir=docs --json | jq '.deploy_url' --raw-output);echo "::set-env name=DEPLOY_URL::$DEPLOY_URL"
                 
       - name: Update commit status
+        if: $fork == 'false'
         run: |
           curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha }} \
