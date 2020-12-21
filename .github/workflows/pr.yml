@@ -6,8 +6,11 @@ jobs:
   bookdown:
     name: Render Book
     runs-on: macOS-latest
-    if: $(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}") == 'false'
     steps:
+      - name: Is this a fork
+        run: |
+          fork=$(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}")
+          #echo "::set-env name=fork::$fork"
             
       - name: Install libcurl
         run: sudo apt-get install libcurl4-openssl-dev
