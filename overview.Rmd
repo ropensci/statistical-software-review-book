@@ -1,218 +1,197 @@
 #  (PART) Introduction {-}
 
-#  Project Overview {#overview}
+#  Overview of the Project and of this Book {#overview}
 
-This chapter lays out key considerations, outstanding questions and tasks for
-purposes of generating community feedback for the project. It consists of the
-following sections:
+This book documents rOpenSci's project to expand peer review to include
+explicitly statistic software. It is intended to aid both software developers
+wishing to have their software reviewed under the newly expanded system, and
+reviewers tasked with reviewing submissions. A third aim of the project, and
+of this documentation, is to serve as a blueprint for future adoption and
+adaptation in other areas, including other computer languages.
 
--   **[Scope of Statistical Software Review](#scope)** in which we address the
-    scope of the project, and scopes of definition of "statistical software".
+This chapter summarises overall project aims, the scope of statistical software
+we are currently able to consider, and provides a brief overview of the
+structure and purpose of this book. The book should be considered an extension
+of rOpenSci's guide to software [Development, Maintenance, and Peer
+Review](https://devguide.ropensci.org/) (the "*Dev Guide*"). The guidelines and
+expectations for software as presented in the *Dev Guide* also apply to
+statistical software under the newly expanded system, with this document
+describing additional guides and expectations for explicitly statistical
+software. The *Dev Guide* ought thus be considered essential reading prior to
+the current book.
 
--   **[Standards for Statistical Software](#standards)** in which we consider the kinds of
-    standards which might be developed and applied to assess statistical
-    software.
+The present chapter provides a brief overview of the entire book, and consists
+of the following sections:
 
--   **[Software Assessment](#assessment)** in which we provide a partial list
-    of attributes and measures of software which might be usefully considered.
+- **[Motivation: Why a separate system for statistical
+  software?](#motivation)** in which we explain the necessity and advantages of
+  having statistical software developed according to concretes sets of explicit
+  standards.
 
--   **[Statistical Software Peer Review Process](#process)** in which we
-    consider questions regarding the possible forms and practices a peer review
-    process might adopt.
+- **[Scope of Statistical Software Review](#scope)** in which we summarise our
+  working definition of "statistical software", and the scope of software
+  currently able to be considered under the project.
 
-Each of these sections aims to highlight what we consider some of the most
-important questions and issues which the project will have to address. We
-generally do so by posing a list of "*Proposals*" at the end of each of the
-above-listed chapters. Each of these is intended to serve as a starting point
-for debate, and should be considered entirely open to discussion, modification,
-enhancement, removal, or any other suggestion which may arise. The *Proposals*
-are primarily intended in current form to provide focal points for further
-consideration and discussion prior to any concrete implementation.
+- **[Standards for Statistical Software](#standards)** in which we briefly
+  describe the sets of standards to which statistical software will be expected
+  to adhere.
 
+- **[Assessment and Peer Review Processes](#process)** in which we describe how
+  submitting authors will be expected to assess their software prior to
+  submission, and how reviewers will be expected to assess submissions.
 
-<!--
-The central questions which emerge from this document are given in condensed
-form in an accompanying document which may be used to structure and enable
-explicit feedback on the above aspects of the project.
--->
-
-## Project Aims
-
--   To foster a community of practice in which users and developers of
-    statistical software mutually improve quality, reproducibility, and
-    reliability of research.
-
--   To provide software creators with a set of tools and standards to assess
-    the quality of their work, and processes by which to improve it.
-
--   To provide statistical software developers, users, and consumers of results
-    a discoverable "badge" that transparently conveys a level of assurance of
-    software quality and that may also serve as a symbol of professional
-    credit.
-
--   To create a set of standards that may be adopted and adapted by open source
-    and private groups, academic journals, or other statistical software
-    evaluation projects.
-
--   To focus on R as primary language, but also to separate language-specific
-    from language-agnostic components so as to maximize adaptability to other
-    contexts.
-
--   To focus on problems and solutions specific to statistical software.
-
-## Related projects and initiatives
+- **[Outcomes](#outcomes)** in which we describe outcomes of our review
+  process, particular what submitting software developers can expect from our
+  review process.
 
 
-The following internal and external projects related projects have (non-exclusive) 
-bearing on our work:
+## Project Motivation
 
-rOpenSci is simultaneously working on improving the automation and documentation
-of infrastructure to support software peer reviews. This will support many of
-the processes described herein, initially those in metrics and diagnostic
-reports (below), as well as in managing the review process.
+The official description of R declares it to be a ["software environment for
+statistical computing and graphics"](https://www.r-project.org/), yet rOpenSci
+previously deemed explicitly statistical packages out of scope, owing among
+other factors to the perceived difficulty of devising an appropriate system for
+assessment and review. R is nevertheless an explicitly *statistical* computing
+environment, and so rOpenSci developed this project to expand our peer review
+system to include statistical software. 
 
-Secondly, [under a separate project funded by the Moore
-Foundation](https://ropensci.org/blog/2019/11/06/scientific-package-ecosystem/),
-rOpenSci is building a system to automate the retrieval of information related
-to use of software in published literature and automate reporting of software
-impact as part of metadata in software repositories. This builds on
-[Depsy](http://depsy.org/) and [CiteAs](http://citeas.org/about) projects and
-may be leveraged for our work on metrics (below).
+In doing so, the project also offered an opportunity to reconsider and
+potentially improve aspects of rOpenSci's current system for peer review, which
+has operated for five years, and has reviewed over >200 packages, primarily in
+areas of data life cycle management. The form of these packages continues to be
+strongly influenced by the *Dev Guide*, which presents sets of
+["guidelines"](https://devguide.ropensci.org/building.html) which packages are
+expected to "meet". These guidelines are nevertheless necessarily general, and
+were largely developed in ongoing response to successive developments in
+technology to support software development, such as continuous integration
+services. Although our *Dev Guide* effectively provides a set of "standards" to
+which software is expected to adhere, the alignment of software to these
+standards it itself not necessarily systematic, and in particular there is no
+direct way to ascertain the standards to which a given piece of software
+adheres, and those from which it may diverge.
 
-Third, an initiative organized under the R Consortium, the [R Validation
-Hub](https://www.pharmar.org/), seeks to provide guidance primarily to R users
-in the pharmaceutical industry on validating R packages in regulated contexts.
-We are working closely with that group to share products and avoid duplicated
-efforts.
+The present project aims to develop a more systematic alignment of software
+with standards, one which will enable automated and ongoing identification of
+those standards with which a given piece of software complies. The following
+sets of standards for statistical software are thus far more extensive that our
+previous "guidelines", and aim to provide ongoing assurance for users of the
+standard of software accepted within our system, including systematic
+identification of ways by which software may diverge from standards, and
+explanations of why.
 
-## Outline of this document
-
-We now briefly summarise the four sections identified at the outset of this
-chapter, and which comprise Chapters 4--5 and 7--8 of this book: Scope; the
-Peer Review Process; Standards; and Software Assessment.
-
-### Scope of Statistical Software Review
-
-The scope of statistical software review considers the core task of defining
-the kinds of software that will be covered by our review process and standards,
-for which key questions are:
-
--   What categories of statistical software might be considered *in scope*?
-
--   What categories of statistical software might be considered *out of scope*?
-
--   How would these vary between a useful definition and typology for general
-    use, and the specific case of our R-focused peer review system?
-
-A key consideration in scope is identifying categories of software that (a) will
-benefit from our peer review process, and (b) the review process will be
-equipped to handle. That is, can standards and procedures be defined that are
-applicable, and will authors and reviewers be able to apply them? In considering
-these issues of definition, it will be important to consider whether it may be
-advantageous or necessary to develop different procedures for different
-sub-categories, whether in terms of categories of external form or categories of
-statistical software.
-
-It will likely be particularly important for the present project to develop
-a categorization scheme, particularly because the set of standards envisioned
-by this project will be variably applicable to different categories, and
-understanding which standards may or may not apply to a particular piece of
-software will provide important information for review purposes. Individual
-pieces of software will often fit more than one of these categories, and we
-envision relating some kind of categorical checklist directly to
-a corresponding checklist of relevant or applicable standards.
-
-Potential schemes for defining the scope of statistical software acceptable
-within our review process are considered in [Chapter 4](#scope) below, with
-extensive consideration of potential categories in the [second section of that
-chapter](#scope-categories).
+Such assurance is important in many areas of scientific research, notably
+including those subject to regulation such as pharmaceutical trials. Software
+used in such trials must be "validated", generally through a process of
+identifying any risks associated with using that software. In such contexts,
+our system will foster confidence in the use of software assessed according to
+our standards. For developers, the system will provide a "badge" able to be
+used to identify and publicise the assessment of their software as meeting the
+standards set by our system.
 
 
-### Standards for Statistical Software
 
-[Chapter 5](#standards) considers Standards for Statistical Software intended
-to serve both as expectations against which to compare software, and as guides
-which reviewers may use to assess software. Important general questions
-regarding standards include the following:
+## Scope of Statistical Software Review
 
--   What kind of standards might apply to software in general?
+The present project represents a direct expansion of rOpenSci's current
+[scope](https://devguide.ropensci.org/policies.html#aims-and-scope) to include
+specifically statistical software, while retaining the restriction to software
+in the form of R packages. Empirical analyses described in Appendix A.2 were
+devised to identify sub-domains within statistical software, from which we have
+currently developed standards for the following categories:
 
--   What kind of standards might specifically apply to statistical software?
+1. [Bayesian and Monte Carlo Routines](#scope-category-bayesian)
+2. [Regression and Supervised Learning](#scope-category-supervised)
+3. [Dimensionality Reduction, Clustering, and Unsupervised Learning](#scope-category-unsupervised)
+4. [Exploratory Data Analysis (EDA) and Summary Statistics](#scope-category-EDA)
+5. [Time Series Analyses](#scope-category-time)
+6. [Machine Learning](#scope-category-ML)
+7. [Spatial Analyses](#scope-category-spatial)
 
--   How might such standards differ between different languages?
+These categories provide our working definition of statistical software able to
+be considered for submission to our system as any software described by one of
+more of the categories. Each of these categories is represented by a set of
+standards, as briefly described in the following sub-section. We anticipate
+that submissions will commonly fit into, or be described by, multiple
+categories, and the standards have also been devised to be as inter-compatible
+as possible. Moreover, alignment with specific categories may not always be
+straightforward, and we anticipate some submissions requiring negotiation
+between developers and editors to identify appropriate categories prior to
+submission.
 
--   To what extent should we aim for "verification" or "validation" of
-    software, and how might be signify such?
+We also intend to expand the system to include the additional four categories
+of:
 
-### Software Assessment
+1. [Wrapper Packages](#scope-category-wrapper)
+2. [Network Analysis Software](#scope-category-networks)
+3. [Probability Distributions](#scope-category-distributions)
+4. [Workflow Support](#scope-category-workflow)
 
-The Software Assessment section in [Chapter 6](#assessment) presents a general
-(yet non-exhaustive) overview of aspects of software which may be usefully
-considered for standards-based assessment, both for retrospective purposes of
-peer review, and for prospective use in developing software both in general,
-and in preparation for peer-review.
+While software in these latter four categories is beyond the scope of current
+standards, we invite any software developers interested in submitting software
+within one or more of these categories to contact us directly to enquire about
+the status of associated standards, and the possibility of submitting. Finally,
+we anticipate our sets of standards to expand further over time, and openly
+invite any form of discussion on the possibility of expanding our definition to
+include additional categories.
 
 
-### Statistical Software Peer Review Process
+## Standards for Statistical Software
 
-Our point of departure for our process is the rOpenSci software peer review
-process, which has operated for five years, and has reviewed over >200
-packages, primarily in areas of data life cycle management. However, we aim to
-reassess this process in light of other models and needs specific to
-statistical software. [Chapter 7](#lifecycle) considers a few analogous processes
-of peer review, gleaning aspects which may be useful to adopt and adapt for our system.
-[Chapter 8](#process) then describes the peer review process in terms of the
-series of steps we currently envision comprising our system.
+One of the primary outputs of the project to develop our system to peer-review
+statistical software has been a detailed suite of standards, both *General
+Standards* applicable to all statistical software to be considered under our
+system, along with category-specific standards for each of the aforementioned
+categories. These standards have been developed in explicit acknowledgement of
+the sentiments of Colin Gillespie, expressed in his keynote speech at the
+[European R Users Meeting
+2020](https://2020.erum.io/program/keynotes-invited-speakers/):
 
-## Community
+> Standards are good<br>
+> Standards should be strict<br>
+> No-one reads standards
 
-A core goal of the project is the building and maintenance of a community of
-practice that will facilitate dissemination, adoption, and improvement of
-standards and peer review. In striving for this goal, the following questions
-are important:
+The last point in particular is pertinent. Our standards are not intended to be
+read by any general audience -- although anyone is invited and encouraged to do
+so! -- rather, they are primarily intended to guide processes of software
+development in order to maximise compliance of software with our standards at
+the time of initial submission. Most of the burden of aligning software with
+our standards is thus expected to be borne by developers, who will be primarily
+obliged to adhere to our standards. Such obligatory adherence is one of the
+most effective ways to ensure that those most able to ensure software aligns
+with our standards -- that is, the developers themselves -- both actually read
+the standards, and ensure optimal alignment.
 
--   What outreach should we conduct to maximize diversity and inclusion in the
-    process?
+Aligning software with standards prior to submission has the additionally
+important function of freeing reviewers from the otherwise potentially onerous
+task of identifying and discussing generic or typical software-specific issues
+or problems, enabling reviews to better focus on broader, more qualitative
+aspects of software quality.
 
--   How should this process involve other relevant communities in fields
-    including software development, statistics, applied statistics (in various
-    subfields)
+Finally, this project has already developed tools for the automated assessment
+of software against a number of our standards, and we will strive for ongoing
+expansion of automated assessment. Thus, even if our standards themselves
+expand in time, hopefully the process of aligning software to meet those
+standards will nevertheless become easier through continued development of our
+tools for automated software assessment.
 
--   What fora should we manage for developers, users, reviewers and editors to
-    communicate? To what extent should we reuse existing fora from rOpenSci or
-    other organizations?
 
-We now briefly consider the three aspects of community relevant to this project:
-communities of users, of developers, and of reviewers. Note that several of the
-kinds of "metrics" alluded to in the following lines are given explicit
-consideration at the end of this document.
+## Assessment and Peer-Review Processes
 
-**Software use and surrounding community:**
+As described above, software will be expected to have been extensively assessed
+by developers prior to submission, in particular to ensure optimal alignment of
+submissions with both general and category-specific standards. Our process for
+peer-review is described at length in [Chapter 6](#assessment). That process
+begins by describing a number of steps expected to be completed by developers
+prior to initial submission. The two primary stages of submission itself are
+then described, followed by descriptions of the actual review process. While
+all stages of this process are important for developers, reviewers need only
+read and respond in accordance to Sections XX onwards.
 
--   What sort of metrics might provide insight into community use of software?
-
--   How might such community engagement be enhanced to improve such metrics?
-
-**Software development and surrounding community:**
-
--   What sort of metrics might provide insight into community development of
-    software?
-
--   How might such community engagement be enhanced to improve such metrics?
-
-**Reviewer pool and qualifications:**
-
--   What is the extent and type of effort expected of reviewers?
-
--   To what extent might searches for suitable reviewers be automated?
-
--   What sort of metrics might be useful in such searches?
-
-In each case the project will strive to cultivate diverse, inclusive, and
-geographically expansive communities, and metrics to describe such aspects may
-also be important, as may automated tools to monitor community engagement and
-development. Note that these aspects of community are not explicitly addressed
-throughout any of the remainder of this document. It is important the future
-revisions return to this point, and ensure that each of the following sections
-are appropriately modified to ensure effective consideration and incorporation
-of the concerns listed immediately above.
+In terms both of software itself, and associated communities of developers,
+reviewers, and users, case the project will strive to cultivate diverse,
+inclusive, and geographically expansive communities. Note that while these
+aspects of community are not explicitly addressed throughout any of the
+remainder of this document, it is important that future revisions return to
+this point, and ensure that each of the following sections are appropriately
+modified to ensure effective consideration and incorporation of the
+representativeness and inclusiveness of communities surrounding our software.
