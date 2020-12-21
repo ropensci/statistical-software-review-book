@@ -6,7 +6,7 @@ jobs:
   bookdown:
     name: Render Book
     runs-on: macOS-latest
-    if: $(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}")
+    if: $(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}") == 'false'
     steps:
             
       - name: Install libcurl
