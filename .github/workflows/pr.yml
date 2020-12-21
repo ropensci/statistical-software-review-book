@@ -12,7 +12,6 @@ jobs:
           fork=$(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}")
           #echo "::set-env name=fork::$fork"
           echo "fork={$fork}" >> $GITHUB_ENV
-          echo "fork=false" >> $GITHUB_ENV
             
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -42,7 +41,7 @@ jobs:
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
         
       - uses: actions/setup-node@v1
-        if: "$fork" == 'false'
+        #if: $fork == 'false'
         with:
           node-version: "12.x"
           
