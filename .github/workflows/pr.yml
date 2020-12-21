@@ -5,17 +5,9 @@ name: PR-workflow
 jobs:
   bookdown:
     name: Render Book
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
+    if: $(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}")
     steps:
-      - name: Is this a fork
-        run: |
-          fork=$(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}");echo "::set-env name=fork::$fork"
-          if [ $fork == 'false' ]
-          then
-            echo "This is not a fork, we shall deploy a preview."
-          else
-            echo "This is a fork, we shall not deploy a preview."
-          fi
             
       - name: Install libcurl
         run: sudo apt-get install libcurl4-openssl-dev
@@ -48,20 +40,16 @@ jobs:
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
         
       - uses: actions/setup-node@v1
-        if: env.fork == 'false'
         with:
           node-version: "12.x"
           
       - name: Install Netlify CLI
-        if: env.fork == 'false'
         run: npm install netlify-cli -g
         
       - name: Deploy to Netlify (test)
-        if: env.fork == 'false'
         run: DEPLOY_URL=$(netlify deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --dir=docs --json | jq '.deploy_url' --raw-output);echo "::set-env name=DEPLOY_URL::$DEPLOY_URL"
                 
       - name: Update commit status
-        if: env.fork == 'false'
         run: |
           curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha }} \
