@@ -5,7 +5,7 @@ name: PR-workflow
 jobs:
   bookdown:
     name: Render Book
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     steps:
       - name: Is this a fork
         run: |
@@ -17,9 +17,6 @@ jobs:
             echo "This is a fork, we shall not deploy a preview."
           fi
             
-      - name: Install libcurl
-        run: sudo apt-get install libcurl4-openssl-dev
-      
       - name: Checkout repo
         uses: actions/checkout@v2
         
@@ -28,29 +25,18 @@ jobs:
       
       - name: Setup pandoc
         uses: r-lib/actions/setup-pandoc@v1
+
+      - name: tinytext
+        uses: r-lib/actions/setup-tinytex@v1
       
-      - name: Query dependencies
-        run:
-          Rscript -e "install.packages('remotes')" -e "saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds', version = 2)"
-
-      - name: Cache R packages
-        uses: actions/cache@v1
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ hashFiles('depends.Rds') }}
-          restore-keys: ${{ runner.os }}-r-
-
       - name: Install dependencies
-        run:
-          Rscript -e "library(remotes)" -e "deps <- readRDS('depends.Rds')" -e "deps[['installed']] <- vapply(deps[['package']], remotes:::local_sha, character(1))" -e "update(deps)"
+        run: Rscript -e 'install.packages("remotes")' -e 'options(install.packages.check.source = "both")' -e 'remotes::install_deps(dependencies = TRUE)'
 
       - name: Render Book
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
         
       - uses: actions/setup-node@v1
         if: env.fork == 'false'
-        with:
-          node-version: "12.x"
           
       - name: Install Netlify CLI
         if: env.fork == 'false'
