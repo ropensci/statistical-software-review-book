@@ -1,2 +1,39 @@
 
 # Package Maintenance {#pkgmaintenance}
+
+## Software Life Cycle Considerations
+
+The importance of considering Software "life cycles" has long been recognized for
+closed-source proprietary software, yet life cycles have only been given scant
+consideration in contexts of open source software [exceptions include
+@stokes_21_2012;@lenhardt_data_2014]. A long history and tradition in both
+practice and published literature on software review [for example,
+@mili_software_2015;@ammann_introduction_2017] generally concludes that
+software review is most effective when it is an ongoing process that is
+structurally embedded within a software life cycle, and when review occurs as
+frequently as possible. Such practices contrast strongly with the singular
+nature of review as currently implemented by rOpenSci.
+
+An effective system for peer review of statistical software is thus may lie
+somewhere between the current "one-off" practices of rOpenSci and the JOSS, and
+frequent, ongoing review typical of software development in active teams. An
+[analysis of the effects of rOpenSci's review process on a few metrics of
+software development
+activity](https://github.com/mpadge/statistical-software/tree/master/ros-review-effects)
+revealed that software development tends to stagnate following review. This may
+be interpreted to reflect software having reached a sufficiently stable state
+requiring relatively little ongoing maintenance. However, we note that metrics
+of community engagement with software are generally positively related to the
+metrics of development activity considered there. Slowing of software
+development following review may also accordingly reflect or result in
+decreases in community engagement.
+
+Potential systems to enhance review of the kind current practiced by rOpenSci,
+and particularly to encourage and enable more ongoing review on smaller scales
+and shorter time frames---and ultimately to encourage the ongoing and active
+development of software following review---include pull-request reviews, and
+systems for providing inline code reviews (such as
+[watson-ruby](https://github.com/nhmood/watson-ruby)). In addition, ongoing
+"review" may be explicit in considering the role of user feedback, for
+instance, in defining and updating the scope of statistical routines (see
+"Standards for Statistical Software" below).
