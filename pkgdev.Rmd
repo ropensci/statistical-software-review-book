@@ -2,3 +2,109 @@
 
 
 # Package Development {#pkgdev}
+
+A strong focus of this project will be the development of tools to assess
+software, both generally and for statistical software specifically. One
+important aim is to develop tools able to be used by software authors to assess
+their own software. Such self-assessment, along with associated standardised
+reporting of results, will ease pre-submission enquiries both on the part of
+submitting authors, and editors responsible for assessing such enquiries.
+Standardised reporting is considered in the [submission
+phase](#submission-phase), while the remainder of the present sub-section
+considers tools for self-assessment.
+
+Current rOpenSci practices expect authors to assess their software using our
+package standards, then editors perform automated assessment using 
+[`goodpractice`](https://github.com/mangothecat/goodpractice), a package which
+runs [`R CMD
+check`](https://cran.r-project.org/doc/manuals/R-exts.html#Checking-packages)
+as well as other tests including calculating test coverage, [linting](https://en.wikipedia.org/wiki/Lint_(software)),
+and checking for some common coding anti-patterns.
+The [`PharmaR` project's](https://pharmar.org) [`riskmetric`](https://github.com/pharmaR/riskmetric) package performs similar functions as well as providing more development-based metrics and providing a more extensible framework.
+While authors commonly use the `goodpractice` assessment tool, demonstrated self-assessment is not
+currently required at submission.
+
+We anticipate developing a system for self-evaluation of
+software, both in generic form able to be widely applied to software regardless
+of category, as well as specific tools for statistical software. Many of these
+generic assessments have been listed at the end of the preceding
+[Framework](#overview), while tools specific to statistical software have been
+considered in the preceding [Scope](#scope) chapter.
+
+***Key Considerations*** The primary consideration here is actually one of the
+primary considerations of the entire project, which is what sort of tools might
+best be developed? It will be possible to develop extremely sophisticated
+tools, but at the expense of compromising progress in other important aspects
+of the project. Perhaps more than any other aspect of this project, answering
+this question will require maintaining a keen awareness of the compromises
+necessary to successfully deliver all desired project outcomes.
+
+***Proposal***
+
+1. Authors will be expected to run automated self-assessments prior to submission.
+2. We develop a tool for general assessment of software and
+   reporting of analytics, with several modules extending to specific
+   assessment of statistical software.
+3. We simultaneously develop a lightweight infrastructure to enable such
+   assessment and reporting to be provided as an online service, so that authors
+   can run assessment in the same environment as it will be run at submission.
+
+
+## General Software Metrics
+
+The following is an incomplete list of the kinds of metrics commonly used to
+evaluate software in general, and which might provide useful for assessing
+statistical software in the present project.
+
+-   Code structure
+    -   Cyclomatic complexity
+    -   Codebase size
+    -   Function size / number
+    -   Numbers of external calls within functions
+    -   Numbers and proportions of Exported / non exported functions
+    -   Code consistency
+    -   Dynamic metrics derived from function call networks or similar
+        -   Network-based metrics both for entire packages, for individual
+            functions, and derived from analyses of test coverage
+        -   Functional overlap with other packages
+
+-   Documentation metrics:
+    -   Numbers of documentation lines per function
+    -   Proportion of documentation to code lines
+    -   Presence of examples
+    -   Vignettes
+
+-   Data documentation metrics
+    -   Intended and/or permitted kinds of input data
+    -   Nature of output data
+    -   Description of data used in tests
+
+-   Meta structure
+    -   Dependencies
+    -   Reverse dependencies
+
+-   Meta metrics
+    -   License (type, availability, compatibility)
+    -   Version control?
+    -   Availability of website
+    -   Availability of source code (beyond CRAN or similar)
+    -   Community:
+        -   Software downloads and usage statistics
+        -   Numbers of active contributors
+        -   Numbers or rates of issues reported
+    -   Maintenance:
+        -   Rate/Numbers of releases
+        -   Rate of response to reported issues
+        -   Last commit
+        -   Commit rate
+    -   stars (for github, gitlab, or equivalent for other platforms)
+    -   forks
+
+-   Extent of testing
+    -   Code coverage
+    -   Examples and their coverage
+    -   Range of inputs tested
+
+-   Nature of testing
+    -   Testing beyond `R CMD check`?
+    -   Testing beyond concrete testing?
