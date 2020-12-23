@@ -98,7 +98,7 @@ standards set by our system.
 
 
 
-## Scope of Statistical Software Review
+## Scope of Statistical Software Review {#overview-scope}
 
 ### The R Language
 
@@ -165,7 +165,7 @@ alone. Developers using less common languages may nevertheless face longer
 processing times to allow for finding reviewers with appropriate skills in
 those languages.
 
-### Categories of Statistical Software
+### Categories of Statistical Software {#overview-categories}
 
 The scope of statistical software able to be submitted for peer review is
 primarily defined by the following list of categories. Any software which fit
