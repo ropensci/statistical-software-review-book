@@ -113,6 +113,287 @@ contributes to the far greater numbers of
 (`r pypi_n_projects`) than
 [CRAN](https://cran.r-project.org) (`r cran_n_projects`) packages.
 
+
+## Empirical Derivation of Categories
+
+We attempted to derive a realistic categorisation through using empirical data
+from several sources of potential software submissions, including all
+apparently "statistical" R packages published in the [Journal of Open Source
+Software (JOSS](https://joss.theoj.org)), packages published in the [Journal of
+Statistical Software](https://www.jstatsoft.org/index), software presented at
+the 2018 and 2019 Joint Statistical Meetings (JSM), and Symposia on Data
+Science and Statistics (SDSS), well as CRAN task views. We have also compiled
+a list of the descriptions of [all packages rejected by
+rOpenSci](https://github.com/mpadge/statistical-software/blob/master/abstracts/ropensci-abstracts.md)
+as being out of current scope because of current inability to consider
+statistical packages, along with a selection of [recent statistical
+R packages](https://github.com/mpadge/statistical-software/blob/master/abstracts/joss-abstracts.md)
+accepted by JOSS. (The full list of all R package published by JOSS can be
+viewed at <https://joss.theoj.org/papers//in/R>).
+
+We allocated one or more key words (or phrases) to each abstract, and use the
+frequencies and inter-connections between these to inform the following
+categorisation are represented in the [interactive
+graphic](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms/index.html)
+(also included in the [Appendix](#appendix-keywords)), itself derived from
+analyses of abstracts from all statistical software submitted to both rOpenSci
+and JOSS. (Several additional analyses and graphical representations of these
+raw data are included an [auxiliary github
+repository](https://github.com/ropenscilabs/statistical-software).) The primary
+nodes that emerge from these empirical analyses (with associated *relative*
+sizes in parentheses) are shown in the following table.
+
+```{r top-10terms, message = FALSE}
+x <- readLines("scripts/joss-abstracts/categories.Rmd")
+x <- x [grep("[0-9]*\\. \\[", x)]
+names <- vapply(x, function(i) {
+  res <- strsplit(i, "\\[\\`") [[1]]
+  strsplit(res, "\\`\\]") [[2]] [1]
+},
+character(1),
+USE.NAMES = FALSE
+)
+terms <- lapply(x, function(i) {
+  res <- strsplit(i, ":\\s") [[1]] [2]
+  res <- strsplit(res, ";\\s") [[1]] [1] # rm "; input"
+  strsplit(res, ",\\s") [[1]]
+})
+input <- lapply(x, function(i) {
+  res <- strsplit(i, "input: ") [[1]] [2]
+  res <- strsplit(res, ";\\s") [[1]] [1]
+  if (grepl(",\\s", res)) {
+    res <- strsplit(res, ",\\s") [[1]]
+  }
+  return(res)
+})
+output <- lapply(x, function(i) {
+  res <- strsplit(i, "output: ") [[1]] [2]
+  if (grepl(",\\s", res)) {
+    res <- strsplit(res, ",\\s") [[1]]
+  }
+  return(res)
+})
+names(terms) <- names(input) <- names(output) <- names
+n_abstracts <- length(terms)
+terms0 <- terms # used below
+
+terms <- unlist(terms) %>%
+  table() %>%
+  sort(decreasing = TRUE)
+terms <- data.frame(
+  n = seq_along(terms),
+  term = names(terms),
+  proportion = as.integer(terms) / n_abstracts,
+  stringsAsFactors = FALSE
+)
+terms$term [terms$term == "scores"] <- "statistical indices and scores"
+n <- max(which(terms$proportion > 0.05))
+cp <- paste0 ("Most frequent key words from all JOSS abstracts (N = 92) ",
+              "for statistical software. Proportions are scaled *per ",
+              "abstract*, with each abstract generally having multiple ",
+              "key words, and so sum of proportions exceeds one.")
+knitr::kable(head(terms, n = n), digits = c(0, NA, 3), caption = cp)
+```
+
+```{r collate-some-categories}
+terms$term [terms$term %in% c("Bayesian", "Monte Carlo")] <-
+    "Bayesian & Monte Carlo"
+terms$term [terms$term %in% c("dimensionality reduction",
+                              "feature selection")] <-
+    "dimensionality reduction & feature selection"
+terms$term [terms$term %in% c("regression", "splines", "interpolation")] <-
+    "regression/splines/interpolation"
+terms$term [terms$term == "EDA"] <- "Exploratory Data Analysis (EDA)"
+terms <- terms %>%
+  group_by(term) %>%
+  summarise(proportion = sum(proportion)) %>%
+  arrange(by = desc(proportion))
+```
+
+
+The top key words and their inter-relationships within the main [network
+diagram](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms/index.html)
+were used to distinguish the following primary categories representing all
+terms which appear in over 5% of all abstracts, along with the two additional
+categories of "spatial" and "education". We have excluded the key word
+"Estimates" as being too generic to usefully inform standards, and have also
+collected a few strongly-connected terms into single categories.
+
+```{r collate-methods-categories}
+out <- data.frame(terms [which(terms$proportion > 0.05), ])
+out <- out [which(!out$term == "estimates"), ]
+out <- rbind(
+  out, terms [which(terms$term == "spatial"), ],
+  terms [which(terms$term == "education"), ]
+)
+out$comment <- ""
+out$comment [out$term == "dimensionality reduction & feature selection"] <-
+  "Commonly as a result of ML algorithms"
+out$comment [out$term == "regression/splines/interpolation"] <-
+  "Including function data analysis"
+out$comment [out$term == "probability distributions"] <-
+  paste0 ("Including kernel densities, likelihood estimates and estimators, ",
+          "and sampling routines")
+out$comment [out$term == "categorical variables"] <-
+  paste0 ("Including latent variables, and those output from ML algorithms. ",
+          "Note also that method for dimensionality reduction (such as ",
+          "clustering) often transform data to categorical forms.")
+out$comment [out$term == "Exploratory Data Analysis (EDA)"] <-
+  paste0 ("Including information statistics such as Akaike's criterion, ",
+          "and techniques such as random forests. ",
+          "Often related to workflow software.")
+out$comment [out$term == "survival"] <-
+  paste0 ("strongly related to EDA, yet differing in being strictly ",
+          "descriptive of software *outputs* whereas EDA may include ",
+          "routines to explore data *inputs* and other pre-output ",
+          "stages of analysis.")
+out$comment [out$term == "summary statistics"] <-
+  paste0 ("Primarily related in the empirical data to regression and ",
+          "survival analyses, yet clearly a distinct category of its own.")
+out$comment [out$term == "workflow"] <-
+    "Often related to EDA, and very commonly also to ML."
+out$comment [out$term == "model selection"] <-
+  paste0 ("A important intermediate node between such categories as ML, ",
+          "Bayesian and Monte Carlo techniques, visualisation, and EDA.")
+out$comment [out$term == "statistical indices and scores"] <-
+  paste0 ("Software generally intended to produce specific ",
+          "indices or scores as statistical output")
+out$comment [out$term == "spatial"] <-
+  paste0 ("Also an important intermediate node connecting several ",
+          "other nodes, yet defining its own distinct cluster ",
+          "reflecting a distinct area of expertise.")
+
+out <- data.frame(
+  n = seq(nrow(out)),
+  term = out$term,
+  proprtion = out$proportion,
+  comment = out$comment,
+  stringsAsFactors = FALSE
+)
+
+cp <- paste0 ("Proposed categorisation of statistical software, ",
+              "with corresponding proportions of all JOSS software ",
+              "matching each category")
+knitr::kable(out, digits = c(0, NA, 3, NA), caption = cp)
+```
+
+
+The full network diagram can then be reduced down to these categories only,
+with interconnections weighted by all first- and second-order interconnections
+between intermediate categories, to give the following, simplified diagram
+(in which "scores" denotes "statistical indices and scores"; with the diagram
+best inspected by dragging individual nodes to see their connections to
+others).
+
+```{r visnetwork-simple}
+nodes <- table(unlist(terms0))
+nodes <- data.frame(
+  id = names(nodes),
+  label = names(nodes),
+  value = as.integer(nodes),
+  stringsAsFactors = FALSE
+)
+edges <- lapply(terms0, function(i) {
+  if (length(i) > 1) {
+    res <- sort(i)
+    n <- combn(seq_along(res), 2)
+    cbind(
+      res [n [1, ]],
+      res [n [2, ]]
+    )
+  }
+})
+edges <- do.call(rbind, edges)
+edges <- data.frame(
+  from = edges [, 1],
+  to = edges [, 2],
+  stringsAsFactors = FALSE
+) %>%
+  group_by(from, to) %>%
+  summarise(width = length(from)) %>%
+  ungroup()
+# Remove isolated edges:
+# annotation, areal weights, binomial distribution, cubature, gene loci,
+# generalized least squares, misspecification, classification, interpolation,
+# over-dispersion, integration, random effects, probit model
+cl <- graph_from_data_frame(edges) %>%
+  clusters()
+out <- names(cl$membership [which(cl$membership != which.max(cl$csize))])
+nodes <- nodes [which(!nodes$id %in% out), ]
+edges <- edges [which(!(edges$from %in% out | edges$to %in% out)), ]
+
+# manually agglomerate some categories
+from <- c(
+  "Bayesian|Monte Carlo", "dimensionality reduction|feature selection",
+  "^regression|splines|interpolation"
+)
+to <- c("Bayes/MC", "dimensionality reduction", "regression")
+for (i in seq_along(from)) {
+  edges$from [grep(from [i], edges$from)] <- to [i]
+  edges$to [grep(from [i], edges$to)] <- to [i]
+  nodes$id [grep(from [i], nodes$label)] <- to [i]
+  nodes$label [grep(from [i], nodes$label)] <- to [i]
+}
+edges <- edges %>%
+  group_by(from, to) %>%
+  summarise(width = sum(width)) %>%
+  ungroup()
+nodes <- nodes %>%
+  group_by(label) %>%
+  summarise(value = sum(value)) %>%
+  transform(id = label)
+
+g <- graph_from_data_frame(edges)
+dg <- distances(g)
+
+# add to edge distances all intermediate distances between O(2) connections
+edges2 <- edges
+dgnames <- rownames(dg)
+for (i in seq(nrow(edges2))) {
+  dgfrom <- match(edges2$from [i], rownames(dg))
+  dgto <- match(edges$to [i], colnames(dg))
+  nbs_from <- dgnames [which(dg [dgfrom, ] < 3)]
+  nbs_to <- dgnames [which(dg [, dgto] < 3)]
+  nbs <- intersect(nbs_from, nbs_to)
+  index <- which(edges$from == edges$from [i] & edges$to %in% nbs)
+  edges2$width [i] <- sum(edges$width [index])
+}
+
+ns <- nodes [order(nodes$value, decreasing = TRUE), ]
+index <- c(
+  which(!grepl("estimates", ns$label [1:15])),
+  grep("spatial|education", ns$label)
+)
+ns <- ns [index, ]
+es <- edges2 [which(edges$from %in% ns$label & edges$to %in% ns$label), ]
+# es <- es [which (es$from %in% ns$label & es$to %in% ns$label), ]
+es <- es [which(!es$from == es$to), ]
+es$width <- es$width * 5 / max(es$width)
+library(visNetwork)
+visNetwork(ns, es)
+```
+
+Standards considered under any of the ensuing categories must be developed with
+reference to inter-relationships between categories, and in particular to
+potential ambiguity within and between any categorisation. An example of such
+ambiguity, and of potential difficulties associated with categorisation, is the
+category of "network" software which appropriate describes the
+[`grapherator`](https://github.com/jakobbossek/grapherator) package (with
+accompanying [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00528))
+which is effectively a distribution generator for data represented in
+a particular format that happens to represent a graph; and three JSM
+presentations, one on [network-based clustering of high-dimensional
+data](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=327171),
+one on [community structure in dynamic
+networks](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764)
+and one on [Gaussian graphical
+models](https://ww2.amstat.org/meetings/jsm/2018/onlineprogram/AbstractDetails.cfm?abstractid=328764).
+Standards derived for network software must accommodate such diversity of
+applications, and must accommodate software for which the "network" category
+may pertain only to some relatively minor aspect, while the primary algorithms
+or routines may not be related to network software in any direct way.
+
+
 ## Analysis of statistical software keywords {#appendix-keywords}
 
 The
