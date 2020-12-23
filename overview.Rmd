@@ -803,3 +803,13 @@ remainder of this document, it is important that future revisions return to
 this point, and ensure that each of the following sections are appropriately
 modified to ensure effective consideration and incorporation of the
 representativeness and inclusiveness of communities surrounding our software.
+
+### The `statsistical-software` R Package
+
+This project has an accompanying R package intended for use by both submitting
+developers and reviewers in aiding the assessment and review of R packages.
+The package is included in the main github page used to submit software,
+[`ropenscilabs/statistical-software-review`](https://github.com/ropenscilabs/statistical-software-review).
+This package enables and facilitates the following tasks:
+
+**TODO: describe package and associated tasks**
