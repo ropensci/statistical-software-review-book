@@ -9,8 +9,13 @@ jobs:
     steps:
       - name: Is this a fork
         run: |
-          fork=$(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}")
-          echo "fork={$fork}" >> $GITHUB_ENV
+          fork=$(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}"); echo "fork=$fork" >> $GITHUB_ENV
+          if [ $fork == 'false' ]
+          then
+            echo "This is not a fork, we shall deploy a preview."
+          else
+            echo "This is a fork, we shall not deploy a preview."
+          fi
             
       - name: Checkout repo
         uses: actions/checkout@v2
