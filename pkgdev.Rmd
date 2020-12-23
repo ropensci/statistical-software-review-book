@@ -3,6 +3,90 @@
 
 # Package Development {#pkgdev}
 
+## Scope
+
+The first important task prior to submitting a package is to estimate whether
+a package is likely to be considered within our scope for statistical software.
+As described in the [Overview](#overview-scope), packages are generally
+considered in scope if they fit one or more of the [categories listed
+there](#overview-categories), and in the corresponding standards.
+
+Developers are encouraged to contact us at any point prior to, or during,
+development, to ask about whether a package might be in scope, or which
+categories it might fit within. Categorisation of packages may not always be
+straightforward, and we particularly encourage developers who are unsure about
+whether a package belongs in a particular category or not to contact us for
+discussion. An initial judgement of whether or not a package belongs in
+a particular category may be gained by examining the respective standards. Any
+package for which a large number of standards from a particular category may be
+considered applicable (regardless of whether or not they would actually be
+checked) is likely to fit within that category.
+
+## Automated Assessment
+
+Packages are expected to be extensively self-assessed prior to initial
+submission enquiries. In particular, packages are expected to pass our
+automated testing tools, as described in this section, and developers are
+expected to have self-assessed their software against all applicable standards,
+as described in the following section.
+
+Our automated assessment tool,
+[`autotest`](https://github.com/ropenscilabs/autotest), implements a form of
+"mutation testing," by examining the types of all input parameters, implement
+type-specific mutations, and examining the response of each function in
+a package to all such mutations. Full documentation is provided on the [package
+webpages](https://ropenscilabs.github.io/autotest). All statistical software
+packages to be submitted for review will be expected to yield clean results
+from [`autotest`](https://github.com/ropenscilabs/autotest). As with standards,
+there may be tests which developers deem not to be applicable. In such cases
+...
+
+**TODO: Implement this ability in autotest**
+
+Note that 
+[`autotest`](https://github.com/ropenscilabs/autotest) works by extracting all
+code from the `examples` section of each functions' documentation.
+A pre-requisite for successful 
+[`autotest`](https://github.com/ropenscilabs/autotest)-ing is thus that all
+functions must have example code. This can be confirmed by running
+[`autotest_package()`](https://ropenscilabs.github.io/autotest/reference/autotest_package.html)
+with `test = FALSE`. This returns a list of all tests without actually running
+them, along with diagnoses of whether or not functions have sufficient
+documentation.
+
+An additional tool developed for this project is
+[`packgraph`](https://github.com/ropenscilabs/packgraph), which generates an
+interactive visualization of the function call network of a package. The output
+of this tool forms part of the initial information provided to package
+reviewers, and guides them to understand how the various functions of a package
+are inter-related.
+
+## Assessment Against Standards
+
+Developers are expected to align their package as best they can with both
+General Standards and the category-specific standards relevant to that package.
+This alignment with standards requires copies of all standards, which can be
+obtained in markdown-formatted checklist format from the [project's
+R package](https://github.com/ropenscilabs/statistical-software-review) (by
+using the [`rssr_standards_checklist()`
+function](https://ropenscilabs.github.io/statistical-software-review/reference/rssr_standards_checklist.html)).
+
+### Automated Completion of Standards via [`autotest`](https://github.com/ropenscilabs/autotest)
+
+The first step to completing standards is to use the
+[`autotest`](https://github.com/ropenscilabs/autotest) output to automatically
+complete the corresponding standards. This can be done by the function XXX of
+the [project's
+R package](https://github.com/ropenscilabs/statistical-software-review). That
+function will nevertheless generally only complete a small portion of all
+relevant standards, with the rest needing to be manually completed.
+
+### Manual Completion of Standards
+
+---
+
+## Extra Stuff
+
 A strong focus of this project will be the development of tools to assess
 software, both generally and for statistical software specifically. One
 important aim is to develop tools able to be used by software authors to assess
