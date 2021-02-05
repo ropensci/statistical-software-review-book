@@ -331,6 +331,24 @@ rely on equality comparisons, and this standard extends to require that
 software should not apply any functions which themselves rely on equality
 comparisons to floating point numbers.
 
+- G3.1 Statistical software which relies on covariance calculations should
+  enable users to choose between different algorithms for calculating
+  covariances, and should not rely solely on covariances from the `stats::cov`
+  function.
+    - G3.1a While it may be sufficient to offer a single default method, the
+      ability to use arbitrarily specified methods should nevertheless be
+      documented (typically in examples or vignettes).
+
+Estimates of covariance can be very sensitive to outliers, and a variety of
+methods have been developed for "robust" estimates of covariance, implemented
+in such packages as [`rms`](https://cran.r-project.org/package=rms),
+[`robust`](https://cran.r-project.org/package=robust), and
+[`sandwich`](https://cran.r-project.org/package=sandwich). Adhering to this
+standard merely requires an ability for a user to specify a particular
+covariance function, such as through an additional parameter. The `stats::cov`
+function can be used as a default, and additional packages such as the three
+listed here need not necessarily be listed as `Imports` to a package.
+
 
 ### Output Structures
 
