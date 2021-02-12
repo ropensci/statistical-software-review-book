@@ -3,6 +3,15 @@
 
 # Package Development {#pkgdev}
 
+Package developers are expected to follow the three sub-sections described in
+this chapter, starting with a determination of whether a package is likely to
+be considered within the scope of our review system. We then describe
+our automated assessment tools, which packages are expected to pass, followed
+by a description of our system for which developers are expected to self-assess
+their software against all applicable standards. As described at the outset,
+this book is also the definitive reference for all standards, as provided in
+the [dedicated chapter](#standards).
+
 ## Scope
 
 The first important task prior to submitting a package is to estimate whether
@@ -22,44 +31,56 @@ package for which a large number of standards from a particular category may be
 considered applicable (regardless of whether or not they would actually be
 checked) is likely to fit within that category.
 
-## Automated Assessment
+## The [`autotest` package](https://github.com/ropenscilabs/autotest) {#pkgdev-autotest}
 
-Packages are expected to be extensively self-assessed prior to initial
-submission enquiries. In particular, packages are expected to pass our
-automated testing tools, as described in this section, and developers are
-expected to have self-assessed their software against all applicable standards,
-as described in the following section.
+We have developed an automated assessment tool,
+[`autotest`](https://github.com/ropenscilabs/autotest), which all packages are
+expected to pass in order to be accepted for submission. The package implements
+a form of "mutation testing," by examining the types of all input parameters,
+implementing type-specific mutations, and examining the response of each
+function in a package to all such mutations. This kind of mutation testing is
+a very effective way to uncover any unexpected behaviour which developers
+themselves might not necessarily pre-empt.
 
-Our automated assessment tool,
-[`autotest`](https://github.com/ropenscilabs/autotest), implements a form of
-"mutation testing," by examining the types of all input parameters, implement
-type-specific mutations, and examining the response of each function in
-a package to all such mutations. Full documentation is provided on the [package
-webpages](https://ropenscilabs.github.io/autotest). All statistical software
-packages to be submitted for review will be expected to yield clean results
-from [`autotest`](https://github.com/ropenscilabs/autotest). As with standards,
-there may be tests which developers deem not to be applicable. In such cases
-...
+Full documentation is provided on the [package
+website](https://ropenscilabs.github.io/autotest/), with the current sub-section
+describing how the output of
+[`autotest`](https://ropenscilabs.github.io/autotest/) is expected to be used
+in a review process. In order to under *how* the results of 
+[`autotest`](https://ropenscilabs.github.io/autotest/) are used in our review
+process, it is clearly to describe the general process *in reverse*, beginning
+with the final step of making the results available through uploading to
+GitHub.
 
-**TODO: Implement this ability in autotest**
+The result of applying the [`autotest_package()`
+function](https://ropenscilabs.github.io/autotest/reference/autotest_package.html)
+to a package is contained in the object returned from this function, which is
+a package-specific class of [`tibble`](https://tibble.tidyverse.org). Prior to
+review, you'll need to upload this result according to the following steps:
 
-Note that 
-[`autotest`](https://github.com/ropenscilabs/autotest) works by extracting all
-code from the `examples` section of each functions' documentation.
-A pre-requisite for successful 
-[`autotest`](https://github.com/ropenscilabs/autotest)-ing is thus that all
-functions must have example code. This can be confirmed by running
-[`autotest_package()`](https://ropenscilabs.github.io/autotest/reference/autotest_package.html)
-with `test = FALSE`. This returns a list of all tests without actually running
-them, along with diagnoses of whether or not functions have sufficient
-documentation.
+1. Save a local version of the output of
+   [`autotest_package()`](https://ropenscilabs.github.io/autotest/reference/autotest_package.html)
+   as `.Rds`, using
+   [`saveRDS()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/readRDS.html).
+2. Make a GitHub release of your package called "pre-review" (see
+   [here](https://docs.github.com/en/github/administering-a-repository/managing-releases-in-a-repository)
+   for more information).
+3. Upload the saved object by dragging-and-dropping a locally-saved version
+   into the main box for describing the release. (You can easily edit a release
+   at any subsequent time if you forget to upload the data when you create the
+   release).
 
-An additional tool developed for this project is
-[`packgraph`](https://github.com/ropenscilabs/packgraph), which generates an
-interactive visualization of the function call network of a package. The output
-of this tool forms part of the initial information provided to package
-reviewers, and guides them to understand how the various functions of a package
-are inter-related.
+That will make your [`autotest`](https://ropenscilabs.github.io/autotest/)
+results available for our editors to examine. You can also use rOpenSci's own
+[`piggyback` package](https://github.com/ropensci/piggyback) to manage these
+tasks entirely within R.
+
+Prior to uploading, however, you will need to determine which tests you
+consider not to be applicable to your package, and turn those off at the
+appropriate levels (package, function, or parameter level), as described in the 
+[documentation](https://ropenscilabs.github.io/autotest). Each test that is
+switched off then has a value in the `type` column of `no_test`.
+
 
 ## Assessment Against Standards
 
