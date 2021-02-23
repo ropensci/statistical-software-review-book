@@ -29,7 +29,10 @@ discussion. An initial judgement of whether or not a package belongs in
 a particular category may be gained by examining the respective standards. Any
 package for which a large number of standards from a particular category may be
 considered applicable (regardless of whether or not they would actually be
-checked) is likely to fit within that category.
+checked) is likely to fit within that category. Once you have determined that
+your package is likely to fit into one or more of our in-scope categories,
+you'll need to apply our two primary development tools described in the
+following two sub-sections.
 
 ## The [`autotest` package](https://github.com/ropenscilabs/autotest) {#pkgdev-autotest}
 
@@ -43,173 +46,96 @@ a very effective way to uncover any unexpected behaviour which developers
 themselves might not necessarily pre-empt.
 
 Full documentation is provided on the [package
-website](https://ropenscilabs.github.io/autotest/), with the current sub-section
-describing how the output of
-[`autotest`](https://ropenscilabs.github.io/autotest/) is expected to be used
-in a review process. In order to under *how* the results of 
-[`autotest`](https://ropenscilabs.github.io/autotest/) are used in our review
-process, it is clearly to describe the general process *in reverse*, beginning
-with the final step of making the results available through uploading to
-GitHub.
-
-The result of applying the [`autotest_package()`
-function](https://ropenscilabs.github.io/autotest/reference/autotest_package.html)
-to a package is contained in the object returned from this function, which is
-a package-specific class of [`tibble`](https://tibble.tidyverse.org). Prior to
-review, you'll need to upload this result according to the following steps:
-
-1. Save a local version of the output of
-   [`autotest_package()`](https://ropenscilabs.github.io/autotest/reference/autotest_package.html)
-   as `.Rds`, using
-   [`saveRDS()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/readRDS.html).
-2. Make a GitHub release of your package called "pre-review" (see
-   [here](https://docs.github.com/en/github/administering-a-repository/managing-releases-in-a-repository)
-   for more information).
-3. Upload the saved object by dragging-and-dropping a locally-saved version
-   into the main box for describing the release. (You can easily edit a release
-   at any subsequent time if you forget to upload the data when you create the
-   release).
-
-That will make your [`autotest`](https://ropenscilabs.github.io/autotest/)
-results available for our editors to examine. You can also use rOpenSci's own
-[`piggyback` package](https://github.com/ropensci/piggyback) to manage these
-tasks entirely within R.
-
-Prior to uploading, however, you will need to determine which tests you
-consider not to be applicable to your package, and turn those off at the
-appropriate levels (package, function, or parameter level), as described in the 
-[documentation](https://ropenscilabs.github.io/autotest). Each test that is
-switched off then has a value in the `type` column of `no_test`.
+website](https://ropenscilabs.github.io/autotest/), and we particularly
+encourage any developers intending to develop packages for submission to our
+peer review system to step through the [main `autotest`
+vignette](https://ropenscilabs.github.io/autotest/articles/autotest.html), and
+to apply [`autotest`](https://ropenscilabs.github.io/autotest/) continuously
+throughout package development, to ensure that `autotest_package()` returns
+clean (`NULL`) results when the package is first submitted.
 
 
 ## Assessment Against Standards
 
-Developers are expected to align their package as best they can with both
-General Standards and the category-specific standards relevant to that package.
-This alignment with standards requires copies of all standards, which can be
-obtained in markdown-formatted checklist format from the [project's
-R package](https://github.com/ropenscilabs/statistical-software-review) (by
-using the [`rssr_standards_checklist()`
-function](https://ropenscilabs.github.io/statistical-software-review/reference/rssr_standards_checklist.html)).
+Once a package has been sufficiently developed to begin alignment with our
+standards, and once all issues revealed by
+[`autotest`](https://ropenscilabs.github.io/autotest/) have been addressed,
+developers will need to use our second tool, the [`ssr` (**s**oftware
+**r**eveiw **r**oclets) package](https://ropenscilabs.github.io/srr/) to insert
+both general and category-specific standards into their code, and to begin the
+process of documenting within the code itself how and where the code adheres to
+the individual standards.
 
-### Automated Completion of Standards via [`autotest`](https://github.com/ropenscilabs/autotest)
+The procedures are again described in detail on the [main `srr`
+website](https://ropenscilabs.github.io/srr/), and in particular in the
+[package vignette](https://ropenscilabs.github.io/srr/articles/srr-stats.html).
+Developers are first encouraged to obtain a local copy of the [source code for
+that
+vignette](https://github.com/ropenscilabs/srr/blob/main/vignettes/srr-stats.Rmd),
+and to step through each line in order to understand how the procedure works.
+Having done that, you may then insert standards into your own package by
+running from within the local directory of your package,
 
-The first step to completing standards is to use the
-[`autotest`](https://github.com/ropenscilabs/autotest) output to automatically
-complete the corresponding standards. This can be done by the function XXX of
-the [project's
-R package](https://github.com/ropenscilabs/statistical-software-review). That
-function will nevertheless generally only complete a small portion of all
-relevant standards, with the rest needing to be manually completed.
+```{r ssr-standards, eval = FALSE, echo = TRUE}
+srr_stats_roxygen (category = c ("<category-1>", "<category-2>"))
+```
 
-### Manual Completion of Standards
+That will insert a new file into the `R/` directory of your package called (by
+default) `srr-stats-standards.R`. All standards initially have
+a [`roxygen2`](https://roxygen2.r-lib.org) tag of `@srrstatsTODO`, to indicate
+that these standards are yet to be addressed. These tags are processed by the 
+[`srr` roclet](https://ropenscilabs.github.io/srr/) which needs to be connected
+with your package by modifying the `Roxygen` line of your `DESCRIPTION` file to
+the following form:
 
----
+```{r srr-DESC, eval = FALSE, echo = TRUE}
+Roxygen: list (markdown = TRUE, roclets = c ("namespace", "rd", "srr::srr_stats_roclet"))
+```
 
-## Extra Stuff
+You do not need to add the `srr` package anywhere else in your `DESCRIPTION`
+file, nor do you need to retain this line when submitting packages to CRAN (or
+elsewhere). You should nevertheless retain the line at all other times, and you
+can easily disable the roclet output by including `#' @srrVerbose FALSE`
+somewhere within your documentation. Note that `srr` documentation lines are
+used only to produce on-screen output triggered by running
+[`roxygen2::roxygensise()`](https://roxygen2.r-lib.org/reference/roxygenize.html),
+or the equivalent function,
+[`devtools::document()`](http://devtools.r-lib.org/reference/document.html),
+and do not appear in actual package documentation.
 
-A strong focus of this project will be the development of tools to assess
-software, both generally and for statistical software specifically. One
-important aim is to develop tools able to be used by software authors to assess
-their own software. Such self-assessment, along with associated standardised
-reporting of results, will ease pre-submission enquiries both on the part of
-submitting authors, and editors responsible for assessing such enquiries.
-Standardised reporting is considered in the [submission
-phase](#submission-phase), while the remainder of the present sub-section
-considers tools for self-assessment.
+The [`srr` roclet](https://ropenscilabs.github.io/srr/) recognises and process
+three tags:
 
-Current rOpenSci practices expect authors to assess their software using our
-package standards, then editors perform automated assessment using 
-[`goodpractice`](https://github.com/mangothecat/goodpractice), a package which
-runs [`R CMD
-check`](https://cran.r-project.org/doc/manuals/R-exts.html#Checking-packages)
-as well as other tests including calculating test coverage, [linting](https://en.wikipedia.org/wiki/Lint_(software)),
-and checking for some common coding anti-patterns.
-The [`PharmaR` project's](https://pharmar.org) [`riskmetric`](https://github.com/pharmaR/riskmetric) package performs similar functions as well as providing more development-based metrics and providing a more extensible framework.
-While authors commonly use the `goodpractice` assessment tool, demonstrated self-assessment is not
-currently required at submission.
+1. `@srrstatsTODO` to flag standards yet to be addressed;
+2. `@srrstats` to flag standards which have been addressed, and followed by
+   descriptions of how your code addresses those standards; and
+3. `@srrstatsNA` to flag standards which you deem not to be applicable to your
+   code, followed by explanations of why you deem those standards not
+   applicable.
 
-We anticipate developing a system for self-evaluation of
-software, both in generic form able to be widely applied to software regardless
-of category, as well as specific tools for statistical software. Many of these
-generic assessments have been listed at the end of the preceding
-[Framework](#overview), while tools specific to statistical software have been
-considered in the preceding [Scope](#scope) chapter.
+The file generated by
+[`srr_stats_roxygen()`](https://ropenscilabs.github.io/srr/reference/srr_stats_roxygen.html)
+initially contains two [`roxygen2`](https://roxygen2.r-lib.org) blocks, the
+first containing every standard potentially applicable to your package, tagged
+with `@srrstatsTODO`, and the second with a title of `MA_standards`, to
+document standards deemed not applicable.
 
-***Key Considerations*** The primary consideration here is actually one of the
-primary considerations of the entire project, which is what sort of tools might
-best be developed? It will be possible to develop extremely sophisticated
-tools, but at the expense of compromising progress in other important aspects
-of the project. Perhaps more than any other aspect of this project, answering
-this question will require maintaining a keen awareness of the compromises
-necessary to successfully deliver all desired project outcomes.
+The first task after having generated this file is to move standards to
+approximate locations within your package where they are likely to be
+addressed. For example, standards concerning tests should be moved somewhere
+within the `tests/` directory, standards concerning documentation to the main
+`README.Rmd` file, or within a vignette file. The [package
+skeleton](https://ropenscilabs.github.io/srr/reference/srr_stats_pkg_skeleton.html)
+includes code demonstrating how to include roclet tags within `.Rmd` files.
+This will break down an initially large single list of standards into more
+manageable groups of standards dispersed throughout your code. As each standard
+is addressed, it should be moved to one or more locations in your code as near
+as possible to relevant code, and the tag changed from `@srrstatsTODO` to
+`@srrstats`, and a brief description appended to explain how that standard is
+addressed.
 
-***Proposal***
-
-1. Authors will be expected to run automated self-assessments prior to submission.
-2. We develop a tool for general assessment of software and
-   reporting of analytics, with several modules extending to specific
-   assessment of statistical software.
-3. We simultaneously develop a lightweight infrastructure to enable such
-   assessment and reporting to be provided as an online service, so that authors
-   can run assessment in the same environment as it will be run at submission.
-
-
-## General Software Metrics
-
-The following is an incomplete list of the kinds of metrics commonly used to
-evaluate software in general, and which might provide useful for assessing
-statistical software in the present project.
-
--   Code structure
-    -   Cyclomatic complexity
-    -   Codebase size
-    -   Function size / number
-    -   Numbers of external calls within functions
-    -   Numbers and proportions of Exported / non exported functions
-    -   Code consistency
-    -   Dynamic metrics derived from function call networks or similar
-        -   Network-based metrics both for entire packages, for individual
-            functions, and derived from analyses of test coverage
-        -   Functional overlap with other packages
-
--   Documentation metrics:
-    -   Numbers of documentation lines per function
-    -   Proportion of documentation to code lines
-    -   Presence of examples
-    -   Vignettes
-
--   Data documentation metrics
-    -   Intended and/or permitted kinds of input data
-    -   Nature of output data
-    -   Description of data used in tests
-
--   Meta structure
-    -   Dependencies
-    -   Reverse dependencies
-
--   Meta metrics
-    -   License (type, availability, compatibility)
-    -   Version control?
-    -   Availability of website
-    -   Availability of source code (beyond CRAN or similar)
-    -   Community:
-        -   Software downloads and usage statistics
-        -   Numbers of active contributors
-        -   Numbers or rates of issues reported
-    -   Maintenance:
-        -   Rate/Numbers of releases
-        -   Rate of response to reported issues
-        -   Last commit
-        -   Commit rate
-    -   stars (for github, gitlab, or equivalent for other platforms)
-    -   forks
-
--   Extent of testing
-    -   Code coverage
-    -   Examples and their coverage
-    -   Range of inputs tested
-
--   Nature of testing
-    -   Testing beyond `R CMD check`?
-    -   Testing beyond concrete testing?
+Standards deemed not to be applicable to your package should all be group together within a single 
+[`roxygen2`](https://roxygen2.r-lib.org) block with a title of `NA_standards`,
+each with a tag of `@srrstatsNA`, and a brief description of why those
+standards are deemed not to be applicable. Full details of the `srr` procedure
+are given on the [pakcage website](https://ropenscilabs.github.io/srr)/
