@@ -1,4 +1,4 @@
-#  (PART) Package Development, Submission, and Maintenance {-}
+#  (PART) Package Development & Submission {-}
 
 
 # Package Development {#pkgdev}
@@ -139,3 +139,26 @@ Standards deemed not to be applicable to your package should all be group togeth
 each with a tag of `@srrstatsNA`, and a brief description of why those
 standards are deemed not to be applicable. Full details of the `srr` procedure
 are given on the [package website](https://ropenscilabs.github.io/srr).
+
+## Software Life Cycle Statement
+
+To understand developers' own visions for the future development of their
+packages, submissions also require a "*Life Cycle Statement*" clarifying the
+current developmental state of the software, and their visions for subsequent
+development following review. A *Life Cycle Statement* can be as simple as,
+
+> This package was developed as part of a project that has now been completed.
+We envision no further development.
+
+Nevertheless, statements envisioning some degree of future development are
+strongly preferred. A *Life Cycle Statement* will generally consist of a few
+statements regarding likely or desirable development over the few years
+subsequent to review, statements of likely ability of current maintainers to
+continue active maintenance, statements of the likelihood of desiring or
+needing to seek alternative maintainers, and estimates of a likely time at
+which the software may become obsolete or redundant. 
+
+As with the following [*Package Submission*](#pkgsubmission) section, precise
+formats for these *Life Cycle Statements* have not yet been finalised, and
+developers intended to submit are asked to contact rOpenSci staff directly for
+how to formulate these statements.
