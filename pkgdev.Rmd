@@ -138,4 +138,4 @@ Standards deemed not to be applicable to your package should all be group togeth
 [`roxygen2`](https://roxygen2.r-lib.org) block with a title of `NA_standards`,
 each with a tag of `@srrstatsNA`, and a brief description of why those
 standards are deemed not to be applicable. Full details of the `srr` procedure
-are given on the [pakcage website](https://ropenscilabs.github.io/srr)/
+are given on the [package website](https://ropenscilabs.github.io/srr).
