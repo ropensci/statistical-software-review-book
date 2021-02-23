@@ -1,8 +1,7 @@
 
 # Package Submission {#pkgsubmission}
 
-The system which for submitting packages to our Statistical Software Review
-system is still under development. Until this section contains additional
-information, developers wishing to submit packages for peer review are
-encouraged to contact rOpenSci staff directly to enquire about submission
-procedures.
+The system for submitting packages to our Statistical Software Review system is
+still under development. Until this section contains additional information,
+developers wishing to submit packages for peer review are encouraged to contact
+rOpenSci staff directly to enquire about submission procedures.
