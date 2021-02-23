@@ -162,3 +162,48 @@ As with the following [*Package Submission*](#pkgsubmission) section, precise
 formats for these *Life Cycle Statements* have not yet been finalised, and
 developers intended to submit are asked to contact rOpenSci staff directly for
 how to formulate these statements.
+
+### Badges: Green, Silver, Gold
+
+All statistical software which is recommended for acceptance by reviews is
+entitled to display an rOpenSci badge. Unlike the [static badges used by
+rOpenSci's current peer-review
+system](https://devguide.ropensci.org/building.html#readme), our statistical
+software project features badges in the following three grades: 
+
+1. **green** for software which has been accepted, and which reviewers have
+   deemed sufficiently compliant with relevant standards.
+3. **silver** for software for which developers aspire to reach gold standard,
+   but which is not yet sufficiently compliant. See below for details.
+2. **gold** for software which complies with *all* standards which reviewers
+   have deemed potentially applicable. This is the highest standard, and
+   requires developers to ensure compliance to the greatest extend possible
+   with standards, while minimising the number of standards deemed
+   non-applicable.
+
+A *Life Cycle Statement* must also include a statement of which colour or
+category of badge developers intend to attain at the end of the review process.
+Any software which developers do not explicit intend to actively develop beyond
+the review process (notwithstanding minimal necessary modifications such as
+necessary upgrades and fixing of bugs) will be eligible for a **green** badge
+only.
+
+The **silver** category should be viewed as a statement of intent, and not as
+a fixed category in its own right. At the end of the review process, most
+software will attain either the **green** or **silver** badges, with the latter
+indicating an intention for package development to continue to enhance
+alignment with our statistical standards until the gold standard has been
+attained. Packages aspiring for silver or gold badges will also be required to
+specify within the *Life Cycle Statement* one or more times at which additional
+review phases will be conducted in order to assess progressive degrees of
+compliance with standards.
+
+Note also that our standards will be versioned, and that **gold** badges in
+particular will be assessed against a specific version of our standards. As our
+standards are upgraded, current versions may increasingly diverge from versions
+against which a particular gold badge was assessed. Left untouched, badges may
+eventually be downgraded from gold to silver. We will nevertheless make
+processes of ongoing alignment to standards as easy as possible, and will
+include functions in our [`ssr` package](https://ropenscilabs.github.io/srr/)
+to explicitly identify steps necessary to align software with current versions
+of standards.
