@@ -476,14 +476,14 @@ decisions such a process of categorisation will likely face.
     packages:
 
     -   greta models are written interactively in R code rather than in a
-        > compiled domain specific language.
+        compiled domain specific language.
 
     -   greta can be extended by other R packages; providing a fully-featured
-        > package management system for extensions.
+        package management system for extensions.
 
     -   greta performs statistical inference using TensorFlow (Abadi et al.,
-        > 2015), enabling it to scale across modern high-performance computing
-        > systems.
+        2015), enabling it to scale across modern high-performance computing
+        systems.
 
     The `greta` package might be considered predominantly an interface to
     TensorFlow, yet it provides a new way to specify and work with purely
@@ -601,7 +601,7 @@ implementations, as well as to compare them with any notional reference
 implementations.
 
 1. [`ivis`](https://joss.theoj.org/papers/10.21105/joss.01596) implements
-   a dimensionality reduction technique using a "Siamese Neural Network
+   a dimensionality reduction technique using a "Siamese Neural Network"
    architecture.
 2. [`tsfeaturex`](https://joss.theoj.org/papers/10.21105/joss.01279) is
    a package to automate "time series feature extraction," which also provides
