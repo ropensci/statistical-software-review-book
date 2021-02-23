@@ -1,66 +1,62 @@
 on: pull_request
-  
+
 name: PR-workflow
 
 jobs:
   bookdown:
     name: Render Book
     runs-on: macOS-latest
+    if: github.repository == 'ropenscilabs/statistical-software-review-book'
     steps:
       - name: Is this a fork
         run: |
-          fork=$(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}"); echo "fork=$fork" >> $GITHUB_ENV
+          fork=$(jq --raw-output .pull_request.head.repo.fork "${GITHUB_EVENT_PATH}");echo "fork=${fork}" >> $GITHUB_ENV
           if [ $fork == 'false' ]
           then
             echo "This is not a fork, we shall deploy a preview."
           else
             echo "This is a fork, we shall not deploy a preview."
           fi
-            
+
       - name: Checkout repo
         uses: actions/checkout@v2
-        
+
       - name: Setup R
         uses: r-lib/actions/setup-r@v1
-      
-      - name: Setup pandoc
+
+      - name: pandoc
         uses: r-lib/actions/setup-pandoc@v1
-      
-      - name: Query dependencies
-        run:
-          Rscript -e "install.packages('remotes')" -e "saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds', version = 2)"
+
+      - name: tinytex
+        uses: r-lib/actions/setup-tinytex@v1
 
       - name: Cache R packages
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ hashFiles('depends.Rds') }}
-          restore-keys: ${{ runner.os }}-r-
+          key: ${{ hashFiles('DESCRIPTION') }}
 
       - name: Install dependencies
-        run:
-          Rscript -e "library(remotes)" -e "deps <- readRDS('depends.Rds')" -e "deps[['installed']] <- vapply(deps[['package']], remotes:::local_sha, character(1))" -e "update(deps)"
+        run: Rscript -e 'install.packages("remotes")' -e 'options(install.packages.check.source = "both")' -e 'remotes::install_deps(dependencies = TRUE)'
 
-      - name: Render Book
+      - name: Render book html
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
-        
+
+      - name: Render book PDF
+        run: Rscript -e 'bookdown::render_book("index.Rmd", new_session = FALSE, "bookdown::pdf_book", output_dir = "pdfbook")'
+
+      - name: Move files around
+        run: Rscript -e 'file.copy(from = "pdfbook/ropenscilabs-statistical-software-review-book.pdf", to = "_book/ropenscilabs-statistical-software-review-book.pdf")' -e 'purrr::walk(list.files("images", full.names = TRUE), file.copy, to = "_book/images")'
+
       - uses: actions/setup-node@v1
-        if: env.fork == 'false'
-        with:
-          node-version: "12.x"
-          
+
       - name: Install Netlify CLI
-        if: env.fork == 'false'
         run: npm install netlify-cli -g
-        
+
       - name: Deploy to Netlify (test)
-        if: env.fork == 'false'
-        run: |
-          DEPLOY_URL=$(netlify deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --dir=docs --json | jq '.deploy_url' --raw-output)
-          echo "DEPLOY_URL={$DEPLOY_URL}" >> $GITHUB_ENV
-                
+        run: DEPLOY_URL=$(netlify deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --dir=docs --json | jq '.deploy_url' --raw-output);echo "DEPLOY_URL=${DEPLOY_URL}" >> $GITHUB_ENV
+
       - name: Update commit status
-        if: env.fork == 'false'
         run: |
           curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha }} \
