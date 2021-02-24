@@ -175,30 +175,7 @@ This is also the document which reviewers can use to assess how well software
 complies with standards. Full details of the `srr` procedure are given on the
 [package website](https://ropenscilabs.github.io/srr).
 
-## Software Life Cycle Statement
-
-To understand developers' own visions for the future development of their
-packages, submissions also require a "*Life Cycle Statement*" clarifying the
-current developmental state of the software, and their visions for subsequent
-development following review. A *Life Cycle Statement* can be as simple as,
-
-> This package was developed as part of a project that has now been completed.
-We envision no further development.
-
-Nevertheless, statements envisioning some degree of future development are
-strongly preferred. A *Life Cycle Statement* will generally consist of a few
-statements regarding likely or desirable development over the few years
-subsequent to review, statements of likely ability of current maintainers to
-continue active maintenance, statements of the likelihood of desiring or
-needing to seek alternative maintainers, and estimates of a likely time at
-which the software may become obsolete or redundant. 
-
-As with the following [*Package Submission*](#pkgsubmission) section, precise
-formats for these *Life Cycle Statements* have not yet been finalised, and
-developers intended to submit are asked to contact rOpenSci staff directly for
-how to formulate these statements.
-
-### Badges: Green, Silver, Gold
+## Badges and Software Life Cycle Statement {#pkgdev-badges}
 
 All statistical software which is recommended for acceptance by reviews is
 entitled to display an rOpenSci badge. Unlike the [static badges used by
@@ -212,33 +189,79 @@ software project features badges in the following three grades:
    but which is not yet sufficiently compliant. See below for details.
 2. **gold** for software which complies with *all* standards which reviewers
    have deemed potentially applicable. This is the highest standard, and
-   requires developers to ensure compliance to the greatest extend possible
-   with standards, while minimising the number of standards deemed
-   non-applicable.
+   requires developers to ensure compliance with the largest number of
+   standards, while minimising the number of standards deemed non-applicable.
 
-A *Life Cycle Statement* must also include a statement of which colour or
-category of badge developers intend to attain at the end of the review process.
-Any software which developers do not explicit intend to actively develop beyond
-the review process (notwithstanding minimal necessary modifications such as
-necessary upgrades and fixing of bugs) will be eligible for a **green** badge
-only.
-
+The **green** category is appropriate for software which developers see as
+stable with little need for future development. The other two badges are for
+software envisioned to remain under active development beyond initial review.
 The **silver** category should be viewed as a statement of intent, and not as
 a fixed category in its own right. At the end of the review process, most
 software will attain either the **green** or **silver** badges, with the latter
 indicating an intention for package development to continue to enhance
 alignment with our statistical standards until the gold standard has been
-attained. Packages aspiring for silver or gold badges will also be required to
-specify within the *Life Cycle Statement* one or more times at which additional
-review phases will be conducted in order to assess progressive degrees of
-compliance with standards.
+attained.
 
-Note also that our standards will be versioned, and that **gold** badges in
-particular will be assessed against a specific version of our standards. As our
-standards are upgraded, current versions may increasingly diverge from versions
-against which a particular gold badge was assessed. Left untouched, badges may
-eventually be downgraded from gold to silver. We will nevertheless make
-processes of ongoing alignment to standards as easy as possible, and will
-include functions in our [`ssr` package](https://ropenscilabs.github.io/srr/)
-to explicitly identify steps necessary to align software with current versions
-of standards.
+Note also that the standards for statistical software contained within this
+book are versioned, and that both **silver** and **gold** badges in particular
+are assessed against the version of standards current at the time of review. As
+these standards are upgraded, current versions may increasingly diverge from
+versions against which badges were assessed. In the absence of ongoing software
+maintenance, **gold** badges may eventually be downgraded to **silver**. We
+will nevertheless make processes of ongoing alignment to standards as easy as
+possible, and will include functions in our [`ssr`
+package](https://ropenscilabs.github.io/srr/) to explicitly identify steps
+necessary to re-align software with current versions of standards.
+
+Intentions to achieve a specific category of badge are conveyed via a "*Life
+Cycle Statement*", which must be included in a `lifecycle.md` file within
+a package's repository at the time of submission. The statement can be
+completed by downloaded the template from the main
+`statistical-software-review` repository, and saving it either in the root
+directory of your repository, or in the `inst/` folder. The content of that
+file is shown in the following sub-section.
+
+### Software Life Cycle Statement
+
+1. The \<package name\> package has been under development for \<N\> \<months/years\>.
+
+2. The \<package name\> package has \<N\> primary and \<N\> secondary developers.
+
+3. The primary users of the \<package name\> package are envisioned to be \<list
+  envisioned user community\>, possibly of the order to
+  \<tens/hundreds/thousands\> of users.
+
+4. Following review, the \<package name\> package will
+
+    - \<Be in a stable state of development, with minimal subsequent development
+      envisioned\>
+    - \<Be in a stable state of development, with active subsequent development
+      primarily in response to user feedback.\>
+    - \<Be in a stable state of development, with some degree of active
+      subsequent development as envisioned by the primary developers.\>
+    - \<Be in an initially stable state of development, with a great deal of
+      active subsequent development envisioned.\>
+
+5. Following review,
+    - \<The primary developer(s) envision being able to maintain the package for
+      at least \<N\> years.\>
+    - \<The primary developers can envision a potential need to transfer
+      package maintenance after \<N\> years.\>
+
+(It may be appropriate to retain versions of both of the preceding statements.)
+
+6. The main factors likely to eventually make the package obsolete or redundant
+  are \<list factors here\>. This may happen sometime within \<N\> years following
+  review. \<Please elaborate if desired.\>
+
+7. We, the developers of \<package name\>, hope to attain a \<green, silver,
+  gold\> badge at the end of review.
+
+(Note that developers who select one of the first two items under the preceding
+point 4 can only attain a green badge; silver or gold require ongoing active
+maintenance described by the third and fourth items of point 4. Note also that
+silver should reflect a statement of intent to eventually attain a gold badge,
+for which purpose the following statement is also to be completed.)
+
+8. We aim for a silver badge at the end of review, and then aim to attain a
+   gold badge via a subsequent round of review \<N\> \<months/years\> later.
