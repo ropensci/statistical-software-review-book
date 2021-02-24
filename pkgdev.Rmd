@@ -3,6 +3,13 @@
 
 # Package Development {#pkgdev}
 
+The current chapter should be considered an extension of the corresponding
+["Guide for Authors"](https://devguide.ropensci.org/guide-for-authors.html) in
+rOpenSci's "Dev Guide". The principles for package development described there
+also apply to statistical packages, with this chapter describing additional
+processes and practices for packages intended for submission to the statistical
+software peer review system.
+
 Package developers are expected to sequentially follow the processes described
 in the four sub-sections of this chapter. The first step is to determine
 whether a package is likely to be considered within the scope of our review
