@@ -84,7 +84,7 @@ throughout package development, to ensure that `autotest_package()` returns
 clean (`NULL`) results when the package is first submitted.
 
 
-## Assessment Against Standards
+## Assessment Against Standards {#pkgdev-srr}
 
 Once a package has been sufficiently developed to begin alignment with our
 standards, and once all issues revealed by
