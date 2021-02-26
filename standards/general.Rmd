@@ -1,7 +1,7 @@
 <!-- Edit the .Rmd not the .md file -->
 
 
-## General Standards for Statistical Software
+## General Standards for Statistical Software {#general-standards}
 
 <details>
 <summary>
