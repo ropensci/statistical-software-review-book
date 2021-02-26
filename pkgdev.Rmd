@@ -95,7 +95,7 @@ both general and category-specific standards into their code, and to begin the
 process of documenting within the code itself how and where the code adheres to
 the individual standards. The `srr` package can be installed locally with
 
-```{r srr-install, eval = FALSE, echo = TRUE}
+```{r srr-install-dev, eval = FALSE, echo = TRUE}
 remotes::install_github("ropenscilabs/srr")
 ```
 
