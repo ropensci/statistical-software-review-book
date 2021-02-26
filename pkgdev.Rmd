@@ -185,48 +185,64 @@ complies with standards. Full details of the `srr` procedure are given on the
 ## Badges and Software Life Cycle Statement {#pkgdev-badges}
 
 All statistical software which is recommended for acceptance by reviews is
-entitled to display an rOpenSci badge. Unlike the [static badges used by
-rOpenSci's current peer-review
-system](https://devguide.ropensci.org/building.html#readme), our statistical
-software project features badges in the following three grades: 
+entitled to display an rOpenSci badge, as for software reviewed under the
+[current peer-review
+system](https://devguide.ropensci.org/building.html#readme). The badge for
+statistical software ~~includes~~ will include an additional section on the far
+right indicating that the software was reviewed under the statistical software
+system, rather than the standard system. This additional section ~~appears~~
+will appear by default in the same colour as the left side of the current
+badge:
 
-1. **green** for software which has been accepted, and which reviewers have
-   deemed sufficiently compliant with relevant standards.
-3. **silver** for software for which developers aspire to reach gold standard,
-   but which is not yet sufficiently compliant. See below for details.
-2. **gold** for software which complies with *all* standards which reviewers
-   have deemed potentially applicable. This is the highest standard, and
-   requires developers to ensure compliance with the largest number of
-   standards, while minimising the number of standards deemed non-applicable.
+[![](https://badges.ropensci.org/103_status.svg)](https://badges.ropensci.org/103_status.svg)
 
-The **green** category is appropriate for software which developers see as
-stable with little need for future development. The other two badges are for
-software envisioned to remain under active development beyond initial review.
-The **silver** category should be viewed as a statement of intent, and not as
+In addition to this "standard" badge, the statistical software peer review
+system features the following two additional grades of badges, which ~~are~~
+will be reflected in the colouring of this additional section on the right side
+of the badge.
+
+- **gold** for software which complies with *all* standards which reviewers
+  have deemed potentially applicable. This is the highest standard, and
+  requires developers to ensure compliance with the largest number of
+  standards, while minimising the number of standards deemed non-applicable.
+-   **silver** for software for which developers aspire to reach gold standard,
+  but which is not yet sufficiently compliant.
+
+These silver and gold badges will generally only be applicable to software
+which developers aim to actively develop and progressively improve beyond the
+initial review phase. Software which developers see as stable and having little
+need for future development will generally not be able to attain silver or gold
+badges. A silver badge should be viewed as a statement of intent, and not as
 a fixed category in its own right. At the end of the review process, most
-software will attain either the **green** or **silver** badges, with the latter
+software will attain either the default or silver badges, with the latter
 indicating an intention for package development to continue to enhance
 alignment with our statistical standards until the gold standard has been
-attained.
+reached.
 
 Note also that the standards for statistical software contained within this
-book are versioned, and that both **silver** and **gold** badges in particular
-are assessed against the version of standards current at the time of review. As
-these standards are upgraded, current versions may increasingly diverge from
-versions against which badges were assessed. In the absence of ongoing software
-maintenance, **gold** badges may eventually be downgraded to **silver**. We
-will nevertheless make processes of ongoing alignment to standards as easy as
-possible, and will include functions in our [`ssr`
-package](https://ropenscilabs.github.io/srr/) to explicitly identify steps
-necessary to re-align software with current versions of standards.
+book are versioned, and that both silver and gold badges in particular are
+assessed against specific versions of standards. As these standards are
+upgraded, current versions may increasingly diverge from versions against which
+badges were assessed. In the absence of ongoing software maintenance, gold
+badges may eventually be downgraded to silver, and silver to the default badge.
+The [`srr` package](https://ropenscilabs.github.io/srr/) ~~features~~ will
+feature an `srr_release()` function, analogous to
+[`devtools::release()`](http://devtools.r-lib.org/reference/release.html), to
+facilitate ongoing compliance, and to guide the process of progressively
+complying with standards.
 
 Intentions to achieve a specific category of badge are conveyed via a "*Life
 Cycle Statement*", which must be included in a `lifecycle.md` file within
 a package's repository at the time of submission. The statement can be
 completed by downloaded the template from the main
-`statistical-software-review` repository, and saving it either in the root
-directory of your repository, or in the `inst/` folder. The content of that
-file is shown in the following sub-section.
+[`statistical-software-review`
+repository](https://github.com/ropenscilabs/statistical-software-review/blob/main/lifecycle.md),
+and saving it either in the root directory of your repository, or in the
+`inst/` folder. The content of that file is shown in the following sub-section.
+Once an initial `lifecycle.md` file has been created, and it's location
+specified in the `.Rbuildignore`, the `srr_release()` function may be called at
+any time to update that statement.
+
 
 ### Software Life Cycle Statement
 
@@ -235,7 +251,7 @@ file is shown in the following sub-section.
 2. The \<package name\> package has \<N\> primary and \<N\> secondary developers.
 
 3. The primary users of the \<package name\> package are envisioned to be \<list
-  envisioned user community\>, possibly of the order to
+  envisioned user community\>, possibly of the order of
   \<tens/hundreds/thousands\> of users.
 
 4. Following review, the \<package name\> package will
@@ -261,14 +277,16 @@ file is shown in the following sub-section.
   are \<list factors here\>. This may happen sometime within \<N\> years following
   review. \<Please elaborate if desired.\>
 
-7. We, the developers of \<package name\>, hope to attain a \<green, silver,
+7. We, the developers of \<package name\>, hope to attain a \<standard, silver,
   gold\> badge at the end of review.
 
-(Note that developers who select one of the first two items under the preceding
-point 4 can only attain a green badge; silver or gold require ongoing active
-maintenance described by the third and fourth items of point 4. Note also that
+(Note that silver or gold badges require ongoing active maintenance, for which
+either the third or fourth items of point 4 must be checked. Note also that
 silver should reflect a statement of intent to eventually attain a gold badge,
 for which purpose the following statement is also to be completed.)
 
 8. We aim for a silver badge at the end of review, and then aim to attain a
    gold badge via a subsequent round of review \<N\> \<months/years\> later.
+
+(This last item can be left until negotiation with reviewers during the review
+process.)
