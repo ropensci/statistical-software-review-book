@@ -138,12 +138,13 @@ following steps:
 5. Use the pull request to discuss resolution of disputed standards with
    developers.
 
-These discussions may lead to modifications of a pull request, if a reviewers
+These discussions may lead to modifications of a pull request, if a reviewer
 is convinced by developers that standards have indeed been complied with, or
-are indeed not applicable, but should generally end with developers merging the
-pull request which reverts some number of tags to `@srrstatsTODO`. Developers
-will then have to once again address all of these tags, and to either comply or
-deem them not applicable, before review can proceed any further.
+are indeed not applicable. Either way, at the end of such discussions, this
+pull request should ultimately include several versions of tags reverted to 
+`@srrstatsTODO`. After merging, developers will then have to once again address
+all of these tags, and to either comply or deem them not applicable, before
+review can proceed any further.
 
 Reviewers are encouraged to opt for this workflow, because it enables them to
 work together with developers to initially ensure complete agreement on
@@ -151,24 +152,24 @@ standards compliance prior to actually proceeding with the formal review.
 
 ### Assessment of algorithmic quality
 
-The quality of statistical software is ultimately reflect in the quality of
-core statistical algorithms, whether appropriateness of implementation,
-efficiency, uniqueness, or other qualitative aspects. This project attempts to
-set standardised expectations of many aspects of statistical software, yet core
-statistical algorithms generally remain too diverse to be considered or
-compared in any standardised way. We thus request all reviewers to explicitly
-review the quality of the core statistical algorithms contained within a
-package. Most category-specific standards include a central "*Algorithmic
-Standards*" component which can be used to frame broad considerations for
-algorithmic quality. The [*General Standard* **G1.1**](#general-standards) also
-requires all similar algorithms or implementations to be documented within the
-software, so reviews should also have access to a list of comparable
-implementations.
+The overall quality of statistical software must ultimately reflect the quality
+of core statistical algorithms, whether in terms of appropriateness of
+implementation, efficiency, uniqueness, or other qualitative aspects. This
+project attempts to set standardised expectations of many aspects of
+statistical software, yet core statistical algorithms generally remain too
+diverse to be considered or compared in any standardised way. We thus request
+all reviewers to explicitly review the quality of the core statistical
+algorithms contained within a package. Most category-specific standards include
+a central "*Algorithmic Standards*" component which can be used to frame broad
+considerations for algorithmic quality. The [*General Standard*
+**G1.1**](#general-standards) also requires all similar algorithms or
+implementations to be documented within the software, so reviewers should also
+have access to a list of comparable implementations.
 
 Extending from those two pieces of information, reviewers are requested to
-consider is as much depth as possible the overall quality of the core
-statistical algorithm(s), paying particular attention to the way it/they have
-been implemented in code.
+consider in as much depth as possible the overall quality of the core
+statistical algorithm(s), paying particular attention to the direct
+implementations in code.
 
 ### General Package Review
 
