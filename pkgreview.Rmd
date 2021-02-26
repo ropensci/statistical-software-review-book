@@ -3,184 +3,178 @@
 
 # Package Review {#pkgreview}
 
-The review processes of rOpenSci and JOSS are qualitatively different, with
-JOSS submissions guided by extensive automation, and so being strongly
-determined by their
-[checklist](https://github.com/openjournals/joss/blob/master/docs/review_checklist.md),
-whereas rOpenSci reviews are commenced only after authors complete the
-[checklist](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/A-submit-software-for-review.md)
-(or otherwise explain any anomalies). Reviewers of submissions to rOpenSci are
-solicited privately, and privately informed both to read the [*Guide for
-Reviewers* chapter](https://devguide.ropensci.org/reviewerguide.html) in the
-[*Development, Maintenance, and Peer Review*
-Guide](https://devguide.ropensci.org), and that their review must be submitted
-with the [*Review
-Template*](https://devguide.ropensci.org/reviewtemplate.html#reviewtemplate).
-This template serves the same purpose as the automatically-generated JOSS
-template, but is to be pasted by authors themselves into their own comments in
-the review issue, whereas the JOSS checklist is to be filled out by reviewers
-editing the opening comment of the review issue. In short, the rOpenSci
-checklist is an official starting point, with reviews submitted at the end with
-the help of a template; the JOSS checklist is an official endpoint, empty at
-first and progressively completed by each reviewer as they progress through the
-review process. 
+The current chapter should be considered an extension of the corresponding
+["Guide for Reviewers"](https://devguide.ropensci.org/reviewerguide.html) in
+rOpenSci's "Dev Guide". The principles for reviewing packages described there
+also apply to statistical packages, with this chapter describing additional
+processes and practices for review of packages submitted to the statistical
+software peer review system. Being a direct extension, the [template for
+general software review](https://devguide.ropensci.org/reviewtemplate.html) is
+to be used allowing with the following additional considerations and components
+to be entered into a review.
 
-We envision a system primarily derived from rOpenSci's current system, with
-reviews completed through the use of a template and pasted as comments at the
-bottom of a github issue. This approach will face one immediate difficulty in
-that templates will likely differ through software being described by different
-combinations of the [categories described above](#scope). It may suffice to
-combine a generic "master" template with category-specific items to be appended
-according to the description of submitted software within our list of
-categories, although it is important to note that this may exclude review
-criteria reflecting unique combinations of categories (for example, a checklist
-item appropriate for the visualisation of results from ML algorithms).
-
-The preceding consideration exemplifies the extent to which processes developed
-and employed to review statistical software are likely to be strongly
-influenced by the kinds of automated tools we develop, both for automated and
-self assessment along with associated reporting systems, as well as potentially
-for more comprehensive assessments and reporting systems or standards not
-otherwise amenable to automation. In the current initial phase of this project
-prior to the concrete development of any of these kind of tools, the present
-considerations of the review process are accordingly and necessarily generic in
-nature. We anticipate this current sub-section becoming particularly more
-detailed as the project progress and as we develop project-specific tools for
-software assessment.
-
-### Review Templates
-
-As described above, the [JOSS
-checklist](https://github.com/openjournals/joss/blob/master/docs/review_checklist.md)
-is pre-generated with the opening of each review issue, whereas the [rOpenSci
-template](https://devguide.ropensci.org/reviewtemplate.html#reviewtemplate) is
-to be completed and pasted in to the issue by reviewers. The two templates are
-nevertheless broadly similar, both including the following checklist items:
-
-- [ ] The reviewer has no conflict of interests
-
-**Documentation** The software has:
-
-- [ ] A clear statement of need
-- [ ] Installation instructions
-- [ ] Function documentation
-- [ ] Examples
-- [ ] Community guidelines for how to contribute
-
-**Functionality** The software should:
-
-- [ ] Install as documented
-- [ ] Meet its own functional claims
-- [ ] Meet its own performance claims
-- [ ] Have automated tests (considered by JOSS as part of "Documentation")
-
-In addition, JOSS requires reviewers:
-
-- [ ] To agree to abide by a reviewer [code of
-   conduct](https://joss.theoj.org/about#code_of_conduct)
-- [ ] To confirm that the source code is in the nominated repository
-- [ ] To confirm that the software has an appropriate license.
-- [ ] To confirm that the submitting author has made major contributions, and that
-   the provided list of authors seems appropriate and complete.
-
-rOpenSci insists in turn on the two additional aspects, that software  
-
-- [ ] Has a vignette demonstrating major functionality; and
-- [ ] Conforms to the rOpenSci packaging guidelines
-
-Perhaps the most influential difference between the two systems is that the
-rOpenSci template concludes with the following lines:
-
----
-
-### Review Comments
-
-The section break and sub-section heading act in combination as a prompt for
-reviewers to add their own discursive comments, whereas the JOSS template has
-no such field. Accordingly, the majority[^joss-review-claim] of JOSS reviews
-merely consist of a completed checklist, whereas *all* rOpenSci reviews are
-extensively discursive, with reviewers frequently offering very extensive
-comments and analyses of submitted code.
-
-[^joss-review-claim]: That claim has not been substantiated.
-
-These differences may plausibly be interpreted to reflect general differences
-in the *cultural practices* of the two review systems, with rOpenSci having
-particularly nurtured the cultural practice of extensively discursive reviews,
-notably through suggesting that prior reviews ought be perused for good
-guidelines on review practices. We intend to continue to foster and encourage
-such cultural practices, while at the same time aiming to develop a system for
-more structured yet discursive input, in order both to provide more focussed
-software reviews, and to lessen the burden on reviewers. We anticipate
-commencing the development of such structure in subsequent iterations of the
-present document.
+## Package badging
 
 
-### Category-Specific Aspects of Reviews
+This system for peer-review of statistical software features badges in three
+categories of **standard**, **silver**, and **gold**. As described in the
+corresponding chapter for [package developers](#pkgdev-badges), these are:
 
-We defer consideration of category-specific aspects of review until we have
-concluded a first round of consultation on the [preceding categorical
-definitions](#scope).
+1. A **standard** or default badge for software which has been accepted, and
+   which reviewers have deemed sufficiently compliant with relevant standards.
+3. A **silver** badge for software for which developers aspire to reach gold
+   standard, but which is not yet sufficiently compliant. See below for
+   details.
+2. A **gold** badge for software which complies with *all* standards which
+   reviewers have deemed potentially applicable. This is the highest standard,
+   and requires developers to ensure compliance with the largest number of
+   standards, while minimising the number of standards deemed non-applicable.
 
-### Reviewer Recommendations
+Developers will state which badge they hope to attain in a [`lifecycle.md`
+file](#pkgdev-badges) within their repository. All reviews should complete the
+follow procedures for review of packages aiming for a **standard** badge.
+Packages aiming for **silver** or **gold** badges should then be reviewed
+according to the additional criteria described in the subsequent sub-sections.
 
-Both rOpenSci and JOSS currently work with a binary recommendation scheme of
-rejection or acceptance. In both cases, rejection is primarily decided in
-response to a pre-preview (JOSS) or pre-submission enquiry (rOpenSci), and
-usually for the reason of being out-of-scope (in rOpenSci's case because
-software does not fit within the defined categories; and in JOSS's case because
-the software does not have a specific research focus). Having obtained approval
-to proceed from pre-review to full review, both systems generally work with
-package authors to strive for ultimate acceptance. Rejections during this phase
-generally only happen when authors stall or abandon ongoing or requested
-package development. As long as authors continue to be engaged, reviews very
-generally proceed until a submission is accepted.
+## General Review Requirements
 
-***Proposal*** While a variety of potential outcomes of the review process are
-considered [immediately below](#review-acceptance), reviewers will only be
-requested to ultimately check a single box indicating their approval for
-software to be accepted. An approved submission may then receive a variety of
-labels in response to binary acceptance, as described below.
+The primary way that reviews of statistical software differ from reviews of
+software submitted to rOpenSci's general peer-review system is that the statistical
+software system includes lists of general and category-specific standards. The
+first important task of reviews is thus to assess the compliance of software
+with these standards. The standards themselves are contained in the [subsequent
+chapter](#standards), which both developers and reviewers will need to refer to
+throughout package development and review. For software to be considered within
+scope, it must be described by one or more of the categories of statistical
+software for which standards have been developed. Software will then need to
+comply both with the *General Standards* for statistical software, and with
+specific sets of standards for each applicable category. These categories will
+have been discussed and allocated in the pre-review phase, and categorical
+applicability should generally not have to be considered during an actual
+review.
 
----
 
-***Proposal***
+### Assessment against standards
 
-1. We adopt the current rOpenSci approach of having reviews based on
-   a pre-defined template to be completed by reviewers and pasted as the latest
-   comment in a review issue, rather than the JOSS model of having reviewers
-   edit the initial, opening comment of a review issue.
-2. We adopt the current rOpenSci approach of having reviewers testify the time
-   spent on their review. We either then:
-   (i) Do not provide any information on typical times devoted by other
-       reviewers; or
-   (ii) Provide summary information including estimates of variation and
-        proviso that such information is only intended to avoid reviewers
-        otherwise feeling obliged to devote unnecessarily *long* times to
-        reviews.
-3. We adopt and adapt the general review templates currently used by rOpenSci
-   and JOSS, extending both in order to provides as much structured discursive
-   feedback as possible.
-4. We develop at least examples of category-specific template items to be added
-   to the general review template.
+The process of assessing software against standards is facilitated by the
+[`srr` (**s**oftware **r**eview **r**oclets)
+package](https://github.com/ropenscilabs/srr) which both developers and
+reviewers will need to install with the following line:
 
-## Acceptance / Scoring / Badging {#review-acceptance}
+```{r srr-install-rev, eval = FALSE, echo = TRUE}
+remotes::install_github("ropenscilabs/srr")
+```
 
-Software being recommended for acceptance by reviews need not be reflected in
-a simple "accepted" label. Particularly in the early stages of our system for
-peer-reviewing statistical software, we may have some kind of checklist from
-which we require authors to ultimately comply with some recommended limited
-number of items, yet not all. It may then be worthwhile have a review outcome
-that flags this compliance level, and indicates that software will be expected
-to retain compliance as our system develops.
+This package is primarily intended to aid developers in documenting both how
+and where their software complies with each of the relevant general and
+category-specific standards. Reviewers can then clone a local copy of the
+repository to be reviewed, and in the root directory of that repository, run
+the [`srr_report()`
+function](https://ropenscilabs.github.io/srr/reference/srr_report.html)
+to generate a hyperlinked `html` report of standards compliance.
 
-Another example may be outcomes which consider the kinds of life cycle models
-considered above, in which context it may be useful to have an outcome that
-labels software as having passed initial or primary review, yet which will
-still be subject to subsequent review some agreed-upon time later. Such systems
-of re-assessment will nevertheless not necessarily be (equally) applicable to
-all submissions, and so such "progressive labelling" will likely only ever be
-optional, and applicable where appropriate.
+Reviewers are requested to click on every single link which appears in that
+report, and to at least briefly assess whether they believe the software at
+each location complies with the nominated standards. The report itself is
+divided into two main sections, named after the [roclet
+tags](https://ropenscilabs.github.io/srr/articles/srr-stats.html#3-roxygen2-tags)
+of:
 
-***Proposal*** We implement a recommendation system which explicitly flags the
-version of our system's standards with which reviewed software complies.
+1. `@srrstats` for standards with which software complies;
+2. `@srrstatsNA` for standards which developers have deemed not to be
+   applicable to their software.
+
+
+Each of those two sections will then be divided into sub-sections according to
+where within the repository those standards are reported (generally meaning
+which sub-directory, such as `R/`, `tests`/, or elsewhere). No action need be
+taken on standards with which reviewers agree, whether because software
+complies and has a tag of `@srrstats`, or because a standard is not applicable
+and has a tag of `@srrstatsNA`. Reviewers are only asked to note any standards
+with which they disagree, primarily either because of:
+
+1. Disagreement in standards compliance, where developers have used a tag of
+   `@srrstats` but a reviewer judges either the explanation or associated code
+   to be insufficient for compliance; or
+2. Disagreement about non-applicability of a standard, where developers have
+   used a tag of `@srrstatsNA`, but a reviewer believes that standard ought to
+   apply to the software.
+
+Please progress through the entire report generated by the [`srr_report()`
+function](https://ropenscilabs.github.io/srr/reference/srr_report.html), and
+note all instances of disagreement, generally grouped into the two categories
+described above. Reports of potential disagreements in standards compliance
+can be included directly within a review issue, or reviewers can opt to
+initially work directly with developers to resolve issues directly within the
+code itself, as described in the following sub-section.
+
+Note that this initial assessment against standards is intended only to clarify
+and resolve statements of compliance with which reviewers disagree, and in
+particular should be conducted entirely independent of whether or not software
+may be aspiring to silver or gold badges. Procedures for those latter cases are
+conducted in subsequent review phases, as described below.
+
+
+#### Optional alternative workflow via pull request
+
+The [`srr` package](https://ropenscilabs.github.io/srr) also facilitates a more
+direct way for reviewers to respond to potential areas of disagreement in
+standards compliance, through reviewers modifying the code and submitting a
+pull request. This procedure is entirely optional, although doing so helps to
+keep review issues largely free of technical discussions about standards
+compliance. Reviewers willing to submit direct pull requests can do so via the
+following steps:
+
+1. Modify your local copy of the repository by changing any disputed tags,
+   whether `@srrstats` or `@srrstatsNA`, to `@srrstatsTODO`, which is the tag
+   used to denote standards which have not yet been complied with.
+2. Add an additional note within that section of the documentation explaining
+   why you disagree with the developers claim of compliance (via `@srrstats`)
+   or non-applicability (via `@srrstatsNA`).
+3. Ensure that your commit message includes a reference to the review issue
+   (like `"standards review for
+   ropenscilabs/statistical-software-review#<issue_num>"`).
+4. Submit a pull request directly to the developer's repository.
+5. Use the pull request to discuss resolution of disputed standards with
+   developers.
+
+These discussions may lead to modifications of a pull request, if a reviewers
+is convinced by developers that standards have indeed been complied with, or
+are indeed not applicable, but should generally end with developers merging the
+pull request which reverts some number of tags to `@srrstatsTODO`. Developers
+will then have to once again address all of these tags, and to either comply or
+deem them not applicable, before review can proceed any further.
+
+Reviewers are encouraged to opt for this workflow, because it enables them to
+work together with developers to initially ensure complete agreement on
+standards compliance prior to actually proceeding with the formal review.
+
+### Assessment of algorithmic quality
+
+The quality of statistical software is ultimately reflect in the quality of
+core statistical algorithms, whether appropriateness of implementation,
+efficiency, uniqueness, or other qualitative aspects. This project attempts to
+set standardised expectations of many aspects of statistical software, yet core
+statistical algorithms generally remain too diverse to be considered or
+compared in any standardised way. We thus request all reviewers to explicitly
+review the quality of the core statistical algorithms contained within a
+package. Most category-specific standards include a central "*Algorithmic
+Standards*" component which can be used to frame broad considerations for
+algorithmic quality. The [*General Standard* **G1.1**](#general-standards) also
+requires all similar algorithms or implementations to be documented within the
+software, so reviews should also have access to a list of comparable
+implementations.
+
+Extending from those two pieces of information, reviewers are requested to
+consider is as much depth as possible the overall quality of the core
+statistical algorithm(s), paying particular attention to the way it/they have
+been implemented in code.
+
+### General Package Review
+
+Beyond the preceding considerations which are specific to statistical software,
+a review should generally reflect the processes established in rOpenSci's
+general software review system, for which the best source of information is
+provided by [reviews
+themselves](https://github.com/ropensci/software-review/issues), along with the
+[*Guide for Reviewers*](https://devguide.ropensci.org/reviewerguide.html).
