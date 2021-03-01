@@ -1,218 +1,990 @@
 #  (PART) Introduction {-}
 
-#  Project Overview {#overview}
+```{r startup-overview, echo = FALSE, message = FALSE}
+library(dplyr)
+library(rvest)
+library(igraph)
+library(ggplot2)
+theme_set(theme_minimal())
+```
 
-This chapter lays out key considerations, outstanding questions and tasks for
-purposes of generating community feedback for the project. It consists of the
-following sections:
+#  Overview of the Project and of this Book {#overview}
 
--   **[Scope of Statistical Software Review](#scope)** in which we address the
-    scope of the project, and scopes of definition of "statistical software".
+This book documents rOpenSci's project to expand peer review to include
+explicitly statistic software. It is intended to aid both software developers
+wishing to have their software reviewed under the newly expanded system, and
+reviewers tasked with reviewing submissions. A third aim of the project, and
+of this documentation, is to serve as a blueprint for future adoption and
+adaptation in other areas, including other computer languages.
 
--   **[Standards for Statistical Software](#standards)** in which we consider the kinds of
-    standards which might be developed and applied to assess statistical
-    software.
+This chapter summarises overall project aims, the scope of statistical software
+we are currently able to consider, and provides a brief overview of the
+structure and purpose of this book. The book should be considered an extension
+of rOpenSci's guide to software [Development, Maintenance, and Peer
+Review](https://devguide.ropensci.org/) (the "*Dev Guide*"). The guidelines and
+expectations for software as presented in the *Dev Guide* also apply to
+statistical software under the newly expanded system, with this document
+describing additional guides and expectations for explicitly statistical
+software. The *Dev Guide* ought thus be considered essential reading prior to
+the current book.
 
--   **[Software Assessment](#assessment)** in which we provide a partial list
-    of attributes and measures of software which might be usefully considered.
+The present chapter provides a brief overview of the entire book, and consists
+of the following sections:
 
--   **[Statistical Software Peer Review Process](#process)** in which we
-    consider questions regarding the possible forms and practices a peer review
-    process might adopt.
+- **[Motivation: Why a separate system for statistical
+  software?](#motivation)** in which we explain the necessity and advantages of
+  having statistical software developed according to concretes sets of explicit
+  standards.
 
-Each of these sections aims to highlight what we consider some of the most
-important questions and issues which the project will have to address. We
-generally do so by posing a list of "*Proposals*" at the end of each of the
-above-listed chapters. Each of these is intended to serve as a starting point
-for debate, and should be considered entirely open to discussion, modification,
-enhancement, removal, or any other suggestion which may arise. The *Proposals*
-are primarily intended in current form to provide focal points for further
-consideration and discussion prior to any concrete implementation.
+- **[Scope of Statistical Software Review](#scope)** in which we summarise our
+  working definition of "statistical software", and the scope of software
+  currently able to be considered under the project.
 
+- **[Standards for Statistical Software](#standards)** in which we briefly
+  describe the sets of standards to which statistical software will be expected
+  to adhere.
 
-<!--
-The central questions which emerge from this document are given in condensed
-form in an accompanying document which may be used to structure and enable
-explicit feedback on the above aspects of the project.
--->
+- **[Assessment and Peer Review Processes](#process)** in which we describe how
+  submitting authors will be expected to assess their software prior to
+  submission, and how reviewers will be expected to assess submissions.
 
-## Project Aims
-
--   To foster a community of practice in which users and developers of
-    statistical software mutually improve quality, reproducibility, and
-    reliability of research.
-
--   To provide software creators with a set of tools and standards to assess
-    the quality of their work, and processes by which to improve it.
-
--   To provide statistical software developers, users, and consumers of results
-    a discoverable "badge" that transparently conveys a level of assurance of
-    software quality and that may also serve as a symbol of professional
-    credit.
-
--   To create a set of standards that may be adopted and adapted by open source
-    and private groups, academic journals, or other statistical software
-    evaluation projects.
-
--   To focus on R as primary language, but also to separate language-specific
-    from language-agnostic components so as to maximize adaptability to other
-    contexts.
-
--   To focus on problems and solutions specific to statistical software.
-
-## Related projects and initiatives
+- **[Outcomes](#outcomes)** in which we describe outcomes of our review
+  process, particular what submitting software developers can expect from our
+  review process.
 
 
-The following internal and external projects related projects have (non-exclusive) 
-bearing on our work:
+## Project Motivation
 
-rOpenSci is simultaneously working on improving the automation and documentation
-of infrastructure to support software peer reviews. This will support many of
-the processes described herein, initially those in metrics and diagnostic
-reports (below), as well as in managing the review process.
+The official description of R declares it to be a ["software environment for
+statistical computing and graphics"](https://www.r-project.org/), yet rOpenSci
+previously deemed explicitly statistical packages out of scope, owing among
+other factors to the perceived difficulty of devising an appropriate system for
+assessment and review. R is nevertheless an explicitly *statistical* computing
+environment, and so rOpenSci developed this project to expand our peer review
+system to include statistical software. 
 
-Secondly, [under a separate project funded by the Moore
-Foundation](https://ropensci.org/blog/2019/11/06/scientific-package-ecosystem/),
-rOpenSci is building a system to automate the retrieval of information related
-to use of software in published literature and automate reporting of software
-impact as part of metadata in software repositories. This builds on
-[Depsy](http://depsy.org/) and [CiteAs](http://citeas.org/about) projects and
-may be leveraged for our work on metrics (below).
+In doing so, the project also offered an opportunity to reconsider and
+potentially improve aspects of rOpenSci's current system for peer review, which
+has operated for five years, and has reviewed over >200 packages, primarily in
+areas of data life cycle management. The form of these packages continues to be
+strongly influenced by the *Dev Guide*, which presents sets of
+["guidelines"](https://devguide.ropensci.org/building.html) which packages are
+expected to "meet". These guidelines are nevertheless necessarily general, and
+were largely developed in ongoing response to successive developments in
+technology to support software development, such as continuous integration
+services. Although our *Dev Guide* effectively provides a set of "standards" to
+which software is expected to adhere, the alignment of software to these
+standards it itself not necessarily systematic, and in particular there is no
+direct way to ascertain the standards to which a given piece of software
+adheres, and those from which it may diverge.
 
-Third, an initiative organized under the R Consortium, the [R Validation
-Hub](https://www.pharmar.org/), seeks to provide guidance primarily to R users
-in the pharmaceutical industry on validating R packages in regulated contexts.
-We are working closely with that group to share products and avoid duplicated
-efforts.
+The present project aims to develop a more systematic alignment of software
+with standards, one which will enable automated and ongoing identification of
+those standards with which a given piece of software complies. The following
+sets of standards for statistical software are thus far more extensive that our
+previous "guidelines", and aim to provide ongoing assurance for users of the
+standard of software accepted within our system, including systematic
+identification of ways by which software may diverge from standards, and
+explanations of why.
 
-## Outline of this document
-
-We now briefly summarise the four sections identified at the outset of this
-chapter, and which comprise Chapters 4--5 and 7--8 of this book: Scope; the
-Peer Review Process; Standards; and Software Assessment.
-
-### Scope of Statistical Software Review
-
-The scope of statistical software review considers the core task of defining
-the kinds of software that will be covered by our review process and standards,
-for which key questions are:
-
--   What categories of statistical software might be considered *in scope*?
-
--   What categories of statistical software might be considered *out of scope*?
-
--   How would these vary between a useful definition and typology for general
-    use, and the specific case of our R-focused peer review system?
-
-A key consideration in scope is identifying categories of software that (a) will
-benefit from our peer review process, and (b) the review process will be
-equipped to handle. That is, can standards and procedures be defined that are
-applicable, and will authors and reviewers be able to apply them? In considering
-these issues of definition, it will be important to consider whether it may be
-advantageous or necessary to develop different procedures for different
-sub-categories, whether in terms of categories of external form or categories of
-statistical software.
-
-It will likely be particularly important for the present project to develop
-a categorization scheme, particularly because the set of standards envisioned
-by this project will be variably applicable to different categories, and
-understanding which standards may or may not apply to a particular piece of
-software will provide important information for review purposes. Individual
-pieces of software will often fit more than one of these categories, and we
-envision relating some kind of categorical checklist directly to
-a corresponding checklist of relevant or applicable standards.
-
-Potential schemes for defining the scope of statistical software acceptable
-within our review process are considered in [Chapter 4](#scope) below, with
-extensive consideration of potential categories in the [second section of that
-chapter](#scope-categories).
+Such assurance is important in many areas of scientific research, notably
+including those subject to regulation such as pharmaceutical trials. Software
+used in such trials must be "validated", generally through a process of
+identifying any risks associated with using that software. In such contexts,
+our system will foster confidence in the use of software assessed according to
+our standards. For developers, the system will provide a "badge" able to be
+used to identify and publicise the assessment of their software as meeting the
+standards set by our system.
 
 
-### Standards for Statistical Software
 
-[Chapter 5](#standards) considers Standards for Statistical Software intended
-to serve both as expectations against which to compare software, and as guides
-which reviewers may use to assess software. Important general questions
-regarding standards include the following:
+## Scope of Statistical Software Review {#overview-scope}
 
--   What kind of standards might apply to software in general?
+### The R Language
 
--   What kind of standards might specifically apply to statistical software?
+```{r cloc-data, echo = FALSE}
+# x <- readRDS("./scripts/cran-cloc-all.Rds")
+# cloc_n <- length(unique(x$package))
+cloc_n <- 15735
+# TODO: Add that from cran-cloc-all as attribute of cran-cloc summary
+cloc_date <- format(as.Date(file.info("./scripts/cran-cloc.Rds")$mtime),
+  format = "%d %b %Y"
+)
+```
 
--   How might such standards differ between different languages?
+The present project represents a direct expansion of rOpenSci's current
+[scope](https://devguide.ropensci.org/policies.html#aims-and-scope) to include
+specifically statistical software, while retaining the restriction to software
+in the form of R packages. Nevertheless, this does not necessarily mean that
+the primary language of a package needs to be R. Many **R** packages include
+code from a variety of other languages, with the following table summarising
+statistics for the top ten languages from all
+`r format (cloc_n, big.mark = ",")` [CRAN](https://cran.r-project.org) packages
+as of `r cloc_date` (including only code from the `/R`, `/src`, and `/inst`
+directories of each package).
 
--   To what extent should we aim for "verification" or "validation" of
-    software, and how might be signify such?
+```{r cran-cloc-pre, message = FALSE, echo = FALSE, eval = FALSE}
+x <- readRDS("./scripts/cran-cloc-all.Rds") %>%
+  group_by(language) %>%
+  summarise(
+    loc = sum(loc),
+    file_count = sum(file_count),
+    comment_lines = sum(comment_lines)
+  ) %>%
+  arrange(desc(loc))
+saveRDS(x, "./scripts/cran-cloc.Rds")
+```
 
-### Software Assessment
 
-The Software Assessment section in [Chapter 6](#assessment) presents a general
-(yet non-exhaustive) overview of aspects of software which may be usefully
-considered for standards-based assessment, both for retrospective purposes of
-peer review, and for prospective use in developing software both in general,
-and in preparation for peer-review.
+```{r languages-table, message = FALSE, echo = FALSE}
+library(dplyr)
+x <- readRDS("./scripts/cran-cloc.Rds") %>%
+  select(language, loc) %>%
+  mutate(proportion = loc / sum(loc)) %>%
+  rename("lines" = loc)
+clines <- sum(x$lines [grep("^C", x$language [1:8])])
+weblines <- sum(x$lines [x$language %in% c("HTML", "JavaScript", "CSS")])
+xf <- mutate(x, lines = format(lines, big.mark = ","))
+knitr::kable(xf [1:10, ], digits = c(NA, 0, 3),
+    caption = paste0 ("Proportion of code lines in different ",
+                      "languages in all CRAN packages."))
+```
+
+Close to one half of all code in all R packages to date has been written in the
+R language, clearly justifying a primary focus upon that language. Collating
+all possible ways of packaging and combining C and C++ code yields
+`r format (clines, big.mark = ",")` lines or code or
+`r round (100 * clines / sum (x$lines))`% of all code, indicating that
+`r round (100 * (clines + x$lines [1]) / sum (x$lines))`% of all code has been
+written in either R or C/C++. We anticipate the large majority of submissions
+to be coded in one of these primary languages, and will cultivate a community
+of reviewers with expertise in these languages. R packages may nevertheless
+incorporate algorithms coded in a number of other languages (such as Rust), and
+no package will be considered out-of-scope on the basis of computer language
+alone. Developers using less common languages may nevertheless face longer
+processing times to allow for finding reviewers with appropriate skills in
+those languages.
+
+### Categories of Statistical Software {#overview-categories}
+
+The scope of statistical software able to be submitted for peer review is
+primarily defined by the following list of categories. Any software which fit
+in to one or more of those categories may be deemed in-scope, and submitted for
+review. Software which can not be described by those categories will generally
+be deemed out of scope. While the categories themselves are primarily defined
+by the corresponding standards given in detail in Chapter XX, this chapter
+provides brief descriptions of the categories to aid developers in initially
+estimating whether or not software may be in scope.
+
+Empirical analyses described in Appendix A.2 were devised to identify
+sub-domains within statistical software, from which we have to date developed
+standards for the following categories:
+
+1. [Bayesian and Monte Carlo Routines](#overview-bayesian)
+2. [Regression and Supervised Learning](#overview-regression)
+3. [Dimensionality Reduction, Clustering, and Unsupervised Learning](#overview-unsupervised)
+4. [Exploratory Data Analysis (EDA) and Summary Statistics](#overview-eda)
+5. [Time Series Analyses](#overview-ts)
+6. [Machine Learning](#overview-ml)
+7. [Spatial Analyses](#overview-spatial)
+
+These categories provide our working definition of statistical software able to
+be considered for submission to our system as any software described by one of
+more of the categories. Each of these categories is represented by a set of
+standards, as briefly described in the following sub-section. We anticipate
+that submissions will commonly fit into, or be described by, multiple
+categories, and the standards have also been devised to be as inter-compatible
+as possible. Moreover, alignment with specific categories may not always be
+straightforward, and we anticipate some submissions requiring negotiation
+between developers and editors to identify appropriate categories prior to
+submission.
+
+We also intend to expand the system to include the additional four categories
+of:
+
+1. [Wrapper Packages](#overview-wrapper)
+2. [Network Analysis Software](#overview-networks)
+3. [Probability Distributions](#overview-distributions)
+4. [Workflow Support](#overview-workflow)
+
+While software in these latter four categories is beyond the scope of current
+standards, we invite any software developers interested in submitting software
+within one or more of these categories to contact us directly to enquire about
+the status of associated standards, and the possibility of submitting. Finally,
+we anticipate our sets of standards to expand further over time, and openly
+invite any form of discussion on the possibility of expanding our definition to
+include additional categories.
+
+**TODO: From here on is just copy-pasted from previous stuff; each has to be
+reduced to a simple paragraph description of each category.**
 
 
-### Statistical Software Peer Review Process
+#### Bayesian and Monte Carlo Routines {#overview-bayesian}
 
-Our point of departure for our process is the rOpenSci software peer review
-process, which has operated for five years, and has reviewed over >200
-packages, primarily in areas of data life cycle management. However, we aim to
-reassess this process in light of other models and needs specific to
-statistical software. [Chapter 7](#lifecycle) considers a few analogous processes
-of peer review, gleaning aspects which may be useful to adopt and adapt for our system.
-[Chapter 8](#process) then describes the peer review process in terms of the
-series of steps we currently envision comprising our system.
+Packages implementing or otherwise relying on Bayesian or Monte Carlo routines
+represent form the central "hub" of all categories in the above diagram,
+indicating that even though this category is roughly equally common to other
+categories, software in this category is more likely to share more other
+categories. In other words, this is the leading "hybrid" category within which
+standards for all other categories must also be kept in mind. Some examples of
+software in this category include:
 
-## Community
+1. The [`bayestestR`
+   package](https://joss.theoj.org/papers/10.21105/joss.01541) "provides tools
+   to describe ... posterior distributions"
+2. The [`ArviZ` package](https://joss.theoj.org/papers/10.21105/joss.01143) is
+   a python package for exploratory analyses of Bayesian models, particularly
+   posterior distributions.
+3. The [`GammaGompertzCR`
+   package](https://joss.theoj.org/papers/10.21105/joss.00216) features
+   explicit diagnostics of MCMC convergence statistics.
+4. The [`BayesianNetwork`
+   package](https://joss.theoj.org/papers/10.21105/joss.00425) is in many ways
+   a wrapper package primarily serving a `shiny` app, but also accordingly
+   a package in both education and EDA categories.
+5. The [`fmcmc` package](https://joss.theoj.org/papers/10.21105/joss.01427) is
+   a "classic" MCMC package which directly provides its own implementation, and
+   generates its own convergence statistics.
+7. The [`rsimsum` package](https://joss.theoj.org/papers/10.21105/joss.00739)
+   is a package to "summarise results from Monte Carlo simulation studies".
+   Many of the statistics generated by this package may prove useful in
+   assessing and comparing Bayesian and Monte Carlo software in general. (See
+   also the [`MCMCvis`
+   package](https://joss.theoj.org/papers/10.21105/joss.00640), with more of
+   a focus on visualisation.)
+8. The [`walkr` package](https://joss.theoj.org/papers/10.21105/joss.00061) for
+   "MCMC Sampling from Non-Negative Convex Polytopes" is indicative of the
+   difficulties of deriving generally applicable assessments of software in
+   this category, because MCMC *sampling* relies on fundamentally different
+   inputs and outputs than many other MCMC routines.
 
-A core goal of the project is the building and maintenance of a community of
-practice that will facilitate dissemination, adoption, and improvement of
-standards and peer review. In striving for this goal, the following questions
-are important:
+***Key Considerations*** 
 
--   What outreach should we conduct to maximize diversity and inclusion in the
-    process?
+- The extent to which the output of Bayesian routines with uninformative prior inputs can or do
+  reflect equivalent frequentist analyses.
+- Ways to standardise and compare diagnostic statistics for convergence of MCMC
+  routines.
+- Forms and structures of data using in these routines are very variable,
+  likely making comparison among algorithms difficult.
 
--   How should this process involve other relevant communities in fields
-    including software development, statistics, applied statistics (in various
-    subfields)
+#### Regression and Supervised Learning {#overview-regression}
 
--   What fora should we manage for developers, users, reviewers and editors to
-    communicate? To what extent should we reuse existing fora from rOpenSci or
-    other organizations?
+This category represents the most important intermediate node in the above
+network graphic between ML and Bayesian/Monte Carlo algorithms, as well as
+being strongly connected to several other nodes. While many regression or
+interpolation algorithms are developed as part of general frameworks within
+these contexts, there are nevertheless sufficiently many examples of regression
+and interpolation algorithms unrelated to these contexts to warrant the
+existence of this distinct category. That said, algorithms within this category
+share very little in common, and each implementation is generally devised for
+some explicit applied purpose which may be difficult to relate to any other
+implementations in this category.
 
-We now briefly consider the three aspects of community relevant to this project:
-communities of users, of developers, and of reviewers. Note that several of the
-kinds of "metrics" alluded to in the following lines are given explicit
-consideration at the end of this document.
+Perhaps one feature which almost of the following examples share in common is
+input and output data in (potentially multi-dimensional) vector format, very
+generally (but not exclusively) in numeric form. This may be one category in
+which the development of a system for [property-based
+testing](#standards-testing), like the [`hypothesis` framework for
+python](https://hypothesis.works) may be particularly useful. Such a system
+would facilitate tests in response to a range of differently input
+*structures*, such as values manifesting different distributional properties.
+Property-based testing is likely to be a particularly powerful technique for
+uncovering faults in regression and interpolation algorithms.
 
-**Software use and surrounding community:**
+Examples of the diversity of software in this category include the following.
 
--   What sort of metrics might provide insight into community use of software?
+1. [`xrnet`](https://joss.theoj.org/papers/10.21105/joss.01761) to perform
+   "hierarchical regularized regression to incorporate external data", where
+   "external data" in this case refers to structured meta-data as applied to
+   genomic features.
+2. [`survPen`](https://joss.theoj.org/papers/10.21105/joss.01434) is, "an
+    R package for hazard and excess hazard modelling with multidimensional
+    penalized splines"
+3. [`areal`](https://joss.theoj.org/papers/10.21105/joss.01221) is, "an
+    R package for areal weighted interpolation".
+4. [`ChiRP`](https://joss.theoj.org/papers/10.21105/joss.01287) is a package
+    for "Chinese Restaurant Process mixtures for regression and clustering",
+    which implements a class of non-parametric Bayesian Monte Carlo models.
+5. [`klrfome`](https://joss.theoj.org/papers/10.21105/joss.00722) is a package
+    for, "kernel logistic regression on focal mean embeddings," with a specific
+    and exclusive application to the prediction of likely archaeological sites.
+6. [`gravity`](https://joss.theoj.org/papers/10.21105/joss.01038) is a package
+    for "estimation methods for gravity models in R," where "gravity models"
+    refers to models of spatial interactions between point locations based on
+    the properties of those locations.
+7. [`compboost`](https://joss.theoj.org/papers/10.21105/joss.00967) is an
+     example of an R package for gradient boosting, which is inherently
+     a regression-based technique, and so standards for regression software
+     ought to consider such applications.
+8. [`ungroup`](https://joss.theoj.org/papers/10.21105/joss.00937) is, "an
+     R package for efficient estimation of smooth distributions from coarsely
+     binned data." As such, this package is an example of regression-based
+     software for which the input data are (effectively) categorical. The
+     package is primarily intended to implement a particular method for
+     "unbinning" the data, and so represents a particular class of
+     interpolation methods.
+9. [`registr`](https://joss.theoj.org/papers/10.21105/joss.00557) is
+     a package for "registration for exponential family functional data," where
+     registration in this context is effectively an interpolation method
+     applied within a functional data analysis context.
 
--   How might such community engagement be enhanced to improve such metrics?
 
-**Software development and surrounding community:**
+One package which may be potential general use is the
+[`ggeffects`](https://joss.theoj.org/papers/10.21105/joss.00772) package for
+"tidy data frames of marginal effects from regression models." This package
+aims to make statistics quantifying marginal effects readily understandable,
+and so implements a standard (tidyverse-based) methodology for representing and
+visualising statistics relating to marginal effects.
 
--   What sort of metrics might provide insight into community development of
-    software?
 
--   How might such community engagement be enhanced to improve such metrics?
+#### Dimensionality Reduction, Clustering, and Unsupervised Learning {#overview-unsupervised}
 
-**Reviewer pool and qualifications:**
+Many packages either implement or rely upon techniques for dimensionality
+reduction or feature selection. One of the primary problems presented by such
+techniques is that they are constrained to yield a result independent on any
+measure of correctness of accuracy [@estivill-castro_why_2002]. This can make
+assessment of the accuracy or reliability of such routines difficult. Moreover,
+dimensionality reduction techniques are often developed for particular kinds of
+input data, reducing abilities to compare and contrast different
+implementations, as well as to compare them with any notional reference
+implementations.
 
--   What is the extent and type of effort expected of reviewers?
+1. [`ivis`](https://joss.theoj.org/papers/10.21105/joss.01596) implements
+   a dimensionality reduction technique using a "Siamese Neural Network
+   architecture.
+2. [`tsfeaturex`](https://joss.theoj.org/papers/10.21105/joss.01279) is
+   a package to automate "time series feature extraction," which also provides
+   an example of a package for which both input and output data are generally
+   incomparable with most other packages in this category.
+3. [`iRF`](https://joss.theoj.org/papers/10.21105/joss.01077) is another
+   example of a generally incomparable package within this category, here one
+   for which the features extracted are the most distinct predictive features
+   extracted from repeated iterations of random forest algorithms.
+4. [`compboost`](https://joss.theoj.org/papers/10.21105/joss.00967) is
+   a package for component-wise gradient boosting which may be sufficient
+   general to potentially allow general application to problems addressed by
+   several packages in this category. 
+5. The [`iml`](https://joss.theoj.org/papers/10.21105/joss.00786) package may
+    offer usable functionality for devising general assessments of software
+    within this category, through offering a "toolbox for making machine
+    learning models interpretable" in a "model agnostic" way.
 
--   To what extent might searches for suitable reviewers be automated?
+***Key Considerations***
 
--   What sort of metrics might be useful in such searches?
+- It is often difficult to discern the accuracy of reliability of
+  dimensionality reduction techniques.
+- It is difficult to devise general routines to compare and assess different
+  routines in this category, although possible starting points for the
+  development of such may be offered by the
+  [`compboost`](https://joss.theoj.org/papers/10.21105/joss.00967) and
+  [`iml`](https://joss.theoj.org/papers/10.21105/joss.00786) packages.
 
-In each case the project will strive to cultivate diverse, inclusive, and
-geographically expansive communities, and metrics to describe such aspects may
-also be important, as may automated tools to monitor community engagement and
-development. Note that these aspects of community are not explicitly addressed
-throughout any of the remainder of this document. It is important the future
-revisions return to this point, and ensure that each of the following sections
-are appropriately modified to ensure effective consideration and incorporation
-of the concerns listed immediately above.
+#### Exploratory Data Analysis (EDA) and Summary Statistics {#overview-eda}
+
+Many packages aim to simplify and facilitate the reporting of complex
+statistical results or exploratory summaries of data. Such reporting commonly
+involves visualisation, and there is direct overlap between this and the
+Visualisation category (below). This roughly breaks out into software that
+summarizes and presents _raw_ data, and software that reports complex data
+derived from statistical routines. However, this break is often not clean, as
+raw data exploration may involve an algorithmic or modeling step (e.g.,
+projection pursuit.). Examples include:
+
+1.  A package rejected by rOpenSci as out-of-scope,
+    [`gtsummary`](https://github.com/ddsjoberg/gtsummary), which provides,
+    "Presentation-ready data summary and analytic result tables." Other
+    examples include:
+1. The [`smartEDA` package](https://github.com/daya6489/SmartEDA) (with
+   accompanying [JOSS
+   paper](https://joss.theoj.org/papers/10.21105/joss.01509)) "for automated
+   exploratory data analysis". The package, "automatically selects the
+   variables and performs the related descriptive statistics. Moreover, it also
+   analyzes the information value, the weight of evidence, custom tables,
+   summary statistics, and performs graphical techniques for both numeric and
+   categorical variables." This package is potentially as much a workflow
+   package as it is a statistical reporting package, and illustrates the
+   ambiguity between these two categories.
+2. The [`modeLLtest` package](https://github.com/ShanaScogin/modeLLtest) (with
+   accompanying [JOSS
+   paper](https://joss.theoj.org/papers/10.21105/joss.01542)) is "An R Package
+   for Unbiased Model Comparison using Cross Validation." Its main
+   functionality allows different statistical models to be compared, likely
+   implying that this represents a kind of meta package.
+3. The [`insight` package](https://github.com/easystats/insight) (with
+   accompanying [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01412)
+   provides "a unified interface to access information from model objects in
+   R," with a strong focus on unified and consistent reporting of statistical
+   results.
+4. The [`arviz` software for python](https://github.com/arviz-devs/arviz) (with
+   accompanying [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01143)
+   provides "a unified library for exploratory analysis of Bayesian models in
+   Python."
+5. The [`iRF` package](https://github.com/sumbose/iRF) (with accompanying [JOSS
+   paper](https://joss.theoj.org/papers/10.21105/joss.01077) enables
+   "extracting interactions from random forests", yet also focusses primarily
+   on enabling interpretation of random forests through reporting on
+   interaction terms.
+
+In addition to potential overlap with the Visualisation category, potential
+standards for Statistical Reporting and Meta-Software are likely to overlap to
+some degree with the preceding standards for Workflow Software. Checklist items
+unique to statistical reporting software might include the following:
+
+- [ ] **Automation** Does the software automate aspects of statistical
+  reporting, or of analysis at some sufficiently "meta"-level (such as variable
+  or model selection), which previously (in a reference implementation)
+  required manual intervention?
+- [ ] **General Reporting:** Does the software report on, or otherwise provide
+  insight into, statistics or important aspects of data or analytic processes
+  which were previously not (directly) accessible using reference
+  implementations?
+- [ ] **Comparison:** Does the software provide or enable standardised
+  comparison of inputs, processes, models, or outputs which could previously
+  (in reference implementations) only be accessed or compared some comparably
+  unstandardised form?
+- [ ] **Interpretation:** Does the software facilitate interpretation of
+  otherwise abstruse processes or statistical results?
+- [ ] **Exploration:** Does the software enable or otherwise guide exploratory
+  stages of a statistical workflow?
+
+#### Time Series Analyses {#overview-ts}
+
+We will also consider time series software as a distinct category, owing to
+unique ways of representing and processing such data.
+
+
+#### Machine Learning {#overview-ml}
+
+Machine Learning (ML) routines play a central role in modern statistical
+analyses, and the ML node in the above diagram is roughly equally central,
+and equally connected, to the Bayesian and Monte Carlo node. Machine Learning
+algorithms represent perhaps some of the most difficult algorithms for which to
+develop standards and methods of comparison. Both input and output data can be
+categorically different or even incomparable, while even where these may be
+comparable, the abiding aims of different ML algorithms can differ sufficiently
+to make comparison of outputs to otherwise equivalent inputs largely
+meaningless. A few potentially fruitful routes towards productive comparison
+may nevertheless be discerned, here according to the sub-domains of input data,
+output data, and algorithms.
+
+***Input Data*** One promising R package which may prove very useful for
+standardising and comparing data used as input to ML algorithms is the
+[`vtreat`](https://joss.theoj.org/papers/10.21105/joss.00584) package that
+"prepares messy real world data for predictive modeling in a reproducible and
+statistically sound manner." The routines in this package perform a series of
+tests for general sanity of input data, and may prove generally useful as part
+of a recommended ML workflow.
+
+***Algorithms*** A number of packages attempt to offer unified interfaces to
+a variety of ML algorithms, and so may be used within the context of the
+present project either as potential recommended standards, or as ways by which
+different algorithms may be compared within a standard workflow. Foremost among
+such packages are 
+[`mlr3`](https://joss.theoj.org/papers/10.21105/joss.01903), which represents
+one of the core R packages for ML, developed by the key developers of previous
+generations of ML software in R. It offers a modular and extensible interface
+for a range of ML routines, and may prove very useful in comparing different ML
+routines and implementations.
+
+***Output Data*** There are several extant packages for (post-)processing data
+output from ML algorithms. Many, perhaps even most, of these primarily aim to
+derive insightful visualisations of output, whether in interactive
+(JavaScript-based) form, as with the
+[`modelStudio`](https://joss.theoj.org/papers/10.21105/joss.01798) or
+[`modelDown`](https://joss.theoj.org/papers/10.21105/joss.01444) packages, or
+more static plots using internal graphical routines from R, as in the [`iml`
+(Interpretable Machine
+Learning)](https://joss.theoj.org/papers/10.21105/joss.00786) package. The
+latter package offers a host of additional functionality useful in interpreting
+the output of ML algorithms, and which may prove useful in general
+standards-based contexts.
+
+Potential "edge cases" which may be difficult to reconcile with the general
+aspects described above include the following:
+
+1. [`ReinforcementLearning`](https://joss.theoj.org/papers/10.21105/joss.01087)
+   is a simulation package employing ML routines to enable agents to learn
+   through trial and error. It is an example of a package with inputs and
+   outputs which may be difficult to compare with other ML software, and
+   difficult to assess via general standards.
+2. [`BoltzMM`](https://joss.theoj.org/papers/10.21105/joss.01193) is an
+   implementation of a particular class of ML algorithms ("Boltmann Machines"),
+   and so provides an obverse example to the above, for which in this case
+   inputs and outputs may be compared in standard ways, yet the core algorithm
+   may be difficult to compare.
+3. [`dml`](https://joss.theoj.org/papers/10.21105/joss.01036) is a collection
+   of different ML algorithms which perform the same task ("distance metric
+   learning"). While comparing algorithms *within* the package is obviously
+   straightforward, comparison in terms of external standards may not be.
+
+#### Spatial Analyses {#overview-spatial}
+
+Spatial analyses have a long tradition in R, as summarised and reflected in the
+CRAN Task Views on [Spatial](https://cran.r-project.org/web/views/Spatial.html)
+and [Spatio-Temporal](https://cran.r-project.org/web/views/SpatioTemporal.html)
+data and analyses. Those task views also make immediately apparent that the
+majority of development in both of these domains has been in *representations*
+of spatial data, rather than in statistical analyses *per se*. 
+Spatial statistical analyses have nevertheless been very strong in R, notably
+through the [`spatstat`](https://cran.r-project.org/package=spatstat) and
+[`gstat`](https://cran.r-project.org/package=gstat) packages, first published
+in 2002 and 2003, respectively.
+
+Spatial analyses entail a number of aspects which, while not necessarily unique
+in isolation, when considered in combination offer sufficiently unique
+challenges for this to warrant its own category. Some of these unique aspects
+include:
+
+- A generally firm embeddedness in two dimensions
+- Frequent assumptions of continuous rather than discrete processes
+  (point-pattern processes notwithstanding)
+- A pervasive decrease in statistical similarity with increasing distance - the
+  so-called "First Law of Geography" - which is the observe of pervasive
+  difficulties arising from auto-correlated observations.
+- A huge variety of statistical techniques such as kriging and triangulation
+  which have been developed for almost exclusive application in spatial
+  domains.
+- The unique challenges arising in the domain of [Spatial Temporal
+  Analyses](https://cran.r-project.org/web/views/SpatioTemporal.html).
+
+
+#### Probability Distributions {#overview-distributions}
+
+(**Not yet in scope**) The category of probability distributions is an outlier
+in the preceding network diagram, connected only to ML and
+regression/interpolation algorithms. It is nevertheless included here as
+a distinct category because we anticipate software which explicitly represents
+or relies on probability distributions to be subject to distinct standards and
+assessment procedures, particularly through enabling routines to be tested for
+robustness against a variety of perturbations to assumed distributional forms.
+
+Packages which fall within this category  include:
+
+1. [`univariateML`](https://joss.theoj.org/papers/10.21105/joss.01863) which
+   is, "an R package for maximum likelihood estimation of univariate
+   densities," which support more than 20 different forms of probability
+   density.
+2. [`kdensity`](https://joss.theoj.org/papers/10.21105/joss.01566) which is,
+   "An R package for kernel density estimation with parametric starts and
+   asymmetric kernels." This package implements an effectively non-parametric
+   approach to estimating probability densities.
+3. [`overlapping`](https://joss.theoj.org/papers/10.21105/joss.01023), which
+   is, "a R package for estimating overlapping in empirical distributions."
+
+The obverse process from estimating or fitting probability distributions is
+arguably drawing samples from defined distributions, of which the 
+[`humanleague`](https://joss.theoj.org/papers/10.21105/joss.00629) package is
+an example. This package has a particular application in synthesis of discrete
+populations, yet the implementation is quite generic and powerful.
+
+
+#### Wrapper Packages {#overview-wrapper}
+
+(**Not yet in scope**) "Wrapper" packages provide an interface to
+previously-written software, often in a different computer language to the
+original implementation. While this category is reasonably unambiguous, there
+may be instances in which a "wrapper" additionally offers extension beyond
+original implementations, or in which only a portion of a package's
+functionality may be "wrapped."  Rather than internally bundling or wrapping
+software, a package may also serve as a wrapper thorough providing access to
+some external interface, such as a web server. Examples of potential wrapper
+packages include the following:
+
+1. The
+   [`greta` package](https://github.com/greta-dev/greta)
+   (with accompanying
+   [JOSS article](https://joss.theoj.org/papers/10.21105/joss.01601)) "for
+   writing statistical models and fitting them by MCMC and optimisation"
+   provides a wrapper around google's
+   [`TensorFlow` library](https://www.tensorflow.org). It is also clearly a workflow package, aiming to
+   provide a single, unified workflow for generic machine learning processes
+   and analyses.
+2. The
+   [`nse` package](https://github.com/keblu/nse) (with accompanying
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.00172)) which
+   offers "multiple ways to calculate numerical standard errors (NSE) of
+   univariate (or multivariate in some cases) time series," through providing
+   a unified interface to several other R packages to provide more than 30 NSE
+   estimators. This is an example of a wrapper package which does not wrap
+   either internal code or external interfaces, rather it effectively "wraps"
+   the algorithms of a collection of R packages.
+
+***Key Considerations***:  For many wrapper packages it may not be feasible
+for reviewers (or authors) to evaluate the quality or correctness of the wrapped
+software, so review could be limited to the interface or added value provided,
+or the statistical routines within. 
+
+Wrapper packages include the extent of functionality represented by wrapped
+code, and the computer language being wrapped. 
+- *Internal or External:* Does the software *internally* wrap of bundle
+  previously developed routines, or does it provide a wrapper around some
+  external service? If the latter, what kind of service (web-based, or some
+  other form of remote access)?
+- *Language:* For internally-bundled routines, in which computer language
+  e the routines written? And how are they bundled? (For R packages: In
+  `./src`? In `./inst`? Elsewhere?)
+- *Testing:* Does the software test the correctness of the wrapped component?
+  Does it rely on tests of the wrapped component elsewhere?
+- *Unique Advances:* What unique advances does the software offer beyond
+  those offered by the (internally or externally) wrapped software?
+  
+
+#### Networks {#overview-networks}
+
+(**Not yet in scope**) Network software is a particular area of application of
+what might often be considered more generic algorithms, as in the example
+described above of the
+[`grapherator`](https://github.com/jakobbossek/grapherator) package, for which
+this category is appropriate only because the input data are assumed to
+represent a particular form of graphical relationship, while most of the
+algorithms implemented in the package are not necessarily specific to graphs.
+That package might nevertheless be useful in developing standards because it,
+"implements a modular approach to benchmark graph generation focusing on
+undirected, weighted graphs". This package, and indeed several others developed
+by its author [Jakob Bossek](http://www.jakobbossek.de/blog/), may be useful in
+developing benchmarks for comparison of graph or network models and algorithms.
+
+Cases of software which might be assessed using such generic graph generators
+and benchmarks include:
+
+1. [`mcMST`](https://joss.theoj.org/papers/10.21105/joss.00374), which is "a
+   toolbox for the multi-criteria minimum spanning tree problem."
+2. [`gwdegree`](https://joss.theoj.org/papers/10.21105/joss.00036), which is
+   a package for, "improving interpretation of geometrically-weighted degree
+   estimates in exponential random graph models." This package essentially
+   generates one key graph statistic from a particular class of input graphs,
+   yet is clearly amenable to benchmarking, as well as measures of stability in
+   response to variable input structures.
+
+Network software which is likely more difficult to assess or compare in any
+general way includes:
+
+1. [`tcherry`](https://joss.theoj.org/papers/10.21105/joss.01480) is a package
+   for "Learning the structure of tcherry trees," which themselves are
+   particular ways of representing relationships between categorical data. The
+   package uses maximum likelihood techniques to find the best tcherry tree to
+   represent a given input data set. Although very clearly a form of network
+   software, this package might be considered better described by other
+   categories, and accordingly not directly assessed or assessable under any
+   standards derived for this category.
+2. [`BNLearn`](https://www.bnlearn.com/) is a package "for learning the
+   graphical structure of Bayesian networks." It is indubitably a network
+   package, yet the domain of application likely renders it incomparable to
+   other network software, and difficult to assess in any standardised way.
+
+#### Workflow Support {#overview-workflow}
+
+
+(**Not yet in scope**) "Workflow" software may not implement particular methods
+or algorithms, but rather support tasks around the statistical process.  In
+many cases, these may be generic tasks that apply across methods. These
+include:
+
+1. Classes (whether explicit or not) for representing or processing input and
+   output data;
+2. Generic interfaces to multiple statistical methods or algorithms;
+3. Homogeneous reporting of the results of a variety of methods or algorithms;
+   and
+4. Methods to synthesise, visualise, or otherwise collectively report on
+   analytic results.
+
+Methods and Algorithms software may only provide a specific interface to
+a specific method or algorithm, although it may also be more general and offer
+several of the above "workflow" aspects, and so ambiguity may often arise
+between these two categories. We note in particular that the "workflow" node in
+the
+[interactive network diagram](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms)
+mentioned above is very strongly connected to the "machine learning" node,
+generally reflecting software which attempts to unify varied interfaces to
+varied platforms for machine learning.
+
+Among the numerous examples of software in this category are:
+
+1. The
+   [`mlr3` package](https://github.com/mlr-org/mlr3) (with accompanying
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01903)), which provides, "A modern object-oriented machine learning
+   framework in R."
+2. The
+   [`fmcmc` package](https://github.com/USCbiostats/fmcmc)
+   (with accompanying
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01427)), which provides a unified framework and workflow for
+   Markov-Chain Monte Carlo analyses.
+3. The
+   [`bayestestR` package](https://github.com/easystats/bayestestR) (with accompanying
+   [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01541))
+   for "describing effects and their uncertainty, existence and significance
+   within the Bayesian framework. While this packages includes its own
+   algorithmic implementations, it is primarily intended to aid general
+   Bayesian workflows through a unified interface.
+
+Workflows are also commonly required and developed for specific areas of
+application, as exemplified by the
+[`tabular` package](https://github.com/nfrerebeau/tabula) (with accompanying
+[JOSS article](https://joss.theoj.org/papers/10.21105/joss.01821) for "Analysis, Seriation, and visualisation of Archaeological
+Count Data".
+
+ ***Key Considerations:*** Workflow packages are popular and add considerable value
+and efficiency for users.  One challenge in evaluating such packages is the
+importance of API design and potential subjectivity of this.  For instance,
+`mlr3` as well as `tidymodels` have similar uses of providing a common interface
+to multiple predictive models and tools for automating processes across these
+models.  Similar, multiple packages have different approaches for handling MCMC
+data.  Each package makes different choices in design and has different priorities,
+which may or may not agree with reviewers' opinions or applications.  Despite such
+differences, it may be possible to evaluate such packages for *internal* cohesion,
+and adherence to a sufficiently clearly stated design goal. Reviewers may be able
+to evaluate whether the package provides a _more_ unified workflow or interface
+than other packages - this would require a standard of relative improvement over
+the field rather than baseline standards.
+
+These packages also often contain numerical routines (cross-validation,
+performance scoring, model comparison), that can be evaluated for correctness
+or accuracy.  
+
+
+## Standards for Statistical Software
+
+One of the primary outputs of the project to develop our system to peer-review
+statistical software has been a detailed suite of standards, both *General
+Standards* applicable to all statistical software to be considered under our
+system, along with category-specific standards for each of the categories
+summarised above. These standards have been developed in explicit
+acknowledgement of the sentiments of Colin Gillespie, expressed in his keynote
+speech at the [European R Users Meeting
+2020](https://2020.erum.io/program/keynotes-invited-speakers/):
+
+> Standards are good<br>
+> Standards should be strict<br>
+> No-one reads standards
+
+The last point in particular is pertinent. Our standards are not intended to be
+read by any general audience -- although anyone is invited and encouraged to do
+so! -- rather, they are primarily intended to guide processes of software
+development in order to maximise compliance of software with our standards at
+the time of initial submission. Most of the burden of aligning software with
+our standards is thus expected to be borne by developers, who will be primarily
+obliged to adhere to our standards. Such obligatory adherence is one of the
+most effective ways to ensure that those most able to ensure software aligns
+with our standards -- that is, the developers themselves -- both actually read
+the standards, and ensure optimal alignment.
+
+Aligning software with standards prior to submission has the additionally
+important function of freeing reviewers from the otherwise potentially onerous
+task of identifying and discussing generic or typical software-specific issues
+or problems, enabling reviews to better focus on broader, more qualitative
+aspects of software quality.
+
+Finally, this project has already developed tools for the automated assessment
+of software against a number of our standards, and we will strive for ongoing
+expansion of automated assessment. Thus, even if our standards themselves
+expand in time, hopefully the process of aligning software to meet those
+standards will nevertheless become easier through continued development of our
+tools for automated software assessment.
+
+## Prior Art
+
+
+### rOpenSci
+
+rOpenSci's current software peer-review process, detailed in our [developer
+guide](https://devguide.ropensci.org/softwarereviewintro.html), is based on a
+blend of practices from peer review of academic practices and code review in
+open-source projects. Review takes place via an issue thread in our
+["software-review" repository on
+GitHub](https://github.com/ropensci/software-review). The review process is
+entirely open, with each issue thread used to manage the entire process,
+coordinated by rOpenSci's editors. After initial screening for scope and minimal
+qualification by editors, two reviewers provide comments and feedback on software
+packages. After one or more rounds of revisions, packages reach a point of
+approval, at which point they are "accepted" by rOpenSci, symbolized both
+through a badge system, and (generally) through transferring the software from
+the authors' private domain to the
+[github.com/ropensci](https://github.com/ropensci) domain.
+
+### The Journal of Open Source Software
+
+The [Journal of Open Source Software (JOSS)](https://joss.theoj.org/) was based
+on rOpenSci and follows a similar approach, with greater automation and broader
+scope. The Journal of Statistical Software conducts a closed review of both
+manuscript and software, with fewer prescriptive standards. In reviewing
+packages for acceptance into its repository,
+[BioConductor](https://www.bioconductor.org) conducts an [open
+review](https://www.bioconductor.org/developers/package-submission/) primarily
+aimed at maintaining minimum standards and inter-compatibility.
+
+
+### Academic Journal Reviews
+
+One ubiquitous model for processes of peer review is that of "standard"
+academic journals, for which we now highlight two relevant aspects.
+
+#### Primary and Secondary Editors
+
+Academic journals commonly have a board of (primary) editors, and a field of
+(secondary) subject or specialist editors. The initial and terminal points of
+review processes are commonly handled by the primary editors, who delegate
+subject editors to both solicit appropriate reviewers, and to manage the review
+process. Upon completion, the primary editor generally signifies ultimate
+acceptance. 
+
+Such a model would also likely be beneficial for the present project, in spite
+of potential difficulties we may face in attracting sufficient numbers of
+subject editors. Division of labour between primary and secondary editors would
+offer distinct advantages, foremost among which would be an ability to appoint
+a reasonably large number of "subject editors" (or equivalent), for whom such
+an official designation would be able to be used to boost their own careers. As
+a contrast, rOpenSci's editorial processes are handled by a single cohort of
+eight editors, of whom four are staff members, while JOSS currently has [six
+primary editors and 31 "topic"
+editors](https://joss.theoj.org/about#editorial_board).
+
+The preceding consideration of [categories](#scope) suggests we may end up with
+around a dozen categories, and so potentially be able to offer around this
+number (or more) of honorary subject editor positions, along with a concomitant
+reduction in workload for each of these. Engaging such a range of subject
+editors would also lessen the burden on primary editors, perhaps enabling the
+system to be initially trialled with the two or three people primarily engaged
+in its current developmental phase. The engagement of a wider range of subject
+editors would also enlarge the network of people directly engaged with the
+project, as well as extending its sphere of influence to encompass the
+professional networks of all those involved.
+
+#### Invited and Mentored Submissions
+
+Many journals enable editors to personally invite selected authors to submit
+manuscripts on some particular topic, often compiled within single "special
+issues". While special issues may not be relevant here, the notion of invited
+submissions may prove particularly useful in fostering integration between
+software packages. One likely defining distinction between rOpenSci and RStudio
+may be the ability of the latter organisation to strategically plan the
+development of software that links pre-existing software into more coherent or
+thematically-aligned "suites" of software (the
+[`tidyverse`](https://tidyverse.org) likely being the prime example). In
+contrast, rOpenSci's software profile is very largely dependent on the whims of
+largely independent developers, and the software they autonomously elect to
+submit. (rOpenSci staff may themselves also develop software, and so strive to
+create more focussed suites of related packages, but this is then by definition
+more an individual than community effort.) The ability to solicit software
+within particular categories, or fulfilling particular functionality, may
+greatly aid an ability for this project to develop a coherent and singularly
+identifiable suite of packages for use in statistical analyses.
+
+One potential ways by which submissions could be invited would be through all
+regular meetings of the editors and board having a fixed discussion point on
+potential categories in which submissions may be desired. Agreement on the
+importance or usefulness of particular categories or themes may be relatively
+rare, but having this as a fixed item would allow progressive contemplation
+ultimately leading to sporadic consensus. Following meetings during which such
+consensus emerges, a general call for themed submissions may be issued, and/or
+specific potential package authors may be individually approached.
+
+The solicitation of themed submissions may also involve editors, members of the
+board, or other community members, offering their services as mentors or
+advisors throughout processes of package development. Invited submissions would
+then also serve as an opportunity for dissemination of the knowledge and
+expertise built up and held by individuals prior to and throughout the life of
+this project.
+
+Extending on from that idea, it may be worthwhile examining a "mentorship"
+system, whereby people who might feel they lack the skills necessary to develop
+a package of suitable standards might apply via an alternative form of
+pre-submission enquiry (in this case something more like a "pre-development
+enquiry") as to whether anybody might be willing to mentor the development of
+a particular package idea. Such a system would of course require individuals to
+be willing to volunteer their services as mentors, but would have potentially
+significant advantages in expanding the entire system well beyond the
+boundaries of the limited few who have sufficient confidence in their abilities
+to develop packages.
+
+
+***Proposal***
+
+1. We adopt a model of primary and secondary editors, through having the
+   rOpenSci staff directly involved in the development of this project serve as
+   primary editors, and we seek to find and nominate subject editors as soon as
+   we have reached agreement on categories of statistical software.
+2. Members of the board may also offer their services in either as primary or
+   secondary editorial capacity.
+3. Once the system has started, we implement a fixed discussion point of every
+   meeting on potential themes for invited submissions, and sporadically issue
+   open (and directed) invitations for submissions of category-specific
+   software.
+4. We offer a separate stream of "pre-development enquiry" as a kind of "ideas
+   lab" to which people may submit and discuss ideas, with the system
+   explicitly designed to connect ideas to potential mentors who may guide
+   development towards full packages.
+
+### Other systems for software and peer review
+
+#### The Debian System
+
+The development of software for the open-source [Debian Operating
+System](https://debian.org) is guided by Debian Developers and Debian
+Maintainers. Expressed roughly, maintainers are individuals responsible for the
+maintenance of particular pieces of software, while developers engage with
+activities supporting the development of the operating system as a whole. The
+submission and review process for Debian is almost entirely automated, based on
+tools such as their own software checker,
+[`lintian`](https://lintian.debian.org). Debian differs fundamentally from the
+system proposed here in being centred around the trust and verification of
+people rather than software. Submission of software to Debian is largely
+automatic, and bug-free software may often progress automatically through
+various stages towards acceptance. Software may, however, only be submitted by
+official Debian Maintainers or Developers. People can only become developers or
+maintainers through being sponsored by existing members, and are then subject
+to review of the potential contribution they may be able to make to the broader
+Debian community. (Details can be seen in [this chapter of the Debian
+handbook](https://debian-handbook.info/browse/stable/sect.becoming-package-maintainer.html).)
+
+While the general process for software submission and acceptance in Debian may
+not be of direct relevance, their versioning policy may provide a useful mode.
+The ongoing development of both the Debian system and all associated packages
+proceeds in accordance with a versioned [policy
+manual](https://www.debian.org/doc/debian-policy/index.html). All new packages
+must comply to the current standards at the time of submission, and are
+labelled with the latest version of the standards to which they comply, [noting
+that](https://www.debian.org/doc/debian-policy/ch-source.html#standards-conformance),
+
+> For a package to have an old Standards-Version value is not itself a bug ...
+It just means that no-one has yet reviewed the package with changes to
+the standards in mind.
+
+Each new version of the standards is accompanied by a simple
+[checklist](https://www.debian.org/doc/debian-policy/upgrading-checklist.html)
+of differences, explicitly indicating differences with and divergences from
+previous versions. As long as software continues to pass all tests, upgrading
+to current standards remains optional. Failing tests in response to any
+upgrading of standards serve as a trigger for review of software. The nominated
+standards version may only be updated once review has confirmed compliance with
+current standards. We propose to adapt some of these aspects of the Debian
+system in the present project, as described below.
+
+#### Other Potential Models
+
+The Linux [Core Infrastructure Initiative](https://www.coreinfrastructure.org/)
+provides badges to projects meeting [development best
+practices](https://github.com/coreinfrastructure/best-practices-badge/blob/master/doc/criteria.md).
+Badges are graded (passing/silver/gold), and awarded by package authors
+self-certifying that they have implemented items on a checklist. 
+
+
+## Use of this Book
+
+This book is primarily intended to be used by the two primary audiences of
+*software developers* and *reviewers*. As mentioned above, it is also intended
+to serve as a "blueprint" to be adopted and adapted to other areas, including
+other computer languages, and other domains of application. The book has two
+primary entry points for these two primary audiences, with the following
+chapter providing extensive guidelines for package development, submission, and
+maintenance, and the subsequent chapter providing guidelines for reviewers of
+software submissions. Both audiences will need to refer to the actual
+[standards](#standards), both general and category-specific.
+
+In terms both of software itself, and associated communities of developers,
+reviewers, and users, case the project will strive to cultivate diverse,
+inclusive, and geographically expansive communities. Note that while these
+aspects of community are not explicitly addressed throughout any of the
+remainder of this document, it is important that future revisions return to
+this point, and ensure that each of the following sections are appropriately
+modified to ensure effective consideration and incorporation of the
+representativeness and inclusiveness of communities surrounding our software.

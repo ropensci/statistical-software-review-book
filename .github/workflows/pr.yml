@@ -42,11 +42,11 @@ jobs:
       - name: Render book html
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
 
-      - name: Render book PDF
-        run: Rscript -e 'bookdown::render_book("index.Rmd", new_session = FALSE, "bookdown::pdf_book", output_dir = "pdfbook")'
+          #- name: Render book PDF
+          #run: Rscript -e 'bookdown::render_book("index.Rmd", new_session = FALSE, "bookdown::pdf_book", output_dir = "pdfbook")'
 
-      - name: Move files around
-        run: Rscript -e 'file.copy(from = "pdfbook/ropenscilabs-statistical-software-review-book.pdf", to = "_book/ropenscilabs-statistical-software-review-book.pdf")' -e 'purrr::walk(list.files("images", full.names = TRUE), file.copy, to = "_book/images")'
+          #- name: Move files around
+          #run: Rscript -e 'file.copy(from = "pdfbook/ropenscilabs-statistical-software-review-book.pdf", to = "_book/ropenscilabs-statistical-software-review-book.pdf")' -e 'purrr::walk(list.files("images", full.names = TRUE), file.copy, to = "_book/images")'
 
       - uses: actions/setup-node@v1
 
