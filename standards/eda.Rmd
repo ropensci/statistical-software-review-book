@@ -2,9 +2,6 @@
 
 ## Exploratory Data Analysis
 
-Click on the following link to view a demonstration [Application of Exploratory
-Data Analysis Standards](https://hackmd.io/K8F1RIhdQeuZFqMnzdqNVw).
-
 Exploration is a part of all data analyses, and Exploratory Data Analysis (EDA)
 is not something that is entered into and exited from at some point prior to
 "real" analysis. Exploratory Analyses are also not strictly limited to *Data*,
@@ -22,12 +19,52 @@ rOpenSci's program for peer-reviewing statistical software. Primary differences 
   than software in most other categories, notably including the important
   question of intended audience(s).
 
-The following standards are accordingly somewhat differently structured than
-equivalent standards developed to date for other categories, particularly
-through being more qualitative and abstract. In particular, while documentation
-is an important component of standards for all categories, clear and
-instructive documentation is of paramount importance for EDA Software, and so
-warrants its own sub-section within this document.
+Examples of EDA software include:
+
+1.  A package rejected by rOpenSci as out-of-scope,
+    [`gtsummary`](https://github.com/ddsjoberg/gtsummary), which provides,
+    "Presentation-ready data summary and analytic result tables." Other
+    examples include:
+1. The [`smartEDA` package](https://github.com/daya6489/SmartEDA) (with
+   accompanying [JOSS
+   paper](https://joss.theoj.org/papers/10.21105/joss.01509)) "for automated
+   exploratory data analysis". The package, "automatically selects the
+   variables and performs the related descriptive statistics. Moreover, it also
+   analyzes the information value, the weight of evidence, custom tables,
+   summary statistics, and performs graphical techniques for both numeric and
+   categorical variables." This package is potentially as much a workflow
+   package as it is a statistical reporting package, and illustrates the
+   ambiguity between these two categories.
+2. The [`modeLLtest` package](https://github.com/ShanaScogin/modeLLtest) (with
+   accompanying [JOSS
+   paper](https://joss.theoj.org/papers/10.21105/joss.01542)) is "An R Package
+   for Unbiased Model Comparison using Cross Validation." Its main
+   functionality allows different statistical models to be compared, likely
+   implying that this represents a kind of meta package.
+3. The [`insight` package](https://github.com/easystats/insight) (with
+   accompanying [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01412)
+   provides "a unified interface to access information from model objects in
+   R," with a strong focus on unified and consistent reporting of statistical
+   results.
+4. The [`arviz` software for python](https://github.com/arviz-devs/arviz) (with
+   accompanying [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.01143)
+   provides "a unified library for exploratory analysis of Bayesian models in
+   Python."
+5. The [`iRF` package](https://github.com/sumbose/iRF) (with accompanying [JOSS
+   paper](https://joss.theoj.org/papers/10.21105/joss.01077) enables
+   "extracting interactions from random forests", yet also focusses primarily
+   on enabling interpretation of random forests through reporting on
+   interaction terms.
+
+Click on the following link to view a demonstration [Application of Exploratory
+Data Analysis Standards](https://hackmd.io/K8F1RIhdQeuZFqMnzdqNVw).
+
+Reflecting these considerations, the following standards are somewhat
+differently structured than equivalent standards developed to date for other
+categories, particularly through being more qualitative and abstract. In
+particular, while documentation is an important component of standards for all
+categories, clear and instructive documentation is of paramount importance for
+EDA Software, and so warrants its own sub-section within this document.
 
 ### Documentation Standards
 
@@ -161,7 +198,20 @@ EDA Software which accepts tabular inputs should accordingly ensure:
 
 ### Analytic Algorithms
 
-(There are no specific standards for analytic algorithms in EDA Software.)
+EDA software will generally not directly implement what might be considered as
+statistical algorithms in their own right. The following standards may
+nevertheless apply to some of the main analytic routines of EDA software.
+
+- **EA3.0** The algorithmic components of EDA Software should enable automated
+  extraction and/or reporting of statistics as some sufficiently "meta" level
+  (such as variable or model selection), for which previous or reference
+  implementations require manual intervention. 
+- **EA3.1** EDA software should enable standardised comparison of inputs,
+  processes, models, or outputs which previous or reference implementations
+  otherwise only enable in some comparably unstandardised form.
+
+Both of these standards also relate to the following standards for output
+values, visualisation, and summary output.
 
 ### Return Results / Output Data
 

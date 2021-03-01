@@ -2,6 +2,12 @@
 
 ## Time Series Software
 
+The category of Time Series software is arguably easier to define that the
+preceding categories, and represents any software the primary input of which is
+intended to be temporally structured data. Importantly, while "*temporally
+structured*" may often imply temporally ordered, this need not necessarily be
+the case. The primary definition of temporally structured data is that they
+possess some kind of index which can be used to extract temporal relationships.
 
 Time series software is presumed to perform one or more of the following steps:
 

@@ -1,11 +1,54 @@
 <!-- Edit the .Rmd not the .md file -->
 
-## Regression and Supervised Learning
+## Regression and Supervised Learning {#standards-regression}
+
+Examples of the diversity of Regression and Unsupervised Learning software
+include the following.
+
+1. [`xrnet`](https://joss.theoj.org/papers/10.21105/joss.01761) to perform
+   "hierarchical regularized regression to incorporate external data", where
+   "external data" in this case refers to structured meta-data as applied to
+   genomic features.
+2. [`survPen`](https://joss.theoj.org/papers/10.21105/joss.01434) is, "an
+    R package for hazard and excess hazard modelling with multidimensional
+    penalized splines"
+3. [`areal`](https://joss.theoj.org/papers/10.21105/joss.01221) is, "an
+    R package for areal weighted interpolation".
+4. [`ChiRP`](https://joss.theoj.org/papers/10.21105/joss.01287) is a package
+    for "Chinese Restaurant Process mixtures for regression and clustering",
+    which implements a class of non-parametric Bayesian Monte Carlo models.
+5. [`klrfome`](https://joss.theoj.org/papers/10.21105/joss.00722) is a package
+    for, "kernel logistic regression on focal mean embeddings," with a specific
+    and exclusive application to the prediction of likely archaeological sites.
+6. [`gravity`](https://joss.theoj.org/papers/10.21105/joss.01038) is a package
+    for "estimation methods for gravity models in R," where "gravity models"
+    refers to models of spatial interactions between point locations based on
+    the properties of those locations.
+7. [`compboost`](https://joss.theoj.org/papers/10.21105/joss.00967) is an
+     example of an R package for gradient boosting, which is inherently
+     a regression-based technique, and so standards for regression software
+     ought to consider such applications.
+8. [`ungroup`](https://joss.theoj.org/papers/10.21105/joss.00937) is, "an
+     R package for efficient estimation of smooth distributions from coarsely
+     binned data." As such, this package is an example of regression-based
+     software for which the input data are (effectively) categorical. The
+     package is primarily intended to implement a particular method for
+     "unbinning" the data, and so represents a particular class of
+     interpolation methods.
+9. [`registr`](https://joss.theoj.org/papers/10.21105/joss.00557) is
+     a package for "registration for exponential family functional data," where
+     registration in this context is effectively an interpolation method
+     applied within a functional data analysis context.
+10. [`ggeffects`](https://joss.theoj.org/papers/10.21105/joss.00772) for "tidy
+    data frames of marginal effects from regression models." This package aims
+    to make statistics quantifying marginal effects readily understandable, and
+    so implements a standard (tidyverse-based) methodology for representing and
+    visualising statistics relating to marginal effects.
 
 Click on the following link to view a demonstration [Application of Regression
 and Supervised Learning Standards](https://hackmd.io/VZ-wgQtZRV2pb-wFZNDM5g).
 
-This document details standards for Regression and Supervised Learning
+This sub-section details standards for Regression and Supervised Learning
 Software -- referred to from here on for simplicity as "Regression Software".
 Regression Software implements algorithms which aim to construct or analyse one
 or more mappings between two defined data sets (for example, a set of
