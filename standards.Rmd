@@ -1,95 +1,29 @@
 
 #  (PART) Standards {-}
 
-# <span style="color:red;">Standards [SEEKING FEEDBACK]<span> {#standards}
+# Standards: Version 0.0.X {#standards}
 
-This Chapter is divided between:
+This Chapter serves as the reference for rOpenSci's standards for statistical
+software. Software accepted for peer-review must fit one or more of our
+categories, and thus all packages must comply with the *General Standards*
+listed in the first of the following sections, along with one or more of the
+category-specific sets of standards listed in the subsequent sections.
 
--   "*General Standards*" which may be applied to all software considered within
-    this project, irrespective of how it may be categorized under the times of
-    categories of statistical software listed above; and
+Examples of application of these standards may be viewed as separate
+[`hackmd.io` files](https://hackmd.io) by clicking on the following links:
 
--   "*Specific Standards*" which apply to different degrees to statistical
-    software depending on the software category.
+- [Application of Bayesian and Monte Carlo Standards](https://hackmd.io/zVWTAl9ZQeCcj_bvMGcmMQ)
+- [Application of Regression and Supervised Learning Standards](https://hackmd.io/VZ-wgQtZRV2pb-wFZNDM5g)
+- [Application of Dimensionality Reduction, Clustering, and Unsupervised Learning Standards](https://hackmd.io/iOZD_oCpT86zoY5z4memaQ)
+- [Application of Exploratory Data Analysis Standards](https://hackmd.io/K8F1RIhdQeuZFqMnzdqNVw)
+- [Application of Machine Learning Software Standards](https://hackmd.io/Ix1YwD8YTWGuzdiXsVQadA)
 
-It is likely that standards developed under the first category may subsequently
-be deemed to be genuinely *Statistical Standards* yet which are applicable
-across all categories, and it may also be likely that the development of
-category-specific standards reveals aspects which are common across all
-categories, and which may subsequently be deemed general standards. We
-accordingly anticipate a degree of fluidity between these two broad categories.
-
-There is also a necessary relationship between the Standards described here,
-and processes of Assessment described below in [Chapter 8](#assessment). We
-consider the latter to describe concrete *and generally quantitative* aspects
-of *post hoc* software assessment, while the present Standards provides guides
-and benchmarks against which to *prospectively* compare software during
-development. As this entire document is intended to serve as the defining
-reference for our Standards, that term may in turn be interpreted to reflect
-this entire document, with the current section explicitly describing aspects of
-Standards not covered elsewhere.
-
-As described above, we anticipate the ongoing development of this current
-document to employ a versioning system, with software reviewed and hosted under
-the system mandated to flag the latest version of these standards to which it
-complies.
-
-## Other Standards
-
-Among the noteworthy instances of software standards which might be adapted for
-our purposes, the following are particularly relevant:
-
-1. The [Core Infrastructure Initiative's Best Practices
-   Badge](https://bestpractices.coreinfrastructure.org/en), which is granted to
-   software meeting an extensive list of
-   [criteria](https://github.com/coreinfrastructure/best-practices-badge/blob/master/doc/criteria.md).
-   This list of criteria provides a singularly useful reference for software
-   standards.
-2. The [Software Sustainability Institute](https://www.software.ac.uk/)'s
-   [*Software Evaluation
-   Guide*](https://www.software.ac.uk/resources/guides-everything/software-evaluation-guide),
-   in particular their guide to [*Criteria-based software
-   evaluation*](http://software.ac.uk/sites/default/files/SSI-SoftwareEvaluationCriteria.pdf),
-   which considers two primary categories of *Usability* and *Sustainability
-   and Maintainability*, each of which is divided into numerous sub-categories.
-   The guide identifies numerous concrete criteria for each sub-category,
-   explicitly detailed below in order to provide an example of the kind of
-   standards that might be adapted and developed for application to the present
-   project.
-3. The [*Transparent Statistics
-   Guidelines*](https://transparentstats.github.io/guidelines/), by the "HCI
-   (Human Computer Interaction) Working Group". While currently only in its
-   beginning phases, that document aims to provide concrete guidance on
-   "transparent statistical communication." If its development continues, it is
-   likely to provide useful guidelines on best practices for how statistical
-   software produces and reports results.
-4. The more technical considerations of the [Object Management
-   Group](https://www.omg.org/index.htm)'s [*Automated Source Code CISQ
-   Maintainability Measure*](https://www.omg.org/spec/ASCMM/) (where CISQ
-   refers to the [*Consortium for IT Software
-   Quality*](https://www.it-cisq.org/)). This guide describes a number of
-   measures which can be automatically extracted and used to quantify the
-   maintainability of source code. None of these measures are not already
-   considered in one or both of the preceding two documents, but the
-   identification of measures particularly amenable to automated assessment
-   provides a particularly useful reference.
-
-There is also rOpenSci's guide on [package development, maintenance, and peer
-review](https://devguide.ropensci.org/), which provides standards of this type
-for R packages, primarily within its first chapter. Another notable example is
-the [tidyverse design guide](https://principles.tidyverse.org/), and the
-section on [Conventions for R Modeling
-Packages](https://tidymodels.github.io/model-implementation-principles/) which
-provides guidance for model-fitting APIs.
-
-
-Specific standards for neural network algorithms have also been developed as
-part of a [google 2019 Summer Of Code
-project](http://www.inmodelia.com/gsoc2019.html), resulting in a dedicated
-R package, [`NNbenchmark`](https://akshajverma.com/NNbenchmarkWeb/index.html),
-and accompanying results---their so-called
-["notebooks"](https://akshajverma.com/NNbenchmarkWeb/notebooks.html)---of
-applying their benchmarks to a suite of neural network packages.
+Each of those files compares both general and category-specific standards
+against selected R packages within those categories. These comparisons are
+intended for illustrative purposes only, and are in no way intended to
+represent evaluations of the software. They are presented in the hope of
+demonstrating how the standards presented here may be applied to software, and
+what the results of such application may look like.
 
 ```{r standards-gen, child = "standards/general.Rmd", eval = TRUE, echo = TRUE}
 ```
