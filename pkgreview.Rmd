@@ -162,3 +162,33 @@ considerations for algorithmic quality. The [*General Standard*
 **G1.1**](#general-standards) also requires all similar algorithms or
 implementations to be documented within the software, so reviewers should also
 have access to a list of comparable implementations.
+
+### Review for Silver and Gold Badges
+
+As described above, a silver badge is given to software which aims for a gold
+badge, but which is not yet sufficiently compliant with all possible standards.
+An important task for reviewers of software aiming for silver or gold badges is
+thus to identify all general and category-specific standards that are
+potentially applicable, yet not currently complied with. Not all standards may
+be able to be applied to a given piece of software. For example, software
+designed to accept sparse matrix inputs from the [`Matrix`
+package](https://cran.r-project.org/web/packages/Matrix/index.html) will be
+unable to conform with many of the standards for general rectangular input
+forms. 
+
+For packages aiming for silver or gold badges, reviewers with thus first need
+to identify all standards which they deem *potentially* applicable; that is,
+with which the software currently does not comply yet potentially could.
+Packages aiming for gold badges at the end of review will need to comply with
+all such standards to pass review. Reviewers of packages aiming for silver will
+need to:
+
+1. Judge whether they consider compliance sufficient for the package to be
+   accepted; and
+2. Negotiate with developers a proposed schedule for compliance with all
+   remaining standards (generally within one year of initial acceptance).
+
+Packages receiving a silver badge at the end of review will be expected to be
+reviewed again according to the proposed schedule. This subsequent review will
+simply need to determine whether all nominated standards have indeed been
+complied with.
