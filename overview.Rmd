@@ -10,16 +10,14 @@ theme_set(theme_minimal())
 
 #  Overview of the Project and of this Book {#overview}
 
-This book documents rOpenSci's project to expand peer review to include
-explicitly statistic software. It is intended to aid both software developers
-wishing to have their software reviewed under the newly expanded system, and
-reviewers tasked with reviewing submissions. A third aim of the project, and
-of this documentation, is to serve as a blueprint for future adoption and
+This book is the main document for rOpenSci's project to expand peer review to
+include explicitly statistic software. It is intended to aid both software
+developers intending to submit statistical software for peer-review, and for
+reviewers of statistical software. An additional aim of the project, and of
+this documentation, is to serve as a blueprint for future adoption and
 adaptation in other areas, including other computer languages.
 
-This chapter summarises overall project aims, the scope of statistical software
-we are currently able to consider, and provides a brief overview of the
-structure and purpose of this book. The book should be considered an extension
+The present book should be considered an extension
 of rOpenSci's guide to software [Development, Maintenance, and Peer
 Review](https://devguide.ropensci.org/) (the "*Dev Guide*"). The guidelines and
 expectations for software as presented in the *Dev Guide* also apply to
@@ -28,8 +26,9 @@ describing additional guides and expectations for explicitly statistical
 software. The *Dev Guide* ought thus be considered essential reading prior to
 the current book.
 
-The present chapter provides a brief overview of the entire book, and consists
-of the following sections:
+This chapter summarises overall project aims, the scope of statistical software
+we are currently able to consider, and provides a brief overview of the
+structure and purpose of this book. It consists of the following sections:
 
 - **[Motivation: Why a separate system for statistical
   software?](#motivation)** in which we explain the necessity and advantages of
@@ -78,22 +77,22 @@ standards it itself not necessarily systematic, and in particular there is no
 direct way to ascertain the standards to which a given piece of software
 adheres, and those from which it may diverge.
 
-The present project aims to develop a more systematic alignment of software
-with standards, one which will enable automated and ongoing identification of
-those standards with which a given piece of software complies. The following
-sets of standards for statistical software are thus far more extensive that our
-previous "guidelines", and aim to provide ongoing assurance for users of the
-standard of software accepted within our system, including systematic
-identification of ways by which software may diverge from standards, and
-explanations of why.
+The present project reflects a more systematic alignment of software with
+standards, one which enables automated and ongoing identification of those
+standards with which a given piece of software complies. The following sets of
+standards for statistical software are thus far more extensive that our
+previous "guidelines", and provide ongoing assurance for users of the standard
+of software accepted within our system, including systematic identification of
+ways by which software may diverge from standards, and explanations of why.
 
 Such assurance is important in many areas of scientific research, notably
 including those subject to regulation such as pharmaceutical trials. Software
-used in such trials must be "validated", generally through a process of
-identifying any risks associated with using that software. In such contexts,
-our system will foster confidence in the use of software assessed according to
-our standards. For developers, the system will provide a "badge" able to be
-used to identify and publicise the assessment of their software as meeting the
+used in such trials must be ["validated"](https://pharmar.org/overview/),
+generally through a process of identifying any [risks associated with using
+that software](https://github.com/pharmaR/risk_assessment). In such contexts,
+our system fosters confidence in the use of software assessed according to our
+standards. For developers, the system provides a "badge" able to be used to
+identify and publicise the assessment of their software as meeting the
 standards set by our system.
 
 
@@ -105,7 +104,7 @@ standards set by our system.
 ```{r cloc-data, echo = FALSE}
 # x <- readRDS("./scripts/cran-cloc-all.Rds")
 # cloc_n <- length(unique(x$package))
-cloc_n <- 15735
+cloc_n <- 15948
 # TODO: Add that from cran-cloc-all as attribute of cran-cloc summary
 cloc_date <- format(as.Date(file.info("./scripts/cran-cloc.Rds")$mtime),
   format = "%d %b %Y"
@@ -168,17 +167,17 @@ those languages.
 ### Categories of Statistical Software {#overview-categories}
 
 The scope of statistical software able to be submitted for peer review is
-primarily defined by the following list of categories. Any software which fit
-in to one or more of those categories may be deemed in-scope, and submitted for
-review. Software which can not be described by those categories will generally
-be deemed out of scope. While the categories themselves are primarily defined
-by the corresponding standards given in detail in Chapter XX, this chapter
-provides brief descriptions of the categories to aid developers in initially
-estimating whether or not software may be in scope.
+primarily defined by the following list of categories. Any software which fits
+in to one or more of these categories may be deemed in-scope, and submitted for
+review, while software which can not be described by any of these categories
+will generally be deemed out of scope. While the categories themselves are
+primarily defined by the corresponding standards given in detail in [Chapter
+6](#standards), this chapter provides brief descriptions of the categories to
+aid developers in initially estimating whether or not software may be in scope.
 
-Empirical analyses described in Appendix A.2 were devised to identify
-sub-domains within statistical software, from which we have to date developed
-standards for the following categories:
+Empirical analyses described in [Appendix A.2](#appendix-categories) were
+devised to identify sub-domains within statistical software, from which we have
+to date developed standards for the following categories:
 
 1. [Bayesian and Monte Carlo Routines](#overview-bayesian)
 2. [Regression and Supervised Learning](#overview-regression)
@@ -188,16 +187,13 @@ standards for the following categories:
 6. [Machine Learning](#overview-ml)
 7. [Spatial Analyses](#overview-spatial)
 
-These categories provide our working definition of statistical software able to
-be considered for submission to our system as any software described by one of
-more of the categories. Each of these categories is represented by a set of
-standards, as briefly described in the following sub-section. We anticipate
-that submissions will commonly fit into, or be described by, multiple
-categories, and the standards have also been devised to be as inter-compatible
-as possible. Moreover, alignment with specific categories may not always be
-straightforward, and we anticipate some submissions requiring negotiation
-between developers and editors to identify appropriate categories prior to
-submission.
+Each of these categories is represented by a set of standards, as briefly
+described in the following sub-section. We anticipate that submissions will
+commonly fit into, or be described by, multiple categories, and the standards
+have also been devised to be as inter-compatible as possible. Moreover,
+alignment with specific categories may not always be straightforward, and we
+anticipate that some submissions will require negotiation between developers
+and editors to identify appropriate categories prior to full submission.
 
 We also intend to expand the system to include the additional four categories
 of:
@@ -215,19 +211,18 @@ we anticipate our sets of standards to expand further over time, and openly
 invite any form of discussion on the possibility of expanding our definition to
 include additional categories.
 
-**TODO: From here on is just copy-pasted from previous stuff; each has to be
-reduced to a simple paragraph description of each category.**
-
 
 #### Bayesian and Monte Carlo Routines {#overview-bayesian}
 
 Packages implementing or otherwise relying on Bayesian or Monte Carlo routines
-represent form the central "hub" of all categories in the above diagram,
-indicating that even though this category is roughly equally common to other
-categories, software in this category is more likely to share more other
-categories. In other words, this is the leading "hybrid" category within which
-standards for all other categories must also be kept in mind. Some examples of
-software in this category include:
+represent form the central "hub" of all categories in our [empirical
+analyses](#appendix-categories), indicating that even though this category is
+roughly equally common to other categories, software in this category is more
+likely to share more other categories. In other words, this is the leading
+"hybrid" category within which standards for all other categories must also be
+kept in mind.
+
+Some examples of software in this category include:
 
 1. The [`bayestestR`
    package](https://joss.theoj.org/papers/10.21105/joss.01541) "provides tools
