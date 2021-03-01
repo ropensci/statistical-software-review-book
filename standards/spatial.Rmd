@@ -315,7 +315,7 @@ project](https://github.com/ropenscilabs/statistical-software-review).
   user control over neighbourhood forms and sizes. In particular:*
     - **SP3.0a** *Neighbours (able to be expressed) on regular grids should be
       able to be considered in both rectangular only, or rectangular and
-      diagonal (respectively "rook" and "queen" by analogy to chess.*
+      diagonal (respectively "rook" and "queen" by analogy to chess).*
     - **SP3.0b** *Neighbourhoods in irregular spaces should be minimally able
       to be controlled via an integer number of neighbours, an area (or
       equivalent distance defining an area) in which to include neighbours, or
