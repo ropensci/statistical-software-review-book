@@ -184,7 +184,7 @@ complies with standards. Full details of the `srr` procedure are given on the
 
 ## Badges and Software Life Cycle Statement {#pkgdev-badges}
 
-All statistical software which is recommended for acceptance by reviews is
+All statistical software which is recommended for acceptance by reviewers is
 entitled to display an rOpenSci badge, as for software reviewed under the
 [current peer-review
 system](https://devguide.ropensci.org/building.html#readme). The badge for
@@ -203,7 +203,7 @@ of the badge.
 
 - **gold** for software which complies with *all* standards which reviewers
   have deemed potentially applicable. This is the highest standard, and
-  requires developers to ensure compliance with the largest number of
+  requires developers to ensure ongoing compliance with the largest number of
   standards, while minimising the number of standards deemed non-applicable.
 -   **silver** for software for which developers aspire to reach gold standard,
   but which is not yet sufficiently compliant.
@@ -232,29 +232,16 @@ facilitate ongoing compliance, and to guide the process of progressively
 complying with standards.
 
 Intentions to achieve a specific category of badge are conveyed via a "*Life
-Cycle Statement*", which must be included in a `lifecycle.md` file within
-a package's repository at the time of submission. The statement can be
-completed by downloaded the template from the main
-[`statistical-software-review`
-repository](https://github.com/ropenscilabs/statistical-software-review/blob/main/lifecycle.md),
-and saving it either in the root directory of your repository, or in the
-`inst/` folder. The content of that file is shown in the following sub-section.
-Once an initial `lifecycle.md` file has been created, and it's location
-specified in the `.Rbuildignore`, the `srr_release()` function may be called at
-any time to update that statement.
-
+Cycle Statement*", which must be appended to a repository's [`CONTRIBUTING.md`
+file](https://devguide.ropensci.org/collaboration.html#contributing-guide)
+prior to submission. This statement should be in a section entitled "Life Cycle
+Statement", with contents copied from the following lines, reducing the list of
+four items under the first point down to the single most appropriate statement,
+and replacing all other words and phrases within angled brackets.
 
 ### Software Life Cycle Statement
 
-1. The \<package name\> package has been under development for \<N\> \<months/years\>.
-
-2. The \<package name\> package has \<N\> primary and \<N\> secondary developers.
-
-3. The primary users of the \<package name\> package are envisioned to be \<list
-  envisioned user community\>, possibly of the order of
-  \<tens/hundreds/thousands\> of users.
-
-4. Following review, the \<package name\> package will
+1. Following review, the \<package name\> package will
 
     - \<Be in a stable state of development, with minimal subsequent development
       envisioned\>
@@ -265,28 +252,19 @@ any time to update that statement.
     - \<Be in an initially stable state of development, with a great deal of
       active subsequent development envisioned.\>
 
-5. Following review,
-    - \<The primary developer(s) envision being able to maintain the package for
-      at least \<N\> years.\>
-    - \<The primary developers can envision a potential need to transfer
-      package maintenance after \<N\> years.\>
-
-(It may be appropriate to retain versions of both of the preceding statements.)
-
-6. The main factors likely to eventually make the package obsolete or redundant
-  are \<list factors here\>. This may happen sometime within \<N\> years following
-  review. \<Please elaborate if desired.\>
-
-7. We, the developers of \<package name\>, hope to attain a \<standard, silver,
+2. We, the developers of \<package name\>, hope to attain a \<standard, silver,
   gold\> badge at the end of review.
 
-(Note that silver or gold badges require ongoing active maintenance, for which
-either the third or fourth items of point 4 must be checked. Note also that
+Note that silver or gold badges require ongoing active maintenance, for which
+either the third or fourth items of point 1 must be checked. Note also that
 silver should reflect a statement of intent to eventually attain a gold badge,
-for which purpose the following statement is also to be completed.)
+according to a schedule which will be negotiated during review. Once review
+has commenced, a markdown-formatted hyperlink to the review issue make also be
+added to the final statement.
 
-8. We aim for a silver badge at the end of review, and then aim to attain a
-   gold badge via a subsequent round of review \<N\> \<months/years\> later.
-
-(This last item can be left until negotiation with reviewers during the review
-process.)
+Once a review has been completed, this *Life Cycle Statement* can be edited by
+removing all references to the review process, and changing all tense to
+present ("The package is in a stable state of development ...") Additional
+information on envisioned software development can be added at any stage, as in
+[this
+example](https://github.com/ecohealthalliance/fasterize/blob/master/CONTRIBUTING.md).
