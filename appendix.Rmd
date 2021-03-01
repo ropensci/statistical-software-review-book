@@ -114,7 +114,7 @@ contributes to the far greater numbers of
 [CRAN](https://cran.r-project.org) (`r cran_n_projects`) packages.
 
 
-## Empirical Derivation of Categories
+## Empirical Derivation of Categories {#appendix-categories}
 
 We attempted to derive a realistic categorisation through using empirical data
 from several sources of potential software submissions, including all
@@ -539,7 +539,7 @@ edges <- edges [which(!(edges$from %in% out | edges$to %in% out)), ]
 visNetwork(nodes, edges)
 ```
 
-## Other Software Standards {#other-software-standards}
+## Other Software Standards {#appendix-other-software-standards}
 
 Among the noteworthy instances of software standards, the following are
 particularly relevant:
