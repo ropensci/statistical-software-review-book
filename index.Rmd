@@ -84,6 +84,7 @@ and is organized under an
 
 
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -97,53 +98,59 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <tr>
 <td align="center">
 <a href="https://github.com/mpadge">
-<img src="https://avatars1.githubusercontent.com/u/6697851?v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/6697851?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=mpadge">mpadge</a>
 </td>
 <td align="center">
 <a href="https://github.com/noamross">
-<img src="https://avatars1.githubusercontent.com/u/571752?v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/571752?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=noamross">noamross</a>
 </td>
 <td align="center">
 <a href="https://github.com/maelle">
-<img src="https://avatars0.githubusercontent.com/u/8360597?v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/8360597?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=maelle">maelle</a>
 </td>
 <td align="center">
+<a href="https://github.com/Nowosad">
+<img src="https://avatars.githubusercontent.com/u/3457131?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=Nowosad">Nowosad</a>
+</td>
+<td align="center">
 <a href="https://github.com/richfitz">
-<img src="https://avatars1.githubusercontent.com/u/1558093?v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/1558093?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=richfitz">richfitz</a>
 </td>
 <td align="center">
 <a href="https://github.com/elong0527">
-<img src="https://avatars0.githubusercontent.com/u/465246?v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/465246?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=elong0527">elong0527</a>
 </td>
 <td align="center">
 <a href="https://github.com/Pakillo">
-<img src="https://avatars0.githubusercontent.com/u/1597843?v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/1597843?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=Pakillo">Pakillo</a>
-</td>
-<td align="center">
-<a href="https://github.com/briatte">
-<img src="https://avatars2.githubusercontent.com/u/322533?v=4" width="100px;" alt=""/>
-</a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=briatte">briatte</a>
 </td>
 </tr>
 
 
 <tr>
 <td align="center">
+<a href="https://github.com/briatte">
+<img src="https://avatars.githubusercontent.com/u/322533?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=briatte">briatte</a>
+</td>
+<td align="center">
 <a href="https://github.com/lcolladotor">
-<img src="https://avatars2.githubusercontent.com/u/2288213?v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/2288213?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=lcolladotor">lcolladotor</a>
 </td>
@@ -159,13 +166,13 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <tr>
 <td align="center">
 <a href="https://github.com/elimillera">
-<img src="https://avatars1.githubusercontent.com/u/24767886?u=16d22ed97b442cfa1847d0f110b7dbf5c190c5a5&v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/24767886?u=16d22ed97b442cfa1847d0f110b7dbf5c190c5a5&v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/issues?q=is%3Aissue+author%3Aelimillera">elimillera</a>
 </td>
 <td align="center">
 <a href="https://github.com/IndrajeetPatil">
-<img src="https://avatars0.githubusercontent.com/u/11330453?u=6eb9f03fe4cc5a2a67633252acda215b113234be&v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/11330453?u=6eb9f03fe4cc5a2a67633252acda215b113234be&v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/issues?q=is%3Aissue+author%3AIndrajeetPatil">IndrajeetPatil</a>
 </td>
