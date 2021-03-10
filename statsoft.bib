@@ -1,3 +1,62 @@
+@article{valavi_blockcv_2019,
+    title = {{blockCV}: {An} r package for generating spatially or environmentally separated folds for k-fold cross-validation of species distribution models},
+    volume = {10},
+    copyright = {© 2018 The Authors. Methods in Ecology and Evolution © 2018 British Ecological Society},
+    issn = {2041-210X},
+    shorttitle = {{blockCV}},
+    url = {https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.13107},
+    doi = {https://doi.org/10.1111/2041-210X.13107},
+    abstract = {When applied to structured data, conventional random cross-validation techniques can lead to underestimation of prediction error, and may result in inappropriate model selection. We present the r package blockCV, a new toolbox for cross-validation of species distribution modelling. Although it has been developed with species distribution modelling in mind, it can be used for any spatial modelling. The package can generate spatially or environmentally separated folds. It includes tools to measure spatial autocorrelation ranges in candidate covariates, providing the user with insights into the spatial structure in these data. It also offers interactive graphical capabilities for creating spatial blocks and exploring data folds. Package blockCV enables modellers to more easily implement a range of evaluation approaches. It will help the modelling community learn more about the impacts of evaluation approaches on our understanding of predictive performance of species distribution models.},
+    language = {en},
+    number = {2},
+    urldate = {2021-03-10},
+    journal = {Methods in Ecology and Evolution},
+    author = {Valavi, Roozbeh and Elith, Jane and Lahoz‐Monfort, José J. and Guillera‐Arroita, Gurutzeta},
+    year = {2019},
+    note = {\_eprint: https://besjournals.onlinelibrary.wiley.com/doi/pdf/10.1111/2041-210X.13107},
+    keywords = {block cross-validation, environmental blocking, model evaluation, spatial autocorrelation, spatial blocking, spatial leave-one-out, species distribution modelling, structured environment},
+    pages = {225--232}
+}
+
+@article{schratz_hyperparameter_2019,
+	title = {Hyperparameter tuning and performance assessment of statistical and machine-learning algorithms using spatial data},
+	volume = {406},
+	issn = {0304-3800},
+	url = {https://www.sciencedirect.com/science/article/pii/S0304380019302145},
+	doi = {10.1016/j.ecolmodel.2019.06.002},
+	abstract = {While the application of machine-learning algorithms has been highly simplified in the last years due to their well-documented integration in commonly used statistical programming languages (such as R or Python), there are several practical challenges in the field of ecological modeling related to unbiased performance estimation. One is the influence of spatial autocorrelation in both hyperparameter tuning and performance estimation. Grouped cross-validation strategies have been proposed in recent years in environmental as well as medical contexts to reduce bias in predictive performance. In this study we show the effects of spatial autocorrelation on hyperparameter tuning and performance estimation by comparing several widely used machine-learning algorithms such as boosted regression trees (BRT), k-nearest neighbor (KNN), random forest (RF) and support vector machine (SVM) with traditional parametric algorithms such as logistic regression (GLM) and semi-parametric ones like generalized additive models (GAM) in terms of predictive performance. Spatial and non-spatial cross-validation methods were used to evaluate model performances aiming to obtain bias-reduced performance estimates. A detailed analysis on the sensitivity of hyperparameter tuning when using different resampling methods (spatial/non-spatial) was performed. As a case study the spatial distribution of forest disease (Diplodia sapinea) in the Basque Country (Spain) was investigated using common environmental variables such as temperature, precipitation, soil and lithology as predictors. Random Forest (mean Brier score estimate of 0.166) outperformed all other methods with regard to predictive accuracy. Though the sensitivity to hyperparameter tuning differed between the ML algorithms, there were in most cases no substantial differences between spatial and non-spatial partitioning for hyperparameter tuning. However, spatial hyperparameter tuning maintains consistency with spatial estimation of classifier performance and should be favored over non-spatial hyperparameter optimization. High performance differences (up to 47\%) between the bias-reduced (spatial cross-validation) and overoptimistic (non-spatial cross-validation) cross-validation settings showed the high need to account for the influence of spatial autocorrelation. Overoptimistic performance estimates may lead to false actions in ecological decision making based on biased model predictions.},
+	language = {en},
+	urldate = {2021-03-10},
+	journal = {Ecological Modelling},
+	author = {Schratz, Patrick and Muenchow, Jannes and Iturritxa, Eugenia and Richter, Jakob and Brenning, Alexander},
+	month = aug,
+	year = {2019},
+	keywords = {Hyperparameter tuning, Machine-learning, Spatial autocorrelation, Spatial cross-validation, Spatial modeling},
+	pages = {109--120}
+}
+
+@inproceedings{brenning_spatial_2012,
+	title = {Spatial cross-validation and bootstrap for the assessment of prediction rules in remote sensing: {The} {R} package sperrorest},
+	shorttitle = {Spatial cross-validation and bootstrap for the assessment of prediction rules in remote sensing},
+	doi = {10.1109/IGARSS.2012.6352393},
+	abstract = {Novel computational and statistical prediction methods such as the support vector machine are becoming increasingly popular in remote-sensing applications and need to be compared to more traditional approaches like maximum-likelihood classification. However, the accuracy assessment of such predictive models in a spatial context needs to account for the presence of spatial autocorrelation in geospatial data by using spatial cross-validation and bootstrap strategies instead of their now more widely used non-spatial equivalent. These spatial resampling-based estimation procedures were therefore implemented in a new package `sperrorest' for the open-source statistical data analysis software R. This package is introduced using the example of the detection of rock-glacier flow structures from IKONOS-derived Gabor texture features and terrain attribute data.},
+	booktitle = {2012 {IEEE} {International} {Geoscience} and {Remote} {Sensing} {Symposium}},
+	author = {Brenning, A.},
+	month = jul,
+	year = {2012},
+	note = {ISSN: 2153-7003},
+	keywords = {bootstrap strategies, classification accuracy, computational prediction methods, computer bootstrapping, Context, data analysis, Data analysis, Estimation, Gabor filters, geographic information systems, geophysics computing, geospatial data, IKONOS-derived Gabor texture features, land cover classification, maximum-likelihood classification, nonspatial equivalent, open-source statistical data analysis software R, pattern classification, prediction rules, prediction theory, Predictive models, R package sperrorest, remote sensing, Remote sensing, remote-sensing applications, rock glaciers, rock-glacier flow structures, Rocks, sampling methods, spatial autocorrelation, spatial bootstrap, spatial context, Spatial cross-validation, spatial crossvalidation, spatial resampling-based estimation procedures, statistical analysis, statistical prediction methods, support vector machine, support vector machines, Support vector machines, terrain attribute data},
+	pages = {5372--5375}
+}
+
+@book{muenchow_chapter_nodate,
+	title = {Chapter 11 {Statistical} learning {\textbar} {Geocomputation} with {R}},
+	url = {https://geocompr.robinlovelace.net/},
+	abstract = {Chapter 11 Statistical learning {\textbar} Geocomputation with R is for people who want to analyze, visualize and model geographic data with open source software. It is based on R, a statistical programming language that has powerful data processing, visualization, and geospatial capabilities. The book equips you with the knowledge and skills to tackle a wide range of issues manifested in geographic data, including those with scientific, societal, and environmental implications. This book will interest people from many backgrounds, especially Geographic Information Systems (GIS) users interested in applying their domain-specific knowledge in a powerful open source language for data science, and R users interested in extending their skills to handle spatial data.},
+	urldate = {2021-03-10},
+    year = {2019},
+	author = {Muenchow, Jakub Nowosad, Jannes, Robin Lovelace}
+}
 
 @misc{reside-ic_pull_nodate,
 	title = {Pull {Request} review process - {Reside}-{IC}},
