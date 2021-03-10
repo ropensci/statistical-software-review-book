@@ -317,8 +317,8 @@ nevertheless be adhered to:
 
 The following standards will be conditionally applicable to some but not all
 spatial software. Procedures for standards deemed not applicable to
-a particular piece of software are described in the [R package of this
-project](https://github.com/ropenscilabs/statistical-software-review).
+a particular piece of software are described in the [`srr`
+package](https://github.com/ropenscilabs/srr).
 
 - **SP3.0** *Spatial software which considers spatial neighbours should enable
   user control over neighbourhood forms and sizes. In particular:*
