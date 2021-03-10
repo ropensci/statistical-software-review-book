@@ -37,8 +37,8 @@ Each standard for spatial software is prefixed with "**SP**".
 
 ### Spatial Domains
 
-Many developers of spatial software in R, including those
-responsible for the CRAN Task view on ["Analysis of Spatial
+Many developers of spatial software in R, including many of those those
+featured on the CRAN Task view on ["Analysis of Spatial
 Data"](https://cran.r-project.org/web/views/Spatial.html), have been primarily
 focussed on geographic data; that is, data quantifying positions, structures,
 and relationships on the Earth and other planets. Spatial analyses are
@@ -232,6 +232,16 @@ More generally,
 This standard is further refined in a number of subsequent standards concerning
 documentation and testing.
 
+- **SP2.3** *Software which accepts spatial input data in any standard format
+  established in other R packages (such as any of the formats able to be read
+  by [`GDAL`](https://gdal.org), and therefore by the [`sf`
+  package](https://cran.r-project.org/package=sf)) should include example and
+  test code which load those data in original spatial formats.*
+
+See the `sf` vignette on ["*Reading, Writing and Converting Simple
+Features*"](https://cran.r-project.org/web/packages/sf/vignettes/sf2.html) for
+useful examples.
+
 **Coordinate Reference Systems**
 
 As described above, one of the primary reasons for the development of classes
@@ -255,15 +265,12 @@ representing coordinate reference systems.
 The following standard applies to software which directly or indirectly relies
 on geographic data which uses or relies upon coordinate reference systems.
 
-- **SP2.3** *Geographical Spatial Software should be compliant with version 6
+- **SP2.4** *Geographical Spatial Software should be compliant with version 6
   (and, ideally 7) of* [`PROJ`](https://proj.org/), *and with* `wkt2`
-  *representations. The primary implications, described in detail in the articles
-  linked to above, are that:*
-    - **SP2.3a** *Software should not accept so-called "PROJ4-strings"
+  *representations. The primary implication, described in detail in the articles
+  linked to above, is that:*
+    - **SP2.4a** *Software should not accept so-called "PROJ4-strings"
       previously used to specify coordinate reference systems.*
-    - **SP2.3b** *Documentation should explicitly clarify whether, and under
-      which conditions, geographical coordinates are expected to be
-      longitude-latitude or latitude-longitude.*
 
 
 **General Input Structures**
@@ -273,23 +280,25 @@ in favour of implementing new classes. Whether or not prior classes are used or
 expected, geographic software should accord as much as possible with the
 principles of these prior systems by according with the following standards:
 
-- **SP2.4** *Class systems for input data must contain meta data on associated
+- **SP2.5** *Class systems for input data must contain meta data on associated
   coordinate reference systems.*
-    - **SP2.4a** *Software should provide an ability to convert objects in any
-      new class systems into representations of pre-existing classes such as
-      those listed above.*
-- **SP2.5** *Spatial Software should explicitly document the types and classes
+    - **SP2.5a** *Software which implements new classes to input spatial data
+      (or the spatial components of more general data) should provide an
+      ability to convert such input objects into alternative spatial classes
+      such as those listed above.*
+- **SP2.6** *Spatial Software should explicitly document the types and classes
   of input data able to be passed to each function.*
-- **SP2.6** *Spatial Software should accept input data in as many specific
+- **SP2.7** *Spatial Software should accept input data in as many specific
   spatial classes as possible.*
-- **SP2.7** *Spatial Software should implement validation routines to confirm
+- **SP2.8** *Spatial Software should implement validation routines to confirm
   that inputs are of acceptable classes (or represented in otherwise
   appropriate ways for software which does not use class systems).*
-- **SP2.8** *Spatial Software should implement a single pre-processing routine
+- **SP2.9** *Spatial Software should implement a single pre-processing routine
   to validate input data, and to appropriately transform it to a single uniform
   type to be passed to all subsequent data-processing functions.*
-- **SP2.9** *The pre-processing function described above should maintain all
-  metadata attributes of input data.*
+- **SP2.10** *The pre-processing function described above should maintain those
+  metadata attributes of input data which are relevant or important to core
+  algorithms or return values.*
 
 #### Spatial Scales and Units
 
@@ -300,7 +309,7 @@ attribute SI units to R vectors. While we do not suggest via explicit standards
 that this package be used in Spatial Software, the following standard should
 nevertheless be adhered to:
 
--   **SP2.10** *Spatial software should accept inputs defined via the* [`units`
+-   **SP2.11** *Spatial software should accept inputs defined via the* [`units`
     package](https://github.com/r-quantities/units/).
 
 
@@ -320,12 +329,28 @@ project](https://github.com/ropenscilabs/statistical-software-review).
       to be controlled via an integer number of neighbours, an area (or
       equivalent distance defining an area) in which to include neighbours, or
       otherwise equivalent user-controlled value.*
-- **SP3.1** *Spatial software which considers spatial neighbours should enable
-  neighbour contributions to be weighted by distance (or other weighting
-  variable), and not rely on a uniform-weight rectangular cut-off.*
+- **SP3.1** *Spatial software which considers spatial neighbours should
+  wherever possible enable neighbour contributions to be weighted by distance
+  (or other continuous weighting variable), and not rely exclusively on
+  a uniform-weight rectangular cut-off.*
 - **SP3.2** *Spatial software which relies on sampling from input data (even if
   only of spatial coordinates) should enable sampling procedures to be based on
   local spatial densities of those input data.*
+
+An example of software which would *not* adhere to **SP3.2** would be where
+input data were a simple matrix of spatial coordinates, and sampling were
+implemented using the [`sample()`
+function](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html)
+to randomly select elements of those input data
+(like `sample(nrow(xy), n)`). In the context of an example based on the
+[`sample()`
+function](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sample.html),
+adhering to the standard would require including an additional `prob` vector
+where each point was weighted by the local density of surrounding points. Doing
+so would lead to higher probabilities of samples being taken from central
+clusters of higher densities than from outlying extreme points. Note that the
+standard merely suggests that software should *enable* such density-based
+samples to be taken, not that it must, or even necessarily should by default.
 
 Algorithms for spatial software are often related to other categories of
 statistical software, and it is anticipated that spatial software will commonly
@@ -370,7 +395,10 @@ inapplicable).
 
 The latter standard, **SP3.6**, is commonly met by applying some form of
 spatial partitioning to data, and using spatially distinct partitions to define
-test and training data.
+test and training data [@muenchow_chapter_nodate;@brenning_spatial_2012;@schratz_hyperparameter_2019;@valavi_blockcv_2019].
+
+
+
 
       
 ### Return Results
@@ -380,19 +408,16 @@ For (functions within) Spatial Software which return spatial data:
 - **SP4.0** *Return values should either:*
     - **SP4.0a** *Be in same class as input data, or*
     - **SP4.0b** *Be in a unique, preferably class-defined, format.*
-- **SP4.1** *Any units included as attributes of input data should also be included
-  within return values.*
+- **SP4.1** *Any aspects of input data which are included in output data
+  (either directly, or in some transformed form) and which contain units should
+  ensure those same units are maintained in return values.*
 - **SP4.2** *The type and class of all return values should be explicitly documented.*
-
-For (functions within) Spatial Software which return data other than direct
-series:
-
-- **SP4.3** *Return values should explicitly include all appropriate units*
 
 
 ### Visualization
 
-Spatial Software which returns objects in a custom class structure should:
+Spatial Software which returns objects in a custom class structure explicitly
+designed to represent or include spatial data should:
 
 - **SP5.0** *Implement default `plot` methods for any implemented class system.*
 - **SP5.1** *Default to placing the "longitude" or "x" (or equivalent) variable
@@ -400,6 +425,10 @@ Spatial Software which returns objects in a custom class structure should:
 - **SP5.2** *Ensure that any spatial units associated with input coordinates,
   and maintained in the return object according to* **SP4.1**, *are  printed by
   default on the axes.*
+
+The preceding three standards will generally not apply to software which
+returns objects in a custom class structure yet which is not inherently
+spatial.
 
 Spatial Software which returns objects with geographical coordinates should:
 
@@ -420,6 +449,13 @@ rejection of curvilinear data according to **SP2.0b**.
 - **SP6.0** *Software which implements routines for transforming coordinates of
   input data should include tests which demonstrate ability to recover the
   original coordinates.*
+
+This standard is applicable to any software which implements any routines for
+coordinate transformations, even if those routines are implemented via
+[`PROJ`](https://proj.org). Conversely, software which has no routines for
+coordinate transformations need not adhere to **SP6.0**, even if that software
+relies on `PROJ` for other purposes.
+
 - **SP6.1** *All functions which can be applied to both rectilinear and
   curvilinear data should be tested through application to both.*
     - **SP6.1a** *Functions which may yield inaccurate results when applied to
