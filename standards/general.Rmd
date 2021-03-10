@@ -3,25 +3,26 @@
 
 ## General Standards for Statistical Software {#general-standards}
 
-Note that these and all category-specific standards that follow are intended to
-serve as *recommendations* for best practices. Note in particular that many
-standards are written using the word "*should*" in explicit acknowledgement
-that adhering to such standards may not always be possible. All standards
-phrased in these terms are intended to be interpreted as applicable under such
-conditions as "*Where possible*", or "*Where applicable*". Developers are
-requested to note any standards which they deem not applicable to their
-software via the [`srr` package](https://ropenscilabs.github.io/srr/), as
-described in [Chapter 3](#pkgdev).
+These general standards, and all category-specific standards that follow, are
+intended to serve as *recommendations* for best practices. Note in particular
+that many standards are written using the word "*should*" in explicit
+acknowledgement that adhering to such standards may not always be possible. All
+standards phrased in these terms are intended to be interpreted as applicable
+under such conditions as "*Where possible*", or "*Where applicable*".
+Developers are requested to note any standards which they deem not applicable
+to their software via the [`srr` package](https://ropenscilabs.github.io/srr/),
+as described in [Chapter 3](#pkgdev).
 
 <details>
 <summary>
-Click for notes on nomenclature of Data Types.
+These standards refer to **Data Types** as the fundamental types defined by the
+<a href="https://cran.r-project.org/doc/manuals/R-lang.html">R language</a>
+itself. Information on these types can be seen by clicking here.
 </summary>
 <p>
 
-These standards refer to **Data Types** as the fundamental types defined by the
-[R language](https://cran.r-project.org/doc/manuals/R-lang.html) itself between
-the following:
+The [R language](https://cran.r-project.org/doc/manuals/R-lang.html) defines
+the following data types:
 
 - Logical
 - Integer
@@ -76,6 +77,8 @@ implementations should be provided.
 The second and third options additionally require references to comparable
 algorithms or implementations to be documented somewhere within the software,
 including references to all known implementations in other computer languages.
+(A common location for such is a statement of "*Prior Art*" or similar at the
+end of the main `README` document.)
 
 #### Statistical Terminology
 
@@ -94,19 +97,6 @@ on confidence intervals will accordingly reflect assumptions on distributional
 properties (among other aspects), both the nature and implications of which
 must be explicitly clarified.
 
-Standards will include requirements for form and completeness of documentation.
-As with interface, several sources already provide starting points for
-reasonable documentation. Some documentation requirements will be specific to
-the statistical context. For instance, it is likely we will have requirements
-for referencing appropriate literature or references for theoretical support of
-implementations. Another area of importance is correctness and clarity of
-definitions of statistical quantities produced by the software, e.g., the
-definition of null hypotheses or confidence intervals. Data included in
-software -- that used in examples or tests -- will also have documentation
-requirements. It is worth noting that the
-[`roxygen2`](https://roxygen2.r-lib.org/) system for documenting R packages is
-readily extensible, as exemplified through the [`roxytest`
-package](https://github.com/mikldk/roxytest) for specifying tests *in-line*.
 
 #### Function-level Documentation
 
@@ -150,7 +140,9 @@ in the [`vctrs` package](https://vctrs.r-lib.org) as an example of the kind of
 assurances and validation checks that are possible with regard to input data.
 Systems like those demonstrated in that vignette provide a very effective way
 to ensure that software remains robust to diverse and unexpected classes and
-types of input data.
+types of input data. Packages such
+[`checkmate`](https://mllg.github.io/checkmate/index.html) enable direct and
+simple ways to check and assert input structures. 
 
 #### Uni-variate (Vector) Input
 
@@ -191,21 +183,20 @@ to approaches documented in packages such as
 
 #### Tabular Input
 
-This sub-section concerns input in "tabular data" forms, implying the two
-primary distinctions within R itself between `array` or `matrix`
-representations, and `data.frame` and associated representations. Among
-important differences between these two forms are that `array`/`matrix` classes
-are restricted to storing data of a single uniform type (for example, all
-`integer` or all `character` values), whereas `data.frame` as associated
-representations store each column as a list item, allowing different columns to
-hold values of different types. Further noting that
-a `matrix` may, [as of R version
+This sub-section concerns input in "tabular data" forms, meaning the base
+R forms `array`, `matrix`, and `data.frame`, and other forms and classes
+derived from these. Tabular data generally have two dimensions, although may
+have more (such as for `array` objects). There is a primary distinction within
+R itself between `array` or `matrix` representations, and `data.frame` and
+associated representations. The former are restricted to storing data of
+a single uniform type (for example, all `integer` or all `character` values),
+whereas `data.frame` as associated representations (generally) store each
+column as a list item, allowing different columns to hold values of different
+types. Further noting that a `matrix` may, [as of R version
 4.0](https://developer.r-project.org/Blog/public/2019/11/09/when-you-think-class.-think-again/index.html),
 be considered as a strictly two-dimensional array, tabular inputs for the
 purposes of these standards are considered to imply data represented in one or
 more of the following forms:
-
-Given this, tabular inputs may be in one or or more of the following forms:
 
 - `matrix` form when referring to specifically two-dimensional data of one
   uniform type
@@ -242,16 +233,30 @@ more of these `data.frame`-type tabular inputs are then that:
   added (such as insertion of variable or column names where none were
   provided).*
 
+Note, for example, that an `array` may have column names which start with
+numeric values, but that a `data.frame` may not.
+
+```{r colnames}
+x <- array (1, dim = c(1, 1), dimnames = list("1", "2")) # okay
+print (x)
+data.frame (x)
+```
+
+If `array` or `matrix` class objects are accepted as input, then **G2.8**
+implies that routines should be implemented to check for such conversion of
+column names.
+
 The next standard concerns the following inconsistencies between three common
 tabular classes in regard the column extraction operator, `[`.
 
 ```{r drop, eval = FALSE}
-class (x) # x is any kind of `data.frame` object
+x <- iris # data.frame from the datasets package
+class (x)
 #> [1] "data.frame"
 class (x [, 1])
-#> [1] "integer"
+#> [1] "numeric"
 class (x [, 1, drop = TRUE]) # default
-#> [1] "integer"
+#> [1] "numeric"
 class (x [, 1, drop = FALSE])
 #> [1] "data.frame"
 
@@ -259,7 +264,7 @@ x <- tibble::tibble (x)
 class (x [, 1])
 #> [1] "tbl_df"     "tbl"        "data.frame"
 class (x [, 1, drop = TRUE])
-#> [1] "integer"
+#> [1] "numeric"
 class (x [, 1, drop = FALSE]) # default
 #> [1] "tbl_df"     "tbl"        "data.frame"
 
@@ -275,7 +280,7 @@ class (x [, 1, drop = FALSE]) # default
 - Extracting a single column from a `data.frame` returns a `vector` by default,
   and a `data.frame` if `drop = FALSE`.
 - Extracting a single column from a `tibble` returns a single-column `tibble`
-  by default, and a `vector` is `drop = TRUE`. 
+  by default, and a `vector` if `drop = TRUE`. 
 - Extracting a single column from a `data.table` always returns a `data.table`,
   and the `drop` argument has no effect.
 
@@ -286,7 +291,7 @@ Given such inconsistencies,
   should ensure all column-extraction operations behave consistently regardless
   of the class of tabular data used as input.*
 
-Adherence to the above standard G2.6 will ensure that any implicitly or
+Adherence to the above standard **G2.7** will ensure that any implicitly or
 explicitly assumed default behaviour will yield consistent results regardless
 of input classes.
 
@@ -336,13 +341,12 @@ rely on equality comparisons, and this standard extends to require that
 software should not apply any functions which themselves rely on equality
 comparisons to floating point numbers.
 
-- G3.1 Statistical software which relies on covariance calculations should
+- **G3.1** *Statistical software which relies on covariance calculations should
   enable users to choose between different algorithms for calculating
   covariances, and should not rely solely on covariances from the `stats::cov`
-  function.
-    - G3.1a While it may be sufficient to offer a single default method, the
-      ability to use arbitrarily specified methods should nevertheless be
-      documented (typically in examples or vignettes).
+  function.*
+    - **G3.1a** *The ability to use arbitrarily specified covariance methods
+      should be documented (typically in examples or vignettes).*
 
 Estimates of covariance can be very sensitive to outliers, and a variety of
 methods have been developed for "robust" estimates of covariance, implemented
