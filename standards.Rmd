@@ -31,20 +31,20 @@ what the results of such application may look like.
 ```{r standards-bayes, child = "standards/bayesian.Rmd", eval = TRUE, echo = TRUE}
 ```
 
-```{r standards-reg, child = "standards/regression.Rmd", eval = TRUE, echo = TRUE}
-```
-
-```{r standards-unsup, child = "standards/unsupervised.Rmd", eval = TRUE, echo = TRUE}
-```
-
 ```{r standards-eda, child = "standards/eda.Rmd", eval = TRUE, echo = TRUE}
-```
-
-```{r standards-ts, child = "standards/time-series.Rmd", eval = TRUE, echo = TRUE}
 ```
 
 ```{r standards-ml, child = "standards/ml.Rmd", eval = TRUE, echo = TRUE}
 ```
 
+```{r standards-reg, child = "standards/regression.Rmd", eval = TRUE, echo = TRUE}
+```
+
 ```{r standards-sp, child = "standards/spatial.Rmd", eval = TRUE, echo = TRUE}
+```
+
+```{r standards-ts, child = "standards/time-series.Rmd", eval = TRUE, echo = TRUE}
+```
+
+```{r standards-unsup, child = "standards/unsupervised.Rmd", eval = TRUE, echo = TRUE}
 ```
