@@ -50,41 +50,42 @@ sense, not necessarily confined to geographic systems alone.
 It is important to distinguish these two domains because many algorithms and
 procedures devised in one of these two domains are not necessarily (directly)
 applicable in the other, most commonly because geometric algorithms presume
-space to be rectilinear, while geographic algorithms (generally) presume it be
-have a specific curvilinear form. Algorithms designed for rectilinear space may
-not be directly applicable in curvilinear space, and vice-versa.
+space to be rectilinear or Cartesian, while geographic algorithms (generally)
+presume it be have a specific curvilinear form (commonly spherical or
+elliptical). Algorithms designed for Cartesian space may not be directly
+applicable in curvilinear space, and vice-versa.
 
 Moreover, spatial software and algorithms might be intended to apply in spaces
-of arbitrary dimensionality. The phrase "rectilinear" refers to any space of
-arbitrary dimensionality in which all dimensions are described by straight
-lines; dimensions in a curvilinear space or arbitrary dimensionality are
-described by curved lines. A planar geometry is a two-dimensional rectilinear
-space; a spherical geometry is a two- (or maybe three-)dimensional curvilinear
-space.
+of arbitrary dimensionality. The phrase "Cartesian" refers to any space of
+arbitrary dimensionality in which all dimensions are orthogonal and described
+by straight lines; dimensions in a curvilinear space or arbitrary
+dimensionality are described by curved lines. A planar geometry is
+a two-dimensional Cartesian space; a spherical geometry is a two- (or maybe
+three-)dimensional curvilinear space.
 
 One of the earliest and still most widely used R spatial packages,
 [`spatstat`](https://cran.r-project.org/web/packages/spatstat/) (first released
 2002), describes itself as, "[f]ocused mainly on two-dimensional point
 patterns, including multitype/marked points, in any spatial region." Routines
-from this package are thus generally applicable to two-dimensional data only, 
-while the final phrase might be interpreted to indicate a comprehensive
-generality. Nevertheless, almost all of the routines assume rectilinear (in
-this case, planar) space and may not necessarily give accurate results when
-applied in curvilinear space. 
+from this package are thus generally applicable to two-dimensional Cartesian
+data only, even through the final phrase might be interpreted to indicate
+a comprehensive generality. `spatstat` routines may not necessarily give
+accurate results when applied in curvilinear space. 
 
 These considerations motivate the first standard for spatial software:
 
 - **SP1.0** *Spatial software should explicitly indicate its domain of
   applicability, and in particular distinguish whether the software may be
-  applied in rectilinear/geometric domains, curvilinear/geographic domains, or
-  both.*
+  applied in Cartesian/rectilinear/geometric domains, curvilinear/geographic
+  domains, or both.*
 
 We encourage the use of clear and unambiguous phrases such as "planar",
-"spherical", "rectilinear" or "curvilinear", along with clear indications of
-dimensionality such as "two-" or "three-dimensional." Concepts of
-dimensionality should be interpreted to refer explicitly to the dimensionality
-of independent spatial coordinates. Elevation is a third spatial dimension,
-while other attributes measured at spatial locations do not represent
+"spherical", "Cartesian", "rectilinear" or "curvilinear", along with clear
+indications of dimensionality such as "two-" or "three-dimensional." Concepts
+of dimensionality should be interpreted to refer explicitly to the
+dimensionality of independent spatial coordinates. Elevation is a third spatial
+dimension, and time may also be considered an additional dimension. Beyond
+those two, other attributes measured at spatial locations do not represent
 additional dimensions. 
 
 - **SP1.1** *Spatial software should explicitly indicate its dimensional domain
@@ -110,64 +111,24 @@ and relies on defined classes can often validate input through affirming
 appropriate class(es). Software which does not use or rely on class systems
 will generally need specific routines to validate input data structures.
 
-These standards for Spatial Software do not explicitly recommend or require
-that class systems be used, unlike our standards for [Time-Series
-Software](https://ropenscilabs.github.io/statistical-software-review-book/standards.html#time-series-software)
-which do recommend the use of explicit class systems. The latter recommendation
-is because time series data can often be represented in a single dimension only
-in which developers may assume that data are temporally regular. Representation
-as a simple vector negates any ability to assert or test whether input data are
-indeed regular or not, whereas class systems for time series data directly
-enable such assertions. In contrast, spatial data are both inherently
-multi-dimensional and rarely regular, and so properties of input data can be
-more readily asserted and tested even without explicit class systems. (An
-important form of regular spatial data is raster data, for which the following
-standard also applies.)
-
-- **SP2.0** *Spatial software should adhere to one or the other of the
-  following standards, dependent on whether input data may be generic
-  (non-class-based), or of one or more specific classes.*
-    - **SP2.0a** *Spatial Software intended for use in geographical (or more
-      general curvilinear domains) should only accept input data of one or more
-      classes explicitly developed to represent such data.*
-    - **SP2.0b** *Spatial Software which is intended for use in rectilinear
-      domains and which accepts generic (non-class-based) inputs should assert
-      that input data are not obviously curvilinear or spherical, commonly
-      through asserting that coordinate columns are not labelled any variant of
-      "longitude" or "latitude", and should implement an appropriate response
-      when such assertions fail.*
+As for our standards for [Time-Series
+Software](https://ropenscilabs.github.io/statistical-software-review-book/standards.html#time-series-software),
+these standards for Spatial Software also suggest that software should use
+explicit class systems designed and intended for spatial data. New packages may
+implement new class systems for spatial data, and these may even be as simple
+as appending a class attribute to a matrix of coordinates. The primary
+motivation of the following standard is nevertheless to encourage and enhance
+inter-operability with the rich system of classes for spatial data in R.
 
 
-A failure to assert that input columns do not describe curvilinear or spherical
-data may have different implications for different software, with actions
-ranging from automatic transformation to planar form to outright errors. The
-following illustrate warning messages issued by the [`sf`
-package](https://cran.r-project.org/package=sf) when operations which assume
-planar data are applied to spherical data (defined via `crs = 4326`).
-Both examples impose a spherical coordinate reference system (`crs`) on the
-data before applying operations which assume planar data, with the developers
-opting in both cases to issue warnings.
+- **SP2.0** *Spatial software should only accept input data of one or more
+  classes explicitly developed to represent such data.*
+    - **SP2.0a** *Where new classes are implemented, conversion to other common
+      classes for spatial data in R should be documented.*
+    - **SP2.0b** *Class systems should ensure that functions error
+      appropriately, rather than merely warning, in response to data from
+      inappropriate spatial domains.*
 
-```{r sf-warnings, eval = FALSE}
-library (sf)
-p <- rbind (c (0, 0), c (1, 0), c (3, 2), c (2, 4), c (1, 4), c (0, 0))
-pol <- st_sfc (st_polygon (list (p)), crs = 4326)
-cent <- st_centroid (pol)
-#> Warning in st_centroid.sfc(pol): st_centroid does not give correct centroids for
-#> longitude/latitude data
-
-pt <- st_sfc (st_point (c (0, 0)), crs = 4326)
-buf <- st_buffer (pt, 1)
-#> Warning in st_buffer.sfc(pt, 1): st_buffer does not correctly buffer longitude/
-#> latitude data
-```
-
-These warnings are able to be appropriately issued because the functions
-[`st_centroid()` and
-`st_buffer()`](https://r-spatial.github.io/sf/reference/geos_unary.html) only
-accept as input an "object of class `sfg`, `sfc`, or `sf`," with these classes
-enabling assertion of cases in which coordinates reflect curvilinear (more
-specifically in this case, [ellipsoidal](https://epsg.io/4326)) geometries.
 
 **Spatial Workflows, Packages, and Classes**
 
@@ -202,21 +163,13 @@ Notable class systems and associated packages in R include
 [`stars`](https://cran.r-project.org/package=stars),
 [`terra`](https://rspatial.org/terra), and
 [`s2`](https://r-spatial.github.io/s2/). With regard to these packages, the
-following single standard applies:
+following single standard applies, because the maintainer of sp has made it
+clear that new software [should build upon sf, not
+sp](https://github.com/r-spatial/discuss/issues/48#issuecomment-798543339).
 
-- **SP2.1** *Spatial Software which uses either the
-  [`sf`](https://cran.r-project.org/package=sf) of
-  [`sp`](https://cran.r-project.org/package=sp) 
-  class systems for representing geographical data should either*
-    - **SP2.1a** *Use [`sf`](https://cran.r-project.org/package=sf) rather
-      than [`sp`](https://cran.r-project.org/package=sp),* or
-    - **SP2.1b** *Explicitly justify why
-      [`sp`](https://cran.r-project.org/package=sp) is used.*
-
-An example of a valid explicit reason to use
-[`sp`](https://cran.r-project.org/package=sp) would be to ensure compatibility
-with some other dependent package which exclusively relies on input data in
-that format.
+- **SP2.1** *Spatial Software should not use the [`sp`
+  package](https://cran.r-project.org/package=sp), rather should use
+  [`sf`](https://cran.r-project.org/package=sf).*
 
 More generally,
 
@@ -236,7 +189,8 @@ documentation and testing.
   established in other R packages (such as any of the formats able to be read
   by [`GDAL`](https://gdal.org), and therefore by the [`sf`
   package](https://cran.r-project.org/package=sf)) should include example and
-  test code which load those data in original spatial formats.*
+  test code which load those data in spatial formats, rather than R-specific
+  binary formats such as `.Rds`.*
 
 See the `sf` vignette on ["*Reading, Writing and Converting Simple
 Features*"](https://cran.r-project.org/web/packages/sf/vignettes/sf2.html) for
@@ -265,12 +219,12 @@ representing coordinate reference systems.
 The following standard applies to software which directly or indirectly relies
 on geographic data which uses or relies upon coordinate reference systems.
 
-- **SP2.4** *Geographical Spatial Software should be compliant with version 6
-  (and, ideally 7) of* [`PROJ`](https://proj.org/), *and with* `wkt2`
-  *representations. The primary implication, described in detail in the articles
-  linked to above, is that:*
-    - **SP2.4a** *Software should not accept so-called "PROJ4-strings"
-      previously used to specify coordinate reference systems.*
+- **SP2.4** *Geographical Spatial Software should be compliant with version
+  6 or larger of* [`PROJ`](https://proj.org/), *and with* `WKT2`
+  *representations. The primary implication, described in detail in the
+  articles linked to above, is that:*
+    - **SP2.4a** *Software should not permit coordinate reference systems to be
+      defined on the basis of so-called "PROJ4-strings" alone.*
 
 
 **General Input Structures**
@@ -288,29 +242,16 @@ principles of these prior systems by according with the following standards:
       such as those listed above.*
 - **SP2.6** *Spatial Software should explicitly document the types and classes
   of input data able to be passed to each function.*
-- **SP2.7** *Spatial Software should accept input data in as many specific
-  spatial classes as possible.*
-- **SP2.8** *Spatial Software should implement validation routines to confirm
+- **SP2.7** *Spatial Software should implement validation routines to confirm
   that inputs are of acceptable classes (or represented in otherwise
   appropriate ways for software which does not use class systems).*
-- **SP2.9** *Spatial Software should implement a single pre-processing routine
+- **SP2.8** *Spatial Software should implement a single pre-processing routine
   to validate input data, and to appropriately transform it to a single uniform
   type to be passed to all subsequent data-processing functions.*
-- **SP2.10** *The pre-processing function described above should maintain those
+- **SP2.9** *The pre-processing function described above should maintain those
   metadata attributes of input data which are relevant or important to core
   algorithms or return values.*
 
-#### Spatial Scales and Units
-
-Many spatial routines are intended to accept spatial data measured on some
-specific scale, yet data on actual scales of measurement are commonly
-discarded. The [`units` package](https://github.com/r-quantities/units/) has been developed to
-attribute SI units to R vectors. While we do not suggest via explicit standards
-that this package be used in Spatial Software, the following standard should
-nevertheless be adhered to:
-
--   **SP2.11** *Spatial software should accept inputs defined via the* [`units`
-    package](https://github.com/r-quantities/units/).
 
 
 ### Algorithms
@@ -372,10 +313,10 @@ software.
 The following standard applies to any spatial unsupervised learning software
 which uses clustering algorithms.
 
-- **SP3.4** *Spatial clustering should not use standard non-spatial clustering
-  algorithms in which spatial proximity is merely represented by an additional
-  weighting factor. Rather, clustering schemes should be derived from
-  explicitly spatial algorithms.*
+- **SP3.4** *Where possible, spatial clustering software should avoid using
+  standard non-spatial clustering algorithms in which spatial proximity is
+  merely represented by an additional weighting factor in favour of explicitly
+  spatial algorithms.*
 
 **Machine Learning Software**
 
@@ -385,19 +326,34 @@ standards applies because the individual cells or pixels of these raster images
 represent fixed spatial coordinates. (This standard also renders **ML2.1**
 inapplicable).
 
-
 - **SP3.5** *Spatial machine learning software should ensure that broadcasting
   procedures for reconciling inputs of different dimensions are **not**
   applied*.
+
+A definition of broadcasting is given at the end of the introduction to
+corresponding [Machine Learning
+Standards](file:///data/mega/code/repos/ropensci-stats/statistical-software-review-book/docs/standards.html#machine-learning-software),
+just above *Input Data Specification*.
+
 - **SP3.6** *Spatial machine learning software should ensure that test and
-  training data are spatially distinct, and not simply sampled uniformly from
-  a common region.*
+  training data are generated using sampling procedures appropriate to the
+  domain or intended use of that software.*
+    - **SP3.6a** *The effects of generating test and training data using
+      inappropriate sampling procedures should be documented and/or tested.*
 
-The latter standard, **SP3.6**, is commonly met by applying some form of
-spatial partitioning to data, and using spatially distinct partitions to define
-test and training data [@muenchow_chapter_nodate;@brenning_spatial_2012;@schratz_hyperparameter_2019;@valavi_blockcv_2019].
-
-
+We note that there are no comparable *General Standard* for [*Machine Learning
+Software*](#ml-standards), but that such distinction is particularly important
+for spatial machine learning software because it is frequently inappropriate to
+distinguish test and training data by taking samples from the same spatial
+region. One common method employed to generate distinct test and training data
+is spatial partitioning
+[@muenchow_chapter_nodate;@brenning_spatial_2012;@schratz_hyperparameter_2019;@valavi_blockcv_2019].
+There may nevertheless be cases in which such sampling from a common
+spatial region is appropriate, for example for software intended to analyse or
+model temporally-structured spatial data for which a more appropriate
+distinction might be temporal rather than spatial. Adherence to this standard
+merely requires that the distinction between test and training data be
+explicitly considered and documented (and possibly tested as well).
 
 
       
@@ -420,12 +376,12 @@ Spatial Software which returns objects in a custom class structure explicitly
 designed to represent or include spatial data should:
 
 - **SP5.0** *Implement default `plot` methods for any implemented class system.*
-- **SP5.1** *Default to placing the "longitude" or "x" (or equivalent) variable
-  on the horizontal axis.*
-- **SP5.2** *Ensure that any spatial units associated with input coordinates,
-  and maintained in the return object according to* **SP4.1**, *are  printed by
-  default on the axes.*
+- **SP5.1** *Implement appropriate placement of variables along x- and y-axes.*
+- **SP5.2** *Ensure that axis labels include appropriate units.*
 
+An example of **SP5.1** might be ensuring that longitude is placed on the
+x-axis, latitude on the y, although standard orientations may depend on
+coordinate reference systems and other aspects of data and software design.
 The preceding three standards will generally not apply to software which
 returns objects in a custom class structure yet which is not inherently
 spatial.
@@ -441,8 +397,8 @@ The following standards apply to all Spatial Software which is intended or able
 to be applied to data represented in curvilinear systems, notably including all
 geographical data. The only Spatial Software to which the following standards
 do not (necessarily) apply would be software explicitly intended to be applied
-exclusively to rectilinear spatial data, and which ensured appropriate
-rejection of curvilinear data according to **SP2.0b**.
+exclusively to Cartesian spatial data, and which ensured appropriate rejection
+of curvilinear data according to **SP2.0b**.
 
 **Round-Trip Tests**
 
@@ -456,7 +412,7 @@ coordinate transformations, even if those routines are implemented via
 coordinate transformations need not adhere to **SP6.0**, even if that software
 relies on `PROJ` for other purposes.
 
-- **SP6.1** *All functions which can be applied to both rectilinear and
+- **SP6.1** *All functions which can be applied to both Cartesian and
   curvilinear data should be tested through application to both.*
     - **SP6.1a** *Functions which may yield inaccurate results when applied to
       data in one or the other forms (such as the preceding examples of
