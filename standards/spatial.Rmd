@@ -1,15 +1,5 @@
 <!-- Edit the .Rmd not the .md file -->
 
-<!-- TODO
-- revisit regression standards and use a a guide for how to write/adapt actual
-  algorithmic standards for spatial software.
-- permutation-type statistics which need random seeds
-- clustering
-- spatial as a context for representating data which is then passed through to
-  algorithms which themselves might be subject to additional standards.
-- Kernel density estimates: What are default values for parameters? How are
-  they justified? How can they be controlled?
--->
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
