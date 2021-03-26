@@ -1,7 +1,5 @@
-#  (PART) Package Review {-}
 
-
-# Package Review {#pkgreview}
+# Guide for Reviewers {#pkgreview}
 
 The current chapter should be considered an extension of the corresponding
 ["Guide for Reviewers"](https://devguide.ropensci.org/reviewerguide.html) in
