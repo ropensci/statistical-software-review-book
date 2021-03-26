@@ -11,11 +11,12 @@ Authors@R:
              family = "Ross",
              role = "aut",
              email = "ross@ecohealthalliance.org"))
-Description: Documentation of rOpenSci's project on
-    expanding software peer review to include statistical software
+Description: Documentation of rOpenSci's project on expanding software
+    peer review to include statistical software
 License: MIT + file LICENSE
 Imports: 
     bookdown,
+    cli,
     dplyr,
     ggplot2,
     here,

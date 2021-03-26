@@ -20,17 +20,6 @@ describes how to align software with our [general and category-specific
 standards](#standards) for statistical software, and the final sub-section
 describes the final step of preparing a "*Life Cycle Statement*". 
 
-Statistical software to be submitted to our peer-review system will need to
-have applied the tools described in the second and third sub-sections, and will
-contain complete documentation of how and where the software aligns with each
-applicable standard. These tools collectively aim to free the review process as
-much as possible from technical details, and to facilitate reviews that focus
-more on the substantive, qualitative aspects of software. The tools described
-in this chapter enable a wealth of technical detail on software performance and
-alignment to standards to be extracted at any stage during and beyond review,
-while the reviews themselves will then hold an enduring record of the
-qualitative aspects of the software.
-
 
 ## Scope
 
@@ -38,7 +27,11 @@ The first important task prior to submitting a package is to estimate whether
 a package is likely to be considered within our scope for statistical software.
 As described in the [Overview](#overview-scope), packages are generally
 considered in scope if they fit one or more of the [categories listed
-there](#overview-categories), and in the corresponding standards.
+there](#overview-categories). Prior to submission, developers must choose one
+or more of these categories, and document how their software aligns with the
+corresponding standards given in [Chapter 6](#standards). Any software which
+can be aligned with one or more sets of category-specific standards will by
+definition be considered in scope.
 
 Developers are encouraged to contact us at any point prior to, or during,
 development, to ask about whether a package might be in scope, or which
@@ -56,14 +49,14 @@ following two sub-sections.
 
 ## The [`autotest` package](https://github.com/ropenscilabs/autotest) {#pkgdev-autotest}
 
-We have developed an automated assessment tool,
-[`autotest`](https://github.com/ropenscilabs/autotest), which all packages are
-expected to pass in order to be accepted for submission. The package implements
-a form of "mutation testing," by examining the types of all input parameters,
-implementing type-specific mutations, and examining the response of each
-function in a package to all such mutations. This kind of mutation testing is
-a very effective way to uncover any unexpected behaviour which developers
-themselves might not necessarily pre-empt. The purpose of using
+The [`autotest` package](https://github.com/ropenscilabs/autotest) is an
+automated assessment tool which all packages are expected to pass in order to
+be accepted for submission. The package implements a form of "mutation
+testing," by examining the types of all input parameters, implementing
+type-specific mutations, and examining the response of each function in
+a package to all such mutations. This kind of mutation testing is a very
+effective way to uncover any unexpected behaviour which developers themselves
+might not necessarily pre-empt. The purpose of using
 [`autotest`](https://github.com/ropenscilabs/autotest) to prepare packages is
 to avoid as much as possible the common situation of reviewers discovering bugs
 when they attempt to use software in ways that differ from typical uses
@@ -80,11 +73,12 @@ and we particularly encourage any developers intending to develop packages for
 submission to our peer review system to step through the [main `autotest`
 vignette](https://ropenscilabs.github.io/autotest/articles/autotest.html), and
 to apply [`autotest`](https://ropenscilabs.github.io/autotest/) continuously
-throughout package development, to ensure that `autotest_package()` returns
-clean (`NULL`) results when the package is first submitted.
+throughout package development, to ensure that
+[`autotest_package()`](https://ropenscilabs.github.io/autotest/reference/autotest_package.html)
+returns clean (`NULL`) results when the package is first submitted.
 
 
-## Assessment Against Standards {#pkgdev-srr}
+## Alignment with Standards {#pkgdev-srr}
 
 Once a package has been sufficiently developed to begin alignment with our
 standards, and once all issues revealed by
@@ -93,13 +87,15 @@ developers will need to use our second tool, the [`ssr` (**s**oftware
 **r**eveiw **r**oclets) package](https://ropenscilabs.github.io/srr/) to insert
 both general and category-specific standards into their code, and to begin the
 process of documenting within the code itself how and where the code adheres to
-the individual standards. The `srr` package can be installed locally with
+the individual standards. The `srr` package can be installed locally by running
+either one of the following two lines.
 
 ```{r srr-install-dev, eval = FALSE, echo = TRUE}
 remotes::install_github("ropenscilabs/srr")
+pak::pkg_install("ropenscilabs/srr")
 ```
 
-The procedures for using the package are again described in detail on the [main
+The procedures for using the package are described in detail on the [main
 website](https://ropenscilabs.github.io/srr/), and in particular in the
 [package vignette](https://ropenscilabs.github.io/srr/articles/srr-stats.html).
 Developers are first encouraged to obtain a local copy of the [source code for
@@ -107,7 +103,7 @@ that
 vignette](https://github.com/ropenscilabs/srr/blob/main/vignettes/srr-stats.Rmd),
 and to step through each line in order to understand how the procedure works.
 Having done that, you may then insert standards into your own package by
-running from within the local directory of your package,
+running the following line from within the local directory of your package,
 
 ```{r ssr-standards, eval = FALSE, echo = TRUE}
 srr_stats_roxygen (category = c ("<category-1>", "<category-2>"))
@@ -150,7 +146,7 @@ The file generated by
 [`srr_stats_roxygen()`](https://ropenscilabs.github.io/srr/reference/srr_stats_roxygen.html)
 initially contains two [`roxygen2`](https://roxygen2.r-lib.org) blocks, the
 first containing every standard potentially applicable to your package, tagged
-with `@srrstatsTODO`, and the second with a title of `MA_standards`, to
+with `@srrstatsTODO`, and the second with a title of `NA_standards`, to
 document standards deemed not applicable. The first task after having generated
 this file is to move standards to approximate locations within your package
 where they are likely to be addressed. For example, standards concerning tests
@@ -159,28 +155,39 @@ documentation to the main `README.Rmd` file, or within a vignette file. The
 [package
 skeleton](https://ropenscilabs.github.io/srr/reference/srr_stats_pkg_skeleton.html)
 includes code demonstrating how to include roclet tags within `.Rmd` files.
-This will break down an initially large single list of standards into more
-manageable groups of standards dispersed throughout your code. As each standard
-is addressed, it should be moved to one or more locations in your code as near
-as possible to relevant code, and the tag changed from `@srrstatsTODO` to
-`@srrstats`, and a brief description appended to explain how that standard is
-addressed. Standards deemed not to be applicable to your package should all be
-grouped together within a single [`roxygen2`](https://roxygen2.r-lib.org) block
-with a title of `NA_standards`, each with a tag of `@srrstatsNA`, and a brief
-description of why those standards are deemed not to be applicable.
+
+Moving different standards to more appropriate locations within your code will
+break down an initially large single list of standards into more manageable
+groups dispersed throughout your code. As each standard is addressed, it should
+be moved to one or more locations in your code as near as possible to relevant
+code, the tag changed from `@srrstatsTODO` to `@srrstats`, and a brief
+description appended to explain how that standard is addressed. Standards
+deemed not to be applicable to your package should all be grouped together
+within a single [`roxygen2`](https://roxygen2.r-lib.org) block with a title of
+`NA_standards`, each with a tag of `@srrstatsNA`, and a brief description of
+why those standards are deemed not to be applicable.
 
 Software to be submitted for review must contain no `@srrstatsTODO` tags --
-that is, all standards must have been addressed, either by documenting how and
-where software adheres to each standard through moving it to the appropriate
-location within your code and changing the tag to `@srrstats`, or by explaining
-why certain standards are not applicable, changing tags to `@srrstatsNA`, and
-moving to a [`roxygen2`](https://roxygen2.r-lib.org) block named
-`NA_standards`. A summary report with hyperlinks to locations within your code
-at which all standards are placed can be generated by running
-[`srr_report()`](https://ropenscilabs.github.io/srr/reference/srr_report.html).
-This is also the document which reviewers can use to assess how well software
-complies with standards. Full details of the `srr` procedure are given on the
-[package website](https://ropenscilabs.github.io/srr).
+that is, all standards must have been addressed by modifying ever tag to either
+`@srrstats` or `@srrstatsNA`, as described above. Two useful functions to aid
+package alignment with standards are:
+
+1. The [`srr_stats_pre_submit()`
+   function](https://ropenscilabs.github.io/srr/reference/srr_stats_pre_submit.html),
+   which confirms that all standards have been addressed prior to submission.
+2. The [`srr_report()`
+   function](https://ropenscilabs.github.io/srr/reference/srr_report.html), which generates a
+   summary report with hyperlinks to locations within your code at which all
+   standards are placed.
+
+Packages may only be submitted when the [`srr_stats_pre_submit()`
+function](https://ropenscilabs.github.io/srr/reference/srr_stats_pre_submit.html)
+confirms that,
+
+```{r pre-submit-success, echo = FALSE}
+cli::cli_alert_success ("This package is ready to submit!")
+```
+
 
 ## Badges and Software Life Cycle Statement {#pkgdev-badges}
 
