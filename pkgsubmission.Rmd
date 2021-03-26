@@ -1,7 +1,47 @@
 
-# Package Submission {#pkgsubmission}
+# Guide for Editors  {#pkgsubmission}
 
-The system for submitting packages to our Statistical Software Review system is
-still under development. Until this section contains additional information,
-developers wishing to submit packages for peer review are encouraged to contact
-rOpenSci staff directly to enquire about submission procedures.
+Packages will be submitted directly to
+[`ropensci/software-review`](https://github.com/ropensci/software-review), as
+for the current system, with submissions initially handled by the rotating
+Editor-in-Chief (EiC). Statistical software will, however, be handled
+differently from the first moment of submission. Statistical submissions will
+be identified as such on the submission form, and this will automatically
+generate a response from our `ropensci-review-bot` that indicates whether
+a submission may proceed (according to the checks listed in the following sub-section).
+
+A positive bot response is sufficient for the EiC to proceed directly to
+delegate a handling editor. Additional effort by the EiC will only be required
+in "edge cases" where a package may be unable to pass one of the checks. In
+these cases, submitting authors must explain why these checks may fail, and the
+EiC will have to determine whether these failures are acceptable.
+
+There only additional responsibilities for the EiC prior to delegating handling
+editors are to check the following single item:
+
+- [ ] The categories nominated by the submitting authors are appropriate for
+  this package
+
+And to choose one the following two items:
+
+- [ ] The package does not fit within any additional categories of statistical
+  software.
+- [ ] The package could potentially be described by the following additional
+  categories of statistical software:
+    - \<list categories here\>
+
+
+
+## Bot checks executed on initial submission
+
+The checks prompted by an initial submission, and required for the EiC to
+immediately proceed to delegate a handling editors, are:
+
+- `srr_stats_pre_submit()` must confirm that all standards have been addressed.
+- `R CMD check` must generate no errors, and all warnings must be explained.
+- All tests must pass
+- Test coverage must be at least 70%
+- The package must use [`roxygen2`](https://roxygen2.r-lib.org) to generate
+  documentation.
+- No function should have cyclomatic complexity of 15 or greater
+- The package must contain at least one vignette
