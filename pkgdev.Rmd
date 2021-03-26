@@ -1,7 +1,7 @@
-#  (PART) Package Development & Submission {-}
+#  (PART) Package Development, Submission, and Review {-}
 
 
-# Package Development {#pkgdev}
+# Guide for Developers {#pkgdev}
 
 The current chapter should be considered an extension of the corresponding
 ["Guide for Authors"](https://devguide.ropensci.org/guide-for-authors.html) in
@@ -189,54 +189,101 @@ cli::cli_alert_success ("This package is ready to submit!")
 ```
 
 
-## Badges and Software Life Cycle Statement {#pkgdev-badges}
+## Gold, Silver, and Bronze Badges {#pkgdev-badges}
 
 All statistical software which is recommended for acceptance by reviewers is
-entitled to display an rOpenSci badge, as for software reviewed under the
-[current peer-review
-system](https://devguide.ropensci.org/building.html#readme). The badge for
-statistical software ~~includes~~ will include an additional section on the far
-right indicating that the software was reviewed under the statistical software
-system, rather than the standard system. This additional section ~~appears~~
-will appear by default in the same colour as the left side of the current
-badge:
+entitled to display an rOpenSci badge. This badge will differ from the badge
+for the [current peer-review
+system](https://devguide.ropensci.org/building.html#readme) which looks like
+this:
 
 [![](https://badges.ropensci.org/103_status.svg)](https://badges.ropensci.org/103_status.svg)
 
-In addition to this "standard" badge, the statistical software peer review
-system features the following two additional grades of badges, which ~~are~~
-will be reflected in the colouring of this additional section on the right side
-of the badge.
+The badge for statistical software ~~includes~~ will be redesigned to clearly
+state "rOpenSci stats". Importantly, the badge will include an additional
+section on the far right indicating the version of that standards against which
+the software was assessed, as for Debian Badges which look like this:
 
+[![](https://badges.debian.net/badges/debian/stable/neovim/version.svg)](https://badges.debian.net/)
+
+This section will be coloured according to one of the following three "grades"
+of compliance with the standards:
+
+- **bronze** for software which is sufficiently or minimally compliant with
+  standards to pass review.
+- **silver** for software for which complies with more than a minimal set of
+  applicable standards, and which extends beyond bronze in least one notable
+  way, as explained below.
 - **gold** for software which complies with *all* standards which reviewers
-  have deemed potentially applicable. This is the highest standard, and
-  requires developers to ensure ongoing compliance with the largest number of
-  standards, while minimising the number of standards deemed non-applicable.
--   **silver** for software for which developers aspire to reach gold standard,
-  but which is not yet sufficiently compliant.
+  have deemed potentially applicable.
 
-These silver and gold badges will generally only be applicable to software
-which developers aim to actively develop and progressively improve beyond the
-initial review phase. Software which developers see as stable and having little
-need for future development will generally not be able to attain silver or gold
-badges. A silver badge should be viewed as a statement of intent, and not as
-a fixed category in its own right. At the end of the review process, most
-software will attain either the default or silver badges, with the latter
-indicating an intention for package development to continue to enhance
-alignment with our statistical standards until the gold standard has been
-reached.
+The submission template requires authors to identify the category they wish to
+attain from the review process. These standards are not static, and it is
+always possible to elevate a badge to a higher grade subsequent to review.
+Badge grades may also be downgraded for code which is not updated to match
+ongoing developments in standards. The following sub-sections provide further
+clarification of each grade.
 
-Note also that the standards for statistical software contained within this
-book are versioned, and that both silver and gold badges in particular are
-assessed against specific versions of standards. As these standards are
-upgraded, current versions may increasingly diverge from versions against which
-badges were assessed. In the absence of ongoing software maintenance, gold
-badges may eventually be downgraded to silver, and silver to the default badge.
-The [`srr` package](https://ropenscilabs.github.io/srr/) ~~features~~ will
-feature an `srr_release()` function, analogous to
-[`devtools::release()`](http://devtools.r-lib.org/reference/release.html), to
-facilitate ongoing compliance, and to guide the process of progressively
-complying with standards.
+### Bronze
+
+Software which is sufficiently or minimally compliant with standards will
+receive a bronze badge. One common reason for this badge is software which
+developers do not intend to develop further following review. This commonly
+arises for software produced from research projects which have been completed,
+leaving no funding to further develop the software. Another reason might be
+that software has been developed for a particular use case, with developers
+unable to align it with additional standards in order to expand its general
+utility. A bronze badge need not signify any weakness or inadequacy in
+software, rather it will generally signify software which has been developed
+for one particular use case, and which will not be subject to significant
+further development.
+
+### Silver
+
+Silver badges are granted to software which extends beyond the minimal
+requirements of bronze in at least one the follows aspects:
+
+- Compliance with a good number of standards beyond those identified as
+  minimally necessary. This will require reviewers and authors to agree on
+  identification of both a minimal subset of necessary standards, and a full
+  set of potentially applicable standards. This aspect may be considered
+  fulfilled if at least one quarter of the additional potentially applicable
+  standards have been met, and should definitely be considered fulfilled if
+  more than one half have been met.
+- Demonstrating excellence in compliance with multiple standards from at least
+  two broad sub-categories. Sub-categories are distinguished in the [Standards
+  Chapter](#standards) by three numbers, so that the [*General
+  Standards*](#general-standards) have five sub-categories numbered 6.1.1 to
+  6.1.5. This aspect would require software to extend notable beyond the
+  requirements of two or more standards in at least two sub-categories
+  (regardless of whether of general of category-specific standards). Software
+  which might otherwise be assessed at bronze grade, yet which is both
+  excellently documented, and has an outstanding test suite, may be considered
+  to fulfil this aspect.
+- Have a demonstrated *generality* of usage beyond one single envisioned use
+  case. Software is frequently developed for a particular use case envisioned
+  by the developers themselves. Generalising the utility of software so that it
+  is readily applicable to other use cases, and satisfactorily documenting such
+  general abilities, represents another aspect which may be considered
+  sufficient for software to attain a silver grade.
+
+To attain a silver grade, software should fulfil at least one of these three
+aspects. Other factors may also be taken into account at the discretion of
+reviewers, such as exemplary package design or algorithmic implementation.
+
+
+### Gold
+
+As stated, a gold badge is granted to software which complies with all
+applicable standards, and which generally fulfils all of the three aspects
+described above for silver-grade badges. Both the applicability of standards,
+and fulfilment of these three aspects, will ultimately determined by reviewers.
+Moreover, compliance with all grades is assessed against current standards,
+meaning that a gold badge must be actively maintained as standards themselves
+are revised and updated.
+
+
+### Software Life Cycle Statement
 
 Intentions to achieve a specific category of badge are conveyed via a "*Life
 Cycle Statement*", which must be appended to a repository's [`CONTRIBUTING.md`
@@ -246,8 +293,7 @@ Statement", with contents copied from the following lines, reducing the list of
 four items under the first point down to the single most appropriate statement,
 and replacing all other words and phrases within angled brackets.
 
-### Software Life Cycle Statement
-
+```
 1. Following review, the \<package name\> package will
 
     - \<Be in a stable state of development, with minimal subsequent development
@@ -261,13 +307,7 @@ and replacing all other words and phrases within angled brackets.
 
 2. We, the developers of \<package name\>, hope to attain a \<standard, silver,
   gold\> badge at the end of review.
-
-Note that silver or gold badges require ongoing active maintenance, for which
-either the third or fourth items of point 1 must be checked. Note also that
-silver should reflect a statement of intent to eventually attain a gold badge,
-according to a schedule which will be negotiated during review. Once review
-has commenced, a markdown-formatted hyperlink to the review issue make also be
-added to the final statement.
+```
 
 Once a review has been completed, this *Life Cycle Statement* can be edited by
 removing all references to the review process, and changing all tense to
