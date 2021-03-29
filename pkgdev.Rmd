@@ -1,7 +1,7 @@
 #  (PART) Package Development, Submission, and Review {-}
 
 
-# Guide for Developers {#pkgdev}
+# Guide for Authors {#pkgdev}
 
 The current chapter should be considered an extension of the corresponding
 ["Guide for Authors"](https://devguide.ropensci.org/guide-for-authors.html) in
@@ -10,7 +10,7 @@ also apply to statistical packages, with this chapter describing additional
 processes and practices for packages intended for submission to the statistical
 software peer review system.
 
-Package developers are expected to sequentially follow the processes described
+Package authors are expected to sequentially follow the processes described
 in the four sub-sections of this chapter. The first step is to determine
 whether a package is likely to be considered within the scope of our review
 system. The second sub-section describes our [`autotest`
@@ -18,7 +18,7 @@ tool](https://github.com/ropenscilabs/autotest), which is intended to be used
 through the entire process of package development. The third sub-section
 describes how to align software with our [general and category-specific
 standards](#standards) for statistical software, and the final sub-section
-describes the final step of preparing a "*Life Cycle Statement*". 
+describes the final step of badging and preparing a "*Life Cycle Statement*". 
 
 
 ## Scope
@@ -27,16 +27,16 @@ The first important task prior to submitting a package is to estimate whether
 a package is likely to be considered within our scope for statistical software.
 As described in the [Overview](#overview-scope), packages are generally
 considered in scope if they fit one or more of the [categories listed
-there](#overview-categories). Prior to submission, developers must choose one
+there](#overview-categories). Prior to submission, authors must choose one
 or more of these categories, and document how their software aligns with the
 corresponding standards given in [Chapter 6](#standards). Any software which
 can be aligned with one or more sets of category-specific standards will by
 definition be considered in scope.
 
-Developers are encouraged to contact us at any point prior to, or during,
+Authors are encouraged to contact us at any point prior to, or during,
 development, to ask about whether a package might be in scope, or which
 categories it might fit within. Categorisation of packages may not always be
-straightforward, and we particularly encourage developers who are unsure about
+straightforward, and we particularly encourage authors who are unsure about
 whether a package belongs in a particular category or not to contact us for
 discussion. An initial judgement of whether or not a package belongs in
 a particular category may be gained by examining the respective standards. Any
@@ -55,12 +55,12 @@ be accepted for submission. The package implements a form of "mutation
 testing," by examining the types of all input parameters, implementing
 type-specific mutations, and examining the response of each function in
 a package to all such mutations. This kind of mutation testing is a very
-effective way to uncover any unexpected behaviour which developers themselves
+effective way to uncover any unexpected behaviour which authors themselves
 might not necessarily pre-empt. The purpose of using
 [`autotest`](https://github.com/ropenscilabs/autotest) to prepare packages is
 to avoid as much as possible the common situation of reviewers discovering bugs
 when they attempt to use software in ways that differ from typical uses
-envisioned by developers themselves. Reviews of software prepared with the help
+envisioned by authors themselves. Reviews of software prepared with the help
 of [`autotest`](https://github.com/ropenscilabs/autotest) should be less
 burdened by discussions of what are often minor technical details, and more
 able to focus on "higher level" aspects of software quality.
@@ -69,7 +69,7 @@ able to focus on "higher level" aspects of software quality.
 Full documentation of how to use
 [`autotest`](https://github.com/ropenscilabs/autotest) in package development
 is provided on the [package website](https://ropenscilabs.github.io/autotest/),
-and we particularly encourage any developers intending to develop packages for
+and we particularly encourage any authors intending to develop packages for
 submission to our peer review system to step through the [main `autotest`
 vignette](https://ropenscilabs.github.io/autotest/articles/autotest.html), and
 to apply [`autotest`](https://ropenscilabs.github.io/autotest/) continuously
@@ -83,22 +83,23 @@ returns clean (`NULL`) results when the package is first submitted.
 Once a package has been sufficiently developed to begin alignment with our
 standards, and once all issues revealed by
 [`autotest`](https://ropenscilabs.github.io/autotest/) have been addressed,
-developers will need to use our second tool, the [`ssr` (**s**oftware
+authors will need to use our second tool, the [`ssr` (**s**oftware
 **r**eveiw **r**oclets) package](https://ropenscilabs.github.io/srr/) to insert
 both general and category-specific standards into their code, and to begin the
 process of documenting within the code itself how and where the code adheres to
-the individual standards. The `srr` package can be installed locally by running
-either one of the following two lines.
+the individual standards. The [`srr`
+package](https://ropenscilabs.github.io/srr/) can be installed locally by
+running either one of the following two lines.
 
 ```{r srr-install-dev, eval = FALSE, echo = TRUE}
 remotes::install_github("ropenscilabs/srr")
 pak::pkg_install("ropenscilabs/srr")
 ```
 
-The procedures for using the package are described in detail on the [main
+`srr` procedures are described in detail on the [package
 website](https://ropenscilabs.github.io/srr/), and in particular in the
-[package vignette](https://ropenscilabs.github.io/srr/articles/srr-stats.html).
-Developers are first encouraged to obtain a local copy of the [source code for
+[main vignette](https://ropenscilabs.github.io/srr/articles/srr-stats.html).
+Authors are first encouraged to obtain a local copy of the [source code for
 that
 vignette](https://github.com/ropenscilabs/srr/blob/main/vignettes/srr-stats.Rmd),
 and to step through each line in order to understand how the procedure works.
@@ -168,9 +169,9 @@ within a single [`roxygen2`](https://roxygen2.r-lib.org) block with a title of
 why those standards are deemed not to be applicable.
 
 Software to be submitted for review must contain no `@srrstatsTODO` tags --
-that is, all standards must have been addressed by modifying ever tag to either
-`@srrstats` or `@srrstatsNA`, as described above. Two useful functions to aid
-package alignment with standards are:
+that is, all standards must have been addressed by modifying every tag to
+either `@srrstats` or `@srrstatsNA`, as described above. Two useful functions
+to aid package alignment with standards are:
 
 1. The [`srr_stats_pre_submit()`
    function](https://ropenscilabs.github.io/srr/reference/srr_stats_pre_submit.html),
@@ -180,7 +181,7 @@ package alignment with standards are:
    summary report with hyperlinks to locations within your code at which all
    standards are placed.
 
-Packages may only be submitted when the [`srr_stats_pre_submit()`
+Packages may only be submitted once the [`srr_stats_pre_submit()`
 function](https://ropenscilabs.github.io/srr/reference/srr_stats_pre_submit.html)
 confirms that,
 
@@ -220,18 +221,18 @@ of compliance with the standards:
 The submission template requires authors to identify the category they wish to
 attain from the review process. These standards are not static, and it is
 always possible to elevate a badge to a higher grade subsequent to review.
-Badge grades may also be downgraded for code which is not updated to match
-ongoing developments in standards. The following sub-sections provide further
-clarification of each grade.
+Badge grades may also be downgraded for code which is not continuously aligned
+with ongoing developments in standards. The following sub-sections provide
+further clarification of each grade.
 
 ### Bronze
 
 Software which is sufficiently or minimally compliant with standards will
 receive a bronze badge. One common reason for this badge is software which
-developers do not intend to develop further following review. This commonly
+authors do not intend to develop further following review. This commonly
 arises for software produced from research projects which have been completed,
 leaving no funding to further develop the software. Another reason might be
-that software has been developed for a particular use case, with developers
+that software has been developed for a particular use case, with authors
 unable to align it with additional standards in order to expand its general
 utility. A bronze badge need not signify any weakness or inadequacy in
 software, rather it will generally signify software which has been developed
@@ -241,7 +242,7 @@ further development.
 ### Silver
 
 Silver badges are granted to software which extends beyond the minimal
-requirements of bronze in at least one the follows aspects:
+requirements of bronze in at least one the following four aspects:
 
 - Compliance with a good number of standards beyond those identified as
   minimally necessary. This will require reviewers and authors to agree on
@@ -254,33 +255,34 @@ requirements of bronze in at least one the follows aspects:
   two broad sub-categories. Sub-categories are distinguished in the [Standards
   Chapter](#standards) by three numbers, so that the [*General
   Standards*](#general-standards) have five sub-categories numbered 6.1.1 to
-  6.1.5. This aspect would require software to extend notable beyond the
+  6.1.5. This aspect would require software to extend notably beyond the
   requirements of two or more standards in at least two sub-categories
-  (regardless of whether of general of category-specific standards). Software
-  which might otherwise be assessed at bronze grade, yet which is both
+  (regardless of whether general or category-specific standards). For example,
+  software which might otherwise be assessed at bronze grade, yet which is both
   excellently documented, and has an outstanding test suite, may be considered
   to fulfil this aspect.
 - Have a demonstrated *generality* of usage beyond one single envisioned use
-  case. Software is frequently developed for a particular use case envisioned
-  by the developers themselves. Generalising the utility of software so that it
+  case. Software is frequently developed for one particular use case envisioned
+  by the authors themselves. Generalising the utility of software so that it
   is readily applicable to other use cases, and satisfactorily documenting such
-  general abilities, represents another aspect which may be considered
+  generality of usage, represents another aspect which may be considered
   sufficient for software to attain a silver grade.
-
-To attain a silver grade, software should fulfil at least one of these three
-aspects. Other factors may also be taken into account at the discretion of
-reviewers, such as exemplary package design or algorithmic implementation.
+- Internal aspects of package structure and design. Many aspects of the
+  internal structure and design of software are too variable to be effectively
+  addressed by standards. Packages which are judged by reviewers to reflect
+  notably excellent design choices, especially in the implementation of core
+  statistical algorithms, may also be considered worthy of a silver grade.
 
 
 ### Gold
 
-As stated, a gold badge is granted to software which complies with all
-applicable standards, and which generally fulfils all of the three aspects
-described above for silver-grade badges. Both the applicability of standards,
-and fulfilment of these three aspects, will ultimately determined by reviewers.
-Moreover, compliance with all grades is assessed against current standards,
-meaning that a gold badge must be actively maintained as standards themselves
-are revised and updated.
+To attain a gold badge, software must comply with all applicable standards, and
+must also fulfil at least three of the four aspects described above for
+silver-grade badges. Both the applicability of standards, and fulfilment of
+these three aspects, will ultimately determined by reviewers. Moreover,
+compliance with all grades is assessed against current standards, meaning that
+a gold badge must be actively maintained as standards themselves are revised
+and updated.
 
 
 ### Software Life Cycle Statement
@@ -305,7 +307,7 @@ and replacing all other words and phrases within angled brackets.
     - \<Be in an initially stable state of development, with a great deal of
       active subsequent development envisioned.\>
 
-2. We, the developers of \<package name\>, hope to attain a \<standard, silver,
+2. We, the authors of \<package name\>, hope to attain a \<standard, silver,
   gold\> badge at the end of review.
 ```
 
