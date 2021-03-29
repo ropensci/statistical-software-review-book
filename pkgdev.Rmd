@@ -225,7 +225,7 @@ Badge grades may also be downgraded for code which is not continuously aligned
 with ongoing developments in standards. The following sub-sections provide
 further clarification of each grade.
 
-### Bronze
+### Bronze {#pkgdev-bronze}
 
 Software which is sufficiently or minimally compliant with standards will
 receive a bronze badge. One common reason for this badge is software which
@@ -239,7 +239,7 @@ software, rather it will generally signify software which has been developed
 for one particular use case, and which will not be subject to significant
 further development.
 
-### Silver
+### Silver {#pkgdev-silver}
 
 Silver badges are granted to software which extends beyond the minimal
 requirements of bronze in at least one the following four aspects:
@@ -274,7 +274,7 @@ requirements of bronze in at least one the following four aspects:
   statistical algorithms, may also be considered worthy of a silver grade.
 
 
-### Gold
+### Gold {#pkgdev-gold}
 
 To attain a gold badge, software must comply with all applicable standards, and
 must also fulfil at least three of the four aspects described above for
@@ -285,7 +285,7 @@ a gold badge must be actively maintained as standards themselves are revised
 and updated.
 
 
-### Software Life Cycle Statement
+### Software Life Cycle Statement {#pkgdev-lifecycle}
 
 Intentions to achieve a specific category of badge are conveyed via a "*Life
 Cycle Statement*", which must be appended to a repository's [`CONTRIBUTING.md`
