@@ -3,20 +3,23 @@
 
 ## Editor-in-Chief
 
-Packages will be submitted directly to
-[`ropensci/software-review`](https://github.com/ropensci/software-review), as
-for the current system, with submissions initially handled by the rotating
-Editor-in-Chief (EiC). Statistical software will, however, be handled
-differently from the first moment of submission. Statistical submissions will
-be identified as such on the submission form, and this will automatically
-generate a response from our `ropensci-review-bot` that indicates whether
-a submission may proceed (according to the checks listed in the following sub-section).
+As for rOpenSci's current peer-review system, packages are submitted directly
+to the [`ropensci/software-review`
+repository](https://github.com/ropensci/software-review) on GitHub, with
+submissions handled initially by the rotating Editor-in-Chief (EiC).
+Statistical software is, however, handled differently from the first
+moment of submission. Statistical submissions are identified as such on the
+submission form, and this automatically generates a response from our
+`ropensci-review-bot` that indicates whether a submission may proceed, based on
+whether it passes all of the automatic checks listed in the following
+sub-section.
 
 A positive bot response is sufficient for the EiC to proceed directly to
-delegate a handling editor. Additional effort by the EiC will only be required
-in "edge cases" where a package may be unable to pass one of the checks. In
-these cases, submitting authors must explain why these checks may fail, and the
-EiC will have to determine whether these failures are acceptable.
+delegate a handling editor without further consideration. Additional effort by
+the EiC will only be required in "edge cases" where a package may be unable to
+pass one of the checks. In these cases, submitting authors must explain why
+these checks may fail, and the EiC must then determine whether these failures
+are acceptable.
 
 There only additional responsibilities for the EiC prior to delegating handling
 editors are to check the following single item:
@@ -38,7 +41,9 @@ And to choose one the following two items:
 The checks prompted by an initial submission, and required for the EiC to
 immediately proceed to delegate a handling editors, are:
 
-- `srr_stats_pre_submit()` must confirm that all standards have been addressed.
+- `srr_stats_pre_submit()` must confirm that all standards have been addressed,
+  and that a "Life Cycle Statement" has been included within the
+  `CONTRIBUTING.md` document.
 - `R CMD check` must generate no errors, and all warnings must be explained.
 - All tests must pass
 - Test coverage must be at least 70%
@@ -92,4 +97,11 @@ checks are applicable.
   [`autotest_package()`](https://ropenscilabs.github.io/autotest/reference/autotest_package.html)
   on a local version of the source code and ensure no errors are raised.
 - Ensure that the submitting authors understand the requirements for their
-  package to meet their stated grade of badge (gold, silver, bronze).
+  package to meet their stated grade of badge (gold, silver, bronze), and for
+  silver in particular clarify which of the four aspects listed in the "*Guide
+  for Authors*" section on [silver badges](#pkgdev-silver) the authors intend
+  to fulfil.
+
+Beyond that, Handling Editors follow the procedures given in the [*Dev
+Guide*](https://devguide.ropensci.org/editorguide.html#upon-submission),
+particularly in regard to looking for and assigning reviewers.
