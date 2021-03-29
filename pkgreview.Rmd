@@ -8,32 +8,31 @@ also apply to statistical packages, with this chapter describing additional
 processes and practices for review of packages submitted to the statistical
 software peer review system. Being a direct extension, the [template for
 general software review](https://devguide.ropensci.org/reviewtemplate.html) is
-to be used allowing with the following additional considerations and components
-to be entered into a review.
+to be used, with the following additional considerations and components to be
+entered into a review.
 
 ## Package badging
 
 
 This system for peer-review of statistical software features badges in three
-categories of **standard**, **silver**, and **gold**. As described in the
-corresponding chapter for [package developers](#pkgdev-badges), these are:
+categories of **bronze**, **silver**, and **gold**. As described in the
+corresponding [*Guide for Authors*](#pkgdev-badges), these are:
 
-1. A **standard** or default badge for software which has been accepted, and
-   which reviewers have deemed sufficiently compliant with relevant standards.
-3. A **silver** badge for software for which developers aspire to reach gold
-   standard, but which is not yet sufficiently compliant. See below for
-   details.
-2. A **gold** badge for software which complies with *all* standards which
-   reviewers have deemed potentially applicable. This is the highest standard,
-   and requires developers to ensure compliance with the largest number of
-   standards, while minimising the number of standards deemed non-applicable.
+- A **bronze** badge for software which is sufficiently or minimally compliant
+  with standards to pass review.
+- A **silver** badge for software for which complies with more than a minimal
+  set of applicable standards, and which extends beyond bronze in least one
+  notable way, as explained below.
+- A **gold** badge for software which complies with *all* standards which
+  reviewers have deemed potentially applicable.
 
-Developers will state which badge they hope to attain in a [*Life Cycle
-Statement* within their `CONTRIBUTING.md` file](#pkgdev-badges). All reviewers
-should complete the follow procedures for review of packages aiming for
-a **standard** badge. Packages aiming for **silver** or **gold** badges should
-then be reviewed according to the additional criteria described in the
-subsequent sub-sections.
+Authors must state which badge they hope to attain in a [*Life Cycle Statement*
+within their `CONTRIBUTING.md` file](#pkgdev-lifecycle), as well as in their
+submission template. The follow section describes general procedures to be
+followed by reviewers regardless of badge grades. Reviewers of packages aiming
+for **bronze** badges need only follow the *General Requirements*, while
+packages aiming for **silver** or **gold** badges should be reviewed according
+to the additional criteria described in the subsequent sub-sections.
 
 ## General Review Requirements
 
@@ -42,35 +41,30 @@ software submitted to rOpenSci's general peer-review system is that statistical
 software is expected to conform to lists of general and category-specific
 standards. The first important task of reviews is thus to assess the compliance
 of software with these standards. The standards themselves are contained in the
-[subsequent chapter](#standards), to which both developers and reviewers will
-need to refer throughout package development and review. For software to be
-considered within scope, it must be described by one or more of the categories
-of statistical software for which standards have been developed. Software will
-then need to comply both with the *General Standards* for statistical software,
-and with specific sets of standards for each applicable category. These
-categories will have been discussed and allocated in the pre-review phase, and
-categorical applicability should generally not have to be considered during an
-actual review.
-
+[subsequent chapter](#standards) of this book, to which both authors and
+reviewers will need to refer throughout package development and review.
 
 ### Assessment against standards
 
 The process of assessing software against standards is facilitated by the
 [`srr` (**s**oftware **r**eview **r**oclets)
-package](https://github.com/ropenscilabs/srr) which both developers and
-reviewers will need to install with the following line:
+package](https://github.com/ropenscilabs/srr) which both authors and
+reviewers will need to install with one of the following two lines:
 
 ```{r srr-install-rev, eval = FALSE, echo = TRUE}
 remotes::install_github("ropenscilabs/srr")
+pak::pkg_install("ropenscilabs/srr")
 ```
 
-This package is primarily intended to aid developers in documenting both how
+This package is primarily intended to aid authors in documenting both how
 and where their software complies with each of the relevant general and
 category-specific standards. Reviewers can then clone a local copy of the
 repository to be reviewed, and in the root directory of that repository, run
 the [`srr_report()`
 function](https://ropenscilabs.github.io/srr/reference/srr_report.html)
-to generate a hyperlinked `html` report of standards compliance.
+to generate a hyperlinked `html` report of standards compliance. The [main
+`srr` vignette](https://ropenscilabs.github.io/srr/articles/srr-stats.html)
+includes code which can be stepped through to generate an example report.
 
 Reviewers are requested to click on every single link which appears in that
 report, and to at least briefly assess whether they believe the software at
@@ -80,7 +74,7 @@ tags](https://ropenscilabs.github.io/srr/articles/srr-stats.html#3-roxygen2-tags
 of:
 
 1. `@srrstats` for standards with which software complies;
-2. `@srrstatsNA` for standards which developers have deemed not to be
+2. `@srrstatsNA` for standards which authors have deemed not to be
    applicable to their software.
 
 
@@ -92,101 +86,108 @@ complies and has a tag of `@srrstats`, or because a standard is not applicable
 and has a tag of `@srrstatsNA`. Reviewers are only asked to note any standards
 with which they disagree, primarily either because of:
 
-1. Disagreement in standards compliance, where developers have used a tag of
+1. Disagreement in standards compliance, where authors have used a tag of
    `@srrstats` but a reviewer judges either the explanation or associated code
    to be insufficient for compliance; or
-2. Disagreement about non-applicability of a standard, where developers have
+2. Disagreement about non-applicability of a standard, where authors have
    used a tag of `@srrstatsNA`, but a reviewer believes that standard ought to
    apply to the software.
 
 Please progress through the entire report generated by the [`srr_report()`
 function](https://ropenscilabs.github.io/srr/reference/srr_report.html), and
 note all instances of disagreement, generally grouped into the two categories
-described above. Reports of potential disagreements in standards compliance
-can be included directly within a review issue, or reviewers can opt to
-initially work directly with developers to resolve issues directly within the
-code itself, as described in the following sub-section.
+described above.
 
 Note that this initial assessment against standards is intended only to clarify
 and resolve statements of compliance with which reviewers disagree, and in
 particular should be conducted entirely independent of whether or not software
-may be aspiring to silver or gold badges. Procedures for those latter cases are
-conducted in subsequent review phases, as described below.
+may be aspiring to silver or gold badges. Additional procedures for those
+latter cases are described below.
 
 
 ### General Package Review
 
-Reviews of statistical software, should generally reflect the processes
-established in rOpenSci's general software review system, for which the best
-source of information is provided by [reviews
+Following assessment of compliance with standards, reviewers should proceed
+with a general descriptive review by following the processes established in
+rOpenSci's general software review system, for which the best source of
+information is provided by [reviews
 themselves](https://github.com/ropensci/software-review/issues), along with the
 [*Guide for Reviewers*](https://devguide.ropensci.org/reviewerguide.html).
 Beyond adherence to standards, we ask reviewers to explicitly consider the
-following aspects of software corresponding to the sub-sections of the
-[*General Standards for Statistical
-Software*](#general-standards):
+following aspects, some of which loosely correspond to sub-sections of the
+[*General Standards for Statistical Software*](#general-standards):
 
 1. **Documentation**: Is the documentation sufficient to enable general use of
-   the package? Do the various components of documentation support and clarify
-   one another?
-2. **Input Structures and Pre-Processing** Are the input structures adequate and
-   general enough for the purposes of the package? Would or should it be
-   possible to expand the range of admissible inputs? Do pre-processing steps
-   ensure appropriate conversion of a range of inputs to a common form?
-3. **Algorithms** How well are algorithms encoded? Are there any aspects which
-   could be improved?
-4. **Output Structures and Return Values** Are the output structures adequate and
-   general enough for the purposes of the package? Do the output structures
-   enable sufficient inter-operability with other packages, or could they be
-   modified to better enhance inter-operability?
-5. **Testing** Regardless of actual coverage of tests, are there any fundamental
-   software operations which are not sufficiently expressed in tests? Is there
-   are need for extended tests?
-6. **Visualisation** (where appropriate)
+   the package beyond one specific use case? Do the various components of
+   documentation support and clarify one another?
+2. **Algorithms** How well are algorithms encoded? Is the choice of computer
+   language appropriate for that algorithm, and/or envisioned use of package?
+   Are aspects of algorithmic scaling sufficiently documented and tested? Are
+   there any aspects of algorithmic implementation which could be improved?
+3. **Testing** Regardless of actual coverage of tests, are there any
+   fundamental software operations which are not sufficiently expressed in
+   tests? Is there a need for extended tests, or if extended tests exists, have
+   they been implemented in an appropriate way, and are they appropriately
+   documented?
+4. **Visualisation** (where appropriate) Do visualisations aid the primary
+   purposes of statistical interpretation of results? Are there any aspects of
+   visualisations which could risk statistical misinterpretation?
+5. **Package Design** Is the package well designed for its intended purpose? We
+   ask reviewers to consider the follow two aspects of package design:
+    - **External Design:** Do exported functions and the relationships between
+      them enable general usage of the package? Do exported functions best
+      serve inter-operability with other packages?
+    - **Internal design:** Are algorithms implemented appropriately in terms of
+      aspects such as efficiency, flexibility, generality, and accuracy? Could
+      ranges of admissible input structures, or form(s) of output structures,
+      be expanded to enhance inter-operability with other packages?
 
-Many of the category-specific sets of standards also follow these general
-sub-categories, and reviewers are asked to consider both the general and
-category-specific aspects of software in regard to each of these aspects. Note
-that for statistical software the assessment of algorithmic quality is
-particularly important, whether assessed in terms of appropriateness of
-implementation, efficiency, uniqueness, or other qualitative aspects. This
-project attempts to set standardised expectations of many aspects of
-statistical software, yet core statistical algorithms generally remain too
-diverse to be considered or compared in any standardised way. We thus request
-all reviewers to explicitly review the quality of the core statistical
-algorithms contained within a package. Most category-specific standards include
-a central "*Algorithmic Standards*" component which can be used to frame broad
-considerations for algorithmic quality. The [*General Standard*
+As algorithms form the core of statistical software, we ask reviewers to pay
+particular attention to the assessment of algorithmic quality. Most
+category-specific standards include a central "*Algorithmic Standards*"
+component which can be used to provide starting points for more general
+considerations of algorithmic quality. The [*General Standard*
 **G1.1**](#general-standards) also requires all similar algorithms or
 implementations to be documented within the software, so reviewers should also
 have access to a list of comparable implementations.
 
-### Review for Silver and Gold Badges
+## Review for Silver and Gold Badges
 
-As described above, a silver badge is given to software which aims for a gold
-badge, but which is not yet sufficiently compliant with all possible standards.
-An important task for reviewers of software aiming for silver or gold badges is
-thus to identify all general and category-specific standards that are
-potentially applicable, yet not currently complied with. Not all standards may
-be able to be applied to a given piece of software. For example, software
-designed to accept sparse matrix inputs from the [`Matrix`
+Packages aiming for silver must fulfil at least one of the following four
+aspects described in detail in the [*Guide for Authors*](#pkgdev-silver).
+Silver-grade software should:
+
+- Comply with a sufficient number of additional standards beyond the minimal
+  number necessary for bronze compliance;
+- Demonstrate excellence in compliance with at least two standards from two
+  distinct sub-sections;
+- Have a demonstrated generality of usage beyond a single use case; or
+- Demonstrate excellence in internal aspects of package design and structure.
+
+Assessing the first of these aspects requires identification of a minimal
+set of necessary standards which with software must comply, as well as separate
+identification of all standards which could potentially be applied, independent
+of actual compliance. Not all standards may be able to be applied to a given
+piece of software. For example, software designed to accept sparse matrix
+inputs from the [`Matrix`
 package](https://cran.r-project.org/web/packages/Matrix/index.html) will be
 unable to conform with many of the standards for general rectangular input
 forms. 
 
-For packages aiming for silver or gold badges, reviewers with thus first need
-to identify all standards which they deem *potentially* applicable; that is,
-with which the software currently does not comply yet potentially could.
+These two categories of minimal and potentially applicable standards can be
+used by reviewers to at least roughly assess the quantitative degree by which
+compliance exceeds a minimally required level. As stated in the [*Guide for
+Authors*](#pkgdev-silver), the first of these four items may be considered to
+be fulfilled for software which meets at least one quarter of all potentially
+applicable standards beyond those minimally required. A useful example of
+minimally required standards may often be identified as those which would be
+required for the software to meet one specific use case. Any aspects of the
+software which generalise its usage beyond that use case may be considered in
+the second category of potentially yet not necessarily applicable. Judgement of
+such categorical distinction, and of precise amounts, is left to the discretion
+of reviewers.
+
 Packages aiming for gold badges at the end of review will need to comply with
-all such standards to pass review. Reviewers of packages aiming for silver will
-need to:
-
-1. Judge whether they consider compliance sufficient for the package to be
-   accepted; and
-2. Negotiate with developers a proposed schedule for compliance with all
-   remaining standards (generally within one year of initial acceptance).
-
-Packages receiving a silver badge at the end of review will be expected to be
-reviewed again according to the proposed schedule. This subsequent review will
-simply need to determine whether all nominated standards have indeed been
-complied with.
+all potentially applicable standards, and will also need to fulfil at least of
+the four aspects listed above, and described in more detail in the [*Guide for
+Authors*](#pkgdev-silver).
