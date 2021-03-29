@@ -303,7 +303,7 @@ and replacing all other words and phrases within angled brackets.
     - \<Be in a stable state of development, with active subsequent development
       primarily in response to user feedback.\>
     - \<Be in a stable state of development, with some degree of active
-      subsequent development as envisioned by the primary developers.\>
+      subsequent development as envisioned by the primary authors.\>
     - \<Be in an initially stable state of development, with a great deal of
       active subsequent development envisioned.\>
 
