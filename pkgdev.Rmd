@@ -193,30 +193,25 @@ cli::cli_alert_success ("This package is ready to submit!")
 ## Gold, Silver, and Bronze Badges {#pkgdev-badges}
 
 All statistical software which is recommended for acceptance by reviewers is
-entitled to display an rOpenSci badge. This badge will differ from the badge
-for the [current peer-review
-system](https://devguide.ropensci.org/building.html#readme) which looks like
-this:
-
-[![](https://badges.ropensci.org/103_status.svg)](https://badges.ropensci.org/103_status.svg)
-
-The badge for statistical software ~~includes~~ will be redesigned to clearly
-state "rOpenSci stats". Importantly, the badge will include an additional
+entitled to display an rOpenSci badge. This badge is a modified version of the
+badge for the [current peer-review
+system](https://devguide.ropensci.org/building.html#readme), with an additional
 section on the far right indicating the version of that standards against which
-the software was assessed, as for Debian Badges which look like this:
+the software was assessed, coloured according to the "grade" of the badge. The
+three possible badges look like this:
 
-[![](https://badges.debian.net/badges/debian/stable/neovim/version.svg)](https://badges.debian.net/)
+[![](badges/stats-bronze.svg)](https://github.com/ropenscilabs/statistical-software-review-book)
+**bronze** for software which is sufficiently or minimally compliant with
+standards to pass review.
 
-This section will be coloured according to one of the following three "grades"
-of compliance with the standards:
+[![](badges/stats-silver.svg)](https://github.com/ropenscilabs/statistical-software-review-book)
+**silver** for software for which complies with more than a minimal set of
+applicable standards, and which extends beyond bronze in least one notable way,
+as explained below.
 
-- **bronze** for software which is sufficiently or minimally compliant with
-  standards to pass review.
-- **silver** for software for which complies with more than a minimal set of
-  applicable standards, and which extends beyond bronze in least one notable
-  way, as explained below.
-- **gold** for software which complies with *all* standards which reviewers
-  have deemed potentially applicable.
+[![](badges/stats-gold.svg)](https://github.com/ropenscilabs/statistical-software-review-book)
+**gold** for software which complies with *all* standards which reviewers have
+deemed potentially applicable.
 
 The submission template requires authors to identify the category they wish to
 attain from the review process. These standards are not static, and it is
@@ -225,7 +220,7 @@ Badge grades may also be downgraded for code which is not continuously aligned
 with ongoing developments in standards. The following sub-sections provide
 further clarification of each grade.
 
-### Bronze {#pkgdev-bronze}
+### Bronze [![](badges/stats-bronze.svg)](https://github.com/ropenscilabs/statistical-software-review-book) {#pkgdev-bronze}
 
 Software which is sufficiently or minimally compliant with standards will
 receive a bronze badge. One common reason for this badge is software which
@@ -239,7 +234,7 @@ software, rather it will generally signify software which has been developed
 for one particular use case, and which will not be subject to significant
 further development.
 
-### Silver {#pkgdev-silver}
+### Silver [![](badges/stats-silver.svg)](https://github.com/ropenscilabs/statistical-software-review-book) {#pkgdev-silver}
 
 Silver badges are granted to software which extends beyond the minimal
 requirements of bronze in at least one the following four aspects:
@@ -274,7 +269,7 @@ requirements of bronze in at least one the following four aspects:
   statistical algorithms, may also be considered worthy of a silver grade.
 
 
-### Gold {#pkgdev-gold}
+### Gold [![](badges/stats-gold.svg)](https://github.com/ropenscilabs/statistical-software-review-book) {#pkgdev-gold}
 
 To attain a gold badge, software must comply with all applicable standards, and
 must also fulfil at least three of the four aspects described above for
