@@ -130,6 +130,7 @@ x <- readRDS("./scripts/cran-cloc-all.Rds") %>%
     file_count = sum(file_count),
     comment_lines = sum(comment_lines)
   ) %>%
+  filter(language != "SUM") %>%
   arrange(desc(loc))
 saveRDS(x, "./scripts/cran-cloc.Rds")
 ```
