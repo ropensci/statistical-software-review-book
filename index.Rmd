@@ -59,16 +59,25 @@ You are invited to contribute to this project by filing suggestions as
 We also have a dedicated [area for discussion on the rOpenSci forum](https://discuss.ropensci.org/c/statistical-software-peer-review/28).
 Feedback on standards is particularly welcome.
 
-For this project we are lucky to have support of a great steering committee.  The
-committee's role is to help us with outreach to statistical communities, vetting
-community input and prioritizing our work. They are:
+For this project we are lucky to have support of a great advisory and editorial
+committee.  The committee has helped us along with way with outreach to statistical
+communities, vetting community input and prioritizing our work. We are
+currently preparing for them to assume new roles as handling editors for the
+statistical software review system.
 
--   [Ben Bolker](https://ms.mcmaster.ca/~bolker/) ([\@bolkerb](https://twitter.com/bolkerb)) McMaster University
--   [Rebecca Killick](http://www.lancs.ac.uk/~killick/), Lancaster University
--   [Stephanie Hicks](https://www.stephaniehicks.com/) ([\@stephaniehicks](https://twitter.com/stephaniehicks)), Johns Hopkins University
--   [Max Kuhn](http://appliedpredictivemodeling.com/) ([\@topepos](https://twitter.com/topepos)), RStudio
+-   [Ben Bolker](https://ms.mcmaster.ca/~bolker/) ([\@bolkerb](https://twitter.com/bolkerb)) McMaster University, Canada
+-   [Rebecca Killick](http://www.lancs.ac.uk/~killick/), Lancaster University, UK
+-   [Stephanie Hicks](https://www.stephaniehicks.com/) ([\@stephaniehicks](https://twitter.com/stephaniehicks)), Johns Hopkins University, USA
 -   [Paula Moraga](http://www.paulamoraga.com/), King Abdullah University of Science and Technology, Saudi Arabia
 -   [Leonardo Collado-Torres](http://lcolladotor.github.io/) ([\@lcolladotor](https://twitter.com/lcolladotor)), Lieber Institute for Brain Development, USA
+-   [Toby Hocking](http://tdhock.github.io/), Northern Arizona University, USA
+
+We are also grateful to former members of our advisory board:
+
+-   [Max Kuhn](http://appliedpredictivemodeling.com/) ([\@topepos](https://twitter.com/topepos)), RStudio
+-   [Martin Morgan](https://www.roswellpark.org/martin-morgan) ([\@mt_morgan](https://twitter.com/mt_morgan)), Roswell Park Comprehensive Cancer Center
+
+
 
 This work is [
 supported by the Sloan Foundation](https://ropensci.org/blog/2019/07/15/expanding-software-review/)
