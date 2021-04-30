@@ -80,9 +80,33 @@ including references to all known implementations in other computer languages.
 (A common location for such is a statement of "*Prior Art*" or similar at the
 end of the main `README` document.)
 
+- **G1.2** *Statistical Software should include a* Life Cycle Statement
+  *describing current and anticipated future states of development.*
+
+We encourage these to placed within a repository's [`CONTRIBUTING.md`
+file](https://devguide.ropensci.org/collaboration.html#contributing-guide), as
+in [this
+example](https://github.com/ecohealthalliance/fasterize/blob/master/CONTRIBUTING.md).
+A simple *Life Cycle Statement* may be formed by selecting one of the following
+four statements.
+
+```
+This package is
+
+    - In a stable state of development, with minimal subsequent development
+      envisioned.
+    - In a stable state of development, with active subsequent development
+      primarily in response to user feedback.
+    - In a stable state of development, with some degree of active subsequent
+      development as envisioned by the primary authors.
+    - In an initially stable state of development, with a great deal of active
+      subsequent development envisioned.
+```
+
+
 #### Statistical Terminology
 
-- **G1.2** *All statistical terminology should be clarified and unambiguously
+- **G1.3** *All statistical terminology should be clarified and unambiguously
   defined.*
 
 Developers should not presume anywhere in the documentation of software that
@@ -100,9 +124,9 @@ must be explicitly clarified.
 
 #### Function-level Documentation
 
-- **G1.3** *Software should use [`roxygen2`](https://roxygen2.r-lib.org/) to
+- **G1.4** *Software should use [`roxygen2`](https://roxygen2.r-lib.org/) to
   document all functions.*
-    - **G1.2a** *All internal (non-exported) functions should also be documented
+    - **G1.4a** *All internal (non-exported) functions should also be documented
       in standard [`roxygen2`](https://roxygen2.r-lib.org/) format, along with
       a final `@noRd` tag to suppress automatic generation of `.Rd` files.*
 
@@ -118,13 +142,13 @@ Where software supports a publication, all claims made in the publication with
 regard to software performance (for example, claims of algorithmic scaling or
 efficiency; or claims of accuracy), the following standard applies:
 
-- **G1.4** *Software should include all code necessary to reproduce results which
+- **G1.5** *Software should include all code necessary to reproduce results which
   form the basis of performance claims made in associated publications.*
 
 Where claims regarding aspects of software performance are made with respect to
 other extant R packages, the following standard applies:
 
-- **G1.5** *Software should include code necessary to compare performance claims
+- **G1.6** *Software should include code necessary to compare performance claims
   with alternative implementations in other R packages.*
 
 
