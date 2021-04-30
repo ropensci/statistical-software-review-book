@@ -322,9 +322,8 @@ inapplicable).
   applied*.
 
 A definition of broadcasting is given at the end of the introduction to
-corresponding [Machine Learning
-Standards](file:///data/mega/code/repos/ropensci-stats/statistical-software-review-book/docs/standards.html#machine-learning-software),
-just above *Input Data Specification*.
+corresponding [Machine Learning Standards](#ml-standards), just
+above *Input Data Specification*.
 
 - **SP3.6** *Spatial machine learning software should ensure that test and
   training data are generated using sampling procedures appropriate to the
