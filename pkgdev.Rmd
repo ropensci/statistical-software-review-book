@@ -280,35 +280,30 @@ a gold badge must be actively maintained as standards themselves are revised
 and updated.
 
 
-### Software Life Cycle Statement {#pkgdev-lifecycle}
+## Software Life Cycle Statement {#pkgdev-lifecycle}
 
-Intentions to achieve a specific category of badge are conveyed via a "*Life
-Cycle Statement*", which must be appended to a repository's [`CONTRIBUTING.md`
+Packages must also have a "*Life Cycle Statement*", which must be appended to
+a repository's [`CONTRIBUTING.md`
 file](https://devguide.ropensci.org/collaboration.html#contributing-guide)
 prior to submission. This statement should be in a section entitled "Life Cycle
 Statement", with contents copied from the following lines, reducing the list of
-four items under the first point down to the single most appropriate statement,
-and replacing all other words and phrases within angled brackets.
+four items under the first point down to the single most appropriate statement.
 
 ```
-1. Following review, the \<package name\> package will
+Following review, this package will
 
-    - \<Be in a stable state of development, with minimal subsequent development
-      envisioned\>
-    - \<Be in a stable state of development, with active subsequent development
-      primarily in response to user feedback.\>
-    - \<Be in a stable state of development, with some degree of active
-      subsequent development as envisioned by the primary authors.\>
-    - \<Be in an initially stable state of development, with a great deal of
-      active subsequent development envisioned.\>
-
-2. We, the authors of \<package name\>, hope to attain a \<standard, silver,
-  gold\> badge at the end of review.
+    - Be in a stable state of development, with minimal subsequent development
+      envisioned.
+    - Be in a stable state of development, with active subsequent development
+      primarily in response to user feedback.
+    - Be in a stable state of development, with some degree of active
+      subsequent development as envisioned by the primary authors.
+    - Be in an initially stable state of development, with a great deal of
+      active subsequent development envisioned.
 ```
 
 Once a review has been completed, this *Life Cycle Statement* can be edited by
-removing all references to the review process, and changing all tense to
-present ("The package is in a stable state of development ...") Additional
-information on envisioned software development can be added at any stage, as in
-[this
+removing references to the review process, and changing all tense to present
+("The package is in a stable state of development ...") Additional information
+on envisioned software development can be added at any stage, as in [this
 example](https://github.com/ecohealthalliance/fasterize/blob/master/CONTRIBUTING.md).
