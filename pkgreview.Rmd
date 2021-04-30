@@ -6,70 +6,83 @@ The current chapter should be considered an extension of the corresponding
 rOpenSci's "Dev Guide". The principles for reviewing packages described there
 also apply to statistical packages, with this chapter describing additional
 processes and practices for review of packages submitted to the statistical
-software peer review system. Being a direct extension, the [template for
-general software review](https://devguide.ropensci.org/reviewtemplate.html) is
-to be used, with the following additional considerations and components to be
-entered into a review.
+software peer review system. Reviews of statistical software should 
+first assess compliance against [our
+standards](#standards),
+and then proceed to a more general review, as described in the following two
+sub-sections. The template to be used for reviews of statistical software is
+included in the final sub-section of this chapter. Prior to describing the
+review process, the following sub-section describes several tools which can be
+used to aid review.
 
-## Package badging
+## Tools for Reviewing Statistical Software
 
+Upon initial submission, the `ropensci-review-bot` generates an automated
+report summarising aspects of package structure and functionality intended to
+inform the review process. The elements of these reports are described in the
+[*Guide for Editors*](#pkgsub-summary-reports). While the aspects reported on
+there are primarily intended to help editors initially identify potential
+issues best addressed prior to review, they nevertheless include a number of
+insights into package structure which may usefully inform the review process.
 
-This system for peer-review of statistical software features badges in three
-categories of **bronze**, **silver**, and **gold**. As described in the
-corresponding [*Guide for Authors*](#pkgdev-badges), these are:
+Components of these reports intended to aid reviews include a complete report
+of standards compliance, generated with the
+[`srr`](https://github.com/ropenscilabs/srr) package, and an interactive
+diagram of inter-relationships between package functions (and other objects),
+generated with the [`pkgstats`](https://github.com/ropenscilabs/pkgstats)
+package. These can be recreated locally by first installing these two packages
+by running either,
 
-- A **bronze** badge for software which is sufficiently or minimally compliant
-  with standards to pass review.
-- A **silver** badge for software for which complies with more than a minimal
-  set of applicable standards, and which extends beyond bronze in least one
-  notable way, as explained below.
-- A **gold** badge for software which complies with *all* standards which
-  reviewers have deemed potentially applicable.
-
-Authors must state which badge they hope to attain in a [*Life Cycle Statement*
-within their `CONTRIBUTING.md` file](#pkgdev-lifecycle), as well as in their
-submission template. The follow section describes general procedures to be
-followed by reviewers regardless of badge grades. Reviewers of packages aiming
-for **bronze** badges need only follow the *General Requirements*, while
-packages aiming for **silver** or **gold** badges should be reviewed according
-to the additional criteria described in the subsequent sub-sections.
-
-## General Review Requirements
-
-The primary way that reviews of statistical software differ from reviews of
-software submitted to rOpenSci's general peer-review system is that statistical
-software is expected to conform to lists of general and category-specific
-standards. The first important task of reviews is thus to assess the compliance
-of software with these standards. The standards themselves are contained in the
-[subsequent chapter](#standards) of this book, to which both authors and
-reviewers will need to refer throughout package development and review.
-
-### Assessment against standards
-
-The process of assessing software against standards is facilitated by the
-[`srr` (**s**oftware **r**eview **r**oclets)
-package](https://github.com/ropenscilabs/srr) which both authors and
-reviewers will need to install with one of the following two lines:
-
-```{r srr-install-rev, eval = FALSE, echo = TRUE}
-remotes::install_github("ropenscilabs/srr")
-pak::pkg_install("ropenscilabs/srr")
+```{r rev-tools-remotes, eval = FALSE, echo = TRUE}
+remotes::install_github ("ropenscilabs/pkgstats")
+remotes::install_github ("ropenscilabs/srr")
+```
+or,
+```{r rev-tools-pak, eval = FALSE, echo = TRUE}
+pak::pkg_install ("ropenscilabs/pkgstats")
+pak::pkg_install ("ropenscilabs/srr")
 ```
 
-This package is primarily intended to aid authors in documenting both how
-and where their software complies with each of the relevant general and
-category-specific standards. Reviewers can then clone a local copy of the
-repository to be reviewed, and in the root directory of that repository, run
-the [`srr_report()`
-function](https://ropenscilabs.github.io/srr/reference/srr_report.html)
-to generate a hyperlinked `html` report of standards compliance. The [main
-`srr` vignette](https://ropenscilabs.github.io/srr/articles/srr-stats.html)
-includes code which can be stepped through to generate an example report.
+Within a local clone of the package being reviewed, the report on statistical
+standards can be generated by running
+[`srr::srr_report()`](https://ropenscilabs.github.io/srr/reference/srr_report.html),
+and the detailed statistical properties of the package and associated
+interactive diagram of package structure generated by running,
 
-Reviewers are requested to click on every single link which appears in that
-report, and to at least briefly assess whether they believe the software at
-each location complies with the nominated standards. The report itself is
-divided into two main sections, named after the [roclet
+```{r pkgstats, eval = FALSE, echo = TRUE}
+library (pkgstats)
+x <- pkgstats () # 'x' has lots of detail on package structure
+plot_network (x)
+```
+
+This network provides immediate visual insight into the relationships between
+all objects constructed within a package in all languages used, both **R**
+itself and any languages used in `src/` code such as C or C++. The following
+section describes the [`srr`](https://github.com/ropenscilabs/srr) report in
+more detail, and its intended use in assessing compliance with our standards.
+
+
+## Assessment Against Standards
+
+The entire system for peer review of statistical software is based on sets of
+general and category-specific standards given in [Chapter 6 of this
+book](#standards). The process of assessing software against standards is
+facilitated by the [`srr` (**s**oftware **r**eview **r**oclets)
+package](https://github.com/ropenscilabs/srr) which both authors and reviewers
+need to install as shown above.
+
+This package is primarily intended to aid authors in documenting both how and
+where their software complies with each of the relevant general and
+category-specific standards. The function of the package used to aid reviews is
+[`srr_report()`](https://ropenscilabs.github.io/srr/reference/srr_report.html),
+the output of which is linked from the initial package report described above,
+and can also be generated locally by simply running that function within
+a local clone of the package being reviewed. The report contains hyperlinks to
+all places in the code at which each standard is addressed.
+
+Using this report, reviewers must assess their agreement with every statement
+either of compliance with, or non-applicability of, standards as reflected in
+[roclet
 tags](https://ropenscilabs.github.io/srr/articles/srr-stats.html#3-roxygen2-tags)
 of:
 
@@ -77,14 +90,14 @@ of:
 2. `@srrstatsNA` for standards which authors have deemed not to be
    applicable to their software.
 
-
-Each of those two sections will then be divided into sub-sections according to
-where within the repository those standards are reported (generally meaning
-which sub-directory, such as `R/`, `tests`/, or elsewhere). No action need be
-taken on standards with which reviewers agree, whether because software
-complies and has a tag of `@srrstats`, or because a standard is not applicable
-and has a tag of `@srrstatsNA`. Reviewers are only asked to note any standards
-with which they disagree, primarily either because of:
+The
+[`srr_report()`](https://ropenscilabs.github.io/srr/reference/srr_report.html)
+is divided into two main sections containing links to locations in the code
+where these two types of tags are documented. No action need be taken on
+standards with which reviewers agree, whether because software complies and has
+a tag of `@srrstats`, or because a standard is not applicable and has a tag of
+`@srrstatsNA`. Reviewers are only asked to note any standards with which they
+disagree, primarily either because of:
 
 1. Disagreement in standards compliance, where authors have used a tag of
    `@srrstats` but a reviewer judges either the explanation or associated code
@@ -93,29 +106,108 @@ with which they disagree, primarily either because of:
    used a tag of `@srrstatsNA`, but a reviewer believes that standard ought to
    apply to the software.
 
-Please progress through the entire report generated by the [`srr_report()`
-function](https://ropenscilabs.github.io/srr/reference/srr_report.html), and
-note all instances of disagreement, generally grouped into the two categories
-described above.
+The following sub-section describes additional procedures required when
+assessing standards compliance of packages aiming for either
+[silver](#pkgdev-silver) or [gold](#pkgdev-gold) badges. The general `srr`
+procedure is described in the [main package
+vignette](https://ropenscilabs.github.io/srr/articles/srr-stats.html), which
+reviewers are also encouraged to read to familiarise themselves with how the
+[`srr` package](https://ropenscilabs.github.io/srr) is used to document
+compliance with standards. The [main `srr`
+vignette](https://ropenscilabs.github.io/srr/articles/srr-stats.html) includes
+code which can be stepped through to generate an example report.
 
-Note that this initial assessment against standards is intended only to clarify
-and resolve statements of compliance with which reviewers disagree, and in
-particular should be conducted entirely independent of whether or not software
-may be aspiring to silver or gold badges. Additional procedures for those
-latter cases are described below.
 
+### Review for Silver and Gold Badges
 
-### General Package Review
+This system for peer-review of statistical software features badges in three
+categories of **bronze**, **silver**, and **gold**. As described in the
+corresponding [*Guide for Authors*](#pkgdev-badges), a **silver** badge is
+granted to software which complies with more than a minimal set of applicable
+standards, and which extends beyond bronze in least one [notable
+aspect](#pkgdev-silver) while a **gold** badge is granted to software which
+complies with *all* standards which reviewers have deemed potentially
+applicable, and which extends beyond bronze in several notable aspects. These
+[notable aspects](#pkgdev-gold) by which software may fulfil the requirements
+of **silver** or **gold** badges are:
 
-Following assessment of compliance with standards, reviewers should proceed
-with a general descriptive review by following the processes established in
-rOpenSci's general software review system, for which the best source of
-information is provided by [reviews
+- Compliance with a sufficient number of additional standards beyond the
+  minimal number necessary for bronze compliance;
+- Demonstrated excellence in compliance with at least two standards from two
+  distinct sub-sections;
+- Having a demonstrated generality of usage beyond a single use case; or
+- Demonstrated excellence in internal aspects of package design and structure.
+
+The authors will have identified in their initial submission which of these
+aspects they intend to fulfil. For packages which claim to comply with more
+than a minimal number of necessary standards, reviewers must additionally
+consider both which of the standards with which software complies might be
+considered minimally necessary, as well as whether any standards which authors
+have identified as not applicable (through `@ssrstatsNA` tags) could indeed be
+deemed applied. Not all standards may be able to be applied to a given piece of
+software. For example, software designed to accept sparse matrix inputs from
+the [`Matrix`
+package](https://cran.r-project.org/web/packages/Matrix/index.html) will be
+unable to conform with many of the standards for general rectangular input
+forms. 
+
+These three categories of necessary, currently, and potentially applicable
+standards can then be used by reviewers to roughly assess the quantitative
+degree by which compliance exceeds a minimally required level. As stated in the
+[*Guide for Authors*](#pkgdev-silver), the first of these four items may be
+considered to be fulfilled for software which meets at least one quarter of all
+potentially applicable standards beyond those minimally required. A useful
+example of minimally required standards may often be identified as those which
+would be required for the software to meet one specific use case. Any aspects
+of the software which generalise its usage beyond that single use case may be
+considered in the second category of potentially yet not necessarily
+applicable. Judgement of such categorical distinction, and of precise amounts,
+is left to the discretion of reviewers.
+
+Packages aiming for gold badges at the end of review will need to comply with
+all potentially applicable standards, and will also need to fulfil at least
+three of the four aspects listed above, and described in more detail in the
+[*Guide for Authors*](#pkgdev-silver).
+
+### Disagreement with Authors' Intentions
+
+Authors must state on submission the grade of badge they are aiming for.
+Reviewers may subsequently deem a package to be compliant with a different
+grade of badge. The [review template](#pkgrev-template) includes the following
+two items:
+
+- [ ] This package complies with a sufficient number of standards for
+  a (bronze/silver/gold) badge
+- [ ] This grade of badge is the same as what the authors wanted to achieve
+
+The first item is intended to specify the grade of badge (bronze, silver, gold)
+which reflects the reviewer's judgement, and need not necessarily reflect the
+authors intentions. The second item may be checked when a reviewer agrees with
+the authors that a package is indeed sufficient to achieve their desired badge.
+Where reviewers do not agree with authors' beliefs on package package
+compliance, the second item should be left unchecked in the submitted review.
+The editor will then ask authors for their response, and will inform whether
+additional rounds of development and review are necessary to obtain the grade
+of badge desired by the authors.
+
+## General Package Review
+
+From a reviewer's perspective, one of the primary aim of our standards-based
+system is to provide a highly structured system for addressing the technical
+aspects of review, leaving the general review process comparably free of
+technical details, and therefore more able to consider broader aspects of
+package design, functionality, and usage.
+
+Following assessment of compliance with standards, reviewers should accordingly
+proceed with a general descriptive review by following the processes
+established in rOpenSci's general software review system, for which the best
+source of information is provided by [reviews
 themselves](https://github.com/ropensci/software-review/issues), along with the
 [*Guide for Reviewers*](https://devguide.ropensci.org/reviewerguide.html).
-Beyond adherence to standards, we ask reviewers to explicitly consider the
-following aspects, some of which loosely correspond to sub-sections of the
-[*General Standards for Statistical Software*](#general-standards):
+In formulating a general review of statistical software, we ask reviewers to
+explicitly consider the following aspects, some of which loosely correspond to
+sub-sections of the [*General Standards for Statistical
+Software*](#general-standards):
 
 1. **Documentation**: Is the documentation sufficient to enable general use of
    the package beyond one specific use case? Do the various components of
@@ -151,43 +243,17 @@ considerations of algorithmic quality. The [*General Standard*
 implementations to be documented within the software, so reviewers should also
 have access to a list of comparable implementations.
 
-## Review for Silver and Gold Badges
+Most of the above considerations are explicitly included in the reviewers'
+template which follows.
 
-Packages aiming for silver must fulfil at least one of the following four
-aspects described in detail in the [*Guide for Authors*](#pkgdev-silver).
-Silver-grade software should:
+## Review Template {#pkgrev-template}
 
-- Comply with a sufficient number of additional standards beyond the minimal
-  number necessary for bronze compliance;
-- Demonstrate excellence in compliance with at least two standards from two
-  distinct sub-sections;
-- Have a demonstrated generality of usage beyond a single use case; or
-- Demonstrate excellence in internal aspects of package design and structure.
+The following template is to be used for reviews of statistical software. All
+checkbox items should be retained, and checked where appropriate, while other
+lines, notably including questions in the *General Review* section, may be
+modified or removed as appropriate.
 
-Assessing the first of these aspects requires identification of a minimal
-set of necessary standards which with software must comply, as well as separate
-identification of all standards which could potentially be applied, independent
-of actual compliance. Not all standards may be able to be applied to a given
-piece of software. For example, software designed to accept sparse matrix
-inputs from the [`Matrix`
-package](https://cran.r-project.org/web/packages/Matrix/index.html) will be
-unable to conform with many of the standards for general rectangular input
-forms. 
-
-These two categories of minimal and potentially applicable standards can be
-used by reviewers to at least roughly assess the quantitative degree by which
-compliance exceeds a minimally required level. As stated in the [*Guide for
-Authors*](#pkgdev-silver), the first of these four items may be considered to
-be fulfilled for software which meets at least one quarter of all potentially
-applicable standards beyond those minimally required. A useful example of
-minimally required standards may often be identified as those which would be
-required for the software to meet one specific use case. Any aspects of the
-software which generalise its usage beyond that use case may be considered in
-the second category of potentially yet not necessarily applicable. Judgement of
-such categorical distinction, and of precise amounts, is left to the discretion
-of reviewers.
-
-Packages aiming for gold badges at the end of review will need to comply with
-all potentially applicable standards, and will also need to fulfil at least of
-the four aspects listed above, and described in more detail in the [*Guide for
-Authors*](#pkgdev-silver).
+```markdown
+```{r rev-template, eval = !knitr::is_latex_output(), child="templates/review.md"}
+```
+```
