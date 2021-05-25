@@ -101,7 +101,7 @@ standards set by our system.
 
 ### The R Language
 
-```{r cloc-data, echo = FALSE}
+```{r cloc-data, echo = FALSE, cache = FALSE}
 # x <- readRDS("./scripts/cran-cloc-all.Rds")
 # cloc_n <- length(unique(x$package))
 cloc_n <- 15948
@@ -136,12 +136,14 @@ saveRDS(x, "./scripts/cran-cloc.Rds")
 ```
 
 
-```{r languages-table, message = FALSE, echo = FALSE}
+```{r languages-table, message = FALSE, echo = FALSE, cache = FALSE}
 library(dplyr)
 x <- readRDS("./scripts/cran-cloc.Rds") %>%
   select(language, loc) %>%
   mutate(proportion = loc / sum(loc)) %>%
-  rename("lines" = loc)
+  rename("lines" = loc) %>%
+  filter (language != "SUM")
+x$proportion <- x$proportion / sum (x$proportion)
 clines <- sum(x$lines [grep("^C", x$language [1:8])])
 weblines <- sum(x$lines [x$language %in% c("HTML", "JavaScript", "CSS")])
 xf <- mutate(x, lines = format(lines, big.mark = ","))
