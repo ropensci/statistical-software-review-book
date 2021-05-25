@@ -661,9 +661,9 @@ Debian community. (Details can be seen in [this chapter of the Debian
 handbook](https://debian-handbook.info/browse/stable/sect.becoming-package-maintainer.html).)
 
 While the general process for software submission and acceptance in Debian may
-not be of direct relevance, their versioning policy may provide a useful mode.
-The ongoing development of both the Debian system and all associated packages
-proceeds in accordance with a versioned [policy
+not be of direct relevance, their versioning policy provides a useful basis for
+our own versioning system. The ongoing development of both the Debian system
+and all associated packages proceeds in accordance with a versioned [policy
 manual](https://www.debian.org/doc/debian-policy/index.html). All new packages
 must comply to the current standards at the time of submission, and are
 labelled with the latest version of the standards to which they comply, [noting
@@ -680,8 +680,8 @@ previous versions. As long as software continues to pass all tests, upgrading
 to current standards remains optional. Failing tests in response to any
 upgrading of standards serve as a trigger for review of software. The nominated
 standards version may only be updated once review has confirmed compliance with
-current standards. We propose to adapt some of these aspects of the Debian
-system in the present project, as described below.
+current standards. The present project adapts some of these aspects of the
+Debian system, as described below.
 
 ### Other Potential Models
 
