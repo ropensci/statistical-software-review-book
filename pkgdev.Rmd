@@ -29,9 +29,9 @@ As described in the [Overview](#overview-scope), packages are generally
 considered in scope if they fit one or more of the [categories listed
 there](#overview-categories). Prior to submission, authors must choose one
 or more of these categories, and document how their software aligns with the
-corresponding standards given in [Chapter 6](#standards). Any software which
-can be aligned with one or more sets of category-specific standards will by
-definition be considered in scope.
+corresponding standards given in [Chapter 6](#standards), as [described
+below](#pkgdev-srr). Any software which can be aligned with one or more sets of
+category-specific standards will by definition be considered in scope.
 
 Authors are encouraged to contact us at any point prior to, or during,
 development, to ask about whether a package might be in scope, or which
@@ -46,6 +46,30 @@ checked) is likely to fit within that category. Once you have determined that
 your package is likely to fit into one or more of our in-scope categories,
 you'll need to apply our two primary development tools described in the
 following two sub-sections.
+
+## The [`pkgcheck` package](https://github.com/ropenscilabs/pkgcheck)
+
+The [`pkgcheck` package](https://github.com/ropenscilabs/pkgcheck) can be used
+to confirm whether software is ready for submission or not. The checks
+implemented within this package are also automatically run upon submission, and
+it up to authors to ensure that their package successfully passes all checks
+prior to initial submission. Packages may only be submitted once the main
+[`pkgcheck()`
+function](hThe://ropenscilabs.github.io/pkgcheck/reference/pkgcheck.html)
+indicates such. This function accepts a single argument of the local path to
+the package being checked, and returns a detailed list of checks and associated
+results. The return object has an associated `summary` method which prints
+a formatted result to the console indicating whether a package is ready for
+submission or not. See the main [package
+website](https://github.com/ropenscilabs/pkgcheck) for more details.
+
+The [`pkgcheck()`
+function](hThe://ropenscilabs.github.io/pkgcheck/reference/pkgcheck.html) is
+also applied to all packages upon initial submission, in response to which our
+`ropensci-review-bot` will print the results in the issue. In the unlikely
+circumstances that a package is unable to pass particular checks, explanations
+should be given upon submission about why those checks fail, and why review may
+proceed in spite of such failures.
 
 ## The [`autotest` package](https://github.com/ropenscilabs/autotest) {#pkgdev-autotest}
 
@@ -181,13 +205,22 @@ to aid package alignment with standards are:
    summary report with hyperlinks to locations within your code at which all
    standards are placed.
 
-Packages may only be submitted once the [`srr_stats_pre_submit()`
+The output of both of these functions are included in the result of the
+[`pkgcheck()`
+function](hThe://ropenscilabs.github.io/pkgcheck/reference/pkgcheck.html), both
+when run locally, and as run upon initial package submission.  The
+[`srr_stats_pre_submit()`
 function](https://ropenscilabs.github.io/srr/reference/srr_stats_pre_submit.html)
-confirms that,
+can be used locally to confirm that,
 
 ```{r pre-submit-success, echo = FALSE}
-cli::cli_alert_success ("This package is ready to submit!")
+cli::cli_alert_success ("All applicable standards have been documented in this package")
 ```
+
+while the result of the [`srr_report()`
+function](https://ropenscilabs.github.io/srr/reference/srr_report.html) may be
+accessed through the link given in the `pkgcheck` output, or it can be viewed
+by calling that function directly.
 
 
 ## Gold, Silver, and Bronze Badges {#pkgdev-badges}
