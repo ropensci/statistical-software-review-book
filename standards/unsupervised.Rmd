@@ -136,7 +136,7 @@ head (hc$labels)
 An example of a function according with UL1.3 is
 [`stats::cutree()`](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/cutree.html)
 
-```{r}
+```{r clust-tree}
 hc <- hclust (dist (USArrests))
 head (cutree (hc, 10))
 ```
@@ -144,7 +144,7 @@ The row names of `USArrests` are transferred to the output object. In contrast,
 some routines from the [`cluster`
 package](https://cran.r-project.org/package=cluster) do not comply with this standard:
 
-```{r}
+```{r agnes}
 library (cluster)
 ac <- agnes (USArrests) # agglomerative nesting
 head (cutree (ac, 10))
@@ -316,7 +316,7 @@ function](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/cutree.html),
 however, does yield defined numbers of clusters, yet devoid of any quantitative
 information on variances or equivalent.
 
-```{r}
+```{r tree-str}
 res <- hclust (dist (USArrests))
 str (cutree (res, k = 5))
 ```
@@ -325,7 +325,7 @@ Compare that with the output of a largely equivalent routine, the [`clara()`
 function](https://stat.ethz.ch/R-manual/R-devel/library/cluster/html/clara.html)
 from the [`cluster` package](https://cran.r-project.org/package=cluster).
 
-```{r}
+```{r clara}
 library (cluster)
 cl <- clara (USArrests, k = 10) # direct clustering into specified number of clusters
 cl$clusinfo
