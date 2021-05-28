@@ -1,0 +1,40 @@
+
+script to generate `pkgcheck-ex.md`:
+
+```{r}
+library (srr)
+library (pkgcheck)
+path <- srr::srr_stats_pkg_skeleton ()
+srr_stats_roxygen (category = "regression",
+                   filename = file.path (path, "R", "srr-standards.R"))
+check <- pkgcheck (path)
+md <- checks_to_markdown (check, render = FALSE)
+md <- gsub ("\\:heavy\\_check\\_mark\\:", "&#9989;", md)
+md <- gsub ("\\:heavy\\_multiplication\\_x\\:", "&#10060;", md)
+
+# remove main title:
+md <- md [-grep ("^## Checks for", md)]
+# change all 2nd and 3rd-level headers to bold:
+index <- grep ("^##", md)
+md [index] <- paste0 (gsub ("^##+\\s+", "**", md [index]), "**")
+# and update git hash line:
+index <- grep ("^git hash", md)
+md [index] <- "git hash: (Not a git repository)"
+
+# replace URLs with GitHub versions:
+index <- grep ("demo\\_srr.*\\.html", md)
+g <- regexpr("\\(([^()]*)\\)", md [index])
+url_old <- regmatches (md [index], g)
+url_new <- "https://ropenscilabs.github.io/roreviewapi/static/demo_srr77dfe392.html"
+md [index] <- gsub (url_old, url_new, md [index])
+
+index <- grep ("demo\\_pkgstats.*\\.html", md)
+g <- regexpr("\\(([^()]*)\\)", md [index])
+url_old <- regmatches (md [index], g)
+url_new <- "https://ropenscilabs.github.io/roreviewapi/static/demo_pkgstats77dfe392.html"
+md [index] <- gsub (url_old, url_new, md [index])
+
+writeLines (md, file.path (here::here (),
+                           "scripts",
+                           "pkgcheck-ex.md"))
+```
