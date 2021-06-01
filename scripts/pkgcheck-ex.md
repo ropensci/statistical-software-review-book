@@ -49,8 +49,8 @@ The package has:
 - no  vignette
 - no internal data file
 - 1 imported package
-- no exported function
-- 4 non-exported functions in R (median 3 lines of code)
+- 1 exported function (median 3 lines of code)
+- 3 non-exported functions in R (median 3 lines of code)
 - 3 C++ functions (median 4 lines of code)
 
 ---
@@ -74,13 +74,14 @@ The final measure (`fn_call_network_size`) is the total number of calls between 
 |loc_tests            |     6|        4.2|TRUE       |
 |num_vignettes        |     0|        0.0|TRUE       |
 |n_fns_r              |     4|        0.5|TRUE       |
-|n_fns_r_exported     |     0|        0.0|TRUE       |
-|n_fns_r_not_exported |     4|        2.6|TRUE       |
+|n_fns_r_exported     |     1|        1.0|TRUE       |
+|n_fns_r_not_exported |     3|        1.1|TRUE       |
 |n_fns_src            |     3|       77.0|           |
 |n_fns_per_file_r     |     1|        0.0|TRUE       |
 |n_fns_per_file_src   |     2|        6.7|           |
 |num_params_per_fn    |     0|        0.0|TRUE       |
 |loc_per_fn_r         |     3|        2.3|TRUE       |
+|loc_per_fn_r_exp     |     3|        1.4|TRUE       |
 |loc_per_fn_r_not_exp |     3|        4.0|TRUE       |
 |loc_per_fn_src       |     4|        1.8|TRUE       |
 |fn_call_network_size |     1|        0.3|TRUE       |
@@ -110,10 +111,17 @@ Interactive network visualisation of calls between objects in package can be vie
 
 **R CMD check**
 
+R CMD check generated the following note:
+
+1. checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: ‘Rcpp’
+  All declared Imports should be used.
+
 R CMD check generated the following check_fails:
 
 1. description_url
 2. description_bugreports
+3. rcmdcheck_imports_not_imported_from
 
 **Test Coverage**
 

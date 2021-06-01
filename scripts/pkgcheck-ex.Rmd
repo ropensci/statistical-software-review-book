@@ -5,6 +5,7 @@ script to generate `pkgcheck-ex.md`:
 library (srr)
 library (pkgcheck)
 path <- srr::srr_stats_pkg_skeleton ()
+roxygen2::roxygenise (path) # important!
 srr_stats_roxygen (category = "regression",
                    filename = file.path (path, "R", "srr-standards.R"))
 check <- pkgcheck (path)
