@@ -15,6 +15,8 @@ with additional statistical standards inserted with the
 [`srr::srr_stats_roxygen()`
 function](https://ropenscilabs.github.io/srr/reference/srr_stats_roxygen.html).
 
+An example report can be seen by [clicking
+here](https://github.com/ropenscilabs/statistical-software-review-book/blob/main/scripts/pkgcheck-ex.md).
 A similar report can be reproduced locally with these lines:
 
 ```{r pkgcheck-code, eval = FALSE, echo = TRUE}
@@ -27,13 +29,6 @@ check <- pkgcheck (path)
 md <- checks_to_markdown (check, render = TRUE)
 ```
 
----
-
-
-```{r pkgcheck-ex, child = "scripts/pkgcheck-ex.md", eval = TRUE, echo = TRUE}
-```
-
----
 
 
 ## Editor-in-Chief
@@ -42,7 +37,7 @@ As for rOpenSci's current peer-review system, packages are submitted directly
 to the [`ropensci/software-review`
 repository](https://github.com/ropensci/software-review) on GitHub, with
 submissions handled initially by the rotating Editor-in-Chief (EiC).
-Statistical software is nevertheless handled differently from the first moment
+Statistical software is nevertheless handled differently to standard (non-statistical) packages from the first moment
 of submission. Statistical submissions use a different template, the submission
 of which automatically generates a detailed report from our
 `ropensci-review-bot` that indicates whether a submission may proceed, based on
