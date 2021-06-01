@@ -27,9 +27,11 @@ Imports:
     rvest,
     visNetwork
 Suggests:
-    htmltools
+    htmltools,
+    rlang
 Remotes: 
     r-lib/downlit,
+    r-lib/rlang,
     rstudio/bslib,
     rstudio/htmltools
 Encoding: UTF-8
