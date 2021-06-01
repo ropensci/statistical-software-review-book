@@ -39,7 +39,7 @@ This package is in the following category:
 This package features some noteworthy statistical properties which may need to be clarified by a handling editor prior to progressing.
 
 <details>
-<summary>click to see</summary>
+<summary>Details of statistical properties (click to open)</summary>
 <p>
 
 The package has:
@@ -91,14 +91,14 @@ The final measure (`fn_call_network_size`) is the total number of calls between 
 
 **2a. Network visualisation**
 
-[Click here](https://ropenscilabs.github.io/roreviewapi/static/demo_pkgstats77dfe392.html) for interactive network visualisation of calls between objects in package.
+Interactive network visualisation of calls between objects in package can be viewed by [clicking here](https://ropenscilabs.github.io/roreviewapi/static/demo_pkgstats77dfe392.html)
 
 ---
 
 **3. `goodpractice` and other checks**
 
 <details>
-<summary>click to see</summary>
+<summary>Details of goodpractice and other checks (click to open)</summary>
 <p>
 
 
@@ -140,7 +140,7 @@ src/cpptest.cpp | 0%
 |package  |version   |
 |:--------|:---------|
 |pkgstats |0.0.0.135 |
-|pkgcheck |0.0.1.321 |
+|pkgcheck |0.0.1.322 |
 |srr      |0.0.1.75  |
 
 </p>
