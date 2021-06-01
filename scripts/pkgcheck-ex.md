@@ -1,4 +1,9 @@
 
+<details>
+<summary>Click here to see example package check</summary>
+<p>
+
+
 git hash: (Not a git repository)
 
 - &#9989; Package uses 'roxygen2'
@@ -142,6 +147,9 @@ src/cpptest.cpp | 0%
 |pkgstats |0.0.0.135 |
 |pkgcheck |0.0.1.321 |
 |srr      |0.0.1.75  |
+
+</p>
+</details>
 
 </p>
 </details>
