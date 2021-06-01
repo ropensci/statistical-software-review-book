@@ -6,9 +6,15 @@ on:
 name: Render-Book-from-main
 
 jobs:
+
   bookdown:
+
     name: Render-Book
+
     runs-on: macOS-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
     if: "!(contains(github.event.head_commit.message, 'ci skip')||contains(github.event.head_commit.message, 'skip ci'))"
     steps:
 
@@ -18,23 +24,19 @@ jobs:
       - name: Setup R
         uses: r-lib/actions/setup-r@v1
 
-      - name: Setup pandoc
-        uses: r-lib/actions/setup-pandoc@v1
+      - name: Install pandoc
+        run: |
+          brew install pandoc
 
-      - name: Query dependencies
-        run:
-          Rscript -e "install.packages('remotes')" -e "saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds', version = 2)"
-
-      - name: Cache R packages
-        uses: actions/cache@v1
+      - name: Cache DESC dependencies
+        uses: actions/cache@v2
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ hashFiles('depends.Rds') }}
-          restore-keys: ${{ runner.os }}-r-
+          key: r-${{ hashFiles('DESCRIPTION') }}
+          restore-keys: r-
 
       - name: Install dependencies
-        run:
-          Rscript -e "library(remotes)" -e "deps <- readRDS('depends.Rds')" -e "deps[['installed']] <- vapply(deps[['package']], remotes:::local_sha, character(1))" -e "update(deps)"
+        run: Rscript -e 'install.packages("remotes")' -e 'remotes::install_deps(dependencies = TRUE)'
 
       - name: Render Book html
         run: Rscript -e 'bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook")'
