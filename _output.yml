@@ -1,4 +1,4 @@
-bookdown::gitbook:
+bookdown::bs4_book:
     #fig_caption: false
   css: style.css
   split_by: chapter
