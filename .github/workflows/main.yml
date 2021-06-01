@@ -6,17 +6,15 @@ on:
 name: Render-Book-from-main
 
 jobs:
-
   bookdown:
-
     name: Render-Book
-
-    runs-on: macOS-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
+    runs-on: ubuntu-latest
     if: "!(contains(github.event.head_commit.message, 'ci skip')||contains(github.event.head_commit.message, 'skip ci'))"
     steps:
+      - name: Install libcurl
+        run: |
+          sudo apt-get update
+          sudo apt-get install libcurl4-openssl-dev
 
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -24,19 +22,23 @@ jobs:
       - name: Setup R
         uses: r-lib/actions/setup-r@v1
 
-      - name: Install pandoc
-        run: |
-          brew install pandoc
+      - name: Setup pandoc
+        uses: r-lib/actions/setup-pandoc@v1
 
-      - name: Cache DESC dependencies
-        uses: actions/cache@v2
+      - name: Query dependencies
+        run:
+          Rscript -e "install.packages('remotes')" -e "saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds', version = 2)"
+
+      - name: Cache R packages
+        uses: actions/cache@v1
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: r-${{ hashFiles('DESCRIPTION') }}
-          restore-keys: r-
+          key: ${{ runner.os }}-r-${{ hashFiles('depends.Rds') }}
+          restore-keys: ${{ runner.os }}-r-
 
       - name: Install dependencies
-        run: Rscript -e 'install.packages("remotes")' -e 'remotes::install_deps(dependencies = TRUE)'
+        run:
+          Rscript -e "library(remotes)" -e "deps <- readRDS('depends.Rds')" -e "deps[['installed']] <- vapply(deps[['package']], remotes:::local_sha, character(1))" -e "update(deps)"
 
       - name: Render Book html
         run: Rscript -e 'bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook")'
