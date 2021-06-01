@@ -88,6 +88,7 @@ The final measure (`fn_call_network_size`) is the total number of calls between 
 ---
 </p></details>
 
+
 **2a. Network visualisation**
 
 [Click here](https://ropenscilabs.github.io/roreviewapi/static/demo_pkgstats77dfe392.html) for interactive network visualisation of calls between objects in package.
@@ -139,8 +140,8 @@ src/cpptest.cpp | 0%
 |package  |version   |
 |:--------|:---------|
 |pkgstats |0.0.0.135 |
-|pkgcheck |0.0.1.320 |
-|srr      |0.0.1.74  |
+|pkgcheck |0.0.1.321 |
+|srr      |0.0.1.75  |
 
 </p>
 </details>
