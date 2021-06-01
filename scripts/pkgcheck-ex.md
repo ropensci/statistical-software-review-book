@@ -63,28 +63,33 @@ The following terminology is used:
 
 The final measure (`fn_call_network_size`) is the total number of calls between functions (in R), or more abstract relationships between code objects in other languages. Values are flagged as "noteworthy" when they lie in the upper or lower 5th percentile.
 
-|measure              | value| percentile|noteworthy |
-|:--------------------|-----:|----------:|:----------|
-|files_R              |     5|       29.8|           |
-|files_src            |     2|       77.4|           |
-|files_vignettes      |     0|        0.0|TRUE       |
-|files_tests          |     2|       64.1|           |
-|loc_R                |    12|        0.5|TRUE       |
-|loc_src              |    22|        0.3|TRUE       |
-|loc_tests            |     6|        4.2|TRUE       |
-|num_vignettes        |     0|        0.0|TRUE       |
-|n_fns_r              |     4|        0.5|TRUE       |
-|n_fns_r_exported     |     1|        1.0|TRUE       |
-|n_fns_r_not_exported |     3|        1.1|TRUE       |
-|n_fns_src            |     3|       77.0|           |
-|n_fns_per_file_r     |     1|        0.0|TRUE       |
-|n_fns_per_file_src   |     2|        6.7|           |
-|num_params_per_fn    |     0|        0.0|TRUE       |
-|loc_per_fn_r         |     3|        2.3|TRUE       |
-|loc_per_fn_r_exp     |     3|        1.4|TRUE       |
-|loc_per_fn_r_not_exp |     3|        4.0|TRUE       |
-|loc_per_fn_src       |     4|        1.8|TRUE       |
-|fn_call_network_size |     1|        0.3|TRUE       |
+|measure                 | value| percentile|noteworthy |
+|:-----------------------|-----:|----------:|:----------|
+|files_R                 |     5|       29.8|           |
+|files_src               |     2|       77.4|           |
+|files_vignettes         |     0|        0.0|TRUE       |
+|files_tests             |     2|       64.1|           |
+|loc_R                   |    12|        0.5|TRUE       |
+|loc_src                 |    22|        0.3|TRUE       |
+|loc_tests               |     6|        4.2|TRUE       |
+|blank_lines_R           |     5|        3.5|TRUE       |
+|blank_lines_src         |     6|       76.5|           |
+|blank_lines_tests       |     1|       61.0|           |
+|num_vignettes           |     0|        0.0|TRUE       |
+|n_fns_r                 |     4|        0.5|TRUE       |
+|n_fns_r_exported        |     1|        1.0|TRUE       |
+|n_fns_r_not_exported    |     3|        1.1|TRUE       |
+|n_fns_src               |     3|       77.0|           |
+|n_fns_per_file_r        |     1|        0.0|TRUE       |
+|n_fns_per_file_src      |     2|        6.7|           |
+|num_params_per_fn       |     0|        0.0|TRUE       |
+|loc_per_fn_r            |     3|        2.3|TRUE       |
+|loc_per_fn_r_exp        |     3|        1.4|TRUE       |
+|loc_per_fn_r_not_exp    |     3|        4.0|TRUE       |
+|loc_per_fn_src          |     4|        1.8|TRUE       |
+|doclines_per_fn_exp     |     6|        0.7|TRUE       |
+|doclines_per_fn_not_exp |     0|        0.0|TRUE       |
+|fn_call_network_size    |     1|        0.3|TRUE       |
 
 ---
 </p></details>
@@ -148,7 +153,7 @@ src/cpptest.cpp | 0%
 |package  |version   |
 |:--------|:---------|
 |pkgstats |0.0.0.135 |
-|pkgcheck |0.0.1.322 |
+|pkgcheck |0.0.1.323 |
 |srr      |0.0.1.75  |
 
 </p>
