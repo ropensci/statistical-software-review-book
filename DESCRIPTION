@@ -16,7 +16,9 @@ Description: Documentation of rOpenSci's project on expanding software
 License: MIT + file LICENSE
 Imports: 
     bookdown,
+    bslib,
     cli,
+    downlit,
     dplyr,
     ggplot2,
     here,
