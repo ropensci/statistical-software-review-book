@@ -15,9 +15,13 @@ with additional statistical standards inserted with the
 [`srr::srr_stats_roxygen()`
 function](https://ropenscilabs.github.io/srr/reference/srr_stats_roxygen.html).
 
-An example report can be seen by [clicking
+All editors must familiarise themselves with the structure and contents of
+these automated reports, an example of which can be seen by [clicking
 here](https://github.com/ropenscilabs/statistical-software-review-book/blob/main/scripts/pkgcheck-ex.md).
-A similar report can be reproduced locally with these lines:
+A similar report can be reproduced locally by running the code within the following sub-section.
+<details>
+<summary>Package report code here (click to see).</summary>
+<p>
 
 ```{r pkgcheck-code, eval = FALSE, echo = TRUE}
 library (srr)
@@ -28,6 +32,9 @@ srr_stats_roxygen (category = "regression",
 check <- pkgcheck (path)
 md <- checks_to_markdown (check, render = TRUE)
 ```
+
+</p>
+</details>
 
 
 
