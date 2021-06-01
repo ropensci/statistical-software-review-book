@@ -34,18 +34,6 @@ url_old <- regmatches (md [index], g)
 url_new <- "https://ropenscilabs.github.io/roreviewapi/static/demo_pkgstats77dfe392.html"
 md [index] <- gsub (url_old, url_new, md [index])
 
-# Then embed these details in final higher-level details section:
-md <- c ("",
-         "<details>",
-         "<summary>Click here to see example package check</summary>",
-         "<p>",
-         "",
-         md,
-         "",
-         "</p>",
-         "</details>",
-         "")
-
 writeLines (md, file.path (here::here (),
                            "scripts",
                            "pkgcheck-ex.md"))
