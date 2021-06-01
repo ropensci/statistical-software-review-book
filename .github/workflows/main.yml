@@ -28,7 +28,7 @@ jobs:
       - name: Setup tinytex
         uses: r-lib/actions/setup-tinytex@v1
 
-      - name: Cache R packages
+      - name: Cache from DESC
         uses: actions/cache@v2
         with:
           path: ${{ env.R_LIBS_USER }}
