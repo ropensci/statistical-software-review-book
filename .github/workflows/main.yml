@@ -24,21 +24,17 @@ jobs:
       - name: Setup pandoc
         uses: r-lib/actions/setup-pandoc@v1
 
-      - name: Query dependencies
-        run:
-          Rscript -e "install.packages('remotes')" -e "saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds', version = 2)"
+          #- name: Query dependencies
+          #run:
+          #Rscript -e "install.packages('remotes')" -e "saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds', version = 2)"
 
       - name: Cache R packages
         uses: actions/cache@v1
         with:
           path: ${{ env.R_LIBS_USER }}
-            #key: ${{ runner.os }}-r-${{ hashFiles('depends.Rds') }}
-          key: ${{ runner.os }}-r-${{ hashFiles('DESCRIPTION') }}
-          restore-keys: ${{ runner.os }}-r-
+          key: r-${{ hashFiles('DESCRIPTION') }}
+          restore-keys: r-
 
-      #- name: Install dependencies
-      # run:
-      #   Rscript -e "library(remotes)" -e "deps <- readRDS('depends.Rds')" -e "deps[['installed']] <- vapply(deps[['package']], remotes:::local_sha, character(1))" -e "update(deps)"
       - name: Install dependencies
         run: Rscript -e 'install.packages("remotes")' -e 'remotes::install_deps(dependencies = TRUE)'
 
