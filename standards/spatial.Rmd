@@ -325,26 +325,27 @@ A definition of broadcasting is given at the end of the introduction to
 corresponding [Machine Learning Standards](#ml-standards), just
 above *Input Data Specification*.
 
-- **SP3.6** *Spatial machine learning software should ensure that test and
-  training data are generated using sampling procedures appropriate to the
-  domain or intended use of that software.*
-    - **SP3.6a** *The effects of generating test and training data using
-      inappropriate sampling procedures should be documented and/or tested.*
+- **SP3.6** *Spatial machine learning software should document (and, where
+  possible, test) the potential effects of different sampling procedures*
 
-We note that there are no comparable *General Standard* for [*Machine Learning
-Software*](#ml-standards), but that such distinction is particularly important
-for spatial machine learning software because it is frequently inappropriate to
-distinguish test and training data by taking samples from the same spatial
-region. One common method employed to generate distinct test and training data
-is spatial partitioning
+A simple example might be to provide examples or extended documentation which
+compares the effects of sampling both test and training data from the same
+spatial region versus sampling them from distinct regions. Although there are
+no comparable *General Standard* for [*Machine Learning
+Software*](#ml-standards), procedures for sampling spatial data may have
+particularly pronounced effects on results, and this standard attempts to
+foster a "best practice" of documenting how such effects may arise with a given
+piece of software.
+
+A more concrete example may be to demonstrate a particular technique for
+generating distinct test and training data such as spatial partitioning
 [@muenchow_chapter_nodate;@brenning_spatial_2012;@schratz_hyperparameter_2019;@valavi_blockcv_2019].
 There may nevertheless be cases in which such sampling from a common
 spatial region is appropriate, for example for software intended to analyse or
 model temporally-structured spatial data for which a more appropriate
 distinction might be temporal rather than spatial. Adherence to this standard
-merely requires that the distinction between test and training data be
-explicitly considered and documented (and possibly tested as well).
-
+merely requires that the potential for any such confounding effects be
+explicitly documented (and possibly tested as well).
 
       
 ### Return Results
