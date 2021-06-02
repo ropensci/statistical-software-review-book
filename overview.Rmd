@@ -31,28 +31,24 @@ we are currently able to consider, and provides a brief overview of the
 structure and purpose of this book. It consists of the following sections:
 
 - **[Motivation: Why a separate system for statistical
-  software?](#motivation)** in which we explain the necessity and advantages of
+  software?](#overview-motivation)** in which we explain the necessity and advantages of
   having statistical software developed according to concretes sets of explicit
   standards.
 
-- **[Scope of Statistical Software Review](#scope)** in which we summarise our
-  working definition of "statistical software", and the scope of software
-  currently able to be considered under the project.
+- **[Scope of Statistical Software Review](#overview-scope)** in which we
+  summarise our working definition of "statistical software", and the scope of
+  software currently able to be considered under the project. This scope is
+  based on explicit categories of statistical software, each of which is also
+  briefly described.
 
-- **[Standards for Statistical Software](#standards)** in which we briefly
-  describe the sets of standards to which statistical software will be expected
-  to adhere.
+- **[Prior Art](#overview-prior-art)** in which we briefly describe a few
+  comparable systems for assessing and standardising software.
 
-- **[Assessment and Peer Review Processes](#process)** in which we describe how
-  submitting authors will be expected to assess their software prior to
-  submission, and how reviewers will be expected to assess submissions.
-
-- **[Outcomes](#outcomes)** in which we describe outcomes of our review
-  process, particular what submitting software developers can expect from our
-  review process.
+- **[Use of this Book](#overview-use-of-book)** in which we describe how this
+  book is intended to be read and used in practice.
 
 
-## Project Motivation
+## Project Motivation {#overview-motivation}
 
 The official description of R declares it to be a ["software environment for
 statistical computing and graphics"](https://www.r-project.org/), yet rOpenSci
@@ -64,9 +60,10 @@ system to include statistical software.
 
 In doing so, the project also offered an opportunity to reconsider and
 potentially improve aspects of rOpenSci's current system for peer review, which
-has operated for five years, and has reviewed over >200 packages, primarily in
-areas of data life cycle management. The form of these packages continues to be
-strongly influenced by the *Dev Guide*, which presents sets of
+had operated for five years by the time this project began, and had already
+reviewed over >200 packages, primarily in areas of data life cycle management.
+The form of these packages continues to be strongly influenced by the *Dev
+Guide*, which presents sets of
 ["guidelines"](https://devguide.ropensci.org/building.html) which packages are
 expected to "meet". These guidelines are nevertheless necessarily general, and
 were largely developed in ongoing response to successive developments in
@@ -91,10 +88,9 @@ used in such trials must be ["validated"](https://pharmar.org/overview/),
 generally through a process of identifying any [risks associated with using
 that software](https://github.com/pharmaR/risk_assessment). In such contexts,
 our system fosters confidence in the use of software assessed according to our
-standards. For developers, the system provides a "badge" able to be used to
-identify and publicise the assessment of their software as meeting the
-standards set by our system.
-
+standards. For developers, the system provides a system of graded "badges" able
+to be used to identify and publicise the assessment of their software as
+meeting or exceeding the standards set by our system.
 
 
 ## Scope of Statistical Software Review {#overview-scope}
@@ -611,7 +607,7 @@ performance scoring, model comparison), that can be evaluated for correctness
 or accuracy.  
 
 
-## Prior Art
+## Prior Art {#overview-prior-art}
 
 
 ### rOpenSci
@@ -694,7 +690,7 @@ Badges are graded (passing/silver/gold), and awarded by package authors
 self-certifying that they have implemented items on a checklist. 
 
 
-## Use of this Book
+## Use of this Book {#overview-use-of-book}
 
 This book is primarily intended to be used by the two primary audiences of
 *software developers* and *reviewers*. As mentioned above, it is also intended
