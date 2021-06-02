@@ -95,6 +95,7 @@ Group](https://www.r-consortium.org/projects/isc-working-groups).
 
 
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -136,6 +137,10 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=richfitz">richfitz</a>
 </td>
+</tr>
+
+
+<tr>
 <td align="center">
 <a href="https://github.com/elong0527">
 <img src="https://avatars.githubusercontent.com/u/465246?v=4" width="100px;" alt=""/>
@@ -148,10 +153,6 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=Pakillo">Pakillo</a>
 </td>
-</tr>
-
-
-<tr>
 <td align="center">
 <a href="https://github.com/briatte">
 <img src="https://avatars.githubusercontent.com/u/322533?v=4" width="100px;" alt=""/>
@@ -185,6 +186,12 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <img src="https://avatars.githubusercontent.com/u/11330453?u=6eb9f03fe4cc5a2a67633252acda215b113234be&v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropenscilabs/statistical-software-review-book/issues?q=is%3Aissue+author%3AIndrajeetPatil">IndrajeetPatil</a>
+</td>
+<td align="center">
+<a href="https://github.com/jsta">
+<img src="https://avatars.githubusercontent.com/u/7844578?u=a37c1879ee6da8d66d2cf6f7b79d08bcb837cbea&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropenscilabs/statistical-software-review-book/issues?q=is%3Aissue+author%3Ajsta">jsta</a>
 </td>
 </tr>
 
