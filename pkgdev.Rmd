@@ -18,7 +18,8 @@ tool](https://github.com/ropenscilabs/autotest), which is intended to be used
 through the entire process of package development. The third sub-section
 describes how to align software with our [general and category-specific
 standards](#standards) for statistical software, and the final sub-section
-describes the final step of badging and preparing a "*Life Cycle Statement*". 
+describes the final step of specifying which grade of badge authors are aiming
+for.
 
 
 ## Scope
@@ -29,9 +30,10 @@ As described in the [Overview](#overview-scope), packages are generally
 considered in scope if they fit one or more of the [categories listed
 there](#overview-categories). Prior to submission, authors must choose one
 or more of these categories, and document how their software aligns with the
-corresponding standards given in [Chapter 6](#standards), as [described
-below](#pkgdev-srr). Any software which can be aligned with one or more sets of
-category-specific standards will by definition be considered in scope.
+corresponding standards given in [Chapter 6](#standards), according to the
+procedures [described below](#pkgdev-srr). Any software which can be aligned
+with one or more sets of category-specific standards will by definition be
+considered in scope.
 
 Authors are encouraged to contact us at any point prior to, or during,
 development, to ask about whether a package might be in scope, or which
@@ -44,7 +46,7 @@ package for which a large number of standards from a particular category may be
 considered applicable (regardless of whether or not they would actually be
 checked) is likely to fit within that category. Once you have determined that
 your package is likely to fit into one or more of our in-scope categories,
-you'll need to apply our two primary development tools described in the
+you'll need to apply our three primary development tools described in the
 following two sub-sections.
 
 ## The [`pkgcheck` package](https://github.com/ropenscilabs/pkgcheck)
@@ -55,9 +57,13 @@ implemented within this package are also automatically run upon submission, and
 packages are expected to successfully pass all checks prior to initial
 submission. Packages may only be submitted once the main [`pkgcheck()`
 function](hThe://ropenscilabs.github.io/pkgcheck/reference/pkgcheck.html)
-indicates such. This function accepts a single argument of the local path to
+indicates such, through clearly stating,
+
+> *This package may be submitted*
+
+This function accepts a single argument of the local path to
 the package being checked, and returns a detailed list of checks and associated
-results. The return object has an `summary` method which prints a formatted
+results. The return object has a `summary` method which prints a formatted
 result to the console indicating whether a package is ready for
 submission or not. See the main [package
 website](https://github.com/ropenscilabs/pkgcheck) for more details.
@@ -139,7 +145,7 @@ returns clean (`NULL`) results when the package is first submitted.
 Once a package has been sufficiently developed to begin alignment with our
 standards, and once all issues revealed by
 [`autotest`](https://ropenscilabs.github.io/autotest/) have been addressed,
-authors will need to use our second tool, the [`ssr` (**s**oftware
+authors will need to use our third tool, the [`ssr` (**s**oftware
 **r**eveiw **r**oclets) package](https://ropenscilabs.github.io/srr/) to insert
 both general and category-specific standards into their code, and to begin the
 process of documenting within the code itself how and where the code adheres to
