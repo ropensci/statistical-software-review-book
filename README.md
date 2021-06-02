@@ -1,4 +1,4 @@
-# Source of rOpenSci Expanding Software Peer Review
+# rOpenSci Expanding Software Peer Review
 
 <!-- badges: start -->
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
@@ -6,31 +6,29 @@
 <!-- badges: end -->
 
 This is the source repository for rOpenSci's Statistical Software Peer Review
-project.  It is organized as a git book at <https://ropenscilabs.github.io/statistical-software-review-book/>
+book, which can be viewed at
+<https://ropenscilabs.github.io/statistical-software-review-book>. This book is
+an extension of [rOpenSci Packages: Development, Maintenance, and Peer
+Review](https://devguide.ropensci.org/) book, documenting our guidelines and
+procedures for peer review of statistical software.
 
-rOpenSci runs software peer review for R packages focused on data lifecycle management.
-To apply these processes to software implementing statistical methods and algorithms,
-we need new ways of evaluating and testing software, and managing the review
-process. This book serves as a home for collecting research and developing
-those standards. As the book develops, it book will become an extension of
-[rOpenSci Packages: Development, Maintenance, and Peer Review](https://devguide.ropensci.org/),
-documenting not only our guidelines for statistical software but also the process
-of expanding the scope of review so it may be reproduced in other domains.
+You are invited to contribute to this project by filing suggestions as [issues
+in the book's GitHub
+repository](https://github.com/ropenscilabs/statistical-software-review-book/issues).
+We also have a dedicated [area for discussion on the rOpenSci
+forum](https://discuss.ropensci.org/c/statistical-software-peer-review/28).
 
-You are invited to contribute to this project by filing suggestions as
-[issues in the book's GitHub repository](https://github.com/ropenscilabs/statistical-software-review-book/issues).
-We also have a dedicated [area for discussion on the rOpenSci forum](https://discuss.ropensci.org/c/statistical-software-peer-review/28).
-
-For this project we are lucky to have support of a great steering committee.  The
-committee's role is to help us with outreach to statistical communities, vetting
-community input and prioritizing our work. They are:
+For this project we are lucky to have support of a great editorial committee,
+the members of which guide the editorial process, help with outreach to
+statistical communities, vet community input, and prioritize future
+development. The editorial committee members are:
 
 -   [Ben Bolker](https://ms.mcmaster.ca/~bolker/) ([\@bolkerb](https://twitter.com/bolkerb)) McMaster University, Canada
 -   [Rebecca Killick](http://www.lancs.ac.uk/~killick/), Lancaster University, UK
 -   [Stephanie Hicks](https://www.stephaniehicks.com/) ([\@stephaniehicks](https://twitter.com/stephaniehicks)), Johns Hopkins University, USA
--   [Max Kuhn](http://appliedpredictivemodeling.com/) ([\@topepos](https://twitter.com/topepos)), RStudio, USA
 -   [Paula Moraga](http://www.paulamoraga.com/), King Abdullah University of Science and Technology, Saudi Arabia
 -   [Leonardo Collado-Torres](http://lcolladotor.github.io/), Lieber Institute for Brain Development, USA
+-   [Toby Hocking](http://tdhock.github.io/), Northern Arizona University, USA
 
 This work is [
 supported by the Sloan Foundation](https://ropensci.org/blog/2019/07/15/expanding-software-review/)
@@ -39,14 +37,18 @@ and is organized under an
 
 # Meta
 
-The structure of this book was derived from rOpenSci's [Blog Guidelines for Authors and Editors](https://github.com/ropensci-org/blog-guidance) by [Stefanie Butland](https://github.com/stefaniebutland) and [Maëlle Salmon](https://github.com/maelle), itself started using [Sean Kross's](https://github.com/seankross) [minimal bookdown example](https://github.com/seankross/bookdown-start).
+The structure of this book was derived from rOpenSci's [Blog Guidelines for
+Authors and Editors](https://github.com/ropensci-org/blog-guidance) by
+[Stefanie Butland](https://github.com/stefaniebutland) and [Maëlle
+Salmon](https://github.com/maelle), itself started using [Sean
+Kross's](https://github.com/seankross) [minimal bookdown
+example](https://github.com/seankross/bookdown-start).
 
 All of the content of this repository is licensed 
 [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/).
 
 
 ## Contributors
-
 
 
 
