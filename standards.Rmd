@@ -1,7 +1,7 @@
 
 #  (PART) Standards {-}
 
-# Standards: Version 0.0.X {#standards}
+# Standards: Version 0.0.1 {#standards}
 
 This Chapter serves as the reference for rOpenSci's standards for statistical
 software. Software accepted for peer-review must fit one or more of our
