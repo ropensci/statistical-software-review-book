@@ -46,6 +46,7 @@ jobs:
 
       - name: Commit results
         run: |
+          cp ghpagescname docs/CNAME
           cp -r favicon/ docs/
           cd docs
           git config --global user.email ${{secrets.EMAIL}}
