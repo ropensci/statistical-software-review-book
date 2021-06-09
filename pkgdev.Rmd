@@ -10,13 +10,27 @@ also apply to statistical packages, with this chapter describing additional
 processes and practices for packages intended for submission to the statistical
 software peer review system.
 
-Package authors are expected to sequentially follow the processes described
-in the four sub-sections of this chapter. The first step is to determine
-whether a package is likely to be considered within the scope of our review
-system. The second sub-section describes our [`autotest`
-tool](https://github.com/ropensci-review-tools/autotest), which is intended to be used
-through the entire process of package development. The third sub-section
-describes how to align software with our [general and category-specific
+The major additional process is the documentation of how a package complies
+with the general and category-specific standards given in [Chapter
+6](#standards). Authors need to document within the software itself every point
+at which it complies with every general and every applicable category-specific
+standard listed in that chapter. The process of doing so is facilitated by the
+[`srr` package](https://github.com/ropensci-review-tools/srr), as described in
+detail in [Sub-section 3.4, below](#pkgdev-srr).
+
+Prior to that sub-section, this chapter begins with consideration of the scope
+of statistical software able to be considered for review, followed by
+descriptions of two tools intended to be used through the entire process of
+package development. The first tool is the [`pkgcheck`
+package](https://github.com/ropensci-review-tools/pkgcheck) which can be used
+to confirm whether software is ready for submission or not, and enables authors
+to locally run the suite of checks which are automatically run on package
+submission. The subsequent sub-section describes our [`autotest`
+tool](https://github.com/ropensci-review-tools/autotest), which is intended to
+be used through the entire process of package development. The third
+sub-section describes how use the [`srr`
+package](https://github.com/ropensci-review-tools/srr) to address the major
+task of aligning software with our [general and category-specific
 standards](#standards) for statistical software, and the final sub-section
 describes the final step of specifying which grade of badge authors are aiming
 for.
