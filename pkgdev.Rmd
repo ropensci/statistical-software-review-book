@@ -14,7 +14,7 @@ Package authors are expected to sequentially follow the processes described
 in the four sub-sections of this chapter. The first step is to determine
 whether a package is likely to be considered within the scope of our review
 system. The second sub-section describes our [`autotest`
-tool](https://github.com/ropenscilabs/autotest), which is intended to be used
+tool](https://github.com/ropensci-review-tools/autotest), which is intended to be used
 through the entire process of package development. The third sub-section
 describes how to align software with our [general and category-specific
 standards](#standards) for statistical software, and the final sub-section
@@ -49,14 +49,14 @@ your package is likely to fit into one or more of our in-scope categories,
 you'll need to apply our three primary development tools described in the
 following two sub-sections.
 
-## The [`pkgcheck` package](https://github.com/ropenscilabs/pkgcheck)
+## The [`pkgcheck` package](https://github.com/ropensci-review-tools/pkgcheck)
 
-The [`pkgcheck` package](https://github.com/ropenscilabs/pkgcheck) can be used
-to confirm whether software is ready for submission or not. The checks
+The [`pkgcheck` package](https://github.com/ropensci-review-tools/pkgcheck) can
+be used to confirm whether software is ready for submission or not. The checks
 implemented within this package are also automatically run upon submission, and
 packages are expected to successfully pass all checks prior to initial
 submission. Packages may only be submitted once the main [`pkgcheck()`
-function](hThe://ropenscilabs.github.io/pkgcheck/reference/pkgcheck.html)
+function](hThe://ropensci-review-tools.github.io/pkgcheck/reference/pkgcheck.html)
 indicates such, through clearly stating,
 
 > *This package may be submitted*
@@ -66,20 +66,20 @@ the package being checked, and returns a detailed list of checks and associated
 results. The return object has a `summary` method which prints a formatted
 result to the console indicating whether a package is ready for
 submission or not. See the main [package
-website](https://github.com/ropenscilabs/pkgcheck) for more details.
+website](https://github.com/ropensci-review-tools/pkgcheck) for more details.
 
 The [`pkgcheck()`
-function](hThe://ropenscilabs.github.io/pkgcheck/reference/pkgcheck.html) is
-also applied to all packages upon initial submission, in response to which our
-`ropensci-review-bot` will print the results in the issue. In the unlikely
+function](hThe://ropensci-review-tools.github.io/pkgcheck/reference/pkgcheck.html)
+is also applied to all packages upon initial submission, in response to which
+our `ropensci-review-bot` will print the results in the issue. In the unlikely
 circumstances that a package is unable to pass particular checks, explanations
 should be given upon submission about why those checks fail, and why review may
 proceed in spite of such failures.
 
 An example result of the [`pkgcheck()`
-function](hThe://ropenscilabs.github.io/pkgcheck/reference/pkgcheck.html) may
-be seen by applying it to the skeleton [`srr` (**S**oftware **R**eview
-**R**oclets) package](https://github.com/ropenscilabs/srr):
+function](hThe://ropensci-review-tools.github.io/pkgcheck/reference/pkgcheck.html)
+may be seen by applying it to the skeleton [`srr` (**S**oftware **R**eview
+**R**oclets) package](https://github.com/ropensci-review-tools/srr):
 
 ```{r pkgcheck-srr, eval = FALSE, echo = TRUE}
 path <- srr::srr_stats_pkg_skeleton ()
@@ -109,34 +109,36 @@ cli::cli_alert_danger ("This package is not ready to be submitted")
 
 
 
-## The [`autotest` package](https://github.com/ropenscilabs/autotest) {#pkgdev-autotest}
+## The [`autotest` package](https://github.com/ropensci-review-tools/autotest) {#pkgdev-autotest}
 
-The [`autotest` package](https://github.com/ropenscilabs/autotest) is an
-automated assessment tool which all packages are expected to pass in order to
-be accepted for submission. The package implements a form of "mutation
+The [`autotest` package](https://github.com/ropensci-review-tools/autotest) is
+an automated assessment tool which all packages are expected to pass in order
+to be accepted for submission. The package implements a form of "mutation
 testing," by examining the types of all input parameters, implementing
 type-specific mutations, and examining the response of each function in
 a package to all such mutations. This kind of mutation testing is a very
 effective way to uncover any unexpected behaviour which authors themselves
 might not necessarily pre-empt. The purpose of using
-[`autotest`](https://github.com/ropenscilabs/autotest) to prepare packages is
-to avoid as much as possible the common situation of reviewers discovering bugs
-when they attempt to use software in ways that differ from typical uses
-envisioned by authors themselves. Reviews of software prepared with the help
-of [`autotest`](https://github.com/ropenscilabs/autotest) should be less
+[`autotest`](https://github.com/ropensci-review-tools/autotest) to prepare
+packages is to avoid as much as possible the common situation of reviewers
+discovering bugs when they attempt to use software in ways that differ from
+typical uses envisioned by authors themselves. Reviews of software prepared
+with the help of
+[`autotest`](https://github.com/ropensci-review-tools/autotest) should be less
 burdened by discussions of what are often minor technical details, and more
 able to focus on "higher level" aspects of software quality.
 
 
 Full documentation of how to use
-[`autotest`](https://github.com/ropenscilabs/autotest) in package development
-is provided on the [package website](https://ropenscilabs.github.io/autotest/),
-and we particularly encourage any authors intending to develop packages for
-submission to our peer review system to step through the [main `autotest`
-vignette](https://ropenscilabs.github.io/autotest/articles/autotest.html), and
-to apply [`autotest`](https://ropenscilabs.github.io/autotest/) continuously
-throughout package development, to ensure that
-[`autotest_package()`](https://ropenscilabs.github.io/autotest/reference/autotest_package.html)
+[`autotest`](https://github.com/ropensci-review-tools/autotest) in package
+development is provided on the [package
+website](https://ropensci-review-tools.github.io/autotest/), and we
+particularly encourage any authors intending to develop packages for submission
+to our peer review system to step through the [main `autotest`
+vignette](https://ropensci-review-tools.github.io/autotest/articles/autotest.html),
+and to apply [`autotest`](https://ropensci-review-tools.github.io/autotest/)
+continuously throughout package development, to ensure that
+[`autotest_package()`](https://ropensci-review-tools.github.io/autotest/reference/autotest_package.html)
 returns clean (`NULL`) results when the package is first submitted.
 
 
@@ -144,26 +146,27 @@ returns clean (`NULL`) results when the package is first submitted.
 
 Once a package has been sufficiently developed to begin alignment with our
 standards, and once all issues revealed by
-[`autotest`](https://ropenscilabs.github.io/autotest/) have been addressed,
-authors will need to use our third tool, the [`ssr` (**s**oftware
-**r**eveiw **r**oclets) package](https://ropenscilabs.github.io/srr/) to insert
-both general and category-specific standards into their code, and to begin the
-process of documenting within the code itself how and where the code adheres to
-the individual standards. The [`srr`
-package](https://ropenscilabs.github.io/srr/) can be installed locally by
-running either one of the following two lines.
+[`autotest`](https://ropensci-review-tools.github.io/autotest/) have been
+addressed, authors will need to use our third tool, the [`ssr` (**s**oftware
+**r**eveiw **r**oclets) package](https://ropensci-review-tools.github.io/srr/)
+to insert both general and category-specific standards into their code, and to
+begin the process of documenting within the code itself how and where the code
+adheres to the individual standards. The [`srr`
+package](https://ropensci-review-tools.github.io/srr/) can be installed locally
+by running either one of the following two lines.
 
 ```{r srr-install-dev, eval = FALSE, echo = TRUE}
-remotes::install_github("ropenscilabs/srr")
-pak::pkg_install("ropenscilabs/srr")
+remotes::install_github("ropensci-review-tools/srr")
+pak::pkg_install("ropensci-review-tools/srr")
 ```
 
 `srr` procedures are described in detail on the [package
-website](https://ropenscilabs.github.io/srr/), and in particular in the
-[main vignette](https://ropenscilabs.github.io/srr/articles/srr-stats.html).
+website](https://ropensci-review-tools.github.io/srr/), and in particular in
+the [main
+vignette](https://ropensci-review-tools.github.io/srr/articles/srr-stats.html).
 Authors are first encouraged to obtain a local copy of the [source code for
 that
-vignette](https://github.com/ropenscilabs/srr/blob/main/vignettes/srr-stats.Rmd),
+vignette](https://github.com/ropensci-review-tools/srr/blob/main/vignettes/srr-stats.Rmd),
 and to step through each line in order to understand how the procedure works.
 Having done that, you may then insert standards into your own package by
 running the following line from within the local directory of your package,
@@ -176,9 +179,9 @@ That will insert a new file into the `R/` directory of your package called (by
 default) `srr-stats-standards.R`. All standards initially have
 a [`roxygen2`](https://roxygen2.r-lib.org) tag of `@srrstatsTODO`, to indicate
 that these standards are yet to be addressed. These tags are processed by the 
-[`srr` roclet](https://ropenscilabs.github.io/srr/) which needs to be connected
-with your package by modifying the `Roxygen` line of your `DESCRIPTION` file to
-the following form:
+[`srr` roclet](https://ropensci-review-tools.github.io/srr/) which needs to be
+connected with your package by modifying the `Roxygen` line of your
+`DESCRIPTION` file to the following form:
 
 ```{r srr-DESC, eval = FALSE, echo = TRUE}
 Roxygen: list (markdown = TRUE, roclets = c ("namespace", "rd", "srr::srr_stats_roclet"))
@@ -195,8 +198,8 @@ or the equivalent function,
 [`devtools::document()`](http://devtools.r-lib.org/reference/document.html),
 and do not appear in actual package documentation.
 
-The [`srr` roclet](https://ropenscilabs.github.io/srr/) recognises and process
-three tags:
+The [`srr` roclet](https://ropensci-review-tools.github.io/srr/) recognises and
+process three tags:
 
 1. `@srrstatsTODO` to flag standards yet to be addressed;
 2. `@srrstats` to flag standards which have been addressed, and followed by
@@ -206,7 +209,7 @@ three tags:
    applicable.
 
 The file generated by
-[`srr_stats_roxygen()`](https://ropenscilabs.github.io/srr/reference/srr_stats_roxygen.html)
+[`srr_stats_roxygen()`](https://ropensci-review-tools.github.io/srr/reference/srr_stats_roxygen.html)
 initially contains two [`roxygen2`](https://roxygen2.r-lib.org) blocks, the
 first containing every standard potentially applicable to your package, tagged
 with `@srrstatsTODO`, and the second with a title of `NA_standards`, to
@@ -216,7 +219,7 @@ where they are likely to be addressed. For example, standards concerning tests
 should be moved somewhere within the `tests/` directory, standards concerning
 documentation to the main `README.Rmd` file, or within a vignette file. The
 [package
-skeleton](https://ropenscilabs.github.io/srr/reference/srr_stats_pkg_skeleton.html)
+skeleton](https://ropensci-review-tools.github.io/srr/reference/srr_stats_pkg_skeleton.html)
 includes code demonstrating how to include roclet tags within `.Rmd` files.
 
 Moving different standards to more appropriate locations within your code will
@@ -236,19 +239,19 @@ either `@srrstats` or `@srrstatsNA`, as described above. Two useful functions
 to aid package alignment with standards are:
 
 1. The [`srr_stats_pre_submit()`
-   function](https://ropenscilabs.github.io/srr/reference/srr_stats_pre_submit.html),
+   function](https://ropensci-review-tools.github.io/srr/reference/srr_stats_pre_submit.html),
    which confirms that all standards have been addressed prior to submission.
 2. The [`srr_report()`
-   function](https://ropenscilabs.github.io/srr/reference/srr_report.html), which generates a
-   summary report with hyperlinks to locations within your code at which all
-   standards are placed.
+   function](https://ropensci-review-tools.github.io/srr/reference/srr_report.html),
+   which generates a summary report with hyperlinks to locations within your
+   code at which all standards are placed.
 
 The output of both of these functions are included in the result of the
 [`pkgcheck()`
-function](hThe://ropenscilabs.github.io/pkgcheck/reference/pkgcheck.html), both
-when run locally, and as run upon initial package submission.  The
+function](hThe://ropensci-review-tools.github.io/pkgcheck/reference/pkgcheck.html),
+both when run locally, and as run upon initial package submission.  The
 [`srr_stats_pre_submit()`
-function](https://ropenscilabs.github.io/srr/reference/srr_stats_pre_submit.html)
+function](https://ropensci-review-tools.github.io/srr/reference/srr_stats_pre_submit.html)
 can be used locally to confirm that,
 
 ```{r pre-submit-success, echo = FALSE}
@@ -256,9 +259,9 @@ cli::cli_alert_success ("All applicable standards have been documented in this p
 ```
 
 while the result of the [`srr_report()`
-function](https://ropenscilabs.github.io/srr/reference/srr_report.html) may be
-accessed through the link given in the `pkgcheck` output, or it can be viewed
-by calling that function directly.
+function](https://ropensci-review-tools.github.io/srr/reference/srr_report.html)
+may be accessed through the link given in the `pkgcheck` output, or it can be
+viewed by calling that function directly.
 
 
 ## Gold, Silver, and Bronze Badges {#pkgdev-badges}
