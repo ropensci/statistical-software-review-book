@@ -53,6 +53,11 @@ to control for any deviation from expected properties.
 
 - **TS1.1** *Time Series Software should explicitly document the types and classes
   of input data able to be passed to each function.*
+
+Such documentation should include a demonstration of how to input data in at
+least one commonly used class for time-series such as
+[`ts`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/ts.html).
+
 - **TS1.2** *Time Series Software should implement validation routines to confirm
   that inputs are of acceptable classes (or represented in otherwise
   appropriate ways for software which does not use class systems).*
