@@ -302,7 +302,7 @@ should:
 - **BS2.9** *Ensure each chain is started with a different seed by default.*
 - **BS2.10** *Issue diagnostic messages when identical seeds are passed to distinct
   computational chains.*
-- **BS2.12** *Software which accepts starting values as a vector should provide
+- **BS2.11** *Software which accepts starting values as a vector should provide
   the parameter with a plural name: for example, "starting_values" and not
   "starting_value".*
 
@@ -318,15 +318,15 @@ output verbosity. Bayesian computations are often time-consuming, and often
 performed as batch computations. The following standards should be adhered to
 in regard to output verbosity:
 
-- **BS2.13** *Bayesian Software should implement at least one parameter controlling
+- **BS2.12** *Bayesian Software should implement at least one parameter controlling
   the verbosity of output, defaulting to verbose output of all appropriate
   messages, warnings, errors, and progress indicators.*
-- **BS2.14** *Bayesian Software should enable suppression of messages and progress
+- **BS2.13** *Bayesian Software should enable suppression of messages and progress
   indicators, while retaining verbosity of warnings and errors. This should be
   tested.*
-- **BS2.15** *Bayesian Software should enable suppression of warnings where
+- **BS2.14** *Bayesian Software should enable suppression of warnings where
   appropriate. This should be tested.*
-- **BS2.16** *Bayesian Software should explicitly enable errors to be caught, and
+- **BS2.15** *Bayesian Software should explicitly enable errors to be caught, and
   appropriately processed either through conversion to warnings, or otherwise
   captured in return values. This should be tested.*
 
