@@ -75,18 +75,20 @@ documentation.
 The *Primary Documentation* (`README` and/or vignette(s)) of EDA software
 should:
 
-- **EA1.0** *Identify one or more target audiences for whom the software is intended*
-- **EA1.1** *Identify the kinds of data the software is capable of analysing (see
-  *Kinds of Data* below).*
-- **EA1.2** *Identify the kinds of questions the software is intended to help
-  explore.*
+- [**EA1.0**]{#EA1_0} *Identify one or more target audiences for whom the
+  software is intended*
+- [**EA1.1**]{#EA1_1} *Identify the kinds of data the software is capable of
+  analysing (see *Kinds of Data* below).*
+- [**EA1.2**]{#EA1_2} *Identify the kinds of questions the software is intended
+  to help explore.*
 
 Important distinctions between kinds of questions include whether they are
 inferential, predictive, associative, causal, or representative of other modes
 of statistical enquiry. The *Secondary Documentation* (within individual
 functions) of EDA software should:
 
-- **EA1.3** *Identify the kinds of data each function is intended to accept as input*
+- [**EA1.3**]{#EA1_3} *Identify the kinds of data each function is intended to
+  accept as input*
 
 ### Input Data
 
@@ -107,29 +109,31 @@ unique index index into any and all rows of that table. Index columns ensure
 the universal applicability of standard table join operations, such as those
 implemented via the [`dplyr` package](https://dplyr.tidyverse.org).
 
-- **EA2.0** *EDA Software which accepts standard tabular data and implements or
-  relies upon extensive table filter and join operations should utilise an
-  **index column** system*
-- **EA2.1** *All values in an index column must be unique, and this uniqueness
-  should be affirmed as a pre-processing step for all input data.*
-- **EA2.2** *Index columns should be explicitly identified, either:*
-    - **EA2.2a** *by using an appropriate class system, or*
-    - **EA2.2b** *through setting an `attribute` on a table, `x`, of `attr(x, "index") <- <index_col_name>`.*
+- [**EA2.0**]{#EA2_0} *EDA Software which accepts standard tabular data and
+  implements or relies upon extensive table filter and join operations should
+  utilise an **index column** system*
+- [**EA2.1**]{#EA2_1} *All values in an index column must be unique, and this
+  uniqueness should be affirmed as a pre-processing step for all input data.*
+- [**EA2.2**]{#EA2_2} *Index columns should be explicitly identified, either:*
+    - [**EA2.2a**]{#EA2_2a} *by using an appropriate class system, or*
+    - [**EA2.2b**]{#EA2_2b} *through setting an `attribute` on a table, `x`, of
+      `attr(x, "index") <- <index_col_name>`.*
 
 For EDA software which either implements custom classes or explicitly sets
 attributes specifying index columns, these attributes should be used as the
 basis of all table join operations, and in particular:
 
-- **EA2.3** *Table join operations should not be based on any assumed variable or
-  column names*
+- [**EA2.3**]{#EA2_3} *Table join operations should not be based on any assumed
+  variable or column names*
 
 #### Multi-tabular input
 
 EDA software designed to accept multi-tabular input should:
 
-- **EA2.4** *Use and demand an explicit class system for such input (for example,
-  via the [`DM` package](https://github.com/krlmlr/dm)).*
-- **EA2.5** *Ensure all individual tables follow the above standards for Index Columns*
+- [**EA2.4**]{#EA2_4} *Use and demand an explicit class system for such input
+  (for example, via the [`DM` package](https://github.com/krlmlr/dm)).*
+- [**EA2.5**]{#EA2_5} *Ensure all individual tables follow the above standards
+  for Index Columns*
 
 #### Classes and Sub-Classes
 
@@ -141,8 +145,8 @@ section of [*General Standards*](#general-standards)) should ensure that it
 complies with **G2.**, so that vector input is appropriately processed
 regardless of input class. An additional standard for EDA software is that,
 
-- **EA2.6** *Routines should appropriately process vector data regardless of
-  additional attributes*
+- [**EA2.6**]{#EA2_6} *Routines should appropriately process vector data
+  regardless of additional attributes*
 
 The following code illustrates some ways by which "metadata" defining classes
 and additional attributes associated with a standard vector object may by
@@ -191,30 +195,31 @@ EDA software will generally not directly implement what might be considered as
 statistical algorithms in their own right. Where algorithms are implemented,
 the following standards apply.
 
-- **EA3.0** *The algorithmic components of EDA Software should enable automated
-  extraction and/or reporting of statistics as some sufficiently "meta" level
-  (such as variable or model selection), for which previous or reference
-  implementations require manual intervention.*
-- **EA3.1** *EDA software should enable standardised comparison of inputs,
-  processes, models, or outputs which previous or reference implementations
-  otherwise only enable in some comparably unstandardised form.*
+- [**EA3.0**]{#EA3_0} *The algorithmic components of EDA Software should enable
+  automated extraction and/or reporting of statistics as some sufficiently
+  "meta" level (such as variable or model selection), for which previous or
+  reference implementations require manual intervention.*
+- [**EA3.1**]{#EA3_1} *EDA software should enable standardised comparison of
+  inputs, processes, models, or outputs which previous or reference
+  implementations otherwise only enable in some comparably unstandardised
+  form.*
 
 Both of these standards also relate to the following standards for output
 values, visualisation, and summary output.
 
 ### Return Results / Output Data
 
-- **EA4.0** *EDA Software should ensure all return results have types which are
-  consistent with input types.*
+- [**EA4.0**]{#EA4_0} *EDA Software should ensure all return results have types
+  which are consistent with input types.*
 
 Examples of such compliance include ensuring that `sum`, `min`, or `max` values
 applied to `integer`-type vectors return `integer` values.
 
-- **EA4.1** *EDA Software should implement parameters to enable explicit control
-  of numeric precision*
-- **EA4.2** *The primary routines of EDA Software should return objects for which
-  default `print` and `plot` methods give sensible results. Default `summary`
-  methods may also be implemented.*
+- [**EA4.1**]{#EA4_1} *EDA Software should implement parameters to enable
+  explicit control of numeric precision*
+- [**EA4.2**]{#EA4_2} *The primary routines of EDA Software should return
+  objects for which default `print` and `plot` methods give sensible results.
+  Default `summary` methods may also be implemented.*
 
 ### Visualization and Summary Output
 
@@ -230,35 +235,37 @@ and dynamic visualization, where the latter includes interactive visualization.
 Prior to these individual sub-categories, we consider a few standards
 applicable to visualization in general, whether static or dynamic.
 
-- **EA5.0** *Graphical presentation in EDA software should be as accessible as
-  possible or practicable. In particular, EDA software should consider
-  accessibility in terms of:*
-    - **EA5.0a** *Typeface sizes, which should default to sizes which
-      explicitly enhance accessibility*
-    - **EA5.0b** *Default colour schemes, which should be carefully constructed
-      to ensure accessibility.*
-- **EA5.1** *Any explicit specifications of typefaces which override default
-  values provided through other packages (including the `graphics` package)
-  should consider accessibility*
+- [**EA5.0**]{#EA5_0} *Graphical presentation in EDA software should be as
+  accessible as possible or practicable. In particular, EDA software should
+  consider accessibility in terms of:*
+    - [**EA5.0a**]{#EA5_0a} *Typeface sizes, which should default to sizes
+      which explicitly enhance accessibility*
+    - [**EA5.0b**]{#EA5_0b} *Default colour schemes, which should be carefully
+      constructed to ensure accessibility.*
+- [**EA5.1**]{#EA5_1} *Any explicit specifications of typefaces which override
+  default values provided through other packages (including the `graphics`
+  package) should consider accessibility*
 
 #### Summary and Screen-based Output
 
-- **EA5.2** *Screen-based output should never rely on default print formatting of
-  `numeric` types, rather should also use some version of `round(., digits)`,
-  `formatC`, `sprintf`, or similar functions for numeric formatting according
-  the parameter described in* **EA4.1**.
-- **EA5.3** *Column-based summary statistics should always indicate the
-  `storage.mode`, `class`, or equivalent defining attribute of each column.*
+- [**EA5.2**]{#EA5_2} *Screen-based output should never rely on default print
+  formatting of `numeric` types, rather should also use some version of
+  `round(., digits)`, `formatC`, `sprintf`, or similar functions for numeric
+  formatting according the parameter described in* **EA4.1**.
+- [**EA5.3**]{#EA5_3} *Column-based summary statistics should always indicate
+  the `storage.mode`, `class`, or equivalent defining attribute of each
+  column.*
 
 An example of compliance with the latter standard is the `print.tibble` method
 of the [`tibble` package](https://tibble.tidyverse.org).
 
 #### General Standards for Visualization (Static and Dynamic)
 
-- **EA5.4** *All visualisations should ensure values are rounded sensibly 
-  (for example, via `pretty()` function).*
-- **EA5.5** *All visualisations should include units on all axes where such are
-  specified or otherwise obtainable from input data or other routines.*
+- [**EA5.4**]{#EA5_4} *All visualisations should ensure values are rounded
+  sensibly (for example, via `pretty()` function).*
+- [**EA5.5**]{#EA5_5} *All visualisations should include units on all axes
+  where such are specified or otherwise obtainable from input data or other
+  routines.*
 
 #### Dynamic Visualization
 
@@ -269,30 +276,31 @@ the code itself, rather only to decisions present as user-controlled parameters
 exposed within the R environment. That said, one standard may nevertheless be
 applied, which aims to maximise inter-operability between packages. 
 
-- **EA5.6** *Any packages which internally bundle libraries used for dynamic
-  visualization and which are also bundled in other, pre-existing R packages,
-  should explain the necessity and advantage of re-bundling that library.*
+- [**EA5.6**]{#EA5_6} *Any packages which internally bundle libraries used for
+  dynamic visualization and which are also bundled in other, pre-existing
+  R packages, should explain the necessity and advantage of re-bundling that
+  library.*
 
 ### Testing
 
 #### Return Values
 
-- **EA6.0** *Return values from all functions should be tested, including tests
-  for the following characteristics:*
-    - **EA6.0a** *Classes and types of objects*
-    - **EA6.0b** *Dimensions of tabular objects*
-    - **EA6.0c** *Column names (or equivalent) of tabular objects*
-    - **EA6.0d** *Classes or types of all columns contained within
+- [**EA6.0**]{#EA6_0} *Return values from all functions should be tested,
+  including tests for the following characteristics:*
+    - [**EA6.0a**]{#EA6_0a} *Classes and types of objects*
+    - [**EA6.0b**]{#EA6_0b} *Dimensions of tabular objects*
+    - [**EA6.0c**]{#EA6_0c} *Column names (or equivalent) of tabular objects*
+    - [**EA6.0d**]{#EA6_0d} *Classes or types of all columns contained within
       `data.frame`-type tabular objects *
-    - **EA6.0e** *Values of single-valued objects; for `numeric` values either
-      using `testthat::expect_equal()` or equivalent with a defined value for
-      the `tolerance` parameter, or using `round(..., digits = x)` with some
-      defined value of `x` prior to testing equality.*
+    - [**EA6.0e**]{#EA6_0e} *Values of single-valued objects; for `numeric`
+      values either using `testthat::expect_equal()` or equivalent with
+      a defined value for the `tolerance` parameter, or using `round(...,
+      digits = x)` with some defined value of `x` prior to testing equality.*
 
 #### Graphical Output
 
-- **EA6.1** *The properties of graphical output from EDA software should be
-  explicitly tested, for example via the [`vdiffr`
+- [**EA6.1**]{#EA6_1} *The properties of graphical output from EDA software
+  should be explicitly tested, for example via the [`vdiffr`
   package](https://github.com/r-lib/vdiffr) or equivalent.*
 
 Tests for graphical output are frequently only run as part of an extended test
