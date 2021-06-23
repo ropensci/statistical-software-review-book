@@ -358,12 +358,12 @@ of the clustering scheme.
 
 #### Reporting Return Results
 
-- [**UL4.2**]{#UL4_2} *Model objects returned by Unsupervised Learning Software
+- [**UL4.3**]{#UL4_3} *Model objects returned by Unsupervised Learning Software
   should implement or appropriately extend a default `print` method which
   provides an on-screen summary of model (input) parameters and methods used to
   generate results. The `print` method may also summarise statistical aspects
   of the output data or results.*
-    - [**UL4.2a**]{#UL4_2a} *The default `print` method should always ensure
+    - [**UL4.3a**]{#UL4_3a} *The default `print` method should always ensure
       only a restricted number of rows of any result matrices or equivalent are
       printed to the screen.*
 
@@ -379,7 +379,7 @@ such as lines of `data.frame` objects). Such default behaviour ought be
 avoided, particularly in Unsupervised Learning Software which commonly returns
 objects containing large numbers of numeric entries.
 
-- [**UL4.3**]{#UL4_3} *Unsupervised Learning Software should also implement
+- [**UL4.4**]{#UL4_4} *Unsupervised Learning Software should also implement
   `summary` methods for model objects which should summarise the primary
   statistics used in generating the model (such as numbers of observations,
   parameters of methods applied). The `summary` method may also provide summary
