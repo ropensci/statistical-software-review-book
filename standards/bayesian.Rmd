@@ -413,7 +413,7 @@ where possible or applicable, Bayesian Software should:
 - [**BS4.3**]{#BS4_3} *Implement or otherwise offer at least one type of
   convergence checker, and provide a documented reference for that
   implementation.*
-- [**BS4.3**]{#BS4_3} *Enable computations to be stopped on convergence
+- [**BS4.4**]{#BS4_4} *Enable computations to be stopped on convergence
   (although not
   necessarily by default).*
 - [**BS4.5**]{#BS4_5} *Ensure that appropriate mechanisms are provided for
