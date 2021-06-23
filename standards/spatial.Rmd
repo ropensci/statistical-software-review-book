@@ -64,8 +64,8 @@ accurate results when applied in curvilinear space.
 
 These considerations motivate the first standard for spatial software:
 
-- **SP1.0** *Spatial software should explicitly indicate its domain of
-  applicability, and in particular distinguish whether the software may be
+- [**SP1.0**]{#SP1_0} *Spatial software should explicitly indicate its domain
+  of applicability, and in particular distinguish whether the software may be
   applied in Cartesian/rectilinear/geometric domains, curvilinear/geographic
   domains, or both.*
 
@@ -78,10 +78,10 @@ dimension, and time may also be considered an additional dimension. Beyond
 those two, other attributes measured at spatial locations do not represent
 additional dimensions. 
 
-- **SP1.1** *Spatial software should explicitly indicate its dimensional domain
-  of applicability, in particular through identifying whether it is applicable
-  to two or three dimensions only, or whether there are any other restrictions
-  on dimensionality.*
+- [**SP1.1**]{#SP1_1} *Spatial software should explicitly indicate its
+  dimensional domain of applicability, in particular through identifying
+  whether it is applicable to two or three dimensions only, or whether there
+  are any other restrictions on dimensionality.*
 
 These considerations of domains of applicability permeate much of the ensuring
 standards, which distinguish "geometric software" from "geographic software",
@@ -111,11 +111,11 @@ motivation of the following standard is nevertheless to encourage and enhance
 inter-operability with the rich system of classes for spatial data in R.
 
 
-- **SP2.0** *Spatial software should only accept input data of one or more
-  classes explicitly developed to represent such data.*
-    - **SP2.0a** *Where new classes are implemented, conversion to other common
-      classes for spatial data in R should be documented.*
-    - **SP2.0b** *Class systems should ensure that functions error
+- [**SP2.0**]{#SP2_0} *Spatial software should only accept input data of one or
+  more classes explicitly developed to represent such data.*
+    - [**SP2.0a**]{#SP2_0a} *Where new classes are implemented, conversion to
+      other common classes for spatial data in R should be documented.*
+    - [**SP2.0b**]{#SP2_0b} *Class systems should ensure that functions error
       appropriately, rather than merely warning, in response to data from
       inappropriate spatial domains.*
 
@@ -157,27 +157,27 @@ following single standard applies, because the maintainer of sp has made it
 clear that new software [should build upon sf, not
 sp](https://github.com/r-spatial/discuss/issues/48#issuecomment-798543339).
 
-- **SP2.1** *Spatial Software should not use the [`sp`
+- [**SP2.1**]{#SP2_1} *Spatial Software should not use the [`sp`
   package](https://cran.r-project.org/package=sp), rather should use
   [`sf`](https://cran.r-project.org/package=sf).*
 
 More generally,
 
-- **SP2.2** *Geographical Spatial Software should ensure maximal compatibility
-  with established packages and workflows, minimally through:*
-    - **SP2.2a** *Clear and extensive documentation demonstrating how routines
-      from that software may be embedded within, or otherwise adapted to,
-      workflows which rely on these established packages; and*
-    - **SP2.2b** *Tests which clearly demonstrate that routines from that
-      software may be successfully translated into forms and workflows which
-      rely on these established packages.*
+- [**SP2.2**]{#SP2_2} *Geographical Spatial Software should ensure maximal
+  compatibility with established packages and workflows, minimally through:*
+    - [**SP2.2a**]{#SP2_2a} *Clear and extensive documentation demonstrating
+      how routines from that software may be embedded within, or otherwise
+      adapted to, workflows which rely on these established packages; and*
+    - [**SP2.2b**]{#SP2_2b} *Tests which clearly demonstrate that routines from
+      that software may be successfully translated into forms and workflows
+      which rely on these established packages.*
 
 This standard is further refined in a number of subsequent standards concerning
 documentation and testing.
 
-- **SP2.3** *Software which accepts spatial input data in any standard format
-  established in other R packages (such as any of the formats able to be read
-  by [`GDAL`](https://gdal.org), and therefore by the [`sf`
+- [**SP2.3**]{#SP2_3} *Software which accepts spatial input data in any
+  standard format established in other R packages (such as any of the formats
+  able to be read by [`GDAL`](https://gdal.org), and therefore by the [`sf`
   package](https://cran.r-project.org/package=sf)) should include example and
   test code which load those data in spatial formats, rather than R-specific
   binary formats such as `.Rds`.*
@@ -209,13 +209,13 @@ representing coordinate reference systems.
 The following standard applies to software which directly or indirectly relies
 on geographic data which uses or relies upon coordinate reference systems.
 
-- **SP2.4** *Geographical Spatial Software should be compliant with version
-  6 or larger of* [`PROJ`](https://proj.org/), *and with* `WKT2`
+- [**SP2.4**]{#SP2_4} *Geographical Spatial Software should be compliant with
+  version 6 or larger of* [`PROJ`](https://proj.org/), *and with* `WKT2`
   *representations. The primary implication, described in detail in the
   articles linked to above, is that:*
-    - **SP2.4a** *Software should not permit coordinate reference systems to be
-      represented merely by so-called "PROJ4-strings", but should use at least
-      WKT2.*
+    - [**SP2.4a**]{#SP2_4a} *Software should not permit coordinate reference
+      systems to be represented merely by so-called "PROJ4-strings", but should
+      use at least WKT2.*
 
 
 **General Input Structures**
@@ -225,23 +225,24 @@ in favour of implementing new classes. Whether or not prior classes are used or
 expected, geographic software should accord as much as possible with the
 principles of these prior systems by according with the following standards:
 
-- **SP2.5** *Class systems for input data must contain meta data on associated
-  coordinate reference systems.*
-    - **SP2.5a** *Software which implements new classes to input spatial data
-      (or the spatial components of more general data) should provide an
-      ability to convert such input objects into alternative spatial classes
-      such as those listed above.*
-- **SP2.6** *Spatial Software should explicitly document the types and classes
-  of input data able to be passed to each function.*
-- **SP2.7** *Spatial Software should implement validation routines to confirm
-  that inputs are of acceptable classes (or represented in otherwise
+- [**SP2.5**]{#SP2_5} *Class systems for input data must contain meta data on
+  associated coordinate reference systems.*
+    - [**SP2.5a**]{#SP2_5a} *Software which implements new classes to input
+      spatial data (or the spatial components of more general data) should
+      provide an ability to convert such input objects into alternative spatial
+      classes such as those listed above.*
+- [**SP2.6**]{#SP2_6} *Spatial Software should explicitly document the types
+  and classes of input data able to be passed to each function.*
+- [**SP2.7**]{#SP2_7} *Spatial Software should implement validation routines to
+  confirm that inputs are of acceptable classes (or represented in otherwise
   appropriate ways for software which does not use class systems).*
-- **SP2.8** *Spatial Software should implement a single pre-processing routine
-  to validate input data, and to appropriately transform it to a single uniform
-  type to be passed to all subsequent data-processing functions.*
-- **SP2.9** *The pre-processing function described above should maintain those
-  metadata attributes of input data which are relevant or important to core
-  algorithms or return values.*
+- [**SP2.8**]{#SP2_8} *Spatial Software should implement a single
+  pre-processing routine to validate input data, and to appropriately transform
+  it to a single uniform type to be passed to all subsequent data-processing
+  functions.*
+- [**SP2.9**]{#SP2_9} *The pre-processing function described above should
+  maintain those metadata attributes of input data which are relevant or
+  important to core algorithms or return values.*
 
 
 
@@ -252,22 +253,23 @@ spatial software. Procedures for standards deemed not applicable to
 a particular piece of software are described in the [`srr`
 package](https://github.com/ropenscilabs/srr).
 
-- **SP3.0** *Spatial software which considers spatial neighbours should enable
-  user control over neighbourhood forms and sizes. In particular:*
-    - **SP3.0a** *Neighbours (able to be expressed) on regular grids should be
-      able to be considered in both rectangular only, or rectangular and
-      diagonal (respectively "rook" and "queen" by analogy to chess).*
-    - **SP3.0b** *Neighbourhoods in irregular spaces should be minimally able
-      to be controlled via an integer number of neighbours, an area (or
-      equivalent distance defining an area) in which to include neighbours, or
-      otherwise equivalent user-controlled value.*
-- **SP3.1** *Spatial software which considers spatial neighbours should
-  wherever possible enable neighbour contributions to be weighted by distance
-  (or other continuous weighting variable), and not rely exclusively on
-  a uniform-weight rectangular cut-off.*
-- **SP3.2** *Spatial software which relies on sampling from input data (even if
-  only of spatial coordinates) should enable sampling procedures to be based on
-  local spatial densities of those input data.*
+- [**SP3.0**]{#SP3_0} *Spatial software which considers spatial neighbours
+  should enable user control over neighbourhood forms and sizes. In
+  particular:*
+    - [**SP3.0a**]{#SP3_0a} *Neighbours (able to be expressed) on regular grids
+      should be able to be considered in both rectangular only, or rectangular
+      and diagonal (respectively "rook" and "queen" by analogy to chess).*
+    - [**SP3.0b**]{#SP3_0b} *Neighbourhoods in irregular spaces should be
+      minimally able to be controlled via an integer number of neighbours, an
+      area (or equivalent distance defining an area) in which to include
+      neighbours, or otherwise equivalent user-controlled value.*
+- [**SP3.1**]{#SP3_1} *Spatial software which considers spatial neighbours
+  should wherever possible enable neighbour contributions to be weighted by
+  distance (or other continuous weighting variable), and not rely exclusively
+  on a uniform-weight rectangular cut-off.*
+- [**SP3.2**]{#SP3_2} *Spatial software which relies on sampling from input
+  data (even if only of spatial coordinates) should enable sampling procedures
+  to be based on local spatial densities of those input data.*
 
 An example of software which would *not* adhere to **SP3.2** would be where
 input data were a simple matrix of spatial coordinates, and sampling were
@@ -295,19 +297,20 @@ software.
 
 **Regression Software**
 
-- **SP3.3** *Spatial regression software should explicitly quantify and
-  distinguish autocovariant or autoregressive processes from those covariant or
-  regressive processes not directly related to spatial structure alone.*
+- [**SP3.3**]{#SP3_3} *Spatial regression software should explicitly quantify
+  and distinguish autocovariant or autoregressive processes from those
+  covariant or regressive processes not directly related to spatial structure
+  alone.*
 
 **Unsupervised Learning Software**
 
 The following standard applies to any spatial unsupervised learning software
 which uses clustering algorithms.
 
-- **SP3.4** *Where possible, spatial clustering software should avoid using
-  standard non-spatial clustering algorithms in which spatial proximity is
-  merely represented by an additional weighting factor in favour of explicitly
-  spatial algorithms.*
+- [**SP3.4**]{#SP3_4} *Where possible, spatial clustering software should avoid
+  using standard non-spatial clustering algorithms in which spatial proximity
+  is merely represented by an additional weighting factor in favour of
+  explicitly spatial algorithms.*
 
 **Machine Learning Software**
 
@@ -317,16 +320,16 @@ standards applies because the individual cells or pixels of these raster images
 represent fixed spatial coordinates. (This standard also renders **ML2.1**
 inapplicable).
 
-- **SP3.5** *Spatial machine learning software should ensure that broadcasting
-  procedures for reconciling inputs of different dimensions are **not**
-  applied*.
+- [**SP3.5**]{#SP3_5} *Spatial machine learning software should ensure that
+  broadcasting procedures for reconciling inputs of different dimensions are
+  **not** applied*.
 
 A definition of broadcasting is given at the end of the introduction to
 corresponding [Machine Learning Standards](#ml-standards), just
 above *Input Data Specification*.
 
-- **SP3.6** *Spatial machine learning software should document (and, where
-  possible, test) the potential effects of different sampling procedures*
+- [**SP3.6**]{#SP3_6} *Spatial machine learning software should document (and,
+  where possible, test) the potential effects of different sampling procedures*
 
 A simple example might be to provide examples or extended documentation which
 compares the effects of sampling both test and training data from the same
@@ -352,13 +355,14 @@ explicitly documented (and possibly tested as well).
 
 For (functions within) Spatial Software which return spatial data:
 
-- **SP4.0** *Return values should either:*
-    - **SP4.0a** *Be in same class as input data, or*
-    - **SP4.0b** *Be in a unique, preferably class-defined, format.*
-- **SP4.1** *Any aspects of input data which are included in output data
-  (either directly, or in some transformed form) and which contain units should
-  ensure those same units are maintained in return values.*
-- **SP4.2** *The type and class of all return values should be explicitly documented.*
+- [**SP4.0**]{#SP4_0} *Return values should either:*
+    - [**SP4.0a**]{#SP4_0a} *Be in same class as input data, or*
+    - [**SP4.0b**]{#SP4_0b} *Be in a unique, preferably class-defined, format.*
+- [**SP4.1**]{#SP4_1} *Any aspects of input data which are included in output
+  data (either directly, or in some transformed form) and which contain units
+  should ensure those same units are maintained in return values.*
+- [**SP4.2**]{#SP4_2} *The type and class of all return values should be
+  explicitly documented.*
 
 
 ### Visualization
@@ -366,9 +370,11 @@ For (functions within) Spatial Software which return spatial data:
 Spatial Software which returns objects in a custom class structure explicitly
 designed to represent or include spatial data should:
 
-- **SP5.0** *Implement default `plot` methods for any implemented class system.*
-- **SP5.1** *Implement appropriate placement of variables along x- and y-axes.*
-- **SP5.2** *Ensure that axis labels include appropriate units.*
+- [**SP5.0**]{#SP5_0} *Implement default `plot` methods for any implemented
+  class system.*
+- [**SP5.1**]{#SP5_1} *Implement appropriate placement of variables along x-
+  and y-axes.*
+- [**SP5.2**]{#SP5_2} *Ensure that axis labels include appropriate units.*
 
 An example of **SP5.1** might be ensuring that longitude is placed on the
 x-axis, latitude on the y, although standard orientations may depend on
@@ -379,8 +385,8 @@ spatial.
 
 Spatial Software which returns objects with geographical coordinates should:
 
-- **SP5.3** *Offer an ability to generate interactive (generally `html`-based)
-  visualisations of results.*
+- [**SP5.3**]{#SP5_3} *Offer an ability to generate interactive (generally
+  `html`-based) visualisations of results.*
 
 ### Testing
 
@@ -393,9 +399,9 @@ of curvilinear data according to **SP2.0b**.
 
 **Round-Trip Tests**
 
-- **SP6.0** *Software which implements routines for transforming coordinates of
-  input data should include tests which demonstrate ability to recover the
-  original coordinates.*
+- [**SP6.0**]{#SP6_0} *Software which implements routines for transforming
+  coordinates of input data should include tests which demonstrate ability to
+  recover the original coordinates.*
 
 This standard is applicable to any software which implements any routines for
 coordinate transformations, even if those routines are implemented via
@@ -403,21 +409,22 @@ coordinate transformations, even if those routines are implemented via
 coordinate transformations need not adhere to **SP6.0**, even if that software
 relies on `PROJ` for other purposes.
 
-- **SP6.1** *All functions which can be applied to both Cartesian and
+- [**SP6.1**]{#SP6_1} *All functions which can be applied to both Cartesian and
   curvilinear data should be tested through application to both.*
-    - **SP6.1a** *Functions which may yield inaccurate results when applied to
-      data in one or the other forms (such as the preceding examples of
-      centroids and buffers from ellipsoidal data) should test that results
+    - [**SP6.1a**]{#SP6_1a} *Functions which may yield inaccurate results when
+      applied to data in one or the other forms (such as the preceding examples
+      of centroids and buffers from ellipsoidal data) should test that results
       from inappropriate application of those functions are indeed less
       accurate.*
-    - **SP6.1b** *Functions which yield accurate results regardless of whether
-      input data are rectilinear or curvilinear should demonstrate equivalent
-      accuracy in both cases, and should also demonstrate how equivalent
-      results may be obtained through first explicitly transforming input data.*
+    - [**SP6.1b**]{#SP6_1b} *Functions which yield accurate results regardless
+      of whether input data are rectilinear or curvilinear should demonstrate
+      equivalent accuracy in both cases, and should also demonstrate how
+      equivalent results may be obtained through first explicitly transforming
+      input data.*
 
 **Extreme Geographical Coordinates**
 
-- **SP6.2** *Geographical Software should include tests with extreme
+- [**SP6.2**]{#SP6_2} *Geographical Software should include tests with extreme
   geographical coordinates, minimally including extension to polar extremes of
   +/-90 degrees.*
 
@@ -431,22 +438,23 @@ The remaining standards for testing Spatial Software extend directly from the
 preceding Algorithmic Standards (**SP3**), with the same sub-section headings
 used here.
 
-- **SP6.3** *Spatial Software which considers spatial neighbours should
-  explicitly test all possible ways of defining them, and should explicitly
-  compare quantitative effects of different ways of defining neighbours.*
-- **SP6.4** *Spatial Software which considers spatial neighbours should
-  explicitly test effects of different schemes to weight neighbours by spatial
-  proximity.*
+- [**SP6.3**]{#SP6_3} *Spatial Software which considers spatial neighbours
+  should explicitly test all possible ways of defining them, and should
+  explicitly compare quantitative effects of different ways of defining
+  neighbours.*
+- [**SP6.4**]{#SP6_4} *Spatial Software which considers spatial neighbours
+  should explicitly test effects of different schemes to weight neighbours by
+  spatial proximity.*
 
 **Unsupervised Learning Software**
 
-- **SP6.5** *Spatial Unsupervised Learning Software which uses clustering
-  algorithms should implement tests which explicitly compare results with
-  equivalent results obtained with a non-spatial clustering algorithm.*
+- [**SP6.5**]{#SP6_5} *Spatial Unsupervised Learning Software which uses
+  clustering algorithms should implement tests which explicitly compare results
+  with equivalent results obtained with a non-spatial clustering algorithm.*
 
 **Machine Learning Software**
 
-- **SP6.6** *Spatial Machine Learning Software should implement tests which
-  explicitly demonstrate the detrimental consequences of sampling test and
-  training data from the same spatial region, rather than from spatially
+- [**SP6.6**]{#SP6_6} *Spatial Machine Learning Software should implement tests
+  which explicitly demonstrate the detrimental consequences of sampling test
+  and training data from the same spatial region, rather than from spatially
   distinct regions.
