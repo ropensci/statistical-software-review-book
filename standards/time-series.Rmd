@@ -53,25 +53,23 @@ to control for any deviation from expected properties.
 
 - **TS1.1** *Time Series Software should explicitly document the types and classes
   of input data able to be passed to each function.*
-- **TS1.2** *Time Series Software should accept input data in as many time series
-  specific classes as possible.*
-- **TS1.3** *Time Series Software should implement validation routines to confirm
+- **TS1.2** *Time Series Software should implement validation routines to confirm
   that inputs are of acceptable classes (or represented in otherwise
   appropriate ways for software which does not use class systems).*
-- **TS1.4** *Time Series Software should implement a single pre-processing routine
+- **TS1.3** *Time Series Software should implement a single pre-processing routine
   to validate input data, and to appropriately transform it to a single uniform
   type to be passed to all subsequent data-processing functions (the [`tsbox`
   package](https://www.tsbox.help/) provides one convenient approach for this).*
-- **TS1.5** *The pre-processing function described above should maintain all time-
+- **TS1.4** *The pre-processing function described above should maintain all time-
   or date-based components or attributes of input data.*
 
 For Time Series Software which relies on or implements custom classes or types
 for representing time-series data, the following standards should be adhered
 to:
 
-- **TS1.6** *The software should ensure strict ordering of the time, frequency, or
+- **TS1.5** *The software should ensure strict ordering of the time, frequency, or
   equivalent ordering index variable.*
-- **TS1.7** *Any violations of ordering should be caught in the pre-processing stages
+- **TS1.6** *Any violations of ordering should be caught in the pre-processing stages
   of all functions.*
 
 #### Time Intervals and Relative Time
@@ -87,10 +85,10 @@ form, and thus many packages should accept time series inputs both in absolute
 and relative forms. Software which can or should accept times series inputs in
 relative form should:
 
-- **TS1.8** *Accept inputs defined via the [`units`
+- **TS1.7** *Accept inputs defined via the [`units`
   package](https://github.com/r-quantities/units/) for attributing SI units to
   R vectors.*
-- **TS1.9** *Where time intervals or periods may be days or months, be explicit
+- **TS1.8** *Where time intervals or periods may be days or months, be explicit
   about the system used to represent such, particularly regarding whether a
   calendar system is used, or whether a year is presumed to have 365 days,
   365.2422 days, or some other value.*
