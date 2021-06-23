@@ -204,7 +204,7 @@ the additional requirement of implementing explicit parameters.
 
 #### Labelling
 
-- [**UL3.1**]{#UL3_1} *Algorithms which apply sequential labels to input data
+- [**UL3.0**]{#UL3_0} *Algorithms which apply sequential labels to input data
   (such as clustering or partitioning algorithms) should ensure that the
   sequence follows decreasing group sizes (so labels of "1", "a", or "A"
   describe the largest group, "2", "b", or "B" the second largest, and so on.)*
@@ -223,7 +223,7 @@ function](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/cutree.html
 applies arbitrary integer labels to the groups, yet the order of labels is not
 related to the order of group sizes.
 
-- [**UL3.2**]{#UL3_2} *Dimensionality reduction or equivalent algorithms which
+- [**UL3.1**]{#UL3_1} *Dimensionality reduction or equivalent algorithms which
   label dimensions should ensure that that sequences of labels follows
   decreasing "importance" (for example, eigenvalues or variance
   contributions).*
@@ -240,14 +240,14 @@ summary (z)
 The proportion of variance explained by each component decreasing with
 increasing numeric labelling of the components.
 
-- [**UL3.3**]{#UL3_3} *Unsupervised Learning Software for which input data does
+- [**UL3.2**]{#UL3_2} *Unsupervised Learning Software for which input data does
   not generally include labels (such as `array`-like data with no row names)
   should provide an additional parameter to enable cases to be labelled.*
 
 
 #### Prediction
 
-- [**UL3.4**]{#UL3_4} *Where applicable, Unsupervised Learning Software should
+- [**UL3.3**]{#UL3_3} *Where applicable, Unsupervised Learning Software should
   implement routines to predict the properties (such as numerical ordinates, or
   cluster memberships) of additional new data without re-running the entire
   algorithm.*
@@ -301,7 +301,7 @@ summary (res)
 
 Such output accords with the following standard:
 
-- [**UL3.5**]{#UL3_5} *Objects returned from Unsupervised Learning Software
+- [**UL3.4**]{#UL3_4} *Objects returned from Unsupervised Learning Software
   which labels, categorise, or partitions data into discrete groups should
   include, or provide immediate access to, quantitative information on
   intra-group variances or equivalent, as well as on inter-group relationships
@@ -431,9 +431,9 @@ With regard to labelling of output data, tests for Unsupervised Learning
 Software should:
 
 - [**UL7.2**]{#UL7_2} *Demonstrate that labels placed on output data follow
-  decreasing group sizes (**UL3.1**)*
+  decreasing group sizes (**UL3.0**)*
 - [**UL7.3**]{#UL7_3} *Demonstrate that labels on input data are propagated to,
-  or may be recovered from, output data (see **UL3.3**).*
+  or may be recovered from, output data.
 
 #### Prediction
 
