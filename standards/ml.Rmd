@@ -206,21 +206,21 @@ Many of the following standards refer to the labelling of input data as
 "testing" or "training" data, along with potentially additional labels such as
 "validation" data. In regard to such labelling, the following two standards apply,
 
-- **ML1.0** *Documentation should make a clear conceptual distinction between
-  training and test data (even where such may ultimately be confounded as
-  described above.)*
-    - **ML1.0a** *Where these terms are ultimately eschewed, these should
-      nevertheless be used in initial documentation, along with clear
+- [**ML1.0**]{#ML1_0} *Documentation should make a clear conceptual distinction
+  between training and test data (even where such may ultimately be confounded
+  as described above.)*
+    - [**ML1.0a**]{#ML1_0a} *Where these terms are ultimately eschewed, these
+      should nevertheless be used in initial documentation, along with clear
       explanation of, and justification for, alternative terminology.*
-- **ML1.1** *Absent clear justification for alternative design decisions, input
-  data should be expected to be labelled "test", "training", and, where
-  applicable, "validation" data.*
-    - **ML1.1a** *The presence and use of these labels should be explicitly
-      confirmed via pre-processing steps (and tested in accordance with
-      **ML7.0**, below).*
-    - **ML1.1b** *Matches to expected labels should be case-insensitive and
-      based on partial matching such that, for example, "Test", "test", or
-      "testing" should all suffice.*
+- [**ML1.1**]{#ML1_1} *Absent clear justification for alternative design
+  decisions, input data should be expected to be labelled "test", "training",
+  and, where applicable, "validation" data.*
+    - [**ML1.1a**]{#ML1_1a} *The presence and use of these labels should be
+      explicitly confirmed via pre-processing steps (and tested in accordance
+      with **ML7.0**, below).*
+    - [**ML1.1b**]{#ML1_1b} *Matches to expected labels should be
+      case-insensitive and based on partial matching such that, for example,
+      "Test", "test", or "testing" should all suffice.*
 
 The following three standards (**ML1.2**--**ML1.4**) represent three possible
 design intentions for ML software. Only one of these three will generally be
@@ -229,9 +229,9 @@ that more than one of these standards may apply. The first of these three
 standards applies to ML software which is intended to process, or capable of
 processing, input data as a single (generally tabular) object.
 
-- **ML1.2** *Training and test data sets for ML software should be able to be
-  input as a single, generally tabular, data object, with the training and test
-  data distinguished either by*
+- [**ML1.2**]{#ML1_2} *Training and test data sets for ML software should be
+  able to be input as a single, generally tabular, data object, with the
+  training and test data distinguished either by*
     - *A specified variable containing, for example, `TRUE`/`FALSE` or `0`/`1`
       values, or which uses some other system such as missing (`NA`) values to
       denote test data); and/or*
@@ -242,31 +242,31 @@ The second of these three standards applies to ML software which is intended to
 process, or capable of processing, input data represented as multiple objects
 which exist in local memory.
 
-- **ML1.3** *Input data should be clearly partitioned between training and test
-  data (for example, through having each passed as a distinct `list` item), or
-  should enable an additional means of categorically distinguishing training
-  from test data (such as via an additional parameter which provides explicit
-  labels). Where applicable, distinction of validation and any other data
-  should also accord with this standard.*
+- [**ML1.3**]{#ML1_3} *Input data should be clearly partitioned between
+  training and test data (for example, through having each passed as a distinct
+  `list` item), or should enable an additional means of categorically
+  distinguishing training from test data (such as via an additional parameter
+  which provides explicit labels). Where applicable, distinction of validation
+  and any other data should also accord with this standard.*
 
 The third of these three standards for data input applies to ML software for
 which data are expected to be input as references to multiple external objects,
 generally expected to be read from either local or remote connections.
 
-- **ML1.4** *Training and test data sets, along with other necessary components
-  such as validation data sets, should be stored in their own distinctly
-  labelled sub-directories (for distinct files), or according to an explicit
-  and distinct labelling scheme (for example, for database connections).
-  Labelling should in all cases adhere to **ML1.1**, above.*
+- [**ML1.4**]{#ML1_4} *Training and test data sets, along with other necessary
+  components such as validation data sets, should be stored in their own
+  distinctly labelled sub-directories (for distinct files), or according to an
+  explicit and distinct labelling scheme (for example, for database
+  connections). Labelling should in all cases adhere to **ML1.1**, above.*
 
 The following standard applies to all ML software regardless of the
 applicability or otherwise of the preceding three standards. 
 
-- **ML1.5** *ML software should implement a single function which summarises the
-  contents of test and training (and other) data sets, minimally including
-  counts of numbers of cases, records, or files, and potentially extending to
-  tables or summaries of file or data types, sizes, and other information (such
-  as unique hashes for each component).*
+- [**ML1.5**]{#ML1_5} *ML software should implement a single function which
+  summarises the contents of test and training (and other) data sets, minimally
+  including counts of numbers of cases, records, or files, and potentially
+  extending to tables or summaries of file or data types, sizes, and other
+  information (such as unique hashes for each component).*
 
 #### Missing Values
 
@@ -277,24 +277,24 @@ missing values (**G2.13**--**G2.16**) do not apply to Machine Learning
 software, in the place of which the following standards attempt to cover
 a practical range of typical approaches and applications.
 
-- **ML1.6** *ML software which does not admit missing values, and which expects
-  no missing values, should implement explicit pre-processing routines to
-  identify whether data has any missing values, and should generally error
-  appropriately and informatively when passed data with missing values. In
-  addition, ML software which does not admit missing values should:*
-    - **ML1.6a** *Explain why missing values are not admitted.*
-    - **ML1.6b** *Provide explicit examples (in function documentation,
-      vignettes, or both) for how missing values may be imputed, rather than
-      simply discarded.*
-- **ML1.7** *ML software which admits missing values should clearly document how
-  such values are processed.*
-    - **ML1.7a** *Where missing values are imputed, software should offer
-      multiple user-defined ways to impute missing data.*
-    - **ML1.7b** *Where missing values are imputed, the precise imputation steps
-      should also be explicitly documented, either in tests (see **ML7.2**
-      below), function documentation, or vignettes.*
-- **ML1.8** *ML software should enable equal treatment of missing values for
-  both training and test data, with optional user ability to control
+- [**ML1.6**]{#ML1_6} *ML software which does not admit missing values, and
+  which expects no missing values, should implement explicit pre-processing
+  routines to identify whether data has any missing values, and should
+  generally error appropriately and informatively when passed data with missing
+  values. In addition, ML software which does not admit missing values should:*
+    - [**ML1.6a**]{#ML1_6a} *Explain why missing values are not admitted.*
+    - [**ML1.6b**]{#ML1_6b} *Provide explicit examples (in function
+      documentation, vignettes, or both) for how missing values may be imputed,
+      rather than simply discarded.*
+- [**ML1.7**]{#ML1_7} *ML software which admits missing values should clearly
+  document how such values are processed.*
+    - [**ML1.7a**]{#ML1_7a} *Where missing values are imputed, software should
+      offer multiple user-defined ways to impute missing data.*
+    - [**ML1.7b**]{#ML1_7b} *Where missing values are imputed, the precise
+      imputation steps should also be explicitly documented, either in tests
+      (see **ML7.2** below), function documentation, or vignettes.*
+- [**ML1.8**]{#ML1_8} *ML software should enable equal treatment of missing
+  values for both training and test data, with optional user ability to control
   application to either one or both.*
 
 ### Pre-processing
@@ -308,14 +308,15 @@ to those data. This section of standards refers exclusively to the
 transformation of input data as a pre-processing step prior to any
 specification of, or submission to, actual models.
 
-- **ML2.0** *A dedicated function should enable pre-processing steps to be
-  defined and parametrized.*
-    - **ML2.0a** *That function should return an object which can be directly
-      submitted to a specified model (see section 3, below).*
-    - **ML2.0b** *Absent explicit justification otherwise, that return object
-      should have a defined class minimally intended to implement a default
-      `print` method which summarizes the input data set (as per **ML1.5**
-      above) and associated transformations (see the following standard).*
+- [**ML2.0**]{#ML2_0} *A dedicated function should enable pre-processing steps
+  to be defined and parametrized.*
+    - [**ML2.0a**]{#ML2_0a} *That function should return an object which can be
+      directly submitted to a specified model (see section 3, below).*
+    - [**ML2.0b**]{#ML2_0b} *Absent explicit justification otherwise, that
+      return object should have a defined class minimally intended to implement
+      a default `print` method which summarizes the input data set (as per
+      **ML1.5** above) and associated transformations (see the following
+      standard).*
 
 Standards for most other categories of statistical software suggest that
 pre-processing routines should ensure that input data sets are commensurate,
@@ -324,40 +325,40 @@ software is commonly intended to accept input data which can not be guaranteed
 to be dimensionally commensurate, such as software intended to process
 rectangular image files which may be of different sizes.
 
-- **ML2.1** *ML software which uses broadcasting to reconcile dimensionally
-  incommensurate input data should offer an ability to at least optionally
-  record transformations applied to each input file.*
+- [**ML2.1**]{#ML2_1} *ML software which uses broadcasting to reconcile
+  dimensionally incommensurate input data should offer an ability to at least
+  optionally record transformations applied to each input file.*
 
 Beyond broadcasting and dimensional transformations, the following standards
 apply to the pre-processing stages of ML software. 
 
-- **ML2.2** *ML software which requires or relies upon numeric transformations
-  of input data (such as change in mean values or variances) should allow
-  optimal explicit specification of target values, rather than restricting
-  transformations to default generic values only (such as transformations to
-  z-scores).*
-    - **ML2.2a** *Where the parameters have default values, reasons for those
-      particular defaults should be explicitly described.*
-    - **ML2.2b** *Any extended documentation (such as vignettes) which
-      demonstrates the use of explicit values for numeric transformations
+- [**ML2.2**]{#ML2_2} *ML software which requires or relies upon numeric
+  transformations of input data (such as change in mean values or variances)
+  should allow optimal explicit specification of target values, rather than
+  restricting transformations to default generic values only (such as
+  transformations to z-scores).*
+    - [**ML2.2a**]{#ML2_2a} *Where the parameters have default values, reasons
+      for those particular defaults should be explicitly described.*
+    - [**ML2.2b**]{#ML2_2b} *Any extended documentation (such as vignettes)
+      which demonstrates the use of explicit values for numeric transformations
       should explicitly describe why particular values are used.*
 
 For all transformations applied to input data, whether of dimension (**ML2.1**)
 or scale (**ML2.2**),
 
-- **ML2.3** *The values associated with all transformations should be recorded
-  in the object returned by the function described in the preceding standard
-  (**ML2.0**).*
-- **ML2.4** *Default values of all transformations should be explicitly
-  documented, both in documentation of parameters where appropriate (such as
-  for numeric transformations), and in extended documentation such as
+- [**ML2.3**]{#ML2_3} *The values associated with all transformations should be
+  recorded in the object returned by the function described in the preceding
+  standard (**ML2.0**).*
+- [**ML2.4**]{#ML2_4} *Default values of all transformations should be
+  explicitly documented, both in documentation of parameters where appropriate
+  (such as for numeric transformations), and in extended documentation such as
   vignettes.*
-- **ML2.5** *ML software should provide options to bypass or otherwise switch
-  off all default transformations.*
-- **ML2.6** *Where transformations are implemented via distinct functions, these
-  should be exported to a package's namespace so they can be applied in other
-  contexts.*
-- **ML2.7** *Where possible, documentation should be provided for how
+- [**ML2.5**]{#ML2_5} *ML software should provide options to bypass or
+  otherwise switch off all default transformations.*
+- [**ML2.6**]{#ML2_6} *Where transformations are implemented via distinct
+  functions, these should be exported to a package's namespace so they can be
+  applied in other contexts.*
+- [**ML2.7**]{#ML2_7} *Where possible, documentation should be provided for how
   transformations may be reversed. For example, documentation may demonstrate
   how the values retained via **ML2.3**, above, can be used along with
   transformations either exported via **ML2.6** or otherwise exemplified in
@@ -376,31 +377,32 @@ parameters* which specify how models are trained. These parameters commonly
 include values specifying numbers of iterations, training rates, and parameters
 controlling algorithmic processes such as re-sampling or cross-validation.
 
-- **ML3.0** *Model specification should be implemented as a distinct stage
-  subsequent to specification of pre-processing routines (see Section 2, above)
-  and prior to actual model fitting or training (see Section 4, below). In
-  particular,*
-    - **ML3.0a** *A dedicated function should enable models to be specified
-      without actually fitting or training them, or if this (**ML3**) and the
-      following (**ML4**) stages are controlled by a single function, that
-      function should have a parameter enabling models to be specified yet not
-      fitted (for example, `nofit = FALSE`).*
-    - **ML3.0b** *That function should accept as input the objects produced by
-      the previous Input Data Specification stage, and defined according to
-      **ML2.0**, above.*
-    - **ML3.0c** *The function described above (**ML3.0a**) should return an
-      object which can be directly trained as described in the following
-      sub-section (**ML4**).*
-    - **ML3.0d** *That return object should have a defined class minimally
-      intended to implement a default `print` method which summarises the model
-      specification, including values of all relevant parameters.*
-- **ML3.1** *ML software should allow the use of both untrained models,
-  specified through model parameters only, as well as pre-trained models. Use
-  of the latter commonly entails an ability to submit a previously-trained
-  model object to the function defined according to **ML3.0a**, above.*
-- **ML3.2** *ML software should enable different models to be applied to the
-  object specifying data inputs and transformations (see sub-sections 1--2,
-  above) without needing to re-define those preceding steps.*
+- [**ML3.0**]{#ML3_0} *Model specification should be implemented as a distinct
+  stage subsequent to specification of pre-processing routines (see Section 2,
+  above) and prior to actual model fitting or training (see Section 4, below).
+  In particular,*
+    - [**ML3.0a**]{#ML3_0a} *A dedicated function should enable models to be
+      specified without actually fitting or training them, or if this (**ML3**)
+      and the following (**ML4**) stages are controlled by a single function,
+      that function should have a parameter enabling models to be specified yet
+      not fitted (for example, `nofit = FALSE`).*
+    - [**ML3.0b**]{#ML3_0b} *That function should accept as input the objects
+      produced by the previous Input Data Specification stage, and defined
+      according to **ML2.0**, above.*
+    - [**ML3.0c**]{#ML3_0c} *The function described above (**ML3.0a**) should
+      return an object which can be directly trained as described in the
+      following sub-section (**ML4**).*
+    - [**ML3.0d**]{#ML3_0d} *That return object should have a defined class
+      minimally intended to implement a default `print` method which summarises
+      the model specification, including values of all relevant parameters.*
+- [**ML3.1**]{#ML3_1} *ML software should allow the use of both untrained
+  models, specified through model parameters only, as well as pre-trained
+  models. Use of the latter commonly entails an ability to submit
+  a previously-trained model object to the function defined according to
+  **ML3.0a**, above.*
+- [**ML3.2**]{#ML3_2} *ML software should enable different models to be applied
+  to the object specifying data inputs and transformations (see sub-sections
+  1--2, above) without needing to re-define those preceding steps.*
 
 A function fulfilling **ML3.0--3.2** might, for example, permit the following
 arguments:
@@ -418,25 +420,25 @@ provision of a separate `.data` argument would fulfil **ML3.2** by allowing one
 or both `model` or `control` parameters to be re-defined while submitting the
 same `data` object.
 
-- **ML3.3** *Where ML software implements its own distinct classes of model
-  objects, the properties and behaviours of those specific classes of objects
-  should be explicitly compared with objects produced by other ML software. In
-  particular, where possible, ML software should provide extended documentation
-  (as vignettes or equivalent) comparing model objects with those from other ML
-  software, noting both unique abilities and restrictions of any implemented
-  classes.*
-- **ML3.4** *Where training rates are used, ML software should provide explicit
-  documentation both in all functions which use training rates, and in extended
-  form such as vignettes, of the importance of, and/or sensitivity to, different
-  values of training rates. In particular,*
-    - **ML3.4a** *Unless explicitly justified otherwise, ML software should
-      offer abilities to automatically determine appropriate or optimal
+- [**ML3.3**]{#ML3_3} *Where ML software implements its own distinct classes of
+  model objects, the properties and behaviours of those specific classes of
+  objects should be explicitly compared with objects produced by other ML
+  software. In particular, where possible, ML software should provide extended
+  documentation (as vignettes or equivalent) comparing model objects with those
+  from other ML software, noting both unique abilities and restrictions of any
+  implemented classes.*
+- [**ML3.4**]{#ML3_4} *Where training rates are used, ML software should
+  provide explicit documentation both in all functions which use training
+  rates, and in extended form such as vignettes, of the importance of, and/or
+  sensitivity to, different values of training rates. In particular,*
+    - [**ML3.4a**]{#ML3_4a} *Unless explicitly justified otherwise, ML software
+      should offer abilities to automatically determine appropriate or optimal
       training rates, either as distinct pre-processing stages, or as implicit
       stages of model training.*
-    - **ML3.4b** *ML software which provides default values for training rates
-      should clearly document anticipated restrictions of validity of those
-      default values; for example through clear suggestions that
-      user-determined and -specified values may generally be necessary or
+    - [**ML3.4b**]{#ML3_4b} *ML software which provides default values for
+      training rates should clearly document anticipated restrictions of
+      validity of those default values; for example through clear suggestions
+      that user-determined and -specified values may generally be necessary or
       preferable.*
 
 #### Control Parameters
@@ -447,17 +449,20 @@ specifying the actual model (such as model architecture). While we recommend
 that control parameters be submitted as items of a single named list, this is
 neither a firm expectation nor an explicit part of the current standards.
 
-- **ML3.5** *Parameters controlling optimization algorithms should minimally include:*
-    - **ML3.5a** *Specification of the type of algorithm used to explore the
-      search space (commonly, for example, some kind of gradient descent
-      algorithm)*
-    - **ML3.5b** *The kind of loss function used to assess distance between
-      model estimates and desired output.*
-- **ML3.6** *Unless explicitly justified otherwise (for example because ML
-  software under consideration is an implementation of one specific algorithm),
-  ML software should:*
-    - **ML3.6a** *Implement or otherwise permit usage of multiple ways of exploring search space*
-    - **ML3.6b** *Implement or otherwise permit usage of multiple loss functions.*
+- [**ML3.5**]{#ML3_5} *Parameters controlling optimization algorithms should
+  minimally include:*
+    - [**ML3.5a**]{#ML3_5a} *Specification of the type of algorithm used to
+      explore the search space (commonly, for example, some kind of gradient
+      descent algorithm)*
+    - [**ML3.5b**]{#ML3_5b} *The kind of loss function used to assess distance
+      between model estimates and desired output.*
+- [**ML3.6**]{#ML3_6} *Unless explicitly justified otherwise (for example
+  because ML software under consideration is an implementation of one specific
+  algorithm), ML software should:*
+    - [**ML3.6a**]{#ML3_6a} *Implement or otherwise permit usage of multiple
+      ways of exploring search space*
+    - [**ML3.6b**]{#ML3_6b} *Implement or otherwise permit usage of multiple
+      loss functions.*
 
 #### CPU and GPU processing
 
@@ -467,7 +472,7 @@ central processing units (CPUs). ML software thus commonly offers options to
 train models using either CPUs or GPUs. While these standards do not currently
 suggest any particular design choice in this regard, we do note the following:
 
-- **ML3.7** *For ML software in which algorithms are coded in C++,
+- [**ML3.7**]{#ML3_7} *For ML software in which algorithms are coded in C++,
   user-controlled use of either CPUs or GPUs (on NVIDIA processors at least)
   should be implemented through direct use of
   [`libcudacxx`](https://github.com/NVIDIA/libcudacxx).*
@@ -481,23 +486,23 @@ Model training is the stage of the ML workflow envisioned here in which the
 actual computation is performed by applying a model specified according to
 **ML3** to data specified according to **ML1** and **ML2**.
 
-- **ML4.0** *ML software should generally implement a unified single-function
-  interface to model training, able to receive as input a model specified
-  according to all preceding standards. In particular, models with
+- [**ML4.0**]{#ML4_0} *ML software should generally implement a unified
+  single-function interface to model training, able to receive as input a model
+  specified according to all preceding standards. In particular, models with
   categorically different specifications, such as different model architectures
   or optimization algorithms, should be able to be submitted to the same model
   training function.*
-- **ML4.1** *ML software should at least optionally retain explicit information
-  on paths taken as an optimizer advances towards minimal loss. Such
-  information should minimally include:*
-    - **ML4.1a** *Specification of all model-internal parameters, or equivalent
-      hashed representation.*
-    - **ML4.1b** *The value of the loss function at each point*
-    - **ML4.1c** *Information used to advance to next point, for example
-      quantification of local gradient.*
-- **ML4.2** *The subsequent extraction of information retained according to the
-  preceding standard should be explicitly documented, including through example
-  code.*
+- [**ML4.1**]{#ML4_1} *ML software should at least optionally retain explicit
+  information on paths taken as an optimizer advances towards minimal loss.
+  Such information should minimally include:*
+    - [**ML4.1a**]{#ML4_1a} *Specification of all model-internal parameters, or
+      equivalent hashed representation.*
+    - [**ML4.1b**]{#ML4_1b} *The value of the loss function at each point*
+    - [**ML4.1c**]{#ML4_1c} *Information used to advance to next point, for
+      example quantification of local gradient.*
+- [**ML4.2**]{#ML4_2} *The subsequent extraction of information retained
+  according to the preceding standard should be explicitly documented,
+  including through example code.*
 
 #### Batch Processing
 
@@ -505,27 +510,28 @@ The following standards apply to ML software which implements batch processing,
 commonly to train models on data sets too large to be loaded in their entirety
 into memory.
 
-- **ML4.3** *All parameters controlling batch processing and associated
-  terminology should be explicitly documented, and it should not, for example,
-  be presumed that users will understand the definition of "epoch" as
-  implemented in any particular ML software.*
+- [**ML4.3**]{#ML4_3} *All parameters controlling batch processing and
+  associated terminology should be explicitly documented, and it should not,
+  for example, be presumed that users will understand the definition of "epoch"
+  as implemented in any particular ML software.*
 
 According to that standard, it would for example be inappropriate to have
 a parameter, `nepochs`, described as "Number of epochs used in model training".
 Rather, the definition and particular implementation of "epoch" must be
 explicitly defined.
 
-- **ML4.4** *Explicit guidance should be provided on selection of appropriate
-  values for parameter controlling batch processing, for example, on trade-offs
-  between batch sizes and numbers of epochs (with both terms provided as
-  Control Parameters in accordance with the preceding standard, **ML3**).*
-- **ML4.5** *ML software may optionally include a function to estimate likely
-  time to train a specified model, through estimating initial timings from
-  a small sample of the full batch.*
-- **ML4.6** *ML software should by default provide explicit information on the
-  progress of batch jobs (even where those jobs may be implemented in parallel
-  on GPUs). That information may be optionally suppressed through additional
-  parameters.*
+- [**ML4.4**]{#ML4_4} *Explicit guidance should be provided on selection of
+  appropriate values for parameter controlling batch processing, for example,
+  on trade-offs between batch sizes and numbers of epochs (with both terms
+  provided as Control Parameters in accordance with the preceding standard,
+  **ML3**).*
+- [**ML4.5**]{#ML4_5} *ML software may optionally include a function to
+  estimate likely time to train a specified model, through estimating initial
+  timings from a small sample of the full batch.*
+- [**ML4.6**]{#ML4_6} *ML software should by default provide explicit
+  information on the progress of batch jobs (even where those jobs may be
+  implemented in parallel on GPUs). That information may be optionally
+  suppressed through additional parameters.*
 
 #### Re-sampling
 
@@ -546,15 +552,15 @@ by being stored in distinctly-named sub-directories, re-sampling may be
 implemented by effectively shuffling data between training and test
 sub-directories.
 
-- **ML4.7** *ML software should provide an ability to combine results from
-  multiple re-sampling iterations using a single parameter specifying numbers
-  of iterations.*
-- **ML4.8** *Absent any additional specification, re-sampling algorithms should
-  by default partition data according to proportions of original test and
-  training data.*
-    - **ML4.8a** *Re-sampling routines of ML software should nevertheless offer
-      an ability to explicitly control or override such default proportions of
-      test and training data.*
+- [**ML4.7**]{#ML4_7} *ML software should provide an ability to combine results
+  from multiple re-sampling iterations using a single parameter specifying
+  numbers of iterations.*
+- [**ML4.8**]{#ML4_8} *Absent any additional specification, re-sampling
+  algorithms should by default partition data according to proportions of
+  original test and training data.*
+    - [**ML4.8a**]{#ML4_8a} *Re-sampling routines of ML software should
+      nevertheless offer an ability to explicitly control or override such
+      default proportions of test and training data.*
 
 ### Model Output and Performance
 
@@ -567,33 +573,34 @@ standards (**ML4**). Model Performance is then considered as a separate stage.
 
 #### Model Output
 
-- **ML5.0** *The result of applying the training processes described above
-  should be contained within a single model object returned by the function
-  defined according to **ML4.0**, above. Even where the output reflects
-  application to a test data set, the resultant object need not include any
-  information on model performance (see **ML5.3**--**ML5.4**, below).*
-    - **ML5.0a** *That object should either have its own class, or extend some
-      previously-defined class.*
-    - **ML5.0b** *That class should have a defined `print` method which
-      summarises important aspects of the model object, including but not
+- [**ML5.0**]{#ML5_0} *The result of applying the training processes described
+  above should be contained within a single model object returned by the
+  function defined according to **ML4.0**, above. Even where the output
+  reflects application to a test data set, the resultant object need not
+  include any information on model performance (see **ML5.3**--**ML5.4**,
+  below).*
+    - [**ML5.0a**]{#ML5_0a} *That object should either have its own class, or
+      extend some previously-defined class.*
+    - [**ML5.0b**]{#ML5_0b} *That class should have a defined `print` method
+      which summarises important aspects of the model object, including but not
       limited to summaries of input data and algorithmic control parameters.*
-- **ML5.1** *As for the untrained model objects produced according to the above
-  standards, and in particular as a direct extension of **ML3.3**, the
-  properties and behaviours of trained models produced by ML software should be
-  explicitly compared with equivalent objects produced by other ML software.
-  (Such comparison will generally be done in terms of comparing model
+- [**ML5.1**]{#ML5_1} *As for the untrained model objects produced according to
+  the above standards, and in particular as a direct extension of **ML3.3**,
+  the properties and behaviours of trained models produced by ML software
+  should be explicitly compared with equivalent objects produced by other ML
+  software. (Such comparison will generally be done in terms of comparing model
   performance, as described in the following standard **ML5.3**--**ML5.4**).*
-- **ML5.2** *The structure and functionality of objects representing trained ML
-  models should be thoroughly documented. In particular,*
-    - **ML5.2a** *Either all functionality extending from the class of model
-      object should be explicitly documented, or a method for listing or
-      otherwise accessing all associated functionality explicitly documented
+- [**ML5.2**]{#ML5_2} *The structure and functionality of objects representing
+  trained ML models should be thoroughly documented. In particular,*
+    - [**ML5.2a**]{#ML5_2a} *Either all functionality extending from the class
+      of model object should be explicitly documented, or a method for listing
+      or otherwise accessing all associated functionality explicitly documented
       and demonstrated in example code.*
-    - **ML5.2b** *Documentation should include examples of how to save and
-      re-load trained model objects for their re-use in accordance with
-      **ML3.1**, above.*
-    - **ML5.2c** *Where general functions for saving or serializing objects,
-      such as
+    - [**ML5.2b**]{#ML5_2b} *Documentation should include examples of how to
+      save and re-load trained model objects for their re-use in accordance
+      with **ML3.1**, above.*
+    - [**ML5.2c**]{#ML5_2c} *Where general functions for saving or serializing
+      objects, such as
       [`saveRDS`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/readRDS.html)
       are not appropriate for storing local copies of trained models, an
       explicit function should be provided for that purpose, and should be
@@ -617,14 +624,15 @@ list all associated functions, nor explicitly lists those functions.
 Model performance refers to the quantitative assessment of a trained model when
 applied to a set of test data.
 
-- **ML5.3** *Assessment of model performance should be implemented as one or
-  more functions distinct from model training.*
-- **ML5.4** *Model performance should be able to be assessed according to
-  a variety of metrics.*
-    - **ML5.4a** *All model performance metrics represented by functions
-      internal to a package must be clearly and distinctly documented.*
-    - **ML5.4b** *It should be possible to submit custom metrics to a model
-      assessment function, and the ability to do so should be clearly
+- [**ML5.3**]{#ML5_3} *Assessment of model performance should be implemented as
+  one or more functions distinct from model training.*
+- [**ML5.4**]{#ML5_4} *Model performance should be able to be assessed
+  according to a variety of metrics.*
+    - [**ML5.4a**]{#ML5_4a} *All model performance metrics represented by
+      functions internal to a package must be clearly and distinctly
+      documented.*
+    - [**ML5.4b**]{#ML5_4b} *It should be possible to submit custom metrics to
+      a model assessment function, and the ability to do so should be clearly
       documented including through example code.*
 
 The remaining sub-sections specify general standards beyond the preceding
@@ -632,7 +640,7 @@ workflow-specific ones.
 
 ### Documentation
 
-- **ML6.0** *Descriptions of ML software should make explicit reference to
+- [**ML6.0**]{#ML6_0} *Descriptions of ML software should make explicit reference to
   a workflow which separates training and testing stages, and which clearly
   indicates a need for distinct training and test data sets.*
 
@@ -642,26 +650,28 @@ at the outset. Envisioned here are packages explicitly intended to aid one
 particular aspect of the general workflow envisioned here, such as
 implementations of ML optimization functions, or specific loss measures.
 
-- **ML6.1** *ML software intentionally designed to address only a restricted
-  subset of the workflow described here should clearly document how it can be
-  embedded within a typical full ML workflow in the sense considered here.*
-    - **ML6.1** *Such demonstrations should include and contrast embedding
-      within a full workflow using at least two other packages to implement
-      that workflow.*
+- [**ML6.1**]{#ML6_1} *ML software intentionally designed to address only
+  a restricted subset of the workflow described here should clearly document
+  how it can be embedded within a typical full ML workflow in the sense
+  considered here.*
+    - [**ML6.1a**]{#ML6_1a} *Such demonstrations should include and contrast
+      embedding within a full workflow using at least two other packages to
+      implement that workflow.*
 
 
 ### Testing
 
 #### Input Data
 
-- **ML7.0** *Test should explicitly confirm partial and case-insensitive
-  matching of "test", "train", and, where applicable, "validation" data.*
-- **ML7.1** *Tests should demonstrate effects of different numeric scaling of
-  input data (see **ML2.2**).*
-- **ML7.2** *For software which imputes missing data, tests should compare
-  internal imputation with explicit code which directly implements imputation
-  steps (even where such imputation is a single-step implemented via some
-  external package). These tests serve as an explicit reference for how
+- [**ML7.0**]{#ML7_0} *Test should explicitly confirm partial and
+  case-insensitive matching of "test", "train", and, where applicable,
+  "validation" data.*
+- [**ML7.1**]{#ML7_1} *Tests should demonstrate effects of different numeric
+  scaling of input data (see **ML2.2**).*
+- [**ML7.2**]{#ML7_2} *For software which imputes missing data, tests should
+  compare internal imputation with explicit code which directly implements
+  imputation steps (even where such imputation is a single-step implemented via
+  some external package). These tests serve as an explicit reference for how
   imputation is performed.*
 
 #### Model Classes
@@ -670,37 +680,41 @@ The following standard applies to models in both untrained and trained forms,
 considered to be the respective outputs of the preceding standards **ML3** and
 **ML4**.
 
-- **ML7.3** *Where model objects are implemented as distinct classes, tests
-  should explicitly compare the functionality of these classes with
-  functionality of equivalent classes for ML model objects from other packages.*
-    - **ML7.3a** *These tests should explicitly identify restrictions on the
-      functionality of model objects in comparison with those of other
-      packages.*
-    - **ML7.3b** *These tests should explicitly identify functional advantages
-      and unique abilities of the model objects in comparison with those of
-      other packages.*
+- [**ML7.3**]{#ML7_3} *Where model objects are implemented as distinct classes,
+  tests should explicitly compare the functionality of these classes with
+  functionality of equivalent classes for ML model objects from other
+  packages.*
+    - [**ML7.3a**]{#ML7_3a} *These tests should explicitly identify
+      restrictions on the functionality of model objects in comparison with
+      those of other packages.*
+    - [**ML7.3b**]{#ML7_3b} *These tests should explicitly identify functional
+      advantages and unique abilities of the model objects in comparison with
+      those of other packages.*
 
 #### Model Training
 
-- **ML7.4** *ML software should explicit document the effects of different
-  training rates, and in particular should demonstrate divergence from optima
-  with inappropriate training rates.*
-- **ML7.5** *ML software which implements routines to determine optimal training
-  rates (see **ML3.4**, above) should implement tests to confirm the optimality
-  of resultant values.*
-- **ML7.6** *ML software which implement independent training "epochs" should
-  demonstrate in tests the effects of lesser versus greater numbers of epochs.*
-- **ML7.7** *ML software should explicitly test different optimization
-  algorithms, even where software is intended to implement one specific
-  algorithm.*
-- **ML7.8** *ML software should explicitly test different loss functions, even
-  where software is intended to implement one specific measure of loss.*
-- **ML7.9** *Tests should explicitly compare all possible combinations in
-  categorical differences in model architecture, such as different model
-  architectures with same optimization algorithms, same model architectures
-  with different optimization algorithms, and differences in both.*
-    - **ML7.9a** *Such combinations will generally be formed from multiple
-      categorical factors, for which explicit use of functions such as
+- [**ML7.4**]{#ML7_4} *ML software should explicit document the effects of
+  different training rates, and in particular should demonstrate divergence
+  from optima with inappropriate training rates.*
+- [**ML7.5**]{#ML7_5} *ML software which implements routines to determine
+  optimal training rates (see **ML3.4**, above) should implement tests to
+  confirm the optimality of resultant values.*
+- [**ML7.6**]{#ML7_6} *ML software which implement independent training
+  "epochs" should demonstrate in tests the effects of lesser versus greater
+  numbers of epochs.*
+- [**ML7.7**]{#ML7_7} *ML software should explicitly test different
+  optimization algorithms, even where software is intended to implement one
+  specific algorithm.*
+- [**ML7.8**]{#ML7_8} *ML software should explicitly test different loss
+  functions, even where software is intended to implement one specific measure
+  of loss.*
+- [**ML7.9**]{#ML7_9} *Tests should explicitly compare all possible
+  combinations in categorical differences in model architecture, such as
+  different model architectures with same optimization algorithms, same model
+  architectures with different optimization algorithms, and differences in
+  both.*
+    - [**ML7.9a**]{#ML7_9a} *Such combinations will generally be formed from
+      multiple categorical factors, for which explicit use of functions such as
       [`expand.grid()`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/expand.grid.html)
       is recommended.*
 
@@ -716,14 +730,15 @@ expand.grid (architechture, optimizers, cost_fns)
 All possible combinations of these categorical parameters could then be tested
 by iterating over the rows of that output.
 
-- **ML7.10** *The successful extraction of information on paths taken by
-  optimizers (see **ML5.1**, above), should be tested, including testing the
-  general properties, but not necessarily actual values of, such data.*
+- [**ML7.10**]{#ML7_10} *The successful extraction of information on paths
+  taken by optimizers (see **ML5.1**, above), should be tested, including
+  testing the general properties, but not necessarily actual values of, such
+  data.*
 
 #### Model Performance
 
-- **ML7.11** *All performance metrics available for a given class of trained
-  model should be thoroughly tested and compared.*
-    - **ML7.11a** *Tests which compare metrics should do so over a range of
-      inputs (generally implying differently trained models) to demonstrate
-      relative advantages and disadvantages of different metrics.*
+- [**ML7.11**]{#ML7_11} *All performance metrics available for a given class of
+  trained model should be thoroughly tested and compared.*
+    - [**ML7.11a**]{#ML7_11a} *Tests which compare metrics should do so over
+      a range of inputs (generally implying differently trained models) to
+      demonstrate relative advantages and disadvantages of different metrics.*
