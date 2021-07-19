@@ -24,12 +24,14 @@ jobs:
       - name: Setup pandoc
         uses: r-lib/actions/setup-pandoc@v1
 
+      - uses: r-lib/actions/setup-tinytex@v1
+
           #- name: Query dependencies
           #run:
           #Rscript -e "install.packages('remotes')" -e "saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds', version = 2)"
 
       - name: Cache R packages
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ${{ env.R_LIBS_USER }}
           key: r-${{ hashFiles('DESCRIPTION') }}
@@ -44,13 +46,15 @@ jobs:
         #- name: Render Book pdf
         #run: Rscript -e 'bookdown::render_book("index.Rmd", new_session = FALSE, output_format = "bookdown::pdf_book")'
 
+      - name: git config
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "gh-pages committer"
       - name: Commit results
         run: |
           cp ghpagescname docs/CNAME
           cp -r favicon/ docs/
-          cd docs
-          git config --global user.email ${{secrets.EMAIL}}
-          git config --global user.name "gh-pages committer"
+          cd _book
           git init
           git add .
           git commit -m 'update book'
