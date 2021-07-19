@@ -156,7 +156,7 @@ continuously throughout package development, to ensure that
 returns clean (`NULL`) results when the package is first submitted.
 
 
-## Alignment with Standards {#pkgdev-srr}
+## The [`srr` package](https://github.com/ropensci-review-tools/srr) {#pkgdev-srr}
 
 Once a package has been sufficiently developed to begin alignment with our
 standards, and once all issues revealed by
