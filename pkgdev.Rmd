@@ -301,12 +301,14 @@ as explained below.
 **gold** for software which complies with *all* standards which reviewers have
 deemed potentially applicable.
 
-The submission template requires authors to identify the category they wish to
-attain from the review process. These standards are not static, and it is
-always possible to elevate a badge to a higher grade subsequent to review.
-Badge grades may also be downgraded for code which is not continuously aligned
-with ongoing developments in standards. The following sub-sections provide
-further clarification of each grade.
+The [submission
+template](https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/F-submit-statistical-software-for-review.md)
+for statistical software submissions requires authors to identify the grade
+they wish to attain from the review process. These standards are not static,
+and it is always possible to elevate a badge to a higher grade subsequent to
+review. Badge grades may also be downgraded for code which is not continuously
+aligned with ongoing developments in standards. The following sub-sections
+provide further clarification of each grade.
 
 ### Bronze [![](badges/stats-bronze.svg)](https://github.com/ropenscilabs/statistical-software-review-book) {#pkgdev-bronze}
 
