@@ -18,10 +18,15 @@ standard listed in that chapter. The process of doing so is facilitated by the
 [`srr` package](https://github.com/ropensci-review-tools/srr), as described in
 detail in [Sub-section 3.4, below](#pkgdev-srr).
 
-Prior to that sub-section, this chapter begins with consideration of the scope
-of statistical software able to be considered for review, followed by
-descriptions of two tools intended to be used through the entire process of
-package development. The first tool is the [`pkgcheck`
+Documenting compliance with our standards will generally entail more work than
+for non-statistical software submitted to our general peer review system. The
+first of the following sub-sections thus presents some of the benefits
+authors may expect from submitting their statistical software for peer-review.
+
+The chapter then proceeds with a description of the scope of statistical
+software able to be considered for review, followed by descriptions of two
+tools intended to be used through the entire process of package development.
+The first tool is the [`pkgcheck`
 package](https://github.com/ropensci-review-tools/pkgcheck) which can be used
 to confirm whether software is ready for submission or not, and enables authors
 to locally run the suite of checks which are automatically run on package
@@ -34,6 +39,28 @@ task of aligning software with our [general and category-specific
 standards](#standards) for statistical software, and the final sub-section
 describes the final step of specifying which grade of badge authors are aiming
 for.
+
+## Benefits of statistical software peer review
+
+The primary advantage for authors of submitting software for peer review,
+whether statistical or not, is that the peer review process very generally
+leads to comprehensive increases in the quality of software. The additional
+requirement of documenting compliance with numerous general and
+category-specific standards (detailed in [Chapter 6](#standards)) offers
+a formal *assurance* of software quality of a kind that extends well beyond the
+conventional peer review process for non-statistical packages. Such assurance
+of quality is particularly important in a number of fields, notably including
+environments subject to regulatory requirements such as pharmaceutical
+research. Software used in regulatory environments must generally be assured to
+be of sufficient standard. This generally constrains software used in such
+environments to a select few commercial, or well-established open source
+systems. Open source software is generally not able to be used in regulated
+environments. Our system of standards, and for documenting compliance within
+code itself, is a system of regulation that will enable statistical software to
+be used in such regulated environments. In more general terms, the *assurance*
+of software quality facilitated by adherence to our standards should generally ...
+
+
 
 
 ## Scope
