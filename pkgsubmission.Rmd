@@ -194,7 +194,7 @@ the command `@ropensci-review-bot assign reviewer <name>`, and generally
 following the procedure given in the [*Dev
 Guide*](https://devguide.ropensci.org/editorguide.html#look-for-and-assign-reviewers).
 
-**Disagreements on Badge Grades**
+### Disagreements on Badge Grades
 
 Handling editors are responsible for resolving any disagreements between
 authors' stated or desired grade of badge and reviewers' recommendations. The
@@ -208,3 +208,16 @@ may be extracted by calling:
 
 Editors may modify these grades by editing the opening comment, and changing
 the value of the `"statsgrade"` variable.
+
+### Approval
+
+After having completed a checklist and ensuring agreement on badge grade, the
+handling editor may approve a submission with the following command:
+
+```
+@ropensci-review-bot approve
+```
+
+The bot will identify that this is a statistical software issue, extract the
+appropriate grade, and attach a corresponding badge which will also label the
+latest version of our statistical standards.
