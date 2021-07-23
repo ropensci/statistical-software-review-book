@@ -193,3 +193,18 @@ Once all items have been checked, Handling Editors may assign reviewers using
 the command `@ropensci-review-bot assign reviewer <name>`, and generally
 following the procedure given in the [*Dev
 Guide*](https://devguide.ropensci.org/editorguide.html#look-for-and-assign-reviewers).
+
+**Disagreements on Badge Grades**
+
+Handling editors are responsible for resolving any disagreements between
+authors' stated or desired grade of badge and reviewers' recommendations. The
+views of reviewers should generally be prioritized in such cases. Grades as
+declared by authors are contained in the opening comment of the issue. These
+may be extracted by calling:
+
+```
+@ropensci-review-bot stats grade
+```
+
+Editors may modify these grades by editing the opening comment, and changing
+the value of the `"statsgrade"` variable.
