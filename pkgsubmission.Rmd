@@ -154,6 +154,19 @@ languages used in a package, and should be used to ensure reviewers have
 appropriate experience and abilities with the language(s) in which a package is
 written.
 
+### Re-generating package check results
+
+The handling editor may update the initial package check results at any time
+with the following command:
+
+```
+@ropensci-review-bot check package
+```
+
+This is likely to be necessary following each review, to ensure any issues
+identified from the initial checks have been satisfactorily addressed.
+
+
 ### Handling Editor Checklist
 
 Having thoroughly considered the automated package report, and addressed all
