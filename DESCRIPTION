@@ -1,6 +1,6 @@
 Package: expanding-peer-review
 Title: rOpenSci Expanding Software Peer Review
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     c(person(given = "Mark",
              family = "Padgham",

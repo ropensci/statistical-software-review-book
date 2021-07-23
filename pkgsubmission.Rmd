@@ -210,10 +210,12 @@ Guide*](https://devguide.ropensci.org/editorguide.html#look-for-and-assign-revie
 ### Disagreements on Badge Grades
 
 Handling editors are responsible for resolving any disagreements between
-authors' stated or desired grade of badge and reviewers' recommendations. The
-views of reviewers should generally be prioritized in such cases. Grades as
-declared by authors are contained in the opening comment of the issue. These
-may be extracted by calling:
+authors' stated or desired grade of badge and reviewers' recommendations.
+[Click here to jump to the corresponding recommendations for
+reviews](#disagreement-with-authors-intentions). The views of reviewers should
+generally be prioritized in such cases. Grades as declared by authors are
+contained in the opening comment of the issue. These may be extracted by
+calling:
 
 ```
 @ropensci-review-bot stats grade
