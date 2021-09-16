@@ -3,7 +3,6 @@ bookdown::bs4_book:
     base: https://github.com/ropenscilabs/statistical-software-review-book
     branch: main
     #fig_caption: false
-  output_dir: _book
   includes:
     in_header: matomo.html
   css: style.css
