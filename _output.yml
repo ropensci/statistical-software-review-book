@@ -1,5 +1,10 @@
 bookdown::bs4_book:
+  repo:
+    base: https://github.com/ropenscilabs/statistical-software-review-book
+    branch: main
     #fig_caption: false
+  includes:
+    in_header: matomo.html
   css: style.css
   split_by: chapter
   toc_depth: 4
