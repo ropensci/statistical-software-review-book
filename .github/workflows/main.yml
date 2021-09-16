@@ -7,6 +7,8 @@ name: Render-Book-from-main
 
 jobs:
   bookdown:
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     name: Render-Book
 
