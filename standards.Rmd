@@ -1,7 +1,7 @@
 
 #  (PART) Standards {-}
 
-```{r version, echo = FALSE}
+```{r version, echo = FALSE, cache = FALSE, cache.extra=tools::md5sum(file.path(here::here(),"DESCRIPTION"))}
 d <- data.frame (read.dcf (file.path (here::here (),
                                       "DESCRIPTION")))
 version <- d$Version
