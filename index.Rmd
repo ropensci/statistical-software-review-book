@@ -29,7 +29,7 @@ if (!file.exists("statsoft.bib")) {
 ```{r updates, echo = FALSE}
 # https://github.com/rstudio/bookdown/issues/440
 # https://bookdown.org/yihui/bookdown/html-widgets.html
-install.packages("webshot")
+#install.packages("webshot")
 webshot::install_phantomjs()
 # install.packages("tinytex")
 # tinytex::tlmgr_update()
