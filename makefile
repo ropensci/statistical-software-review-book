@@ -6,8 +6,8 @@ all: build
 build: $(SCRIPT).R
 	Rscript $(SCRIPT).R
 
-open: docs/$(TARGET).html
-	xdg-open docs/$(TARGET).html &
+open: _book/$(TARGET).html
+	xdg-open _book/$(TARGET).html &
 
 clean:
-	rm -r docs scripts/bibnotes.json scripts/bibliography/*
+	rm -r _book # scripts/bibnotes.json scripts/bibliography/*
