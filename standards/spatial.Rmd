@@ -102,7 +102,7 @@ appropriate class(es). Software which does not use or rely on class systems
 will generally need specific routines to validate input data structures.
 
 As for our standards for [Time-Series
-Software](https://ropenscilabs.github.io/statistical-software-review-book/standards.html#time-series-software),
+Software](https://stats-devguide.ropensci.org/standards.html#standards-time-series),
 these standards for Spatial Software also suggest that software should use
 explicit class systems designed and intended for spatial data. New packages may
 implement new class systems for spatial data, and these may even be as simple
@@ -251,7 +251,7 @@ principles of these prior systems by according with the following standards:
 The following standards will be conditionally applicable to some but not all
 spatial software. Procedures for standards deemed not applicable to
 a particular piece of software are described in the [`srr`
-package](https://github.com/ropenscilabs/srr).
+package](https://github.com/ropensci-review-tools/srr).
 
 - [**SP3.0**]{#SP3_0} *Spatial software which considers spatial neighbours
   should enable user control over neighbourhood forms and sizes. In

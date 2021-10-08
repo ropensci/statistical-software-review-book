@@ -20,7 +20,7 @@ used to aid review.
 Upon initial submission, the `ropensci-review-bot` generates an automated
 report summarising aspects of package structure and functionality intended to
 inform the review process, an example of which can be seen
-[here](https://github.com/ropenscilabs/statistical-software-review-book/blob/main/scripts/pkgcheck-ex.md).
+[here](https://github.com/ropensci/statistical-software-review-book/blob/main/scripts/pkgcheck-ex.md).
 
 The elements of these reports are described in the
 [*Guide for Editors*](#pkgsub-handling-editor). While the aspects reported on

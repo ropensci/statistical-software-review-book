@@ -26,13 +26,13 @@ md [index] <- "git hash: (Not a git repository)"
 index <- grep ("demo\\_srr.*\\.html", md)
 g <- regexpr("\\(([^()]*)\\)", md [index])
 url_old <- regmatches (md [index], g)
-url_new <- "https://ropenscilabs.github.io/roreviewapi/static/demo_srr77dfe392.html"
+url_new <- "https://ropensci-review-tools.github.io/roreviewapi/static/demo_srr77dfe392.html"
 md [index] <- gsub (url_old, url_new, md [index])
 
 index <- grep ("demo\\_pkgstats.*\\.html", md)
 g <- regexpr("\\(([^()]*)\\)", md [index])
 url_old <- regmatches (md [index], g)
-url_new <- "https://ropenscilabs.github.io/roreviewapi/static/demo_pkgstats77dfe392.html"
+url_new <- "https://ropensci-review-tools.github.io/roreviewapi/static/demo_pkgstats77dfe392.html"
 md [index] <- gsub (url_old, url_new, md [index])
 
 writeLines (md, file.path (here::here (),

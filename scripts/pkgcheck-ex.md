@@ -29,7 +29,7 @@ This package is in the following category:
 
 &#9989; This package still has TODO standards and can not be submitted
 
-[Click here to view output of 'srr_report'](https://ropenscilabs.github.io/roreviewapi/static/demo_srr77dfe392.html), which can be re-generated locally by running the [`srr_report() function](https://ropenscilabs.github.io/srr/reference/srr_report.html) from within a local clone of the repository.
+[Click here to view output of 'srr_report'](https://ropensci-review-tools.github.io/roreviewapi/static/demo_srr77dfe392.html), which can be re-generated locally by running the [`srr_report() function](https://ropensci-review-tools.github.io/srr/reference/srr_report.html) from within a local clone of the repository.
 
 ---
 
@@ -97,7 +97,7 @@ The final measure (`fn_call_network_size`) is the total number of calls between 
 
 **2a. Network visualisation**
 
-Interactive network visualisation of calls between objects in package can be viewed by [clicking here](https://ropenscilabs.github.io/roreviewapi/static/demo_pkgstats77dfe392.html)
+Interactive network visualisation of calls between objects in package can be viewed by [clicking here](https://ropensci-review-tools.github.io/roreviewapi/static/demo_pkgstats77dfe392.html)
 
 ---
 

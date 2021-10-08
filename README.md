@@ -2,19 +2,19 @@
 
 <!-- badges: start -->
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![GitHub Actions Workflow for commits to master](https://github.com/ropenscilabs/statistical-software-review-book/workflows/Render-Book-from-master/badge.svg)](https://github.com/ropenscilabs/statistical-software-review-book/actions?query=workflow%3ARender-Book-from-master)
+[![GitHub Actions Workflow for commits to master](https://github.com/ropensci/statistical-software-review-book/workflows/Render-Book-from-master/badge.svg)](https://github.com/ropensci/statistical-software-review-book/actions?query=workflow%3ARender-Book-from-master)
 <!-- badges: end -->
 
 This is the source repository for rOpenSci's Statistical Software Peer Review
 book, which can be viewed at
-<https://ropenscilabs.github.io/statistical-software-review-book>. This book is
+<https://ropensci.github.io/statistical-software-review-book>. This book is
 an extension of [rOpenSci Packages: Development, Maintenance, and Peer
 Review](https://devguide.ropensci.org/) book, documenting our guidelines and
 procedures for peer review of statistical software.
 
 You are invited to contribute to this project by filing suggestions as [issues
 in the book's GitHub
-repository](https://github.com/ropenscilabs/statistical-software-review-book/issues).
+repository](https://github.com/ropensci/statistical-software-review-book/issues).
 We also have a dedicated [area for discussion on the rOpenSci
 forum](https://discuss.ropensci.org/c/statistical-software-peer-review/28).
 
@@ -69,31 +69,31 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/mpadge">
 <img src="https://avatars.githubusercontent.com/u/6697851?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=mpadge">mpadge</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=mpadge">mpadge</a>
 </td>
 <td align="center">
 <a href="https://github.com/noamross">
 <img src="https://avatars.githubusercontent.com/u/571752?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=noamross">noamross</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=noamross">noamross</a>
 </td>
 <td align="center">
 <a href="https://github.com/maelle">
 <img src="https://avatars.githubusercontent.com/u/8360597?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=maelle">maelle</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=maelle">maelle</a>
 </td>
 <td align="center">
 <a href="https://github.com/Nowosad">
 <img src="https://avatars.githubusercontent.com/u/3457131?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=Nowosad">Nowosad</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=Nowosad">Nowosad</a>
 </td>
 <td align="center">
 <a href="https://github.com/richfitz">
 <img src="https://avatars.githubusercontent.com/u/1558093?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=richfitz">richfitz</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=richfitz">richfitz</a>
 </td>
 </tr>
 
@@ -103,25 +103,25 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/elong0527">
 <img src="https://avatars.githubusercontent.com/u/465246?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=elong0527">elong0527</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=elong0527">elong0527</a>
 </td>
 <td align="center">
 <a href="https://github.com/Pakillo">
 <img src="https://avatars.githubusercontent.com/u/1597843?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=Pakillo">Pakillo</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=Pakillo">Pakillo</a>
 </td>
 <td align="center">
 <a href="https://github.com/briatte">
 <img src="https://avatars.githubusercontent.com/u/322533?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=briatte">briatte</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=briatte">briatte</a>
 </td>
 <td align="center">
 <a href="https://github.com/lcolladotor">
 <img src="https://avatars.githubusercontent.com/u/2288213?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/commits?author=lcolladotor">lcolladotor</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=lcolladotor">lcolladotor</a>
 </td>
 </tr>
 
@@ -137,19 +137,19 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/elimillera">
 <img src="https://avatars.githubusercontent.com/u/24767886?u=16d22ed97b442cfa1847d0f110b7dbf5c190c5a5&v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/issues?q=is%3Aissue+author%3Aelimillera">elimillera</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/issues?q=is%3Aissue+author%3Aelimillera">elimillera</a>
 </td>
 <td align="center">
 <a href="https://github.com/IndrajeetPatil">
 <img src="https://avatars.githubusercontent.com/u/11330453?u=6eb9f03fe4cc5a2a67633252acda215b113234be&v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/issues?q=is%3Aissue+author%3AIndrajeetPatil">IndrajeetPatil</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/issues?q=is%3Aissue+author%3AIndrajeetPatil">IndrajeetPatil</a>
 </td>
 <td align="center">
 <a href="https://github.com/jsta">
 <img src="https://avatars.githubusercontent.com/u/7844578?u=a37c1879ee6da8d66d2cf6f7b79d08bcb837cbea&v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropenscilabs/statistical-software-review-book/issues?q=is%3Aissue+author%3Ajsta">jsta</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/issues?q=is%3Aissue+author%3Ajsta">jsta</a>
 </td>
 </tr>
 
