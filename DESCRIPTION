@@ -1,16 +1,11 @@
 Package: expanding-peer-review
 Title: rOpenSci Expanding Software Peer Review
-Version: 0.0.0.9001
-Authors@R: 
-    c(person(given = "Mark",
-             family = "Padgham",
-             role = c("cre", "aut"),
-             email = "mark.padgham@email.com",
-             comment = c(ORCID = "0000-0003-2172-5265")),
-      person(given = "Noam",
-             family = "Ross",
-             role = "aut",
-             email = "ross@ecohealthalliance.org"))
+Version: 0.1.0
+Authors@R: c(
+    person("Mark", "Padgham", , "mark.padgham@email.com", role = c("cre", "aut"),
+           comment = c(ORCID = "0000-0003-2172-5265")),
+    person("Noam", "Ross", , "ross@ecohealthalliance.org", role = "aut")
+  )
 Description: Documentation of rOpenSci's project on expanding software
     peer review to include statistical software
 License: MIT + file LICENSE
