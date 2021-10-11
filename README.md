@@ -54,6 +54,7 @@ All of the content of this repository is licensed
 
 
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -72,16 +73,16 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=mpadge">mpadge</a>
 </td>
 <td align="center">
-<a href="https://github.com/noamross">
-<img src="https://avatars.githubusercontent.com/u/571752?v=4" width="100px;" alt=""/>
-</a><br>
-<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=noamross">noamross</a>
-</td>
-<td align="center">
 <a href="https://github.com/maelle">
 <img src="https://avatars.githubusercontent.com/u/8360597?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=maelle">maelle</a>
+</td>
+<td align="center">
+<a href="https://github.com/noamross">
+<img src="https://avatars.githubusercontent.com/u/571752?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=noamross">noamross</a>
 </td>
 <td align="center">
 <a href="https://github.com/Nowosad">
@@ -104,6 +105,12 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <img src="https://avatars.githubusercontent.com/u/465246?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=elong0527">elong0527</a>
+</td>
+<td align="center">
+<a href="https://github.com/christophsax">
+<img src="https://avatars.githubusercontent.com/u/1390827?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=christophsax">christophsax</a>
 </td>
 <td align="center">
 <a href="https://github.com/Pakillo">
@@ -147,7 +154,7 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 </td>
 <td align="center">
 <a href="https://github.com/jsta">
-<img src="https://avatars.githubusercontent.com/u/7844578?u=a37c1879ee6da8d66d2cf6f7b79d08bcb837cbea&v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/7844578?u=526a468868c43204eefb4c5531af452eff2cad2a&v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/statistical-software-review-book/issues?q=is%3Aissue+author%3Ajsta">jsta</a>
 </td>
