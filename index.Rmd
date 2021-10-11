@@ -88,6 +88,25 @@ Foundation](https://ropensci.org/blog/2019/07/15/expanding-software-review/)
 and is organized under an [R Consortium Working
 Group](https://www.r-consortium.org/projects/isc-working-groups).
 
+## Citation
+
+You can cite this book by its [its Zenodo
+DOI](https://doi.org/10.5281/zenodo.5556755), or by copying the following
+BibTeX entry:
+
+
+```{r zenodo, echo=FALSE, results = 'asis', warning=FALSE}
+cat("\n```bibtex\n")
+u <- "https://zenodo.org/record/5556755" # universal URL redirects to latest
+s <- rvest::session(u)
+u <- paste0(s$url, "/export/hx") # redirected
+out <- rvest::read_html(u)
+bibentry <- rvest::html_element(out, "pre")
+out <- strsplit (rvest::html_text(bibentry), "\n")[[1]]
+writeLines(out, "dev_citation_BibTeX.bib")
+cat (rvest::html_text (bibentry))
+cat("\n```\n")
+```
 
 ## Contributors
 
