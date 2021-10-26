@@ -169,28 +169,21 @@ identified from the initial checks have been satisfactorily addressed.
 
 ### Handling Editor Checklist
 
-Having thoroughly considered the automated package report, and addressed all
-issues raised within that report, Handling Editors should paste the following
+Having considered the automated package report, and addressed all
+issues raised within that report, Handling Editors should check the following items 
 checklist items into the issue, and ensure that all items are able to be
 checked prior to proceeding to delegate reviewers.
 
 - [ ] Any issues raised during initial processing by EiC have been resolved (or
   there were none).
-- [ ] **Either** (i) there were no issues raised in the `goodpractice` checks
-  which need to be addressed prior to review, or (ii) all issues have been
-  appropriately addressed.
-- [ ] Running
-  [`autotest_package()`](https://ropensci-review-tools.github.io/autotest/reference/autotest_package.html)
-  on a local version of the source code generates no errors.
+- [ ] Issues raised in the `goodpractice` checks or statistical anomalies in the package,
+  have been addressed or can be directed to reviewers for further scrutiny.
 - [ ] **Either** (i) this package is aiming for a bronze badge, **or**, (ii)
   for packages aiming for silver or gold badges, the authors have clarified
   which of the four aspects listed in the "*Guide for Authors*" section on
   [silver badges](#pkgdev-silver) they intend to fulfil.
-- [ ] **Either** (i) the package manifests no statistical anomalies in relation
-  to the CRAN archive, **or** (ii) any statistical anomalies have been
-  satisfactorily explained.
 
-All of these items must be checked prior to assigning reviewers. This may
+Issues flagged by the handling editor may
 require iteration with submitting authors. As stated in the 
 [*Dev Guide*](https://devguide.ropensci.org/editorguide.html#upon-submission):
 
@@ -206,6 +199,11 @@ Once all items have been checked, Handling Editors may assign reviewers using
 the command `@ropensci-review-bot assign reviewer <name>`, and generally
 following the procedure given in the [*Dev
 Guide*](https://devguide.ropensci.org/editorguide.html#look-for-and-assign-reviewers).
+Handling editors may provide guidance to reviewers on issues that they think may be worth
+looking into based on their initial review of the package and automated checks.
+
+[Note that the *Dev Guide* is rapidly iterating as new capabilities are added to the review not,
+and you may wish to refer to the draft version at <devdevguide.netlify.app/>.]
 
 ### Disagreements on Badge Grades
 
