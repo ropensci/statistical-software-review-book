@@ -46,19 +46,33 @@ The primary advantage for authors of submitting software for peer review,
 whether statistical or not, is that the peer review process very generally
 leads to comprehensive increases in the quality of software. The additional
 requirement of documenting compliance with numerous general and
-category-specific standards (detailed in [Chapter 6](#standards)) offers
-a formal *assurance* of software quality of a kind that extends well beyond the
-conventional peer review process for non-statistical packages. Such assurance
-of quality is particularly important in a number of fields, notably including
-environments subject to regulatory requirements such as pharmaceutical
-research. Software used in regulatory environments must generally be assured to
-be of sufficient standard. This generally constrains software used in such
-environments to a select few commercial, or well-established open source
-systems. Open source software is generally not able to be used in regulated
-environments. Our system of standards, and for documenting compliance within
-code itself, is a system of regulation that will enable statistical software to
-be used in such regulated environments. In more general terms, the *assurance*
-of software quality facilitated by adherence to our standards should generally ...
+category-specific standards (detailed in [Chapter 6](#standards)) offers a
+formal *assurance* of software quality of a kind that extends well beyond the
+conventional peer review process for non-statistical packages. The [*Journal of
+Statistical Software* (JStatSoft)](https://www.jstatsoft.org/index), for example, already
+[recommends that developers refer to our
+standards](https://www.jstatsoft.org/authors). Although JStatSoft does not
+require compliance with our standards, software which does comply can
+confidently expect to meet the requirements of JStatSoft, and make also expect
+an easier review process.
+
+The assurance of software quality provided by our peer review system is
+particularly important in a number of fields, notably including environments
+subject to regulatory requirements such as pharmaceutical research. Software
+used in regulatory environments must generally be assured to be of sufficient
+standard. This generally constrains software used in such environments to a
+select few commercial, or well-established open source systems. Open source
+software is generally not able to be used in regulated environments, although
+the R Consortium has established a working group, [the *R Validation
+Hub*](https://pharmar.org), to develop methods to "validate" R software. Such
+validation will nevertheless be *retrospective*, based on assessment of
+previously developed software. Our system of standards, and for documenting
+compliance within code itself, is in contrast a forward-looking a system of
+regulation that will enable statistical software to be used in such regulated
+environments.
+
+In more general terms, the *assurance* of software quality facilitated by
+adherence to our standards should generally ...
 
 
 
