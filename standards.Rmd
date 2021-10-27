@@ -1,7 +1,14 @@
 
 #  (PART) Standards {-}
 
-# Standards: Version 0.0.1 {#standards}
+```{r version, echo = FALSE, cache = FALSE, cache.extra=tools::md5sum(file.path(here::here(),"DESCRIPTION"))}
+d <- data.frame (read.dcf (file.path (here::here (),
+                                      "DESCRIPTION")))
+version <- d$Version
+```
+
+
+# Standards: Version `r version` {#standards}
 
 This Chapter serves as the reference for rOpenSci's standards for statistical
 software. Software accepted for peer-review must fit one or more of our

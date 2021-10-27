@@ -2,7 +2,7 @@
 
 ## Time Series Software {#standards-time-series}
 
-The category of Time Series software is arguably easier to define that the
+The category of Time Series software is arguably easier to define than the
 preceding categories, and represents any software the primary input of which is
 intended to be temporally structured data. Importantly, while "*temporally
 structured*" may often imply temporally ordered, this need not necessarily be
@@ -188,20 +188,20 @@ transformations, for example by directing users to additional functions able to
 implement appropriate transformations.
 
 
-#### Covariance Matrices
+#### Auto-Covariance Matrices
 
-Where covariance matrices are constructed or otherwise used within or as input
+Where auto-covariance matrices are constructed or otherwise used within or as input
 to functions, they should:
 
 - [**TS2.5**]{#TS2_5} *Incorporate a system to ensure that both row and column
   orders follow the same ordering as the underlying time series data. This may,
   for example, be done by including the `index` attribute of the time series
-  data as an attribute of the covariance matrix.*
-- [**TS2.6**]{#TS2_6} *Where applicable, covariance matrices should also
+  data as an attribute of the auto-covariance matrix.*
+- [**TS2.6**]{#TS2_6} *Where applicable, auto-covariance matrices should also
   include specification of appropriate units.*
 
 *General Standard* **G3.1** also applies to all Time Series Software which
-constructs or uses covariance matrices.
+constructs or uses auto-covariance matrices.
 
 ### Analytic Algorithms
 

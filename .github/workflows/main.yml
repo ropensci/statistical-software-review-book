@@ -7,6 +7,8 @@ name: Render-Book-from-main
 
 jobs:
   bookdown:
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     name: Render-Book
 
@@ -52,8 +54,8 @@ jobs:
           git config --global user.name "gh-pages committer"
       - name: Commit results
         run: |
-          cp ghpagescname docs/CNAME
-          cp -r favicon/ docs/
+          cp ghpagescname _book/CNAME
+          cp -r favicon/ _book/
           cd _book
           git init
           git add .
