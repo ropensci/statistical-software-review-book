@@ -42,40 +42,27 @@ for.
 
 ## Benefits of statistical software peer review
 
-The primary advantage for authors of submitting software for peer review,
-whether statistical or not, is that the peer review process very generally
-leads to comprehensive increases in the quality of software. The additional
-requirement of documenting compliance with numerous general and
-category-specific standards (detailed in [Chapter 6](#standards)) offers a
-formal *assurance* of software quality of a kind that extends well beyond the
-conventional peer review process for non-statistical packages. The [*Journal of
-Statistical Software* (JStatSoft)](https://www.jstatsoft.org/index), for example, already
-[recommends that developers refer to our
-standards](https://www.jstatsoft.org/authors). Although JStatSoft does not
-require compliance with our standards, software which does comply can
-confidently expect to meet the requirements of JStatSoft, and make also expect
-an easier review process.
-
-The assurance of software quality provided by our peer review system is
-particularly important in a number of fields, notably including environments
-subject to regulatory requirements such as pharmaceutical research. Software
-used in regulatory environments must generally be assured to be of sufficient
-standard. This generally constrains software used in such environments to a
-select few commercial, or well-established open source systems. Open source
-software is generally not able to be used in regulated environments, although
-the R Consortium has established a working group, [the *R Validation
-Hub*](https://pharmar.org), to develop methods to "validate" R software. Such
-validation will nevertheless be *retrospective*, based on assessment of
-previously developed software. Our system of standards, and for documenting
-compliance within code itself, is in contrast a forward-looking a system of
-regulation that will enable statistical software to be used in such regulated
-environments.
-
-In more general terms, the *assurance* of software quality facilitated by
-adherence to our standards should generally ...
-
-
-
+- First, feedback from your reviewers and editors will increase the quality and usability of your software.
+  Both authors and reviewers consistently report that review improves code and makes them better programmers
+  through the feedback and interaction with each other.
+- Bringing your software into compliance with our standards will make your software easier to maintain, as 
+  many of our standards, such as those for testing and continuous integration, are designed to make sure
+  software continues to function well as it is updated.
+- As our standards and peer-review process aim to improve the quality and completeness of documentation,
+  going through peer-review should make your software more understandable and reduce the support 
+  you need to provide to users.
+- Approval by rOpenSci will make it easier to submit your software to repositories and journals. Packages
+  approved by rOpenSci generally are CRAN-ready. They are eligible for expedited review at 
+  the [*Journal of Open Source Software*](https://joss.theoj.org/), and the [*Journal of
+  Statistical Software* (JStatSoft)](https://www.jstatsoft.org/index) already
+  [recommends that developers refer to our standards](https://www.jstatsoft.org/authors). 
+  In our experience code peer-review is looked on favorably by reviewers of software papers at many journals. 
+- In regulated environments and other fields where strong demonstration of quality and compliance is needed,
+  approval by peer-review provides strong evidence of software quality rarely available for statistical
+  software. Our approach to annotating _within code_ how software meets standards makes demonstration of
+  compliance clear and granular. We are actively working with the [R Validation Hub](https://pharmar.org) to
+  make approval under our system of review and standards a component of validation in regulated environments
+  such as pharamceutical or clinical research.
 
 ## Scope
 
