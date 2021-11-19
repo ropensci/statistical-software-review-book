@@ -49,12 +49,13 @@ Peer Review](https://devguide.ropensci.org/). This book provides guidelines for
 authors on how to develop statistical software, and for editors and reviewers
 on our processes for peer review of statistical software.
 
-You are invited to contribute to this project by filing suggestions as [issues
-in the book's GitHub
+You are invited to contribute to this project by participating in our [GitHub
+Discussions](https://github.com/ropensci/statistical-software-review-book/discussions),
+or filing suggestions as [issues in the book's GitHub
 repository](https://github.com/ropensci/statistical-software-review-book/issues).
-We also have a dedicated [area for discussion on the rOpenSci
-forum](https://discuss.ropensci.org/c/statistical-software-peer-review/28).
-Feedback on standards is particularly welcome.
+Feedback on standards is particularly welcome, for which 
+[the Discussions](https://github.com/ropensci/statistical-software-review-book/discussions)
+have dedicated pages for each category of standards.
 
 For this project we are lucky to have support of a great advisory and editorial
 committee.  The committee has helped us along with way with outreach to
