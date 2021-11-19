@@ -62,7 +62,7 @@ for.
   software. Our approach to annotating _within code_ how software meets standards makes demonstration of
   compliance clear and granular. We are actively working with the [R Validation Hub](https://pharmar.org) to
   make approval under our system of review and standards a component of validation in regulated environments
-  such as pharamceutical or clinical research.
+  such as pharmaceutical or clinical research.
 
 ## Scope
 
