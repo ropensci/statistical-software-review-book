@@ -27,7 +27,7 @@ The chapter then proceeds with a description of the scope of statistical
 software able to be considered for review, followed by descriptions of two
 tools intended to be used through the entire process of package development.
 The first tool is the [`pkgcheck`
-package](https://github.com/ropensci-review-tools/pkgcheck) which can be used
+package](https://github.com/ropensci-review-tools/pkgcheck) which should be used
 to confirm whether software is ready for submission or not, and enables authors
 to locally run the suite of checks which are automatically run on package
 submission. The subsequent sub-section describes our [`autotest`
