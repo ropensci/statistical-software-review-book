@@ -18,11 +18,16 @@ standard listed in that chapter. The process of doing so is facilitated by the
 [`srr` package](https://github.com/ropensci-review-tools/srr), as described in
 detail in [Sub-section 3.4, below](#pkgdev-srr).
 
-Prior to that sub-section, this chapter begins with consideration of the scope
-of statistical software able to be considered for review, followed by
-descriptions of two tools intended to be used through the entire process of
-package development. The first tool is the [`pkgcheck`
-package](https://github.com/ropensci-review-tools/pkgcheck) which can be used
+Documenting compliance with our standards will generally entail more work than
+for non-statistical software submitted to our general peer review system. The
+first of the following sub-sections thus presents some of the benefits
+authors may expect from submitting their statistical software for peer-review.
+
+The chapter then proceeds with a description of the scope of statistical
+software able to be considered for review, followed by descriptions of two
+tools intended to be used through the entire process of package development.
+The first tool is the [`pkgcheck`
+package](https://github.com/ropensci-review-tools/pkgcheck) which should be used
 to confirm whether software is ready for submission or not, and enables authors
 to locally run the suite of checks which are automatically run on package
 submission. The subsequent sub-section describes our [`autotest`
@@ -35,6 +40,36 @@ standards](#standards) for statistical software, and the final sub-section
 describes the final step of specifying which grade of badge authors are aiming
 for.
 
+## Benefits of statistical software peer review
+
+- First, feedback from your reviewers and editors will increase the quality and
+  usability of your software. Both authors and reviewers consistently report
+  that review improves code and makes them better programmers through the
+  feedback and interaction with each other.
+- Bringing your software into compliance with our standards will make your
+  software easier to maintain, as many of our standards, such as those for
+  testing and continuous integration, are designed to make sure software
+  continues to function well as it is updated.
+- As our standards and peer-review process aim to improve the quality and
+  completeness of documentation, going through peer-review should make your
+  software more understandable and reduce the support you need to provide to
+  users.
+- Approval by rOpenSci will make it easier to submit your software to
+  repositories and journals. Packages approved by rOpenSci generally are
+  CRAN-ready. They are eligible for expedited review at the [*Journal of Open
+  Source Software*](https://joss.theoj.org/), and the [*Journal of Statistical
+  Software* (JStatSoft)](https://www.jstatsoft.org/index) already [recommends
+  that developers refer to our standards](https://www.jstatsoft.org/authors).
+  In our experience code peer-review is looked on favorably by reviewers of
+  software papers at many journals. 
+- In regulated environments and other fields where strong demonstration of
+  quality and compliance is needed, approval by peer-review provides strong
+  evidence of software quality rarely available for statistical software. Our
+  approach to annotating _within code_ how software meets standards makes
+  demonstration of compliance clear and granular. We are actively working with
+  the [R Validation Hub](https://pharmar.org) to make approval under our system
+  of review and standards a component of validation in regulated environments
+  such as pharmaceutical or clinical research.
 
 ## Scope
 
