@@ -55,6 +55,7 @@ All of the content of this repository is licensed
 
 
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -129,6 +130,16 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <img src="https://avatars.githubusercontent.com/u/2288213?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=lcolladotor">lcolladotor</a>
+</td>
+</tr>
+
+
+<tr>
+<td align="center">
+<a href="https://github.com/rkillick">
+<img src="https://avatars.githubusercontent.com/u/16543041?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=rkillick">rkillick</a>
 </td>
 </tr>
 
