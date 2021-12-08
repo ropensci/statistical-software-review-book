@@ -19,6 +19,14 @@ categories, and thus all packages must comply with the *General Standards*
 listed in the first of the following sections, along with one or more of the
 category-specific sets of standards listed in the subsequent sections.
 
+Our standards are open and intended to change and evolve in response to public
+feedback. Please contribute via the [GitHub discussions pages for this
+book](https://github.com/ropensci/statistical-software-review-book/discussions).
+We particularly encourage anybody preparing software for submission to discuss
+any aspects of our standards, including applicability, validity, phrasing,
+expectations, reasons for standards, and even the addition or removal of
+specific standards.
+
 
 ```{r standards-gen, child = "standards/general.Rmd", eval = TRUE, echo = TRUE}
 ```
