@@ -12,7 +12,7 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-    if: github.repository == 'ropenscilabs/statistical-software-review-book'
+    if: github.repository == 'ropensci/statistical-software-review-book'
     steps:
       - name: Is this a fork
         run: |
@@ -52,7 +52,7 @@ jobs:
           #run: Rscript -e 'bookdown::render_book("index.Rmd", new_session = FALSE, "bookdown::pdf_book", output_dir = "pdfbook")'
 
           #- name: Move files around
-          #run: Rscript -e 'file.copy(from = "pdfbook/ropenscilabs-statistical-software-review-book.pdf", to = "_book/ropenscilabs-statistical-software-review-book.pdf")' -e 'purrr::walk(list.files("images", full.names = TRUE), file.copy, to = "_book/images")'
+          #run: Rscript -e 'file.copy(from = "pdfbook/ropensci-statistical-software-review-book.pdf", to = "_book/ropensci-statistical-software-review-book.pdf")' -e 'purrr::walk(list.files("images", full.names = TRUE), file.copy, to = "_book/images")'
 
       - uses: actions/setup-node@v1
 
