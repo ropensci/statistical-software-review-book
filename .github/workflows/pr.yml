@@ -8,6 +8,10 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     name: Render Book
     runs-on: macOS-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
     if: github.repository == 'ropenscilabs/statistical-software-review-book'
     steps:
       - name: Is this a fork
@@ -42,7 +46,7 @@ jobs:
         run: Rscript -e 'install.packages("remotes")' -e 'options(install.packages.check.source = "both")' -e 'remotes::install_deps(dependencies = TRUE)'
 
       - name: Render book html
-        run: Rscript -e 'bookdown::render_book("index.Rmd")'
+        run: Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::bs4_book")'
 
           #- name: Render book PDF
           #run: Rscript -e 'bookdown::render_book("index.Rmd", new_session = FALSE, "bookdown::pdf_book", output_dir = "pdfbook")'
@@ -52,21 +56,18 @@ jobs:
 
       - uses: actions/setup-node@v1
 
-      - name: Install Netlify CLI
-        run: npm install netlify-cli -g
-
-      - name: Deploy to Netlify (test)
-        run: DEPLOY_URL=$(netlify deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --dir=docs --json | jq '.deploy_url' --raw-output);echo "DEPLOY_URL=${DEPLOY_URL}" >> $GITHUB_ENV
-
-      - name: Update commit status
-        run: |
-          curl --request POST \
-          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.event.pull_request.head.sha }} \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header 'Accept: application/vnd.github.antiope-preview+json' \
-          --header 'content-type: application/json' \
-          --data '{
-            "state": "success",
-            "target_url": "${{ env.DEPLOY_URL }}",
-            "context": "Netlify"
-            }'
+      - name: Deploy to Netlify
+        id: netlify-deploy
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './_book'
+          production-branch: master
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message:
+            'Deploy from GHA: ${{ github.event.pull_request.title || github.event.head_commit.message }} (${{ github.sha }})'
+          # these all default to 'true'
+          enable-pull-request-comment: false
+          enable-commit-comment: false
+          # enable-commit-status: true
+          #o verwrites-pull-request-comment: true
+        timeout-minutes: 1
