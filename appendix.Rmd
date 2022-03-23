@@ -599,3 +599,18 @@ applying their benchmarks to a suite of neural network packages.
 
 
 ## Bibliography
+
+<div id="refs"></div>
+
+# Review request template {#reviewrequesttemplate}
+
+Editors may make use of the e-mail template below in recruiting reviewers.
+
+```markdown
+```{r template-request-not-latex, eval = !knitr::is_latex_output(), child="templates/request.md"}
+```
+```
+
+```{r template-request, eval = knitr::is_latex_output(), child="templates/request.md"}
+
+```
