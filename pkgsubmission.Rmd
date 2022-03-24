@@ -19,6 +19,7 @@ All editors must familiarise themselves with the structure and contents of
 these automated reports, an example of which can be seen by [clicking
 here](https://github.com/ropensci/statistical-software-review-book/blob/main/scripts/pkgcheck-ex.md).
 A similar report can be reproduced locally by running the code within the following sub-section.
+
 <details>
 <summary>Package report code here (click to see).</summary>
 <p>
