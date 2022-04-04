@@ -510,6 +510,13 @@ following types:
       random seeds when either data simulation or the algorithm contains
       a random component. (When long-running, such tests may be part of an
       extended, rather than regular, test suite; see G4.10-4.12, below).*
+
+Note that authors should ensure that they use [at least v3 of the `testthat`
+package](https://testthat.r-lib.org), which introduced a
+[`testthat_tolerance()`](https://testthat.r-lib.org/reference/compare.html),
+defaulting to the value defined by `base::all_equal()` of
+`sqrt(.Machine$double.eps)` on all `expect_equal()` expectations.
+
 - [**G5.7**]{#G5_7} **Algorithm performance tests** *to test that
   implementation performs as expected as properties of data change.  For
   instance, a test may show that parameters approach correct estimates within
