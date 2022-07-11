@@ -551,7 +551,13 @@ should adhere to the following standards:
 
 - [**G5.10**]{#G5_10} *Extended tests should included and run under a common
   framework with other tests but be switched on by flags such as as
-  a `<MYPKG>_EXTENDED_TESTS=1` environment variable.*
+  a `<MYPKG>_EXTENDED_TESTS="true"` environment variable.*
+    - The extended tests can be then run automatically by GitHub Actions for 
+      example by adding the following to the `env` section of the workflow:
+      
+      `MYPKG_EXTENDED_TESTS: ${{contains(github.event.head_commit.message, 'run-extended')}}`
+      
+      Now the extended tests are run if the commit message contains phrase `run-extended`.
 - [**G5.11**]{#G5_11} *Where extended tests require large data sets or other
   assets, these should be provided for downloading and fetched as part of the
   testing workflow.*
