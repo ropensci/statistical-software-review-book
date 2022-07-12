@@ -557,7 +557,7 @@ should adhere to the following standards:
       
       `MYPKG_EXTENDED_TESTS: ${{contains(github.event.head_commit.message, 'run-extended')}}`
       
-      Now the extended tests are run if the commit message contains phrase `run-extended`.
+      Extended tests will then be run in response to any commit message which contains the phrase `run-extended`.
 - [**G5.11**]{#G5_11} *Where extended tests require large data sets or other
   assets, these should be provided for downloading and fetched as part of the
   testing workflow.*
