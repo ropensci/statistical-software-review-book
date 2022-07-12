@@ -1,0 +1,41 @@
+project:
+  type: book
+
+book:
+  title: "rOpenSci Statistical Software Peer Review"
+  author-meta: "Mark Padgham and Noam Ross"
+  description-meta: |
+    Documentation of rOpenSci's project on expanding software peer review to
+    include statistical software.
+  reader-mode: true
+  site-url: https://stats-devguide.ropensci.org/
+  repo-url: https://github.com/ropensci/statistical-software-review-book
+  repo-actions: [edit, issue]
+
+  chapters:
+  - part: Introduction
+    chapters:
+      - index.Rmd
+      - overview.Rmd
+
+  - part: Package Development, Submission, and Review
+    chapters:
+      - pkgdev.Rmd
+      - pkgsubmission.Rmd
+      - pkgreview.Rmd
+
+  - part: Standards
+    chapters:
+      - standards.Rmd
+
+  - part: Appendix
+    chapters:
+      - appendix.Rmd
+
+format:
+  html:
+    theme: [cosmo, custom.scss]
+    code-link: true
+  pdf:
+    include-in-header: "preamble.tex"
+    output-file: "statistical-software-review-book"

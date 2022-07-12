@@ -304,7 +304,8 @@ column names.
 The next standard concerns the following inconsistencies between three common
 tabular classes in regard the column extraction operator, `[`.
 
-```{r drop, eval = FALSE}
+```{r drop}
+#| eval: false
 x <- iris # data.frame from the datasets package
 class (x)
 #> [1] "data.frame"

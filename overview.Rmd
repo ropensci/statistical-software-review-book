@@ -1,14 +1,14 @@
-#  (PART) Introduction {-}
+#  Overview of the Project and of this Book {#overview}
 
-```{r startup-overview, echo = FALSE, message = FALSE}
+```{r startup-overview}
+#| echo: false
+#| message: false
 library(dplyr)
 library(rvest)
 library(igraph)
 library(ggplot2)
 theme_set(theme_minimal())
 ```
-
-#  Overview of the Project and of this Book {#overview}
 
 This book is the main document for rOpenSci's project to expand peer review to
 include explicitly statistic software. It is intended to aid both software
@@ -97,7 +97,9 @@ meeting or exceeding the standards set by our system.
 
 ### The R Language
 
-```{r cloc-data, echo = FALSE, cache = FALSE}
+```{r cloc-data}
+#| echo: false
+#| cache: false
 # x <- readRDS("./scripts/cran-cloc-all.Rds")
 # cloc_n <- length(unique(x$package))
 cloc_n <- 15948
@@ -118,7 +120,10 @@ statistics for the top ten languages from all
 as of `r cloc_date` (including only code from the `/R`, `/src`, and `/inst`
 directories of each package).
 
-```{r cran-cloc-pre, message = FALSE, echo = FALSE, eval = FALSE}
+```{r cran-cloc-pre}
+#| echo: false
+#| message: false
+#| eval: false
 x <- readRDS("./scripts/cran-cloc-all.Rds") %>%
   group_by(language) %>%
   summarise(
@@ -132,7 +137,10 @@ saveRDS(x, "./scripts/cran-cloc.Rds")
 ```
 
 
-```{r languages-table, message = FALSE, echo = FALSE, cache = FALSE}
+```{r languages-table}
+#| echo: false
+#| message: false
+#| cache: false
 library(dplyr)
 x <- readRDS("./scripts/cran-cloc.Rds") %>%
   select(language, loc) %>%

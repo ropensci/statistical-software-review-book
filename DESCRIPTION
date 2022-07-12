@@ -10,7 +10,6 @@ Description: Documentation of rOpenSci's project on expanding software
     peer review to include statistical software
 License: CC0-1.0
 Imports: 
-    bookdown,
     bslib,
     cli,
     downlit,
@@ -19,6 +18,7 @@ Imports:
     here,
     igraph,
     knitr,
+    quarto,
     rvest,
     visNetwork
 Suggests:

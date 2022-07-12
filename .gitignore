@@ -7,3 +7,5 @@ _bookdown_files
 .Rapp.history
 docs
 webshot.png
+
+/.quarto/

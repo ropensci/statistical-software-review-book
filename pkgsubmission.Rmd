@@ -1,4 +1,3 @@
-
 # Guide for Editors  {#pkgsubmission}
 
 ## Automated Checks
@@ -24,7 +23,9 @@ A similar report can be reproduced locally by running the code within the follow
 <summary>Package report code here (click to see).</summary>
 <p>
 
-```{r pkgcheck-code, eval = FALSE, echo = TRUE}
+```{r pkgcheck-code}
+#| eval: false
+#| echo: true
 library (srr)
 library (pkgcheck)
 path <- srr_stats_pkg_skeleton ()
