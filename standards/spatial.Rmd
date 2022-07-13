@@ -1,7 +1,8 @@
 <!-- Edit the .Rmd not the .md file -->
 
 
-```{r setup, include = FALSE}
+```{r setup}
+#| include: false
 knitr::opts_chunk$set(
                       echo = TRUE,
                       out.width = "100%",

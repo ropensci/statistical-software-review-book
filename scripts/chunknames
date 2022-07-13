@@ -1,15 +1,9 @@
 #!/usr/bin/env Rscript
 
 dupl_chunk_names <- function () {
-    x <- readLines ("_bookdown.yml")
+    x <- readLines ("_quarto.yml")
 
-    rmd1 <- grep ("^rmd_files", x)
-    rmd2 <- grep ("\\]$", x)
-    rmd2 <- rmd2 [which (rmd2 >= rmd1 [1])] [1]
-    rmd <- gsub ("rmd_files:\\s?|\\[|\\]", "", x [rmd1:rmd2])
-
-    rmd <- unlist (lapply (rmd, function (i)
-                   gsub ("\"|^\\s+", "", strsplit (i, ",") [[1]])))
+    rmd <- gsub ("^.*\\-\\s+", "", grep ("\\.Rmd$", x, value = TRUE))
 
     ptn <- "^\\`\\`\\`\\{r\\s?"
     chunk_names <- list ()
@@ -20,7 +14,7 @@ dupl_chunk_names <- function () {
         chunk_names [[length (chunk_names) + 1]] <- gsub (",.*$", "", x)
     }
     names (chunk_names) <- rmd
-    chunk_names <- unlist (chunk_names)
+    chunk_names <- gsub ("\\}$", "", unlist (chunk_names))
 
     repeats <- chunk_names [which (duplicated (chunk_names [chunk_names != ""]))]
     for (r in repeats) {
@@ -32,6 +26,7 @@ dupl_chunk_names <- function () {
 
     blanks <- vapply (names (chunk_names) [which (chunk_names == "")], function (i)
                       substring (i, 1, nchar (i) - 1), character (1), USE.NAMES = FALSE)
+    blanks <- unique (blanks)
     if (length (blanks) > 0)
         message ("There are unnamed chunks in [", paste0 (blanks, collapse = ", "), "]")
 
