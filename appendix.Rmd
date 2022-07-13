@@ -152,6 +152,7 @@ sizes in parentheses) are shown in the following table.
 
 ```{r top10-terms}
 #| message: false
+#| echo: false
 x <- readLines("scripts/joss-abstracts/categories.Rmd")
 x <- x [grep("[0-9]*\\. \\[", x)]
 names <- vapply(x, function(i) {
@@ -204,6 +205,7 @@ knitr::kable(head(terms, n = n), digits = c(0, NA, 3), caption = cp)
 ```
 
 ```{r collate-some-categories}
+#| echo: false
 terms$term [terms$term %in% c("Bayesian", "Monte Carlo")] <-
     "Bayesian & Monte Carlo"
 terms$term [terms$term %in% c("dimensionality reduction",
@@ -228,6 +230,7 @@ categories of "spatial" and "education". We have excluded the key word
 collected a few strongly-connected terms into single categories.
 
 ```{r collate-methods-categories}
+#| echo: false
 out <- data.frame(terms [which(terms$proportion > 0.05), ])
 out <- out [which(!out$term == "estimates"), ]
 out <- rbind(
@@ -294,6 +297,8 @@ best inspected by dragging individual nodes to see their connections to
 others).
 
 ```{r visnetwork-simple}
+#| echo: false
+#| message: false
 nodes <- table(unlist(terms0))
 nodes <- data.frame(
   id = names(nodes),
@@ -383,9 +388,10 @@ es$width <- es$width * 5 / max(es$width)
 
 ```{r visnetwork1}
 #| eval: true
-#| echo: true
+#| echo: false
+#| message: false
 library(visNetwork)
-#visNetwork(ns, es)
+visNetwork(ns, es)
 ```
 
 :::
@@ -443,6 +449,7 @@ for full-screen version with link to code.)
 
 ```{r visnetwork}
 #| message: false
+#| echo: false
 x <- readLines("stat-software-categories.md")
 x <- x [grep("[0-9]*\\. \\[", x)]
 names <- vapply(x, function(i) {
@@ -511,10 +518,11 @@ edges <- edges [which(!(edges$from %in% out | edges$to %in% out)), ]
 
 ```{r visnetwork2}
 #| eval: true
-#| echo: true
+#| message: false
+#| echo: false
 library(visNetwork)
-#visNetwork(nodes, edges)
-````
+visNetwork(nodes, edges)
+```
 
 :::
 
@@ -535,6 +543,8 @@ graph](https://ropenscilabs.github.io/statistical-software/abstracts/network-io/
 directionally relating these different data formats.
 
 ```{r io-nodes-edges}
+#| message: false
+#| echo: false
 terms <- table(c(unlist(input), unlist(output)))
 nodes <- data.frame(
   id = seq_along(terms),
@@ -567,9 +577,10 @@ edges <- edges [which(!(edges$from %in% out | edges$to %in% out)), ]
 
 ```{r visnetwork3}
 #| eval: true
-#| echo: true
+#| message: false
+#| echo: false
 library(visNetwork)
-#visNetwork(nodes, edges)
+visNetwork(nodes, edges)
 ```
 
 :::
