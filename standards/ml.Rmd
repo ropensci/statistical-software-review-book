@@ -143,7 +143,8 @@ enables objects with incommensurate dimensions to be dimensionally reconciled.
 The following demonstration is taken directly from the [`rray`
 package](https://github.com/r-lib/rray) (which is not currently on CRAN).
 
-```{r rray, eval = FALSE}
+```{r rray}
+#| eval: false
 library (rray)
 a <- array(c(1, 2), dim = c(2, 1))
 b <- array(c(3, 4), dim = c(1, 2))

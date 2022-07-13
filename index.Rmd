@@ -1,21 +1,9 @@
---- 
-title: "rOpenSci Statistical Software Peer Review"
-author: "Mark Padgham and Noam Ross"
-date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-documentclass: book
-bibliography: [statsoft.bib]
-biblio-style: apalike
-link-citations: yes
-github-repo: ropensci/statistical-software-review-book
-url: 'https\://ropensci-blog-guidance.netlify.com/'
-apple-touch-icon: "favicon/apple-touch-icon.png"
-apple-touch-icon-size: 120
-favicon: "favicon/favicon.ico"
----
+# Welcome {#welcome}
 
+```{r getbib}
+#| include: false
+#| eval: false
 
-```{r getbib, include = FALSE, eval = TRUE}
 # RefManageR is no longer sufficiently reliable, so bibliography is manually
 # downloaded for the moment
 if (!file.exists("statsoft.bib")) {
@@ -26,7 +14,8 @@ if (!file.exists("statsoft.bib")) {
   RefManageR::WriteBib(refs, "statsoft.bib")
 }
 ```
-```{r updates, echo = FALSE}
+```{r updates}
+#| echo: false
 # https://github.com/rstudio/bookdown/issues/440
 # https://bookdown.org/yihui/bookdown/html-widgets.html
 #install.packages("webshot")
@@ -34,9 +23,6 @@ if (!file.exists("statsoft.bib")) {
 # install.packages("tinytex")
 # tinytex::tlmgr_update()
 ```
-
-
-# Welcome {#welcome}
 
 Welcome to [rOpenSci](https://ropensci.org)'s system for peer-review of
 statistical software in R packages and beyond. This system extends our existing
@@ -96,7 +82,10 @@ DOI](https://doi.org/10.5281/zenodo.5556755), or by copying the following
 BibTeX entry:
 
 
-```{r zenodo, echo=FALSE, results = 'asis', warning=FALSE}
+```{r zenodo}
+#| echo: false
+#| results: 'asis'
+#| warning: false
 cat("\n```bibtex\n")
 u <- "https://zenodo.org/record/5556755" # universal URL redirects to latest
 s <- rvest::session(u)

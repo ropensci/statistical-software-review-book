@@ -1,17 +1,5 @@
+# Standards: Version {{< var version >}} {#standards}
 
-#  (PART) Standards {-}
-
-```{r version, echo = FALSE, cache = FALSE, cache.extra=tools::md5sum(file.path(here::here(),"DESCRIPTION"))}
-d <- data.frame (read.dcf (file.path (here::here (),
-                                      "DESCRIPTION")))
-version <- d$Version
-if (length (gregexpr ("\\.", version) [[1]]) > 2) {
-    version <- gsub ("\\.\\d{3}$", "", version, perl = TRUE)
-}     
-```
-
-
-# Standards: Version `r version` {#standards}
 
 This Chapter serves as the reference for rOpenSci's standards for statistical
 software. Software accepted for peer-review must fit one or more of our
@@ -30,40 +18,73 @@ specific standards.
 
 ---
 
-```{r standards-gen, child = "standards/general.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-gen}
+#| eval: true
+#| echo: false
+#| child: "standards/general.Rmd"
 ```
 
 ---
 
-```{r standards-bayes, child = "standards/bayesian.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-bayes}
+#| eval: true
+#| echo: false
+#| child: "standards/bayesian.Rmd"
 ```
 
 ---
 
-```{r standards-eda, child = "standards/eda.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-eda}
+#| eval: true
+#| echo: false
+#| child: "standards/eda.Rmd"
 ```
 
 ---
 
-```{r standards-ml, child = "standards/ml.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-ml}
+#| eval: true
+#| echo: false
+#| child: "standards/ml.Rmd"
 ```
 
 ---
 
-```{r standards-reg, child = "standards/regression.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-regression}
+#| eval: true
+#| echo: false
+#| child: "standards/regression.Rmd"
 ```
 
 ---
 
-```{r standards-sp, child = "standards/spatial.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-spatial}
+#| eval: true
+#| echo: false
+#| child: "standards/spatial.Rmd"
 ```
 
 ---
 
-```{r standards-ts, child = "standards/time-series.Rmd", eval = TRUE, echo = TRUE}
+
+```{r standards-ts}
+#| eval: true
+#| echo: false
+#| child: "standards/time-series.Rmd"
 ```
 
 ---
 
-```{r standards-unsup, child = "standards/unsupervised.Rmd", eval = TRUE, echo = TRUE}
+```{r standards-unsupervised}
+#| eval: true
+#| echo: false
+#| child: "standards/unsupervised.Rmd"
+```
+
+---
+
+```{r standards-distr}
+#| eval: true
+#| echo: false
+#| child: "standards/distributions.Rmd"
 ```

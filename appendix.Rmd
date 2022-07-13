@@ -1,10 +1,14 @@
-# (APPENDIX) Appendix {-}
+---
+always_allow_html: true
+---
 
 # Appendices
 
 ## Notes on Scope and the Python Statistical Ecosystem {#python}
 
-```{r startup-appendix, echo = FALSE, message = FALSE}
+```{r startup-appendix}
+#| echo: false
+#| message: false
 library(dplyr)
 library(ggplot2)
 library(rvest)
@@ -14,7 +18,8 @@ theme_set(theme_minimal())
 
 Two factors may be usefully noted in this regard:
 
-```{r pypi-projects, echo = FALSE}
+```{r pypi-projects}
+#| echo: false
 u <- "https://pypi.org/"
 x <- read_html(u) %>%
   # html_nodes ("div.statistics-bar") %>%
@@ -56,7 +61,9 @@ from the [stackoverflow developer
 survey](https://insights.stackoverflow.com/survey/2019) from the previous three
 years, with results shown in the following graphic.
 
-```{r py_v_r, echo = FALSE, message = FALSE}
+```{r py_v_r}
+#| echo: false
+#| message: false
 year <- 2017:2019
 python_used <- c(31.7, 38.8, 41.7)
 r_used <- c(4.4, 6.1, 5.8)
@@ -143,7 +150,9 @@ repository](https://github.com/ropenscilabs/statistical-software).) The primary
 nodes that emerge from these empirical analyses (with associated *relative*
 sizes in parentheses) are shown in the following table.
 
-```{r top-10terms, message = FALSE}
+```{r top10-terms}
+#| message: false
+#| echo: false
 x <- readLines("scripts/joss-abstracts/categories.Rmd")
 x <- x [grep("[0-9]*\\. \\[", x)]
 names <- vapply(x, function(i) {
@@ -196,6 +205,7 @@ knitr::kable(head(terms, n = n), digits = c(0, NA, 3), caption = cp)
 ```
 
 ```{r collate-some-categories}
+#| echo: false
 terms$term [terms$term %in% c("Bayesian", "Monte Carlo")] <-
     "Bayesian & Monte Carlo"
 terms$term [terms$term %in% c("dimensionality reduction",
@@ -220,6 +230,7 @@ categories of "spatial" and "education". We have excluded the key word
 collected a few strongly-connected terms into single categories.
 
 ```{r collate-methods-categories}
+#| echo: false
 out <- data.frame(terms [which(terms$proportion > 0.05), ])
 out <- out [which(!out$term == "estimates"), ]
 out <- rbind(
@@ -286,6 +297,8 @@ best inspected by dragging individual nodes to see their connections to
 others).
 
 ```{r visnetwork-simple}
+#| echo: false
+#| message: false
 nodes <- table(unlist(terms0))
 nodes <- data.frame(
   id = names(nodes),
@@ -369,9 +382,19 @@ es <- edges2 [which(edges$from %in% ns$label & edges$to %in% ns$label), ]
 # es <- es [which (es$from %in% ns$label & es$to %in% ns$label), ]
 es <- es [which(!es$from == es$to), ]
 es$width <- es$width * 5 / max(es$width)
+```
+
+::: {.content-hidden when-format="pdf"}
+
+```{r visnetwork1}
+#| eval: true
+#| echo: false
+#| message: false
 library(visNetwork)
 visNetwork(ns, es)
 ```
+
+:::
 
 Standards considered under any of the ensuing categories must be developed with
 reference to inter-relationships between categories, and in particular to
@@ -424,7 +447,9 @@ are scaled by numbers of occurrences, and edges by numbers of co-occurrences.
 here](https://ropenscilabs.github.io/statistical-software/abstracts/network-terms/index.html)
 for full-screen version with link to code.)
 
-```{r visNetwork, message = FALSE}
+```{r visnetwork}
+#| message: false
+#| echo: false
 x <- readLines("stat-software-categories.md")
 x <- x [grep("[0-9]*\\. \\[", x)]
 names <- vapply(x, function(i) {
@@ -487,10 +512,19 @@ cl <- graph_from_data_frame(edges) %>%
 out <- names(cl$membership [which(cl$membership != which.max(cl$csize))])
 nodes <- nodes [which(!nodes$id %in% out), ]
 edges <- edges [which(!(edges$from %in% out | edges$to %in% out)), ]
+```
 
+::: {.content-hidden when-format="pdf"}
+
+```{r visnetwork2}
+#| eval: true
+#| message: false
+#| echo: false
 library(visNetwork)
 visNetwork(nodes, edges)
 ```
+
+:::
 
 Such a network visualization enables immediate identification of more and less
 central concepts including, in our case, several that we may not otherwise have
@@ -509,6 +543,8 @@ graph](https://ropenscilabs.github.io/statistical-software/abstracts/network-io/
 directionally relating these different data formats.
 
 ```{r io-nodes-edges}
+#| message: false
+#| echo: false
 terms <- table(c(unlist(input), unlist(output)))
 nodes <- data.frame(
   id = seq_along(terms),
@@ -535,9 +571,19 @@ cl <- graph_from_data_frame(edges) %>%
 out <- names(cl$membership [which(cl$membership != which.max(cl$csize))])
 nodes <- nodes [which(!nodes$id %in% out), ]
 edges <- edges [which(!(edges$from %in% out | edges$to %in% out)), ]
+```
 
+::: {.content-hidden when-format="pdf"}
+
+```{r visnetwork3}
+#| eval: true
+#| message: false
+#| echo: false
+library(visNetwork)
 visNetwork(nodes, edges)
 ```
+
+:::
 
 ## Other Software Standards {#appendix-other-software-standards}
 
@@ -599,3 +645,6 @@ applying their benchmarks to a suite of neural network packages.
 
 
 ## Bibliography
+
+::: {#refs}
+:::
