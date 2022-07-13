@@ -648,3 +648,13 @@ applying their benchmarks to a suite of neural network packages.
 
 ::: {#refs}
 :::
+
+# Review request template {#reviewrequesttemplate}
+
+Editors may make use of the e-mail template below in recruiting reviewers.
+
+```{r template-request}
+#| echo: false
+#| eval: true
+#| child: "templates/request.md"
+```
