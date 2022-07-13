@@ -43,10 +43,10 @@ jobs:
         run: Rscript -e 'install.packages("remotes")' -e 'remotes::install_deps(dependencies = TRUE)'
 
       - name: Render Book html
-        run: Rscript -e 'bookdown::render_book("index.Rmd", output_format = "bookdown::bs4_book")'
+        run: Rscript -e 'quarto::quarto_render(output_format = "html")'
 
         #- name: Render Book pdf
-        #run: Rscript -e 'bookdown::render_book("index.Rmd", new_session = FALSE, output_format = "bookdown::pdf_book")'
+        #run: Rscript -e 'quarto::quarto_render(output_format = "pdf")'
 
       - name: git config
         run: |

@@ -44,10 +44,10 @@ jobs:
         run: Rscript -e 'install.packages("remotes")' -e 'options(install.packages.check.source = "both")' -e 'remotes::install_deps(dependencies = TRUE)'
 
       - name: Render book html
-        run: Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::bs4_book")'
+        run: Rscript -e 'quarto::quarto_render(output_format = "html")'
 
           #- name: Render book PDF
-          #run: Rscript -e 'bookdown::render_book("index.Rmd", new_session = FALSE, "bookdown::pdf_book", output_dir = "pdfbook")'
+          #run: Rscript -e 'quarto::quarto_render(output_format = "pdf")'
 
           #- name: Move files around
           #run: Rscript -e 'file.copy(from = "pdfbook/ropensci-statistical-software-review-book.pdf", to = "_book/ropensci-statistical-software-review-book.pdf")' -e 'purrr::walk(list.files("images", full.names = TRUE), file.copy, to = "_book/images")'
