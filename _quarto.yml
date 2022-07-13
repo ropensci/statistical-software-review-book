@@ -32,6 +32,8 @@ book:
     chapters:
       - appendix.Rmd
 
+bibliography: statistical-software.bib
+
 format:
   html:
     theme: [cosmo, custom.scss]

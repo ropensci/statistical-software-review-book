@@ -645,3 +645,6 @@ applying their benchmarks to a suite of neural network packages.
 
 
 ## Bibliography
+
+::: {#refs}
+:::
