@@ -36,6 +36,6 @@ format:
   html:
     theme: [cosmo, custom.scss]
     code-link: true
-  pdf:
-    include-in-header: "preamble.tex"
-    output-file: "statistical-software-review-book"
+    #pdf:
+    #include-in-header: "preamble.tex"
+    #output-file: "statistical-software-review-book"
