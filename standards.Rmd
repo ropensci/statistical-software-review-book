@@ -80,11 +80,3 @@ specific standards.
 #| echo: false
 #| child: "standards/unsupervised.Rmd"
 ```
-
----
-
-```{r standards-distr}
-#| eval: true
-#| echo: false
-#| child: "standards/distributions.Rmd"
-```
