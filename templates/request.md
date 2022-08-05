@@ -2,11 +2,11 @@ Dear [REVIEWER]
 
 Hi, this is [EDITOR]. [FRIENDLY BANTER]. I'm writing to ask if you would be willing to review a statistical package for rOpenSci. As you probably know, rOpenSci conducts peer review of R packages contributed to our collection in a manner similar to journals, including explicitly statistical packages.
 
-The package, [PACKAGE] by [AUTHOR(S)], does [FUNCTION]. You can find it on GitHub here: [REPO LINK]. We conduct our open review process via GitHub as well, here: [ONBOARDING ISSUE]. In that GitHub discussion thread you will find the results of automated package checks, and summaries of package code structure, as well.
+The package, [PACKAGE] by [AUTHOR(S)], does [FUNCTION]. You can find it on GitHub here: [REPO LINK]. We conduct our open review process via GitHub as well, here: [SOFTWARE-REVIEW ISSUE]. In that GitHub discussion thread you will find the results of automated package checks, and summaries of package code structure, as well.
 
-If you accept, note that we ask reviewers to complete reviews in three weeks. (We’ve found it takes a similar amount of time to review a package as an academic paper.)
+If you accept, note that while we generally ask reviewers to complete reviews in three weeks, this program is still in pilot mode, and review times for statistical software are flexible. We're also eager to hear feedback from reviewers on the general process.
 
-Our [reviewers guide] details what we look for in a review of a statistical package. We provide a reviewer [template] for you to use. Our standards for statistical packages are detailed in our [authors guide] - note this package falls under the [CATEGORY] category - this determines which standards are applicable. Note that our automated checks include a report of how authors have complied with our standards by annotating their code, we hope this will aid your review.  
+Our guidance for reviewing statistical packages at https://stats-devguide.ropensci.org/pkgreview.html. Our standards for statistical packages are detailed at https://stats-devguide.ropensci.org/standards.html. Note that packages must comply with both the general standards, and at least one specific category of statistical standards. This package falls under the [CATEGORY] category. The automated checks in the GitHub issue thread include a link to a report of how authors have complied with our standards by annotating their code, we hope this will aid your review. There's a template for reviewers at the end of the reviewers' guide (https://stats-devguide.ropensci.org/pkgreview.html).
 
 Please make sure you do not have a [conflict of interest](https://devguide.ropensci.org/policies.html#coi) preventing you from reviewing this package. If you have questions or feedback, feel free to ask me or post to the [rOpenSci forum].
 
