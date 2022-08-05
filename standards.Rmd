@@ -4,7 +4,7 @@
 This Chapter serves as the reference for rOpenSci's standards for statistical
 software. Software accepted for peer-review must fit one or more of our
 categories, and thus all packages must comply with the *General Standards*
-listed in the first of the following sections, along with one or more of the
+listed in the first of the following sections, as well as at least one of the
 category-specific sets of standards listed in the subsequent sections.
 
 Our standards are open and intended to change and evolve in response to public

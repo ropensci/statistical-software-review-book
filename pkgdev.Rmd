@@ -9,11 +9,13 @@ software peer review system.
 
 The major additional process is the documentation of how a package complies
 with the general and category-specific standards given in [Chapter
-6](#standards). Authors need to document within the software itself every point
-at which it complies with every general and every applicable category-specific
-standard listed in that chapter. The process of doing so is facilitated by the
-[`srr` package](https://github.com/ropensci-review-tools/srr), as described in
-detail in [Sub-section 3.4, below](#pkgdev-srr).
+6](#standards). Statistical software packages must document compliance with the
+[*General Standards*](#general-standards), as well as at least one set of
+[category-specific standards](#standards). Authors need to document within the
+software itself every point at which it complies with every general and every
+applicable category-specific standard. The process of doing so is facilitated
+by the [`srr` package](https://github.com/ropensci-review-tools/srr), as
+described in detail in [Sub-section 3.4, below](#pkgdev-srr).
 
 Documenting compliance with our standards will generally entail more work than
 for non-statistical software submitted to our general peer review system. The
