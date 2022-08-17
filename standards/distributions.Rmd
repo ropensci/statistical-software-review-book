@@ -63,13 +63,13 @@ sub-section include:
 
 The follow standard should be adhered to where possible:
 
-- [**PD1.1**]{#PD2_0} *Where possible, software should represent probability
+- [**PD2.0**]{#PD2_0} *Where possible, software should represent probability
   distributions using a package for general representation.*
 
-Any one package will generally only be able to fulfil one of the two standards
-in this sub-section: it will either use a particular distribution, and thus
-need to adhere to **PD1.0**, or it will treat distributions more generally, and
-thus need to adhere to **PD1.1**.
+Any one package will generally only be able to fulfil either this or the
+preceding standard (**PD1.0**): it will either use a particular distribution,
+and thus need to adhere to **PD1.0**, or it will treat distributions more
+generally, and thus need to adhere to **PD2.0**.
 
 
 ### Algorithms{#PD_algorithms}
