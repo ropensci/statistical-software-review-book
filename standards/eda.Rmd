@@ -1,6 +1,6 @@
 <!-- Edit the .Rmd not the .md file -->
 
-## Exploratory Data Analysis and Summary Statistics
+## Exploratory Data Analysis and Summary Statistics {#standards-eda}
 
 Exploration is a part of all data analyses, and Exploratory Data Analysis (EDA)
 is not something that is entered into and exited from at some point prior to
