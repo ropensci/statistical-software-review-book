@@ -88,3 +88,11 @@ specific standards.
 #| echo: false
 #| child: "standards/distributions.Rmd"
 ```
+
+---
+
+```{r standards-networks}
+#| eval: true
+#| echo: false
+#| child: "standards/networks.Rmd"
+```

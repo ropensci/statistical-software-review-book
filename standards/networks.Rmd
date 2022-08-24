@@ -1,0 +1,267 @@
+<!-- Edit the .Rmd not the .md file -->
+
+## Network Software {#standards-networks}
+
+### Documentation
+
+Network software is frequently developed for domain-specific use-cases, such as
+for genomic data, or social networks. Even when software is intended to enable
+truly general use, the following standard applies.
+
+- **NW1.0** *Network software should explicitly indicate its domain of
+  applicability, generally as a broad description of applicable academic (or
+  equivalent) domains.*
+
+Authors are encouraged to include as many *potentially* applicable or relevant
+domains as possible, even if application in such domains has been neither tried
+nor demonstrated. Authorial statements of potential applicability are one of
+the clearest ways to encourage usage of software beyond the initial domains for
+which it might have been developed.
+
+- **NW1.1** *Network software should document scaling relationships between
+  sizes of input data (numbers of vertices, edges, or both) and algorithmic speed.*
+
+This documentation may be placed anywhere, including in a dedicated vignette,
+but should at least be referenced from a primary location such as the main
+README file.
+
+
+### Input Data Structures and Validation
+
+Most network software is intended to accept networks as input parameters. This
+is nevertheless not always the case, and many of the following standards may
+not apply to software which transforms non-network inputs into internal network
+representations.
+
+R has a number of widely used packages for representing and analysing networks.
+The following standard reflects one aim of rOpenSci to curate an "ecosystem" of
+software:
+
+- **NW2.0** *Where possible or practicable, network software should either represent
+  network data using a common representation, or at least prominently
+  demonstrate how to convert package-internal representations to common forms.*
+
+"Common representations" refer to the types offered by widely-used packages for
+network representation and/or analyses, including but not limited to the
+packages [`igraph`](https://igraph.org),
+[`tidygraph`](https://tidygraph.data-imaginist.com/),
+[`network`](https://github.com/statnet/network), or
+[`sfNetworks`](https://luukvdmeer.github.io/sfnetworks/) for spatial networks.
+
+- **NW2.1** *Network software which accepts networks as inputs should
+  explicitly indicate the expected forms of those networks.*
+
+- **NW2.2** *Functions should assert that inputs are of expected forms, and
+  issue informative error messages for other forms of input.*
+
+Informative error messages include brief instructions how to convert to
+expected forms.
+
+- **NW2.3** *Network software which uses attributes of input data such as row
+  or column names to label output objects should assert that input data have
+  non-default row or column names, and issue an informative message when these
+  are not provided.*
+
+
+- **NW2.4** *Network software for which input data does not generally include
+  labels (such as array-like data with no row names) should provide an
+  additional parameter to enable edges or vertices to be labelled.*
+
+- **NW2.5** *Network Software should transfer all relevant aspects of input
+  data, notably including row and column names, and potentially information
+  from other attributes (such as vertex or edge labels), to corresponding
+  aspects of return objects.*
+    - **NW2.5a** *Where otherwise relevant information is not transferred, this
+      should be explicitly documented.*
+
+
+#### Generic input structures
+
+Network software may accept generic inputs which do not rely on specific class
+structures. Network representations may be edge-based, "standard" graph-based
+representations, or matrix-based. The following standards apply to generic
+input structures.
+
+- **NW2.6** *Network software which accepts generic input structures (such as
+  matrices) should implement initial validation routines to ensure the internal
+  properties of input data confirm with expectations.*
+
+Expectations implied by this standard include those related to missing values,
+or to types or ranges of input data, such as strictly binary values for
+adjacency matrices.
+
+- **NW2.7** *Network software which accept generic input structures should
+  implement explicit parameters controlling the processing of missing values,
+  ideally distinguishing `NA` or `NaN` values from `Inf` values (for example,
+  through the use of `na.omit()` and related functions from the `stats`
+  package). Network structures able to be specified in matrix form should
+  permit and appropriately process missing values (even where appropriate
+  processing is to error on missing values).*
+
+- **NW2.8** *For matrix-based representations, documentation should explicitly
+  describe and/or demonstrate whether sparse representations are used or
+  permitted.*
+
+#### Pre-processing of inputs
+
+- **NW2.9** *Network Software should implement a single pre-processing routine
+  to validate input data, and to appropriately transform it to a single uniform
+  type to be passed to all subsequent data-processing functions.*
+
+This function may even be applicable to software accepting class-based inputs,
+in which a pre-processing routine should still be called to validate the
+expected form and properties of any input.
+
+- **NW2.10** *This pre-processing function should maintain metadata attributes
+  of input data which are relevant or important to core algorithms or return
+  values. *
+
+
+
+### Data Structures
+
+- **NW3.0** *Network software which at any stage uses sparse matrix representations
+  should never convert those back to full-matrix representations. In other
+  words, sparse representations should be maintained throughout.*
+
+- **NW3.1** *Adjacency matrices should be represented in sparse matrix formats (such
+  as from the `Matrix` package), and not as full matrices.*
+
+Even where authors envision software to have a specific scope in which they
+know matrices may be generally "small", the use of sparse representations is
+the best way to ensure the software will readily extend to larger input sizes.
+
+### Algorithms
+
+- **NW4.0** *Software which represents networks as matrices, and which
+  implements algorithms in C++, should generally use widely available libraries
+  for matrix representation and manipulation.*
+
+Examples of such libraries include [the
+Armadillo](http://arma.sourceforge.net/) and
+[Eigen](https://eigen.tuxfamily.org/) libraries, generally via R couplings such
+as [the
+`RcppArmadillo`](https://cran.r-project.org/web/packages/RcppArmadillo/index.html)
+and [`RcppEigen`](https://dirk.eddelbuettel.com/code/rcpp.eigen.html) packages.
+
+- **NW4.1** *Re-implementation of network-specific routines which exist in
+  other commonly-used packages should explain, at least in code comments, the
+  reasons for re-implementation.*
+    - **NW4.1a** *Where the reason for re-implementation is an improved
+      implementation, this must be demonstrated, at least in tests.*
+
+Reasons for re-implementation may be as simple as wanting to avoid extra
+package dependencies, or more complex reasons such as desire to implement a
+parallel version of an algorithm.
+
+#### Iteration in algorithms
+
+Many network packages contain ways of "fitting" models to data, and such
+fitting procedures are often iterative. The following standard applies to any
+iterative procedures implemented within network software.
+
+- **NW4.2** *Loops intended to run until convergence should always implement a
+  parameter controlling maximum numbers of iterations.*
+
+- **NW4.3** *Where iterative fitting procedures are used, these should either:*
+    - **NW4.3a** *Include code comments which clearly explain why iteration always
+    converges*; or
+    - **NW4.3b** *Include code to detect (potential) non-convergence, and terminate
+    iteration. Where termination conditions are not user-controlled, code
+    comments should also explain and justify parameter values.*
+
+- **NW4.4** *Where iterative fitting procedures are used, code should explicitly
+  count numbers of iterations, with resultant values able to be returned
+  directly from function calls (although not necessarily by default).*
+    - **NW4.4a** *Routines which use an internally fixed number of maximal
+      iterations should include a note justifying the value chosen.*
+
+- **NW4.5** *Any exhaustive loops over multiple dimensions (> 1) of network matrices
+  should generally be implemented in C/C++, or other efficient languages
+  commonly placed in the `/src` sub-directory.*
+
+The adjective "generally" in the previous standard leaves scope for this
+standard not to be complied with, for example if a package has no other `/src`
+code, and only implements one such loop. It should nevertheless be considered
+bad practice to implement pairwise loops over all edges or vertices of a
+network in R.
+
+
+#### Network "grouping" Algorithms
+
+The following standards apply to network software which discerns discrete
+internal groups, such as clustering or dimensionality reduction algorithms.
+
+- **NW4.6** *Grouping algorithms which apply sequential labels should ensure
+  that the sequence follows decreasing group sizes (so labels of “1”, “a”, or
+  “A” describe the largest group, “2”, “b”, or “B” the second largest, and so
+  on.)*
+
+- **NW4.7** *Dimensionality reduction or equivalent algorithms which label
+  dimensions should ensure that that sequences of labels follows decreasing
+  “importance” (for example, eigenvalues or variance contributions).*
+
+
+
+### Return Objects and Generic Methods
+
+- **NW5.0** *Return objects from network software should contain metadata on
+  input networks, minimally including numbers of vertices and edges.*
+
+- **NW5.1** *Network software may enable an ability to construct an empty
+  return object (at no computational cost). This may be useful in controlling
+  batch processing of computationally intensive network algorithms.*
+
+- **NW5.2** *Network Software should implement default `print` methods for return objects.*
+
+- **NW5.3** *The default print method should always ensure only a restricted
+  portion of the full results are printed to the screen.*
+
+- **NW5.4** *Network Software which returns some kind of models as outputs
+  should also implement summary methods which should summarise the primary
+  statistics used in generating the model (such as numbers of observations,
+  parameters of methods applied). The summary method may also provide summary
+  statistics from the resultant model.*
+
+Network software which does not return model objects may of course also
+implement `summary` methods complying with this standard.
+
+- **NW5.5** *Network Software may also provide default `plot` methods for
+  return objects.*
+
+- **NW5.6** *Objects returned from Network Software which labels, categorise,
+  or partitions data into discrete groups should include, or provide immediate
+  access to, quantitative information on intra-group variances or equivalent,
+  as well as on inter-group relationships where applicable.*
+
+- **NW5.7** *The return object from Network Software should include, or
+  otherwise enable immediate extraction of, all parameters used to control the
+  algorithm used. *
+
+
+#### Visualisation
+
+- **NW5.8** *Network Software which includes plotting routines should offer an
+  ability to generate interactive (generally HTML-based) visualisations.*
+
+### Tests
+
+Network Software should test the following properties and behaviours:
+
+- **NW6.0** *Inappropriate types of input data are rejected with expected error messages.*
+
+#### Output Labelling
+
+With regard to labelling of output data, tests for Network Software should:
+
+- **NW6.1** *Demonstrate that labels placed on output data follow decreasing
+  group sizes* (**NW4.6**).
+
+- **NW6.2** *Demonstrate that labels on input data are propagated to, or may be
+  recovered from, output data* (**NW2.5**).
+
+
+#### Algorithmic Scaling Tests
+
+- **NW6.3** *Network software should include tests which demonstrate and confirm
+  the scaling of algorithmic efficiency with network size* (**NW1.1**).
