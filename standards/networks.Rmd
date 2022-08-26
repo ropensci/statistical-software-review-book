@@ -19,7 +19,8 @@ the clearest ways to encourage usage of software beyond the initial domains for
 which it might have been developed.
 
 - **NW1.1** *Network software should document scaling relationships between
-  sizes of input data (numbers of vertices, edges, or both) and algorithmic speed.*
+  sizes of input data (numbers of vertices, edges, or both) and algorithmic speed,
+  and describe the expected range of data size for which the software is usable.*
 
 This documentation may be placed anywhere, including in a dedicated vignette,
 but should at least be referenced from a primary location such as the main
@@ -34,7 +35,7 @@ not apply to software which transforms non-network inputs into internal network
 representations.
 
 R has a number of widely used packages for representing and analysing networks.
-The following standard reflects one aim of rOpenSci to curate an "ecosystem" of
+The following standard reflects one aim of rOpenSci to curate an interoperable "ecosystem" of
 software:
 
 - **NW2.0** *Where possible or practicable, network software should either represent
@@ -57,17 +58,17 @@ packages [`igraph`](https://igraph.org),
 Informative error messages include brief instructions how to convert to
 expected forms.
 
-- **NW2.3** *Network software which uses attributes of input data such as row
+- **NW2.3** *Network software which uses attributes of input data such as row       <!-- This seems a little obscure, should it be general or have an example? --> 
   or column names to label output objects should assert that input data have
   non-default row or column names, and issue an informative message when these
-  are not provided.*
+  are not provided.*  
 
 
-- **NW2.4** *Network software for which input data does not generally include
+- **NW2.4** *Network software for which input data does not generally include    <!-- Again, a bit difficult to follow, does this mean auto-number labelling -->
   labels (such as array-like data with no row names) should provide an
   additional parameter to enable edges or vertices to be labelled.*
 
-- **NW2.5** *Network Software should transfer all relevant aspects of input
+- **NW2.5** *Network Software should transfer all relevant aspects of input      <!-- I think this should be the first of these three, and maybe add a heading on "Labels" and an overall sentence on the logic of threse three together --> 
   data, notably including row and column names, and potentially information
   from other attributes (such as vertex or edge labels), to corresponding
   aspects of return objects.*
@@ -114,18 +115,20 @@ expected form and properties of any input.
 
 - **NW2.10** *This pre-processing function should maintain metadata attributes
   of input data which are relevant or important to core algorithms or return
-  values. *
+  values. *  <!-- This is closely related to the data labelling comments above.  Maybe it should go first, and then you can get into details of labels. Are there are metadata types that we should mention? -->
 
 
 
 ### Data Structures
 
 - **NW3.0** *Network software which at any stage uses sparse matrix representations
-  should never convert those back to full-matrix representations. In other
-  words, sparse representations should be maintained throughout.*
+  (or use classes, which are sparse in structure ) should avoid converting to full matrix representations. In other
+  words, sparse representations should be maintained throughout.* 
 
-- **NW3.1** *Adjacency matrices should be represented in sparse matrix formats (such
-  as from the `Matrix` package), and not as full matrices.*
+- **NW3.1** *Adjacency matrices should be represented in sparse formats (such
+  as from the `Matrix` package or  other sparse classes), and not as full matrices if possible.*
+  
+  <!-- Softened language here because I think there are limits to this depending on the mathematical routines that are called -->
 
 Even where authors envision software to have a specific scope in which they
 know matrices may be generally "small", the use of sparse representations is
@@ -161,7 +164,7 @@ fitting procedures are often iterative. The following standard applies to any
 iterative procedures implemented within network software.
 
 - **NW4.2** *Loops intended to run until convergence should always implement a
-  parameter controlling maximum numbers of iterations.*
+  parameter controlling maximum number of iterations.*
 
 - **NW4.3** *Where iterative fitting procedures are used, these should either:*
     - **NW4.3a** *Include code comments which clearly explain why iteration always
@@ -195,11 +198,11 @@ internal groups, such as clustering or dimensionality reduction algorithms.
 - **NW4.6** *Grouping algorithms which apply sequential labels should ensure
   that the sequence follows decreasing group sizes (so labels of “1”, “a”, or
   “A” describe the largest group, “2”, “b”, or “B” the second largest, and so
-  on.)*
+  on.)*  <!-- I don't agree with this, because there are other ways the ordering/labeling issue should be solved.  However, the software should document how the ordering of groups is determined, whether and how the order is deterministic and how users can set parameters or seeds to have stable labels -->
 
 - **NW4.7** *Dimensionality reduction or equivalent algorithms which label
   dimensions should ensure that that sequences of labels follows decreasing
-  “importance” (for example, eigenvalues or variance contributions).*
+  “importance” (for example, eigenvalues or variance contributions).*  <!-- Same as above -->
 
 
 
@@ -242,7 +245,7 @@ implement `summary` methods complying with this standard.
 #### Visualisation
 
 - **NW5.8** *Network Software which includes plotting routines should offer an
-  ability to generate interactive (generally HTML-based) visualisations.*
+  ability to generate interactive (generally HTML-based) visualisations.*  <!-- Disagree with this.  However, I'd say that it should document visualization methods, inlcuding interactive routines when appropriate.  -->
 
 ### Tests
 
@@ -250,12 +253,14 @@ Network Software should test the following properties and behaviours:
 
 - **NW6.0** *Inappropriate types of input data are rejected with expected error messages.*
 
+<!-- Do we need any specific guidance for the general convergence, stability, or performance tests?  The group ordering is one area that should be tested -->
+
 #### Output Labelling
 
 With regard to labelling of output data, tests for Network Software should:
 
 - **NW6.1** *Demonstrate that labels placed on output data follow decreasing
-  group sizes* (**NW4.6**).
+  group sizes* (**NW4.6**).  <!-- See above -->
 
 - **NW6.2** *Demonstrate that labels on input data are propagated to, or may be
   recovered from, output data* (**NW2.5**).
