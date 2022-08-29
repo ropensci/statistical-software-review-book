@@ -285,14 +285,26 @@ network in R.
 The following standards apply to network software which discerns discrete
 internal groups, such as clustering or dimensionality reduction algorithms.
 
-- **NW4.6** *Grouping algorithms which apply sequential labels should ensure
-  that the sequence follows decreasing group sizes (so labels of “1”, “a”, or
-  “A” describe the largest group, “2”, “b”, or “B” the second largest, and so
-  on.)*  <!-- I don't agree with this, because there are other ways the ordering/labeling issue should be solved.  However, the software should document how the ordering of groups is determined, whether and how the order is deterministic and how users can set parameters or seeds to have stable labels -->
+- **NW4.6** *Network software should document how the ordering of groups is
+  determined, and should explicitly state whether or not ordering is
+  deterministic.*
+    - **NW4.6a** *Software in which ordering or labels are not deterministic
+      should document how users can set seeds or other parameters in order to
+      obtain stable groups and/or labels.*
 
-- **NW4.7** *Dimensionality reduction or equivalent algorithms which label
-  dimensions should ensure that that sequences of labels follows decreasing
-  “importance” (for example, eigenvalues or variance contributions).*  <!-- Same as above -->
+The code demonstrated above can be again used to illustrate compliance with
+this standard for a deterministic grouping algorithm, starting with the same
+binary adjacency matrix, `nbs`.
+
+```{r igraph-group-labels}
+rownames (nbs) <- colnames (nbs) <- LETTERS [seq (nrow (nbs))]
+g <- graph_from_adjacency_matrix (nbs)
+components (g)
+```
+
+The groups are labelled in the "membership" vector as discrete integers, with
+"1" denoting the largest group; "2" the second largest; and so on. Adherence
+with this standard would require documenting this labelling procedure.
 
 
 
