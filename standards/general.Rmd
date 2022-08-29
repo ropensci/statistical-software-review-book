@@ -1,7 +1,7 @@
 <!-- Edit the .Rmd not the .md file -->
 
 
-## General Standards for Statistical Software {#general-standards}
+## General Standards for Statistical Software {#standards-general}
 
 These general standards, and all category-specific standards that follow, are
 intended to serve as *recommendations* for best practices. Note in particular
