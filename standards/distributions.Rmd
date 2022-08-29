@@ -52,7 +52,7 @@ heading](https://cran.r-project.org/web/views/Distributions.html#Misc) on
 sub-section include:
 
 - The core [`stats`](https://cran.r-project.org/web/packages/STAT/index.html) 
-  package built into base `R`;
+  package distributed wtih base `R`;
 - The [`distr` family of packages](https://distr.r-forge.r-project.org/), which
   offer an extremely powerful and flexibility range of S4-class objects for
   representing and manipulating probability distributions;
