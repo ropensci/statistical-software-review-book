@@ -346,8 +346,10 @@ implement `summary` methods complying with this standard.
 
 #### Visualisation
 
-- **NW5.8** *Network Software which includes plotting routines should offer an
-  ability to generate interactive (generally HTML-based) visualisations.*  <!-- Disagree with this.  However, I'd say that it should document visualization methods, inlcuding interactive routines when appropriate.  -->
+- **NW5.8** *Network Software which includes plotting routines should document
+  and demonstrate visualisation methods, such as through a dedicated vignette.
+  Where possible, such demonstrations should also include generation of
+  interactive visualisations.*
 
 ### Tests
 
