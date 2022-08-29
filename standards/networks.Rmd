@@ -1,5 +1,10 @@
 <!-- Edit the .Rmd not the .md file -->
 
+```{r requires, echo = FALSE, message = FALSE}
+library (igraph)
+```
+
+
 ## Network Software {#standards-networks}
 
 ### Documentation
@@ -32,11 +37,16 @@ README file.
 Most network software is intended to accept networks as input parameters. This
 is nevertheless not always the case, and many of the following standards may
 not apply to software which transforms non-network inputs into internal network
-representations.
+representations. The following two sub-sections will generally be mutually
+exclusive, and software will either accept class-based inputs, and so comply
+with the standards in the following sub-section, or it will accept generic
+inputs, and so comply with the standards in the sub-section after that.
+
+#### Class-based inputs
 
 R has a number of widely used packages for representing and analysing networks.
-The following standard reflects one aim of rOpenSci to curate an interoperable "ecosystem" of
-software:
+The following standard reflects one aim of rOpenSci to curate an interoperable
+"ecosystem" of software:
 
 - **NW2.0** *Where possible or practicable, network software should either represent
   network data using a common representation, or at least prominently
@@ -52,28 +62,9 @@ packages [`igraph`](https://igraph.org),
 - **NW2.1** *Network software which accepts networks as inputs should
   explicitly indicate the expected forms of those networks.*
 
-- **NW2.2** *Functions should assert that inputs are of expected forms, and
-  issue informative error messages for other forms of input.*
-
-Informative error messages include brief instructions how to convert to
-expected forms.
-
-- **NW2.3** *Network software which uses attributes of input data such as row       <!-- This seems a little obscure, should it be general or have an example? --> 
-  or column names to label output objects should assert that input data have
-  non-default row or column names, and issue an informative message when these
-  are not provided.*  
-
-
-- **NW2.4** *Network software for which input data does not generally include    <!-- Again, a bit difficult to follow, does this mean auto-number labelling -->
-  labels (such as array-like data with no row names) should provide an
-  additional parameter to enable edges or vertices to be labelled.*
-
-- **NW2.5** *Network Software should transfer all relevant aspects of input      <!-- I think this should be the first of these three, and maybe add a heading on "Labels" and an overall sentence on the logic of threse three together --> 
-  data, notably including row and column names, and potentially information
-  from other attributes (such as vertex or edge labels), to corresponding
-  aspects of return objects.*
-    - **NW2.5a** *Where otherwise relevant information is not transferred, this
-      should be explicitly documented.*
+- **NW2.2** *Submitting inputs in any common class beyond those accepted by
+  network software should result in error messages providing helpful
+  information on how to convert to appropriate classes.*
 
 
 #### Generic input structures
@@ -83,7 +74,7 @@ structures. Network representations may be edge-based, "standard" graph-based
 representations, or matrix-based. The following standards apply to generic
 input structures.
 
-- **NW2.6** *Network software which accepts generic input structures (such as
+- **NW2.3** *Network software which accepts generic input structures (such as
   matrices) should implement initial validation routines to ensure the internal
   properties of input data confirm with expectations.*
 
@@ -91,7 +82,7 @@ Expectations implied by this standard include those related to missing values,
 or to types or ranges of input data, such as strictly binary values for
 adjacency matrices.
 
-- **NW2.7** *Network software which accept generic input structures should
+- **NW2.4** *Network software which accept generic input structures should
   implement explicit parameters controlling the processing of missing values,
   ideally distinguishing `NA` or `NaN` values from `Inf` values (for example,
   through the use of `na.omit()` and related functions from the `stats`
@@ -99,23 +90,122 @@ adjacency matrices.
   permit and appropriately process missing values (even where appropriate
   processing is to error on missing values).*
 
-- **NW2.8** *For matrix-based representations, documentation should explicitly
+- **NW2.5** *For matrix-based representations, documentation should explicitly
   describe and/or demonstrate whether sparse representations are used or
   permitted.*
 
 #### Pre-processing of inputs
 
-- **NW2.9** *Network Software should implement a single pre-processing routine
+- **NW2.6** *Network Software should implement a single pre-processing routine
   to validate input data, and to appropriately transform it to a single uniform
   type to be passed to all subsequent data-processing functions.*
 
 This function may even be applicable to software accepting class-based inputs,
 in which a pre-processing routine should still be called to validate the
-expected form and properties of any input.
+expected form and properties of any input. 
 
-- **NW2.10** *This pre-processing function should maintain metadata attributes
+- **NW2.7** *This pre-processing function should maintain metadata attributes
   of input data which are relevant or important to core algorithms or return
-  values. *  <!-- This is closely related to the data labelling comments above.  Maybe it should go first, and then you can get into details of labels. Are there are metadata types that we should mention? -->
+  values. *
+
+These metadata attributes include labels discussed in the following
+sub-section, but may also include additional data such as numbers of vertices
+and edges, timestamps, data sources, or any metadata necessary or useful for
+appropriate interpretation of results.
+
+
+
+#### Labels on input data
+
+Network software often implements algorithms which identify or operate on
+discrete sub-sets of a network, such as identifying discrete groups or clusters
+of edges or vertices. In such cases, the membership of vertices or edges within
+discrete groups is important, and is generally denoted by some kind of label.
+The following standards apply to software which transfers attributes of input
+data used to label vertices or edges on to output data.
+
+- **NW2.8** *Network Software should transfer all relevant aspects of input
+  data, notably including row and column names, and potentially information
+  from other attributes (such as vertex or edge labels), to corresponding
+  aspects of return objects.*
+    - **NW2.8a** *Where otherwise relevant information is not transferred, this
+      should be explicitly documented, or informative diagnostic messages
+      should be issued.*
+
+The following code provides an example of default behaviour in response to
+input which has no properties or attributes to be transferred, beginning by
+constructing a random binary adjacency matrix with pairwise connections set to
+`TRUE` for adjacent vertices.
+
+```{r bin-nb-mat, echo = TRUE}
+n_verts <- 10L
+edge_density <- 1 # Mean number edges per vertex
+set.seed (1L)
+nbs <- array (FALSE, dim = c (n_verts, n_verts))
+nbs [sample (n_verts ^ 2, size = n_verts * edge_density)] <- TRUE
+```
+
+The following code then constructs an `igraph` graph from that adjacency
+matrix, and enumerates the connected components of that graph.
+
+```{r igraph-adj-no-labels, echo = TRUE}
+library (igraph)
+g <- graph_from_adjacency_matrix (nbs)
+components (g)
+```
+
+The result of [the `igraph` components
+function](https://igraph.org/r/html/latest/components.html) includes a
+membership" vector with `n_verts` values, such that `membership[1]` gives the
+group membership of the first vertex. Vertices in the above code were
+unlabelled, and the "membership" values simply enumerate the groups from "1"
+for the largest to, in this case, "3" for the smallest.
+
+The following code demonstrates what happens when the input adjacency matrix is
+labelled.
+
+```{r igraph-adj-with-labels, echo = TRUE}
+rownames (nbs) <- colnames (nbs) <- LETTERS [seq (nrow (nbs))]
+g <- graph_from_adjacency_matrix (nbs)
+components (g)
+```
+
+And the row and column names of the input adjacency matrix to labels of the
+resultant output data, demonstrating that this aspect of) the `igraph` package
+complies with standard **NW2.8**.
+
+- **NW2.9** *Network software which uses attributes of input data such as row
+  or column names to label output objects should assert that input data have
+  non-default row or column names, and issue an informative message when these
+  are not provided.*  
+
+The first example above represents code which would comply with this standard,
+because passing an *unlabelled* input yields a correspondingly unlabelled
+output. If, however, the output from an unlabelled input was a *labelled*
+membership vector, then compliance with this standard would require issuing a
+message that default labels had been used.
+
+- **NW2.10** *Network software for which input data does not generally include
+  labels (such as array-like data with no row or column names) should provide
+  an ability to specify labels.*
+
+This standard may also be illustrated with a modified version of the code
+above, starting by removing the row and column labels from the adjacency
+matrix.
+
+```{r igraph-labels-afterwards, echo = TRUE}
+rownames (nbs) <- colnames (nbs) <- NULL
+g <- graph_from_adjacency_matrix (nbs) # graph with no labels
+nverts <- vcount (g) # igraph function to count vertices
+vertex.attributes (g) <- list (name = LETTERS [seq (nverts)])
+components (g)
+```
+
+The [`vertex.attributes <-` function of the `igraph`
+package](https://igraph.org/r/html/latest/vertex_attr-set.html) enables
+vertices to be labelled, and those labels are carried over to the output as in
+the previous example. This `vertex.attributes` function would thus satisfy the
+**NW2.10** standard.
 
 
 
