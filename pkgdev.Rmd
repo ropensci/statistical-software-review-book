@@ -1,7 +1,7 @@
 # Guide for Authors {#pkgdev}
 
 The current chapter should be considered an extension of the corresponding
-["Guide for Authors"](https://devguide.ropensci.org/guide-for-authors.html) in
+["Guide for Authors"](https://devguide.ropensci.org/authors-guide.html) in
 rOpenSci's "Dev Guide". The principles for package development described there
 also apply to statistical packages, with this chapter describing additional
 processes and practices for packages intended for submission to the statistical
