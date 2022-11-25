@@ -1,4 +1,4 @@
-Package: expanding-peer-review
+Package: ExpandingPeerReview
 Title: rOpenSci Expanding Software Peer Review
 Version: 0.2.0
 Authors@R: c(
