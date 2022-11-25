@@ -1,5 +1,10 @@
 # Standards: Version {{< var version >}} {#standards}
 
+<!---
+NOTE: The names of the chunks in this file are used to define the "official"
+full-text version of categories processed by the 'srr' package. These chunk
+names must not be modified!
+--->
 
 This Chapter serves as the reference for rOpenSci's standards for statistical
 software. Software accepted for peer-review must fit one or more of our
@@ -79,4 +84,12 @@ specific standards.
 #| eval: true
 #| echo: false
 #| child: "standards/unsupervised.Rmd"
+```
+
+---
+
+```{r standards-distributions}
+#| eval: true
+#| echo: false
+#| child: "standards/distributions.Rmd"
 ```

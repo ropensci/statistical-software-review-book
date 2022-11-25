@@ -1,6 +1,6 @@
 Package: ExpandingPeerReview
 Title: rOpenSci Expanding Software Peer Review
-Version: 0.1.0.014
+Version: 0.2.0
 Authors@R: c(
     person("Mark", "Padgham", , "mark.padgham@email.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0003-2172-5265")),
