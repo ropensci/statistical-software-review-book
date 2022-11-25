@@ -3,8 +3,8 @@ project:
 
 book:
   title: "rOpenSci Statistical Software Peer Review"
-  author-meta: "Mark Padgham and Noam Ross"
-  description-meta: |
+  author: "Mark Padgham and Noam Ross"
+  description: |
     Documentation of rOpenSci's project on expanding software peer review to
     include statistical software.
   reader-mode: true
