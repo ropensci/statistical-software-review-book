@@ -211,15 +211,18 @@ the previous example. This `vertex.attributes` function would thus satisfy the
 
 ### Data Structures
 
-- **NW3.0** *Network software which at any stage uses sparse matrix representations
-  (or use classes, which are sparse in structure ) should avoid converting to full matrix representations. In other
-  words, sparse representations should be maintained throughout.* 
+- **NW3.0** *Network software which at any stage uses sparse matrix
+  representations (or use classes, which are sparse in structure ) should avoid
+  converting to full matrix representations. In other words, sparse
+  representations should be maintained throughout.* 
 
-- **NW3.1** *Adjacency matrices should be represented in sparse formats (such
-  as from the `Matrix` package or  other sparse classes), and not as full matrices if possible.*
+Where this standard can not be fulfilled, clear explanations should be given
+for the necessity of converting from sparse to full representations.
+
+- **NW3.1** *Where possible, adjacency matrices should be represented in sparse
+  formats (such as from the `Matrix` package or  other sparse classes), and not
+  as full matrices.*
   
-  <!-- Softened language here because I think there are limits to this depending on the mathematical routines that are called -->
-
 Even where authors envision software to have a specific scope in which they
 know matrices may be generally "small", the use of sparse representations is
 the best way to ensure the software will readily extend to larger input sizes.
