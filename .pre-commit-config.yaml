@@ -10,7 +10,11 @@ repos:
     # codemeta must be above use-tidy-description when both are used
     # -   id: codemeta-description-updated
     -   id: use-tidy-description
+        additional_dependencies:
+          - desc
     -   id: spell-check
+        additional_dependencies:
+          - docopt
         exclude: >
           (?x)^(
           data/.*| 
