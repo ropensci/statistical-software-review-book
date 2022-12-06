@@ -673,8 +673,17 @@ release of this book.
 2. Create new badges in [the `svgs` directory of
    `ropensci-org/badges`](https://github.com/ropensci-org/badges/tree/main/svgs)
    by coping existing versions, and updating the text for the version numbers.
-   These should only have major and minor versions, *XX.YY*. Commit and push
+   These should only have major and minor versions, "XX.YY". Commit and push
    changes to that repository.
 3. Ensure that corresponding labels exist on [the main `software-review`
    repository](https://github.com/ropensci/software-review/labels), or create
    labels with new version numbers if they don't exist.
+
+Approving a package will then automatically add the badge for the corresponding
+stats grade, along with the latest version number. All other processes within
+the `ropensci-review-bot` then use the external endpoint, `stats_badge`,
+defined [by the `stats_badge()` function in
+`ropensci-review-tools/roreviewapi`](https://github.com/ropensci-review-tools/roreviewapi/blob/main/R/srr.R).
+That function reads the version from the badge at the time of approval, or
+defaults to the latest version for packages still under review and not yet
+approved.
