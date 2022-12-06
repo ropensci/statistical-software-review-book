@@ -674,7 +674,9 @@ release of this book.
    `ropensci-org/badges`](https://github.com/ropensci-org/badges/tree/main/svgs)
    by copying existing versions, and updating the text for the version numbers.
    These should only have major and minor versions, "XX.YY". Commit and push
-   changes to that repository.
+   changes to that repository. An example of such an update can be seen in
+   [this
+   commit](https://github.com/ropensci-org/badges/commit/2c9ef4bfce7a81a8d633ce2a9b6b2f1766d43830).
 3. Ensure that corresponding issue labels exist on [the main `software-review`
    repository](https://github.com/ropensci/software-review/labels), or create
    issue labels with new version numbers if they don't exist.
