@@ -658,3 +658,34 @@ Editors may make use of the e-mail template below in recruiting reviewers.
 #| eval: true
 #| child: "templates/request.md"
 ```
+
+# Book release guidance {#bookrelease}
+
+Versions of this book are represented in corresponding version numbers of the
+*Statistical Software Review* badges which appear on peer-reviewed
+repositories. Maintaining this synchronisation between versions of this book
+and peer-review badges requires the following steps to be following for each
+release of this book.
+
+1. Increment version number in the repository's "DESCRIPTION" file. Releases
+   require an increment in at least the minor version number, so for example
+   from 0.1 to 0.2.
+2. Create new badges in [the `svgs` directory of
+   `ropensci-org/badges`](https://github.com/ropensci-org/badges/tree/main/svgs)
+   by copying existing versions, and updating the text for the version numbers.
+   These should only have major and minor versions, "XX.YY". Commit and push
+   changes to that repository. An example of such an update can be seen in
+   [this
+   commit](https://github.com/ropensci-org/badges/commit/2c9ef4bfce7a81a8d633ce2a9b6b2f1766d43830).
+3. Ensure that corresponding issue labels exist on [the main `software-review`
+   repository](https://github.com/ropensci/software-review/labels), or create
+   issue labels with new version numbers if they don't exist.
+
+Approving a package will then automatically add the badge for the corresponding
+stats grade, along with the latest version number. All other processes within
+the `ropensci-review-bot` rely on the external endpoint, `stats_badge`,
+defined [by the `stats_badge()` function in
+`ropensci-review-tools/roreviewapi`](https://github.com/ropensci-review-tools/roreviewapi/blob/main/R/srr.R).
+That function reads the version from the badge at the time of approval, or
+defaults to the latest version for packages still under review and not yet
+approved.
