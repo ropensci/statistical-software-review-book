@@ -43,36 +43,37 @@ Feedback on standards is particularly welcome, for which
 [the Discussions](https://github.com/ropensci/statistical-software-review-book/discussions)
 have dedicated pages for each category of standards.
 
-For this project we are lucky to have support of a great advisory and editorial
-committee.  The committee has helped us along with way with outreach to
-statistical communities, vetting community input and prioritizing our work.
+Submissions of statistical software for our peer-review system are currently
+handled by the following team of expert editors:
+
+-   [Adam Sparks](https://adamhsparks.netlify.app/), Department of Primary Industries and Regional Development, Western Australia.
+-   [Emi Tanaka](https://emitanaka.org/), Biological Data Science Institute, Australian National University
+-   [Jouni Helske](https://jounihelske.netlify.app/), University of Jyväskylä, Finland.
+-   [Paula Moraga](http://www.paulamoraga.com/), King Abdullah University of Science and Technology, Saudi Arabia
+-   [Rebecca Killick](http://www.lancs.ac.uk/~killick/), Lancaster University, UK
+-   [Toby Hocking](http://tdhock.github.io/), Northern Arizona University, USA
+
+This project has developed to its current state largely through the support of
+a great advisory and editorial committee. We are grateful to all of the
+following former members:
 
 -   [Ben Bolker](https://ms.mcmaster.ca/~bolker/)
     ([\@bolkerb](https://twitter.com/bolkerb)) McMaster University, Canada
--   [Rebecca Killick](http://www.lancs.ac.uk/~killick/), Lancaster University, UK
--   [Stephanie Hicks](https://www.stephaniehicks.com/)
-  ([\@stephaniehicks](https://twitter.com/stephaniehicks)), Johns Hopkins
-  University, USA
--   [Paula Moraga](http://www.paulamoraga.com/), King Abdullah University of
-  Science and Technology, Saudi Arabia
 -   [Leonardo Collado-Torres](http://lcolladotor.github.io/)
   ([\@lcolladotor](https://twitter.com/lcolladotor)), Lieber Institute for
   Brain Development, USA
--   [Toby Hocking](http://tdhock.github.io/), Northern Arizona University, USA
-
-We are also grateful to former members of our advisory board:
-
 -   [Max Kuhn](http://appliedpredictivemodeling.com/)
     ([\@topepos](https://twitter.com/topepos)), RStudio
 -   [Martin Morgan](https://www.roswellpark.org/martin-morgan)
     ([\@mt_morgan](https://twitter.com/mt_morgan)), Roswell Park Comprehensive
     Cancer Center
+-   [Stephanie Hicks](https://www.stephaniehicks.com/)
+  ([\@stephaniehicks](https://twitter.com/stephaniehicks)), Johns Hopkins
+  University, USA
 
-
-
-This work is [ supported by the Sloan
+This work was largely [supported by the Sloan
 Foundation](https://ropensci.org/blog/2019/07/15/expanding-software-review/)
-and is organized under an [R Consortium Working
+and organized under an [R Consortium Working
 Group](https://www.r-consortium.org/projects/isc-working-groups).
 
 ## Citation
