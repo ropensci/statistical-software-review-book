@@ -109,6 +109,7 @@ cat("\n```\n")
 
 
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -167,6 +168,12 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=elong0527">elong0527</a>
 </td>
 <td align="center">
+<a href="https://github.com/osorensen">
+<img src="https://avatars.githubusercontent.com/u/21175639?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=osorensen">osorensen</a>
+</td>
+<td align="center">
 <a href="https://github.com/christophsax">
 <img src="https://avatars.githubusercontent.com/u/1390827?v=4" width="100px;" alt=""/>
 </a><br>
@@ -178,16 +185,22 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 </a><br>
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=Pakillo">Pakillo</a>
 </td>
+</tr>
+
+
+<tr>
 <td align="center">
 <a href="https://github.com/briatte">
 <img src="https://avatars.githubusercontent.com/u/322533?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=briatte">briatte</a>
 </td>
-</tr>
-
-
-<tr>
+<td align="center">
+<a href="https://github.com/grwhumphries">
+<img src="https://avatars.githubusercontent.com/u/1613298?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=grwhumphries">grwhumphries</a>
+</td>
 <td align="center">
 <a href="https://github.com/lcolladotor">
 <img src="https://avatars.githubusercontent.com/u/2288213?v=4" width="100px;" alt=""/>
@@ -218,7 +231,7 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 </td>
 <td align="center">
 <a href="https://github.com/IndrajeetPatil">
-<img src="https://avatars.githubusercontent.com/u/11330453?u=4a207fa581e0905680d3ab0cd383167486399df5&v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/11330453?u=5383867dd88305e4ddae3cae9bb664be8d024a95&v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/statistical-software-review-book/issues?q=is%3Aissue+author%3AIndrajeetPatil">IndrajeetPatil</a>
 </td>
