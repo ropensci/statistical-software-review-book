@@ -201,7 +201,7 @@ Once a package has been sufficiently developed to begin alignment with our
 standards, and once all issues revealed by
 [`autotest`](https://ropensci-review-tools.github.io/autotest/) have been
 addressed, authors will need to use our third tool, the [`ssr` (**s**oftware
-**r**eveiw **r**oclets) package](https://ropensci-review-tools.github.io/srr/)
+**r**eview **r**oclets) package](https://ropensci-review-tools.github.io/srr/)
 to insert both general and category-specific standards into their code, and to
 begin the process of documenting within the code itself how and where the code
 adheres to the individual standards. The [`srr`
