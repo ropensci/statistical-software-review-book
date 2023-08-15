@@ -353,7 +353,7 @@ of input classes.
 
 **Columns of tabular inputs**
 
-The follow standards apply to `data.frame`-like tabular objects (including all
+The following standards apply to `data.frame`-like tabular objects (including all
 derived and otherwise compatible classes), and so do not apply to `matrix` or
 `array` objects.
 
