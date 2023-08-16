@@ -186,7 +186,7 @@ to the following descriptors. It is acknowledged that not all regression models
 can sensibly provide access to these descriptors, yet should include access
 provisions to all those that are applicable.
 
-- [**RE4.2**]{#RE4_2} *Model coefficients (via `coeff()` / `coefficients()`)*
+- [**RE4.2**]{#RE4_2} *Model coefficients (via `coef()` / `coefficients()`)*
 - [**RE4.3**]{#RE4_3} *Confidence intervals on those coefficients (via
   `confint()`)*
 - [**RE4.4**]{#RE4_4} *The specification of the model, generally as a formula
