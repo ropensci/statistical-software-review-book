@@ -510,7 +510,7 @@ following types:
     - [**G5.6b**]{#G5_6b} *Parameter recovery tests should be run with multiple
       random seeds when either data simulation or the algorithm contains
       a random component. (When long-running, such tests may be part of an
-      extended, rather than regular, test suite; see G4.10-4.12, below).*
+      extended, rather than regular, test suite; see G5.10-4.12, below).*
 
 Note that authors should ensure that they use [at least v3 of the `testthat`
 package](https://testthat.r-lib.org), which introduced a
