@@ -49,7 +49,6 @@ handled by the following team of expert editors:
 -   [Adam Sparks](https://adamhsparks.netlify.app/), Department of Primary Industries and Regional Development, Western Australia.
 -   [Emi Tanaka](https://emitanaka.org/), Biological Data Science Institute, Australian National University
 -   [Jouni Helske](https://jounihelske.netlify.app/), University of Jyväskylä, Finland.
--   [Paula Moraga](http://www.paulamoraga.com/), King Abdullah University of Science and Technology, Saudi Arabia
 -   [Rebecca Killick](http://www.lancs.ac.uk/~killick/), Lancaster University, UK
 -   [Toby Hocking](http://tdhock.github.io/), Northern Arizona University, USA
 
@@ -70,6 +69,7 @@ following former members:
 -   [Stephanie Hicks](https://www.stephaniehicks.com/)
   ([\@stephaniehicks](https://twitter.com/stephaniehicks)), Johns Hopkins
   University, USA
+-   [Paula Moraga](http://www.paulamoraga.com/), King Abdullah University of Science and Technology, Saudi Arabia
 
 This work was largely [supported by the Sloan
 Foundation](https://ropensci.org/blog/2019/07/15/expanding-software-review/)
