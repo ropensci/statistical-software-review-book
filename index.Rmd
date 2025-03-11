@@ -92,10 +92,10 @@ u <- "https://zenodo.org/record/5556755" # universal URL redirects to latest
 s <- rvest::session(u)
 u <- paste0(s$url, "/export/hx") # redirected
 out <- rvest::read_html(u)
-bibentry <- rvest::html_element(out, "pre")
-out <- strsplit (rvest::html_text(bibentry), "\n")[[1]]
+bibentry <- rvest::html_text(out)
+out <- strsplit (bibentry, "\n")[[1]]
 writeLines(out, "dev_citation_BibTeX.bib")
-cat (rvest::html_text (bibentry))
+cat (bibentry)
 cat("\n```\n")
 ```
 
