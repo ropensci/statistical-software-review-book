@@ -194,6 +194,12 @@ continuously throughout package development, to ensure that
 [`autotest_package()`](https://ropensci-review-tools.github.io/autotest/reference/autotest_package.html)
 returns clean (`NULL`) results when the package is first submitted.
 
+Note that use of
+[`autotest`](https://github.com/ropensci-review-tools/autotest) is recommended
+yet not strictly required. The package is intended to aid package development
+and preparation for submission, yet it is still experimental, and it may not be
+possible for all packages to generate clean (`NULL`) results.
+
 
 ## The [`srr` package](https://github.com/ropensci-review-tools/srr) {#pkgdev-srr}
 
