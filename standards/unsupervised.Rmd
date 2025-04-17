@@ -179,7 +179,7 @@ a way that enables `cutree` to inherit them.)
 
 - [**UL2.0**]{#UL2_0} *Routines likely to give unreliable or irreproducible
   results in response to violations of assumptions regarding input data (see
-  UL1.6) should implement pre-processing steps to diagnose potential
+  UL1.4) should implement pre-processing steps to diagnose potential
   violations, and issue appropriately informative messages, and/or include
   parameters to enable suitable transformations to be applied.*
 
