@@ -2,10 +2,10 @@
 # R specific hooks: https://github.com/lorenzwalthert/precommit
 repos:
 -   repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.3.2.9019
-    hooks: 
-      #    -   id: style-files
-      #        args: [--style_pkg=styler, --style_fun=tidyverse_style]    
+    rev: v0.4.3.9012
+    hooks:
+    # -   id: style-files
+    #     args: [--style_pkg=styler, --style_fun=tidyverse_style]    
     -   id: roxygenize
     # codemeta must be above use-tidy-description when both are used
     # -   id: codemeta-description-updated
@@ -40,14 +40,16 @@ repos:
           \.github/workflows/.*|
           data/.*|
           )$
-          # -   id: lintr
-      # -   id: readme-rmd-rendered
+    # -   id: lintr
+    # -   id: readme-rmd-rendered
     -   id: parsable-R
-      # -   id: no-browser-statement
-      # -   id: no-debug-statement
+    # -   id: no-browser-statement
+    # -   id: no-print-statement
+    -   id: no-debug-statement
     -   id: deps-in-desc
+    # -   id: pkgdown
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v5.0.0
     hooks: 
     -   id: check-added-large-files
         args: ['--maxkb=200']
@@ -56,23 +58,23 @@ repos:
     -   id: end-of-file-fixer
         exclude: '\.Rd'
 -   repo: https://github.com/pre-commit-ci/pre-commit-ci-config
-    rev: v1.5.1
+    rev: v1.6.1
     hooks:
-    # Only reuiqred when https://pre-commit.ci is used for config validation
+    # Only required when https://pre-commit.ci is used for config validation
     -   id: check-pre-commit-ci-config
 -   repo: local
     hooks:
-      # -   id: forbid-to-commit
-      #     name: Don't commit common R artifacts
-      #     entry: Cannot commit .Rhistory, .RData, .Rds or .rds.
-      #     language: fail
-      #     files: '\.(Rhistory|RData|Rds|rds)$'
-      #     # `exclude: <regex>` to allow committing specific files
+    # -   id: forbid-to-commit
+    #     name: Don't commit common R artifacts
+    #     entry: Cannot commit .Rhistory, .RData, .Rds or .rds.
+    #     language: fail
+    #     files: '\.(Rhistory|RData|Rds|rds)$'
+    #     # `exclude: <regex>` to allow committing specific files
     -   id: chunk-names
         name: All chunk names are unique
         entry: ./scripts/chunknames
         language: script
-        # `exclude: <regex>` to allow committing specific files.
 
 ci:
     autoupdate_schedule: monthly
+    # skip: [pkgdown]
