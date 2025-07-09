@@ -59,13 +59,14 @@ All of the content of this repository is licensed
 
 
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 
 All contributions to this project are gratefully acknowledged using the [`allcontributors` package](https://github.com/ropensci/allcontributors) following the [allcontributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
 
-### Code
+### Content
 
 <table>
 
@@ -95,6 +96,22 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=helske">helske</a>
 </td>
 <td align="center">
+<a href="https://github.com/cforgaci">
+<img src="https://avatars.githubusercontent.com/u/33600128?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=cforgaci">cforgaci</a>
+</td>
+</tr>
+
+
+<tr>
+<td align="center">
+<a href="https://github.com/Rekyt">
+<img src="https://avatars.githubusercontent.com/u/5593751?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=Rekyt">Rekyt</a>
+</td>
+<td align="center">
 <a href="https://github.com/Nowosad">
 <img src="https://avatars.githubusercontent.com/u/3457131?v=4" width="100px;" alt=""/>
 </a><br>
@@ -112,16 +129,16 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 </a><br>
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=elong0527">elong0527</a>
 </td>
-</tr>
-
-
-<tr>
 <td align="center">
 <a href="https://github.com/christophsax">
 <img src="https://avatars.githubusercontent.com/u/1390827?v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=christophsax">christophsax</a>
 </td>
+</tr>
+
+
+<tr>
 <td align="center">
 <a href="https://github.com/Pakillo">
 <img src="https://avatars.githubusercontent.com/u/1597843?v=4" width="100px;" alt=""/>
@@ -147,12 +164,6 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=lcolladotor">lcolladotor</a>
 </td>
 <td align="center">
-<a href="https://github.com/Rekyt">
-<img src="https://avatars.githubusercontent.com/u/5593751?v=4" width="100px;" alt=""/>
-</a><br>
-<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=Rekyt">Rekyt</a>
-</td>
-<td align="center">
 <a href="https://github.com/rkillick">
 <img src="https://avatars.githubusercontent.com/u/16543041?v=4" width="100px;" alt=""/>
 </a><br>
@@ -163,7 +174,7 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 </table>
 
 
-### Issues
+### Issue Authors
 
 <table>
 
@@ -200,9 +211,24 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 </td>
 </tr>
 
+
+<tr>
+<td align="center">
+<a href="https://github.com/n-kall">
+<img src="https://avatars.githubusercontent.com/u/33577035?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/issues?q=is%3Aissue+author%3An-kall">n-kall</a>
+</td>
+<td align="center">
+<a href="https://github.com/KlausVigo">
+<img src="https://avatars.githubusercontent.com/u/3372431?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/issues?q=is%3Aissue+author%3AKlausVigo">KlausVigo</a>
+</td>
+</tr>
+
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
