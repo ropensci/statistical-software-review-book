@@ -130,7 +130,7 @@ must be explicitly clarified.
     - [**G1.4a**]{#G1_4a} *All internal (non-exported) functions should also be
       documented in standard [`roxygen2`](https://roxygen2.r-lib.org/) format,
       along with a final `@noRd` tag to suppress automatic generation of `.Rd`
-      files.*
+      files or `@keywords internal` if documentation is still desired.*
 
 #### Supplementary Documentation
 
