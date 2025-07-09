@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Documentation of rOpenSci’s project on expanding software peer review to include statistical software.">
+<title>5&nbsp; Guide for Reviewers – rOpenSci Statistical Software Peer Review</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./standards.html" rel="next">
+<link href="./pkgsubmission.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-6e6d6a75e8a864baf13101a93f407953.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+</head>
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pkgdev.html">Package Development, Submission, and Review</a></li><li class="breadcrumb-item"><a href="./pkgreview.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Guide for Reviewers</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">rOpenSci Statistical Software Peer Review</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ropensci/statistical-software-review-book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of the Project and of this Book</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Package Development, Submission, and Review</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pkgdev.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Guide for Authors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pkgsubmission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Guide for Editors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pkgreview.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Guide for Reviewers</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Standards</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./standards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Standards: Version 0.2.0</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Appendices</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#tools-for-reviewing-statistical-software" id="toc-tools-for-reviewing-statistical-software" class="nav-link active" data-scroll-target="#tools-for-reviewing-statistical-software"><span class="header-section-number">5.1</span> Tools for Reviewing Statistical Software</a></li>
+  <li>
+<a href="#assessment-against-standards" id="toc-assessment-against-standards" class="nav-link" data-scroll-target="#assessment-against-standards"><span class="header-section-number">5.2</span> Assessment Against Standards</a>
+  <ul class="collapse">
+<li><a href="#review-for-silver-and-gold-badges" id="toc-review-for-silver-and-gold-badges" class="nav-link" data-scroll-target="#review-for-silver-and-gold-badges"><span class="header-section-number">5.2.1</span> Review for Silver and Gold Badges</a></li>
+  <li><a href="#disagreement-with-authors-intentions" id="toc-disagreement-with-authors-intentions" class="nav-link" data-scroll-target="#disagreement-with-authors-intentions"><span class="header-section-number">5.2.2</span> Disagreement with Authors’ Intentions</a></li>
+  </ul>
+</li>
+  <li><a href="#general-package-review" id="toc-general-package-review" class="nav-link" data-scroll-target="#general-package-review"><span class="header-section-number">5.3</span> General Package Review</a></li>
+  <li><a href="#pkgrev-template" id="toc-pkgrev-template" class="nav-link" data-scroll-target="#pkgrev-template"><span class="header-section-number">5.4</span> Review Template</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/ropensci/statistical-software-review-book/edit/main/pkgreview.Rmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ropensci/statistical-software-review-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pkgdev.html">Package Development, Submission, and Review</a></li><li class="breadcrumb-item"><a href="./pkgreview.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Guide for Reviewers</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="pkgreview" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Guide for Reviewers</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>The current chapter should be considered an extension of the corresponding <a href="https://devguide.ropensci.org/reviewerguide.html">“Guide for Reviewers”</a> in rOpenSci’s “Dev Guide”. The principles for reviewing packages described there also apply to statistical packages, with this chapter describing additional processes and practices for review of packages submitted to the statistical software peer review system. Reviews of statistical software should first assess compliance against <a href="standards.html">our standards</a>, and then proceed to a more general review, as described in the following two sub-sections. The template to be used for reviews of statistical software is included in the final sub-section of this chapter. Prior to describing the review process, the following sub-section describes several tools which can be used to aid review.</p>
+<section id="tools-for-reviewing-statistical-software" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="tools-for-reviewing-statistical-software">
+<span class="header-section-number">5.1</span> Tools for Reviewing Statistical Software</h2>
+<p>Upon initial submission, the <code>ropensci-review-bot</code> generates an automated report summarising aspects of package structure and functionality intended to inform the review process, an example of which can be seen <a href="https://github.com/ropensci/statistical-software-review-book/blob/main/scripts/pkgcheck-ex.md">here</a>.</p>
+<p>The elements of these reports are described in the <a href="pkgsubmission.html#pkgsub-handling-editor"><em>Guide for Editors</em></a>. While the aspects reported on there are primarily intended to help editors initially identify potential issues best addressed prior to review, they nevertheless include a number of insights into package structure which may usefully inform the review process.</p>
+<p>Components of these reports intended to aid reviews include a complete report of standards compliance, generated with the <a href="https://github.com/ropensci-review-tools/srr"><code>srr</code></a> package, and an interactive diagram of inter-relationships between package functions (and other objects), generated with the <a href="https://github.com/ropensci-review-tools/pkgstats"><code>pkgstats</code></a> package. These can be recreated locally by first installing these two packages by running either,</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span> <span class="op">(</span><span class="st">"ropensci-review-tools/pkgstats"</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span> <span class="op">(</span><span class="st">"ropensci-review-tools/srr"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>or,</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pkg_install.html">pkg_install</a></span> <span class="op">(</span><span class="st">"ropensci-review-tools/pkgstats"</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pkg_install.html">pkg_install</a></span> <span class="op">(</span><span class="st">"ropensci-review-tools/srr"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Within a local clone of the package being reviewed, the report on statistical standards can be generated by running <a href="https://ropensci-review-tools.github.io/srr/reference/srr_report.html"><code>srr::srr_report()</code></a>, with the sample report linking to a version of that report which may be viewed <a href="https://ropensci-review-tools.github.io/roreviewapi/static/demo_srr77dfe392.html">here</a>, and the detailed statistical properties of the package and associated interactive diagram of package structure generated by running,</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span> <span class="op">(</span><span class="va">pkgstats</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">pkgstats</span> <span class="op">(</span><span class="op">)</span> <span class="co"># 'x' has lots of detail on package structure</span></span>
+<span><span class="fu">plot_network</span> <span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This network, the sample version of which may be viewed <a href="https://ropensci-review-tools.github.io/roreviewapi/static/demo_pkgstats77dfe392.html">here</a>, provides immediate visual insight into the relationships between all objects constructed within a package in all languages used, both <strong>R</strong> itself and any languages used in <code>src/</code> code such as C or C++. The following section describes the <a href="https://github.com/ropensci-review-tools/srr"><code>srr</code></a> report in more detail, and its intended use in assessing compliance with our standards.</p>
+</section><section id="assessment-against-standards" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="assessment-against-standards">
+<span class="header-section-number">5.2</span> Assessment Against Standards</h2>
+<p>The entire system for peer review of statistical software is based on sets of general and category-specific standards given in <a href="standards.html">Chapter 6 of this book</a>. The process of assessing software against standards is facilitated by the <a href="https://github.com/ropensci-review-tools/srr"><code>srr</code> (<strong>s</strong>oftware <strong>r</strong>eview <strong>r</strong>oclets) package</a> which both authors and reviewers need to install as shown above.</p>
+<p>This package is primarily intended to aid authors in documenting both how and where their software complies with each of the relevant general and category-specific standards. The function of the package used to aid reviewers is <a href="https://ropensci-review-tools.github.io/srr/reference/srr_report.html"><code>srr_report()</code></a>, the output of which is linked from the initial package report described above, and can also be generated locally by simply running that function within a local clone of the package being reviewed. The report contains hyperlinks to all places in the code at which each standard is addressed.</p>
+<p>Using this report, reviewers must assess their agreement with every statement either of compliance with, or non-applicability of, standards as reflected in <a href="https://ropensci-review-tools.github.io/srr/articles/srr-stats.html#3-roxygen2-tags">roclet tags</a> of:</p>
+<ol type="1">
+<li>
+<code>@srrstats</code> for standards with which software complies;</li>
+<li>
+<code>@srrstatsNA</code> for standards which authors have deemed not to be applicable to their software.</li>
+</ol>
+<p>The <a href="https://ropensci-review-tools.github.io/srr/reference/srr_report.html"><code>srr_report()</code></a> is divided into two main sections containing links to locations in the code where these two types of tags are documented. No action need be taken on standards with which reviewers agree, whether because software complies and has a tag of <code>@srrstats</code>, or because a standard is not applicable and has a tag of <code>@srrstatsNA</code>. Reviewers are only asked to note any standards with which they disagree, primarily either because of:</p>
+<ol type="1">
+<li>Disagreement in standards compliance, where authors have used a tag of <code>@srrstats</code> but a reviewer judges either the explanation or associated code to be insufficient for compliance; or</li>
+<li>Disagreement about non-applicability of a standard, where authors have used a tag of <code>@srrstatsNA</code>, but a reviewer believes that standard ought to apply to the software.</li>
+</ol>
+<p>The <a href="https://ropensci-review-tools.github.io/srr/reference/srr_report.html"><code>srr_report()</code></a> function returns the same content in markdown format, and may be used by reviewers as an initial checklist against which to assess compliance. All standards with which reviewers agree with authors statements of compliance may simply be removed, hopefully reducing initially extensive checklists down to a manageable few items with which reviews might disagree.</p>
+<p>The following sub-section describes additional procedures required when assessing standards compliance of packages aiming for either <a href="pkgdev.html#pkgdev-silver">silver</a> or <a href="pkgdev.html#pkgdev-gold">gold</a> badges. The general <code>srr</code> procedure is described in the <a href="https://ropensci-review-tools.github.io/srr/articles/srr-stats.html">main package vignette</a>, which reviewers are also encouraged to read to familiarise themselves with how the <a href="https://ropensci-review-tools.github.io/srr"><code>srr</code> package</a> is used to document compliance with standards. The <a href="https://ropensci-review-tools.github.io/srr/articles/srr-stats.html">main <code>srr</code> vignette</a> includes code which can be stepped through to generate an example report.</p>
+<section id="review-for-silver-and-gold-badges" class="level3" data-number="5.2.1"><h3 data-number="5.2.1" class="anchored" data-anchor-id="review-for-silver-and-gold-badges">
+<span class="header-section-number">5.2.1</span> Review for Silver and Gold Badges</h3>
+<p>This system for peer-review of statistical software features badges in three categories of <strong>bronze</strong>, <strong>silver</strong>, and <strong>gold</strong>. As described in the corresponding <a href="pkgdev.html#pkgdev-badges"><em>Guide for Authors</em></a>, a <strong>silver</strong> badge is granted to software which complies with more than a minimal set of applicable standards, and which extends beyond bronze in least one <a href="pkgdev.html#pkgdev-silver">notable aspect</a> while a <strong>gold</strong> badge is granted to software which complies with <em>all</em> standards which reviewers have deemed potentially applicable, and which extends beyond bronze in several notable aspects. These <a href="pkgdev.html#pkgdev-gold">notable aspects</a> by which software may fulfil the requirements of <strong>silver</strong> or <strong>gold</strong> badges are:</p>
+<ul>
+<li>Compliance with a sufficient number of additional standards beyond the minimal number necessary for bronze compliance;</li>
+<li>Demonstrated excellence in compliance with at least two standards from two distinct sub-sections;</li>
+<li>Having a demonstrated generality of usage beyond a single use case; or</li>
+<li>Demonstrated excellence in internal aspects of package design and structure.</li>
+</ul>
+<p>The authors will have identified in their initial submission which of these aspects they intend to fulfil. For packages which claim to comply with more than a minimal number of necessary standards, reviewers must additionally consider both which of the standards with which software complies might be considered minimally necessary, as well as whether any standards which authors have identified as not applicable (through <code>@ssrstatsNA</code> tags) could indeed be deemed applied. Not all standards may be able to be applied to a given piece of software. For example, software designed to accept sparse matrix inputs from the <a href="https://cran.r-project.org/web/packages/Matrix/index.html"><code>Matrix</code> package</a> will be unable to conform with many of the standards for general rectangular input forms.</p>
+<p>These three categories of necessary, currently, and potentially applicable standards can then be used by reviewers to roughly assess the quantitative degree by which compliance exceeds a minimally required level. As stated in the <a href="pkgdev.html#pkgdev-silver"><em>Guide for Authors</em></a>, the first of these four items may be considered to be fulfilled for software which meets at least one quarter of all potentially applicable standards beyond those minimally required. A useful example of minimally required standards may often be identified as those which would be required for the software to meet one specific use case. Any aspects of the software which generalise its usage beyond that single use case may be considered in the second category of potentially yet not necessarily applicable. Judgement of such categorical distinction, and of precise amounts, is left to the discretion of reviewers.</p>
+<p>Packages aiming for gold badges at the end of review will need to comply with all potentially applicable standards, and will also need to fulfil at least three of the four aspects listed above, and described in more detail in the <a href="pkgdev.html#pkgdev-silver"><em>Guide for Authors</em></a>.</p>
+</section><section id="disagreement-with-authors-intentions" class="level3" data-number="5.2.2"><h3 data-number="5.2.2" class="anchored" data-anchor-id="disagreement-with-authors-intentions">
+<span class="header-section-number">5.2.2</span> Disagreement with Authors’ Intentions</h3>
+<p>Authors must state on submission the grade of badge they are aiming for. Reviewers may subsequently deem a package to be compliant with a different grade of badge. The <a href="#pkgrev-template">review template</a> includes the following two items:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">This package complies with a sufficient number of standards for a (bronze/silver/gold) badge</label></li>
+<li><label><input type="checkbox">This grade of badge is the same as what the authors wanted to achieve</label></li>
+</ul>
+<p>The first item is intended to specify the grade of badge (bronze, silver, gold) which reflects the reviewer’s judgement, and need not necessarily reflect the authors intentions. The second item may be checked when a reviewer agrees with the authors that a package is indeed sufficient to achieve their desired badge. Where reviewers do not agree with authors’ beliefs on package package compliance, the second item should be left unchecked in the submitted review. The editor will then ask authors for their response, and will inform whether additional rounds of development and review are necessary to obtain the grade of badge desired by the authors.</p>
+</section></section><section id="general-package-review" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="general-package-review">
+<span class="header-section-number">5.3</span> General Package Review</h2>
+<p>From a reviewer’s perspective, one of the primary aim of our standards-based system is to provide a highly structured system for addressing the technical aspects of review, leaving the general review process comparably free of technical details, and therefore more able to consider broader aspects of package design, functionality, and usage.</p>
+<p>Following assessment of compliance with standards, reviewers should accordingly proceed with a general descriptive review by following the processes established in rOpenSci’s general software review system, for which the best source of information is provided by <a href="https://github.com/ropensci/software-review/issues">reviews themselves</a>, along with the <a href="https://devguide.ropensci.org/reviewerguide.html"><em>Guide for Reviewers</em></a>. In formulating a general review of statistical software, we ask reviewers to explicitly consider the following aspects, some of which loosely correspond to sub-sections of the <a href="#general-standards"><em>General Standards for Statistical Software</em></a>:</p>
+<ol type="1">
+<li>
+<strong>Documentation</strong>: Is the documentation sufficient to enable general use of the package beyond one specific use case? Do the various components of documentation support and clarify one another?</li>
+<li>
+<strong>Algorithms</strong> How well are algorithms encoded? Is the choice of computer language appropriate for that algorithm, and/or envisioned use of package? Are aspects of algorithmic scaling sufficiently documented and tested? Are there any aspects of algorithmic implementation which could be improved?</li>
+<li>
+<strong>Testing</strong> Regardless of actual coverage of tests, are there any fundamental software operations which are not sufficiently expressed in tests? Is there a need for extended tests, or if extended tests exists, have they been implemented in an appropriate way, and are they appropriately documented?</li>
+<li>
+<strong>Visualisation</strong> (where appropriate) Do visualisations aid the primary purposes of statistical interpretation of results? Are there any aspects of visualisations which could risk statistical misinterpretation?</li>
+<li>
+<strong>Package Design</strong> Is the package well designed for its intended purpose? We ask reviewers to consider the follow two aspects of package design:
+<ul>
+<li>
+<strong>External Design:</strong> Do exported functions and the relationships between them enable general usage of the package? Do exported functions best serve inter-operability with other packages?</li>
+<li>
+<strong>Internal design:</strong> Are algorithms implemented appropriately in terms of aspects such as efficiency, flexibility, generality, and accuracy? Could ranges of admissible input structures, or form(s) of output structures, be expanded to enhance inter-operability with other packages?</li>
+</ul>
+</li>
+</ol>
+<p>As algorithms form the core of statistical software, we ask reviewers to pay particular attention to the assessment of algorithmic quality. Most category-specific standards include a central “<em>Algorithmic Standards</em>” component which can be used to provide starting points for more general considerations of algorithmic quality. The <a href="#general-standards"><em>General Standard</em> <strong>G1.1</strong></a> also requires all similar algorithms or implementations to be documented within the software, so reviewers should also have access to a list of comparable implementations.</p>
+<p>Most of the above considerations are explicitly included in the reviewers’ template which follows.</p>
+</section><section id="pkgrev-template" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="pkgrev-template">
+<span class="header-section-number">5.4</span> Review Template</h2>
+<p>The following template is to be used for reviews of statistical software. All checkbox items should be retained, and checked where appropriate, while other lines, notably including questions in the <em>General Review</em> section, may be modified or removed as appropriate.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Package Review</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>*Please check off boxes as applicable, and elaborate in comments below.  Your review is not limited to these topics, as described in the reviewer guide*</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Briefly describe any working relationship you may have (had) with the package authors (or otherwise remove this statement)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> As the reviewer I confirm that there are no <span class="co">[</span><span class="ot">conflicts of interest</span><span class="co">](https://devguide.ropensci.org/policies.html#coi)</span> for me to review this work (If you are unsure whether you are in conflict, please speak to your editor _before_ starting your review).</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">### Compliance with Standards</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> This package complies with a sufficient number of standards for a (bronze/silver/gold) badge</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> This grade of badge is the same as what the authors wanted to achieve</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>The following standards currently deemed non-applicable (through tags of <span class="in">`@srrstatsNA`</span>) could potentially be applied to future versions of this software: (Please specify)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>Please also comment on any standards which you consider either particularly well, or insufficiently, documented.</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>For packages aiming for silver or gold badges:</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> This package extends beyond minimal compliance with standards in the following ways: (please describe)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="fu">### General Review</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Documentation</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>The package includes all the following forms of documentation:</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> **A statement of need** clearly stating problems the software is designed to solve and its target audience in README</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> **Installation instructions:** for the development version of package and any non-standard dependencies in README</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> **Community guidelines** including contribution guidelines in the README or CONTRIBUTING</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> The documentation is sufficient to enable general use of the package beyond one specific use case</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>The following sections of this template include questions intended to be used as guides to provide general, descriptive responses. Please remove this, and any subsequent lines that are not relevant or necessary for your final review.</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Algorithms</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How well are algorithms encoded?</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Is the choice of computer language appropriate for that algorithm, and/or envisioned use of package?</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Are aspects of algorithmic scaling sufficiently documented and tested?</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Are there any aspects of algorithmic implementation which could be improved?</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Testing</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Regardless of actual coverage of tests, are there any fundamental software operations which are not sufficiently expressed in tests? </span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Is there a need for extended tests, or if extended tests exists, have they been implemented in an appropriate way, and are they appropriately documented?</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Visualisation (where appropriate)</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Do visualisations aid the primary purposes of statistical interpretation of results?</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Are there any aspects of visualisations which could risk statistical misinterpretation?</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Package Design</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Is the package well designed for its intended purpose?</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>In relation to **External Design:** Do exported functions and the relationships between them enable general usage of the package? </span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>In relation to **External Design:** Do exported functions best serve inter-operability with other packages?</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>In relation to **Internal Design:** Are algorithms implemented appropriately in terms of aspects such as efficiency, flexibility, generality, and accuracy? </span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>In relation to **Internal Design:** Could ranges of admissible input structures, or form(s) of output structures, be expanded to enhance inter-operability with other packages?</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> **Packaging guidelines**: The package conforms to the rOpenSci packaging guidelines</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>Estimated hours spent reviewing:</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Should the author(s) deem it appropriate, I agree to be acknowledged as a package reviewer ("rev" role) in the package DESCRIPTION file.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/stats-devguide\.ropensci\.org\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./pkgsubmission.html" class="pagination-link" aria-label="Guide for Editors">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Guide for Editors</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./standards.html" class="pagination-link" aria-label="Standards: Version {{< var version >}}">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Standards: Version 0.2.0</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ropensci/statistical-software-review-book/edit/main/pkgreview.Rmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ropensci/statistical-software-review-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

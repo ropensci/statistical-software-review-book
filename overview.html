@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Documentation of rOpenSci’s project on expanding software peer review to include statistical software.">
+<title>2&nbsp; Overview of the Project and of this Book – rOpenSci Statistical Software Peer Review</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./pkgdev.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-6e6d6a75e8a864baf13101a93f407953.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li><li class="breadcrumb-item"><a href="./overview.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of the Project and of this Book</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">rOpenSci Statistical Software Peer Review</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ropensci/statistical-software-review-book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of the Project and of this Book</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Package Development, Submission, and Review</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pkgdev.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Guide for Authors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pkgsubmission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Guide for Editors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pkgreview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Guide for Reviewers</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Standards</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./standards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Standards: Version 0.2.0</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Appendices</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#overview-motivation" id="toc-overview-motivation" class="nav-link active" data-scroll-target="#overview-motivation"><span class="header-section-number">2.1</span> Project Motivation</a></li>
+  <li>
+<a href="#overview-scope" id="toc-overview-scope" class="nav-link" data-scroll-target="#overview-scope"><span class="header-section-number">2.2</span> Scope of Statistical Software Review</a>
+  <ul class="collapse">
+<li><a href="#the-r-language" id="toc-the-r-language" class="nav-link" data-scroll-target="#the-r-language"><span class="header-section-number">2.2.1</span> The R Language</a></li>
+  <li><a href="#overview-categories" id="toc-overview-categories" class="nav-link" data-scroll-target="#overview-categories"><span class="header-section-number">2.2.2</span> Categories of Statistical Software</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#overview-prior-art" id="toc-overview-prior-art" class="nav-link" data-scroll-target="#overview-prior-art"><span class="header-section-number">2.3</span> Prior Art</a>
+  <ul class="collapse">
+<li><a href="#ropensci" id="toc-ropensci" class="nav-link" data-scroll-target="#ropensci"><span class="header-section-number">2.3.1</span> rOpenSci</a></li>
+  <li><a href="#the-journal-of-open-source-software" id="toc-the-journal-of-open-source-software" class="nav-link" data-scroll-target="#the-journal-of-open-source-software"><span class="header-section-number">2.3.2</span> The Journal of Open Source Software</a></li>
+  <li><a href="#the-debian-system" id="toc-the-debian-system" class="nav-link" data-scroll-target="#the-debian-system"><span class="header-section-number">2.3.3</span> The Debian System</a></li>
+  <li><a href="#other-potential-models" id="toc-other-potential-models" class="nav-link" data-scroll-target="#other-potential-models"><span class="header-section-number">2.3.4</span> Other Potential Models</a></li>
+  </ul>
+</li>
+  <li><a href="#overview-use-of-book" id="toc-overview-use-of-book" class="nav-link" data-scroll-target="#overview-use-of-book"><span class="header-section-number">2.4</span> Use of this Book</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/ropensci/statistical-software-review-book/edit/main/overview.Rmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ropensci/statistical-software-review-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li><li class="breadcrumb-item"><a href="./overview.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of the Project and of this Book</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="overview" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of the Project and of this Book</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>This book is the main document for rOpenSci’s project to expand peer review to include explicitly statistic software. It is intended to aid both software developers intending to submit statistical software for peer-review, and for reviewers of statistical software. An additional aim of the project, and of this documentation, is to serve as a blueprint for future adoption and adaptation in other areas, including other computer languages.</p>
+<p>The present book should be considered an extension of rOpenSci’s guide to software <a href="https://devguide.ropensci.org/">Development, Maintenance, and Peer Review</a> (the “<em>Dev Guide</em>”). The guidelines and expectations for software as presented in the <em>Dev Guide</em> also apply to statistical software under the newly expanded system, with this document describing additional guides and expectations for explicitly statistical software. The <em>Dev Guide</em> ought thus be considered essential reading prior to the current book.</p>
+<p>This chapter summarises overall project aims, the scope of statistical software we are currently able to consider, and provides a brief overview of the structure and purpose of this book. It consists of the following sections:</p>
+<ul>
+<li><p><strong><a href="#overview-motivation">Motivation: Why a separate system for statistical software?</a></strong> in which we explain the necessity and advantages of having statistical software developed according to concretes sets of explicit standards.</p></li>
+<li><p><strong><a href="#overview-scope">Scope of Statistical Software Review</a></strong> in which we summarise our working definition of “statistical software”, and the scope of software currently able to be considered under the project. This scope is based on explicit categories of statistical software, each of which is also briefly described.</p></li>
+<li><p><strong><a href="#overview-prior-art">Prior Art</a></strong> in which we briefly describe a few comparable systems for assessing and standardising software.</p></li>
+<li><p><strong><a href="#overview-use-of-book">Use of this Book</a></strong> in which we describe how this book is intended to be read and used in practice.</p></li>
+</ul>
+<section id="overview-motivation" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="overview-motivation">
+<span class="header-section-number">2.1</span> Project Motivation</h2>
+<p>The official description of R declares it to be a <a href="https://www.r-project.org/">“software environment for statistical computing and graphics”</a>, yet rOpenSci previously deemed explicitly statistical packages out of scope, owing among other factors to the perceived difficulty of devising an appropriate system for assessment and review. R is nevertheless an explicitly <em>statistical</em> computing environment, and so rOpenSci developed this project to expand our peer review system to include statistical software.</p>
+<p>In doing so, the project also offered an opportunity to reconsider and potentially improve aspects of rOpenSci’s current system for peer review, which had operated for five years by the time this project began, and had already reviewed over &gt;200 packages, primarily in areas of data life cycle management. The form of these packages continues to be strongly influenced by the <em>Dev Guide</em>, which presents sets of <a href="https://devguide.ropensci.org/building.html">“guidelines”</a> which packages are expected to “meet”. These guidelines are nevertheless necessarily general, and were largely developed in ongoing response to successive developments in technology to support software development, such as continuous integration services. Although our <em>Dev Guide</em> effectively provides a set of “standards” to which software is expected to adhere, the alignment of software to these standards it itself not necessarily systematic, and in particular there is no direct way to ascertain the standards to which a given piece of software adheres, and those from which it may diverge.</p>
+<p>The present project reflects a more systematic alignment of software with standards, one which enables automated and ongoing identification of those standards with which a given piece of software complies. The following sets of standards for statistical software are thus far more extensive that our previous “guidelines”, and provide ongoing assurance for users of the standard of software accepted within our system, including systematic identification of ways by which software may diverge from standards, and explanations of why.</p>
+<p>Such assurance is important in many areas of scientific research, notably including those subject to regulation such as pharmaceutical trials. Software used in such trials must be <a href="https://pharmar.org/overview/">“validated”</a>, generally through a process of identifying any <a href="https://github.com/pharmaR/risk_assessment">risks associated with using that software</a>. In such contexts, our system fosters confidence in the use of software assessed according to our standards. For developers, the system provides a system of graded “badges” able to be used to identify and publicise the assessment of their software as meeting or exceeding the standards set by our system.</p>
+</section><section id="overview-scope" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="overview-scope">
+<span class="header-section-number">2.2</span> Scope of Statistical Software Review</h2>
+<section id="the-r-language" class="level3" data-number="2.2.1"><h3 data-number="2.2.1" class="anchored" data-anchor-id="the-r-language">
+<span class="header-section-number">2.2.1</span> The R Language</h3>
+<p>The present project represents a direct expansion of rOpenSci’s current <a href="https://devguide.ropensci.org/policies.html#aims-and-scope">scope</a> to include specifically statistical software, while retaining the restriction to software in the form of R packages. Nevertheless, this does not necessarily mean that the primary language of a package needs to be R. Many <strong>R</strong> packages include code from a variety of other languages, with the following table summarising statistics for the top ten languages from all 15,948 <a href="https://cran.r-project.org">CRAN</a> packages as of 09 Jul 2025 (including only code from the <code>/R</code>, <code>/src</code>, and <code>/inst</code> directories of each package).</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Proportion of code lines in different languages in all CRAN packages.</caption>
+<thead><tr class="header">
+<th style="text-align: left;">language</th>
+<th style="text-align: left;">lines</th>
+<th style="text-align: right;">proportion</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">22,921,103</td>
+<td style="text-align: right;">0.422</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C/C++ Header</td>
+<td style="text-align: left;">7,630,317</td>
+<td style="text-align: right;">0.141</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HTML</td>
+<td style="text-align: left;">5,733,628</td>
+<td style="text-align: right;">0.106</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">5,266,867</td>
+<td style="text-align: right;">0.097</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C++</td>
+<td style="text-align: left;">4,855,078</td>
+<td style="text-align: right;">0.089</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">JavaScript</td>
+<td style="text-align: left;">1,414,470</td>
+<td style="text-align: right;">0.026</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">XML</td>
+<td style="text-align: left;">1,048,611</td>
+<td style="text-align: right;">0.019</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">JSON</td>
+<td style="text-align: left;">939,453</td>
+<td style="text-align: right;">0.017</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fortran 77</td>
+<td style="text-align: left;">839,144</td>
+<td style="text-align: right;">0.015</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CSS</td>
+<td style="text-align: left;">640,580</td>
+<td style="text-align: right;">0.012</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Close to one half of all code in all R packages to date has been written in the R language, clearly justifying a primary focus upon that language. Collating all possible ways of packaging and combining C and C++ code yields 17,752,262 lines or code or 33% of all code, indicating that 75% of all code has been written in either R or C/C++. We anticipate the large majority of submissions to be coded in one of these primary languages, and will cultivate a community of reviewers with expertise in these languages. R packages may nevertheless incorporate algorithms coded in a number of other languages (such as Rust), and no package will be considered out-of-scope on the basis of computer language alone. Developers using less common languages may nevertheless face longer processing times to allow for finding reviewers with appropriate skills in those languages.</p>
+</section><section id="overview-categories" class="level3" data-number="2.2.2"><h3 data-number="2.2.2" class="anchored" data-anchor-id="overview-categories">
+<span class="header-section-number">2.2.2</span> Categories of Statistical Software</h3>
+<p>The scope of statistical software able to be submitted for peer review is primarily defined by the following list of categories. Any software which fits in to one or more of these categories may be deemed in-scope, and submitted for review, while software which can not be described by any of these categories will generally be deemed out of scope. While the categories themselves are primarily defined by the corresponding standards given in detail in <a href="standards.html">Chapter 6</a>, this chapter provides brief descriptions of the categories to aid developers in initially estimating whether or not software may be in scope.</p>
+<p>Empirical analyses described in <a href="appendix.html#appendix-categories">Appendix A.2</a> were devised to identify sub-domains within statistical software, from which we have to date developed standards for the following categories:</p>
+<ol type="1">
+<li><a href="#overview-bayesian">Bayesian and Monte Carlo Routines</a></li>
+<li><a href="#overview-regression">Regression and Supervised Learning</a></li>
+<li><a href="#overview-unsupervised">Dimensionality Reduction, Clustering, and Unsupervised Learning</a></li>
+<li><a href="#overview-eda">Exploratory Data Analysis (EDA) and Summary Statistics</a></li>
+<li><a href="#overview-ts">Time Series Analyses</a></li>
+<li><a href="#overview-ml">Machine Learning</a></li>
+<li><a href="#overview-spatial">Spatial Analyses</a></li>
+<li><a href="#overview-distributions">Probability Distributions</a></li>
+</ol>
+<p>Each of these categories is represented by a set of standards, as briefly described in the following sub-section. We anticipate that submissions will commonly fit into, or be described by, multiple categories, and the standards have also been devised to be as inter-compatible as possible. Moreover, alignment with specific categories may not always be straightforward, and we anticipate that some submissions will require negotiation between developers and editors to identify appropriate categories prior to full submission.</p>
+<p>We also intend to expand the system to include the additional three categories of:</p>
+<ol type="1">
+<li><a href="#overview-wrapper">Wrapper Packages</a></li>
+<li><a href="#overview-networks">Network Analysis Software</a></li>
+<li><a href="#overview-workflow">Workflow Support</a></li>
+</ol>
+<p>While software in these latter three categories is beyond the scope of current standards, we invite any software developers interested in submitting software within one or more of these categories to contact us directly to enquire about the status of associated standards, and the possibility of submitting. Finally, we anticipate our sets of standards to expand further over time, and openly invite any form of discussion on the possibility of expanding our definition to include additional categories.</p>
+<p>The following sub-sections provide brief descriptions of each of our chosen categories in terms of their general characteristics and inter-relationships with other categories within our <a href="appendix.html#appendix-categories">empirical analyses</a>. The standards of <a href="standards.html">Chapter 6</a> necessarily consider each category separately. There is nevertheless some degree of overlap between categorical definitions which is it important to appreciate. The following brief descriptions attempt to state some of the potentially problematic or confounding areas of overlap and ambiguity between categorical definitions. Titles of each sub-section link directly to the corresponding standards in Chapter 6.</p>
+<section id="bayesian-and-monte-carlo-routines" class="level4" data-number="2.2.2.1"><h4 data-number="2.2.2.1" class="anchored" data-anchor-id="bayesian-and-monte-carlo-routines">
+<span class="header-section-number">2.2.2.1</span> <a href="standards.html#standards-bayesian">Bayesian and Monte Carlo Routines</a>
+</h4>
+<p>Bayesian and Monte Carlo software centres on quantitative estimation of components of <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Baye’s theorem</a>, particularly on estimation or application of prior and/or posterior probability distributions. The procedures implemented to estimate the properties of such distributions are commonly based on random sampling procedures, hence referred to as “<em>Monte Carlo</em>” routines in reference to the random yet quantifiable nature of casino games.</p>
+<p>Packages implementing or otherwise relying on Bayesian or Monte Carlo routines are amongst the most common of our selected categories. Although roughly equal in frequency to several other categories, this category represents the central “hub” of all categories discerned in our <a href="appendix.html#appendix-categories">empirical analyses</a>. This indicates that software in this category is more likely than most others to also be described by additional categories.</p>
+</section><section id="regression-and-supervised-learning" class="level4" data-number="2.2.2.2"><h4 data-number="2.2.2.2" class="anchored" data-anchor-id="regression-and-supervised-learning">
+<span class="header-section-number">2.2.2.2</span> <a href="standards.html#standards-regression">Regression and Supervised Learning</a>
+</h4>
+<p>Regression Software implements algorithms which aim to construct or analyse one or more mappings between two defined data sets (for example, a set of “independent” data, <span class="math inline">\(X\)</span>, and a set of “dependent” data, <span class="math inline">\(Y\)</span>). In contrast, the analogous category of Unsupervised Learning Software aims to construct or analyse one or more mappings between a defined set of input or independent data, and a second set of “output” data which are not necessarily known or given prior to the analysis.</p>
+<p>Common purposes of Regression Software are to fit models to estimate relationships or to make predictions between specified inputs and outputs. Regression Software includes tools with inferential or predictive foci, Bayesian, frequentist, or probability-free Machine Learning (ML) approaches, parametric or or non-parametric approaches, discrete outputs (such as in classification tasks) or continuous outputs, and models and algorithms specific to applications or data such as time series or spatial data. In many cases other standards specific to these subcategories may apply.</p>
+<p>This category represents the most important intermediate node in the <a href="appendix.html#appendix-categories">emprical network</a> between Bayesian/Monte Carlo and Machine Learning (ML) algorithms, as well as being strongly connected to several other nodes. While many regression or interpolation algorithms are developed as part of general frameworks within these contexts, there are nevertheless sufficiently many examples of regression and interpolation algorithms unrelated to these contexts to warrant the existence of this distinct category. That said, algorithms within this category share very little in common, and each implementation is generally devised for some explicit applied purpose which may be difficult to relate to any other implementations in this category.</p>
+</section><section id="overview-unsupervised" class="level4" data-number="2.2.2.3"><h4 data-number="2.2.2.3" class="anchored" data-anchor-id="overview-unsupervised">
+<span class="header-section-number">2.2.2.3</span> Dimensionality Reduction, Clustering, and Unsupervised Learning</h4>
+<p>Software in this category is distinguished from Regression Software though the latter aiming to construct or analyse one or more mappings between two defined data sets (for example, a set of “independent” data, <span class="math inline">\(X\)</span>, and a set of “dependent” data, “Y”), whereas Unsupervised Learning Software aims to construct or analyse one or more mappings between a defined set of input or independent data, and a second set of “output” data which are not necessarily known or given prior to the analysis. A key distinction in Unsupervised Learning Software and Algorithms is between that for which output data represent (generally numerical) transformations of the input data set, and that for which output data are discrete labels applied to the input data. Examples of the former type include dimensionality reduction and ordination software and algorithms, and examples of the latter include clustering and discrete partitioning software and algorithms. One of the primary problems presented by algorithms in this category is that they are constrained to yield a result independent on any measure of correctness of accuracy <span class="citation" data-cites="estivill-castro_why_2002">(<a href="appendix.html#ref-estivill-castro_why_2002" role="doc-biblioref">Estivill-Castro 2002</a>)</span>. This can make assessment of the accuracy or reliability of such algorithms difficult.</p>
+<p>The node representing dimensionality reduction in our <a href="appendix.html#appendix-categories">empirical network</a> is almost as central as the Bayesian/Monte Carlo category, indicating the software in this category is also likely to be described by additional categories.</p>
+</section><section id="overview-eda" class="level4" data-number="2.2.2.4"><h4 data-number="2.2.2.4" class="anchored" data-anchor-id="overview-eda">
+<span class="header-section-number">2.2.2.4</span> Exploratory Data Analysis (EDA) and Summary Statistics</h4>
+<p>Exploration is a part of all data analyses, and Exploratory Data Analysis (EDA) is not something that is entered into and exited from at some point prior to “real” analysis. Exploratory Analyses are also not strictly limited to <em>Data</em>, but may extend to exploration of <em>Models</em> of those data. The category could thus equally be termed, “<em>Exploratory Data and Model Analysis</em>”, yet we opt to utilise the standard acronym of EDA in this document.</p>
+<p>EDA is nevertheless somewhat different to many other categories included here, primarily because,</p>
+<ul>
+<li>EDA software often has a strong focus upon visualization, which is a category which we have otherwise explicitly excluded from the scope of the project at the present stage.</li>
+<li>The assessment of EDA software requires addressing more general questions than software in most other categories, notably including the important question of intended audience(s).</li>
+</ul>
+<p>Our <a href="appendix.html#appendix-categories">empirical analyses</a> revealed a strong connection between EDA and visualisation software, but EDA software nevertheless differed in also being connected with calculation and presentation of summary statistics, and with network relationships reflecting inter-relationships between data components.</p>
+</section><section id="overview-ts" class="level4" data-number="2.2.2.5"><h4 data-number="2.2.2.5" class="anchored" data-anchor-id="overview-ts">
+<span class="header-section-number">2.2.2.5</span> Time Series Analyses</h4>
+<p>The category of Time Series software is arguably easier to define that the preceding categories, and represents any software the primary input of which is intended to be temporally structured data. Importantly, while “<em>temporally structured</em>” may often imply temporally ordered, this need not necessarily be the case. The primary definition of temporally structured data is that they possess some kind of index which can be used to extract temporal relationships.</p>
+</section><section id="overview-ml" class="level4" data-number="2.2.2.6"><h4 data-number="2.2.2.6" class="anchored" data-anchor-id="overview-ml">
+<span class="header-section-number">2.2.2.6</span> Machine Learning</h4>
+<p>Machine Learning (ML) routines play a central role in modern statistical analyses, and the ML node in the <a href="appendix.html#appendix-categories">empirical network diagram</a> is roughly equally central, and equally connected, to the Bayesian and Monte Carlo node. Machine Learning algorithms represent perhaps some of the most difficult algorithms for which to develop standards and methods of comparison. Both input and output data can be categorically different or even incomparable, while even where these may be comparable, the abiding aims of different ML algorithms can differ sufficiently to make comparison of outputs to otherwise equivalent inputs largely meaningless. The general ecosystem of ML software within R nevertheless offers a number of tools which may be adapted for specific stages of many ML workflows, and which may accordingly provide useful contexts for both of aligning and reviewing software against standards, even if only as “benchmark” comparisons. Divided into three main steps of input -&gt; processing -&gt; output, useful tools include:</p>
+<p><strong><em>Input Data</em></strong> The <a href="https://joss.theoj.org/papers/10.21105/joss.00584"><code>vtreat</code></a> package “prepares messy real world data for predictive modeling in a reproducible and statistically sound manner.” The routines in this package perform a series of tests for general sanity of input data, and may prove generally useful as part of a recommended ML workflow.</p>
+<p><strong><em>Algorithms</em></strong> The aforementioned diversity of ML algorithms has fostered the developed of several packages offering unified interfaces. As for input data, standards do not suggest that any particular package use any of these, but they should at least be considered as comparative benchmarks against which to assess packages. Both the <a href="https://joss.theoj.org/papers/10.21105/joss.01903"><code>mlr3</code></a> and <a href="https://tidymodels.org"><code>tidymoels</code></a> collection of packages reflect unified ML workflows with modular and extensible interfaces to a range of ML routines.</p>
+<p><strong><em>Output Data</em></strong> There are several extant packages for (post-)processing data output from ML algorithms. Many, perhaps even most, of these primarily aim to derive insightful visualisations of output, whether in interactive (JavaScript-based) form, as with the <a href="https://joss.theoj.org/papers/10.21105/joss.01798"><code>modelStudio</code></a> or <a href="https://joss.theoj.org/papers/10.21105/joss.01444"><code>modelDown</code></a> packages, or more static plots using internal graphical routines from R, as in the <a href="https://joss.theoj.org/papers/10.21105/joss.00786"><code>iml</code> (Interpretable Machine Learning)</a> package. The latter package offers a host of additional functionality useful in interpreting the output of ML algorithms, and which may prove useful in general standards-based contexts.</p>
+</section><section id="overview-spatial" class="level4" data-number="2.2.2.7"><h4 data-number="2.2.2.7" class="anchored" data-anchor-id="overview-spatial">
+<span class="header-section-number">2.2.2.7</span> Spatial Analyses</h4>
+<p>Spatial analyses have a long tradition in R, as summarised and reflected in the CRAN Task Views on <a href="https://cran.r-project.org/web/views/Spatial.html">Spatial</a> and <a href="https://cran.r-project.org/web/views/SpatioTemporal.html">Spatio-Temporal</a> data and analyses. Those task views also make immediately apparent that the majority of development in both of these domains has been in <em>representations</em> of spatial data, rather than in statistical analyses <em>per se</em>. Spatial statistical analyses have nevertheless been very strong in R, notably through the <a href="https://cran.r-project.org/package=spatstat"><code>spatstat</code></a> and <a href="https://cran.r-project.org/package=gstat"><code>gstat</code></a> packages, first published in 2002 and 2003, respectively.</p>
+<p>Spatial analyses entail a number of aspects which, while not necessarily unique in isolation, when considered in combination offer sufficiently unique challenges for this to warrant its own category. Some of these unique aspects include:</p>
+<ul>
+<li>A generally firm embeddedness in two dimensions</li>
+<li>Frequent assumptions of continuous rather than discrete processes (point-pattern processes notwithstanding)</li>
+<li>A pervasive decrease in statistical similarity with increasing distance - the so-called “First Law of Geography” - which is the observe of pervasive difficulties arising from auto-correlated observations.</li>
+<li>A huge variety of statistical techniques such as kriging and triangulation which have been developed for almost exclusive application in spatial domains.</li>
+<li>The unique challenges arising in the domain of <a href="https://cran.r-project.org/web/views/SpatioTemporal.html">Spatial Temporal Analyses</a>.</li>
+</ul></section><section id="overview-distributions" class="level4" data-number="2.2.2.8"><h4 data-number="2.2.2.8" class="anchored" data-anchor-id="overview-distributions">
+<span class="header-section-number">2.2.2.8</span> Probability Distributions</h4>
+<p>(<strong>Not yet in scope</strong>) The category of probability distributions is an outlier in the preceding network diagram, connected only to ML and regression/interpolation algorithms. It is nevertheless included here as a distinct category because we anticipate software which explicitly represents or relies on probability distributions to be subject to distinct standards and assessment procedures, particularly through enabling routines to be tested for robustness against a variety of perturbations to assumed distributional forms.</p>
+<p>Packages which fall within this category include:</p>
+<ol type="1">
+<li>
+<a href="https://joss.theoj.org/papers/10.21105/joss.01863"><code>univariateML</code></a> which is, “an R package for maximum likelihood estimation of univariate densities,” which support more than 20 different forms of probability density.</li>
+<li>
+<a href="https://joss.theoj.org/papers/10.21105/joss.01566"><code>kdensity</code></a> which is, “An R package for kernel density estimation with parametric starts and asymmetric kernels.” This package implements an effectively non-parametric approach to estimating probability densities.</li>
+<li>
+<a href="https://joss.theoj.org/papers/10.21105/joss.01023"><code>overlapping</code></a>, which is, “a R package for estimating overlapping in empirical distributions.”</li>
+</ol>
+<p>The obverse process from estimating or fitting probability distributions is arguably drawing samples from defined distributions, of which the <a href="https://joss.theoj.org/papers/10.21105/joss.00629"><code>humanleague</code></a> package is an example. This package has a particular application in synthesis of discrete populations, yet the implementation is quite generic and powerful.</p>
+</section><section id="overview-wrapper" class="level4" data-number="2.2.2.9"><h4 data-number="2.2.2.9" class="anchored" data-anchor-id="overview-wrapper">
+<span class="header-section-number">2.2.2.9</span> Wrapper Packages</h4>
+<p>(<strong>Not yet in scope</strong>) “Wrapper” packages provide an interface to previously-written software, often in a different computer language to the original implementation. While this category is reasonably unambiguous, there may be instances in which a “wrapper” additionally offers extension beyond original implementations, or in which only a portion of a package’s functionality may be “wrapped.” Rather than internally bundling or wrapping software, a package may also serve as a wrapper thorough providing access to some external interface, such as a web server. Examples of potential wrapper packages include the following:</p>
+<ol type="1">
+<li>The <a href="https://github.com/greta-dev/greta"><code>greta</code> package</a> (with accompanying <a href="https://joss.theoj.org/papers/10.21105/joss.01601">JOSS article</a>) “for writing statistical models and fitting them by MCMC and optimisation” provides a wrapper around google’s <a href="https://www.tensorflow.org"><code>TensorFlow</code> library</a>. It is also clearly a workflow package, aiming to provide a single, unified workflow for generic machine learning processes and analyses.</li>
+<li>The <a href="https://github.com/keblu/nse"><code>nse</code> package</a> (with accompanying <a href="https://joss.theoj.org/papers/10.21105/joss.00172">JOSS paper</a>) which offers “multiple ways to calculate numerical standard errors (NSE) of univariate (or multivariate in some cases) time series,” through providing a unified interface to several other R packages to provide more than 30 NSE estimators. This is an example of a wrapper package which does not wrap either internal code or external interfaces, rather it effectively “wraps” the algorithms of a collection of R packages.</li>
+</ol>
+<p><strong><em>Key Considerations</em></strong>: For many wrapper packages it may not be feasible for reviewers (or authors) to evaluate the quality or correctness of the wrapped software, so review could be limited to the interface or added value provided, or the statistical routines within.</p>
+<p>Wrapper packages include the extent of functionality represented by wrapped code, and the computer language being wrapped. - <em>Internal or External:</em> Does the software <em>internally</em> wrap of bundle previously developed routines, or does it provide a wrapper around some external service? If the latter, what kind of service (web-based, or some other form of remote access)? - <em>Language:</em> For internally-bundled routines, in which computer language e the routines written? And how are they bundled? (For R packages: In <code>./src</code>? In <code>./inst</code>? Elsewhere?) - <em>Testing:</em> Does the software test the correctness of the wrapped component? Does it rely on tests of the wrapped component elsewhere? - <em>Unique Advances:</em> What unique advances does the software offer beyond those offered by the (internally or externally) wrapped software?</p>
+</section><section id="overview-networks" class="level4" data-number="2.2.2.10"><h4 data-number="2.2.2.10" class="anchored" data-anchor-id="overview-networks">
+<span class="header-section-number">2.2.2.10</span> Networks</h4>
+<p>(<strong>Not yet in scope</strong>) Network software is a particular area of application of what might often be considered more generic algorithms, as in the example described above of the <a href="https://github.com/jakobbossek/grapherator"><code>grapherator</code></a> package, for which this category is appropriate only because the input data are assumed to represent a particular form of graphical relationship, while most of the algorithms implemented in the package are not necessarily specific to graphs. That package might nevertheless be useful in developing standards because it, “implements a modular approach to benchmark graph generation focusing on undirected, weighted graphs”. This package, and indeed several others developed by its author <a href="http://www.jakobbossek.de/blog/">Jakob Bossek</a>, may be useful in developing benchmarks for comparison of graph or network models and algorithms.</p>
+<p>Cases of software which might be assessed using such generic graph generators and benchmarks include:</p>
+<ol type="1">
+<li>
+<a href="https://joss.theoj.org/papers/10.21105/joss.00374"><code>mcMST</code></a>, which is “a toolbox for the multi-criteria minimum spanning tree problem.”</li>
+<li>
+<a href="https://joss.theoj.org/papers/10.21105/joss.00036"><code>gwdegree</code></a>, which is a package for, “improving interpretation of geometrically-weighted degree estimates in exponential random graph models.” This package essentially generates one key graph statistic from a particular class of input graphs, yet is clearly amenable to benchmarking, as well as measures of stability in response to variable input structures.</li>
+</ol>
+<p>Network software which is likely more difficult to assess or compare in any general way includes:</p>
+<ol type="1">
+<li>
+<a href="https://joss.theoj.org/papers/10.21105/joss.01480"><code>tcherry</code></a> is a package for “Learning the structure of tcherry trees,” which themselves are particular ways of representing relationships between categorical data. The package uses maximum likelihood techniques to find the best tcherry tree to represent a given input data set. Although very clearly a form of network software, this package might be considered better described by other categories, and accordingly not directly assessed or assessable under any standards derived for this category.</li>
+<li>
+<a href="https://www.bnlearn.com/"><code>BNLearn</code></a> is a package “for learning the graphical structure of Bayesian networks.” It is indubitably a network package, yet the domain of application likely renders it incomparable to other network software, and difficult to assess in any standardised way.</li>
+</ol></section><section id="overview-workflow" class="level4" data-number="2.2.2.11"><h4 data-number="2.2.2.11" class="anchored" data-anchor-id="overview-workflow">
+<span class="header-section-number">2.2.2.11</span> Workflow Support</h4>
+<p>(<strong>Not yet in scope</strong>) “Workflow” software may not implement particular methods or algorithms, but rather support tasks around the statistical process. In many cases, these may be generic tasks that apply across methods. These include:</p>
+<ol type="1">
+<li>Classes (whether explicit or not) for representing or processing input and output data;</li>
+<li>Generic interfaces to multiple statistical methods or algorithms;</li>
+<li>Homogeneous reporting of the results of a variety of methods or algorithms; and</li>
+<li>Methods to synthesise, visualise, or otherwise collectively report on analytic results.</li>
+</ol>
+<p>Methods and Algorithms software may only provide a specific interface to a specific method or algorithm, although it may also be more general and offer several of the above “workflow” aspects, and so ambiguity may often arise between these two categories. We note in particular that the “workflow” node in the <a href="https://ropenscilabs.github.io/statistical-software/abstracts/network-terms">interactive network diagram</a> mentioned above is very strongly connected to the “machine learning” node, generally reflecting software which attempts to unify varied interfaces to varied platforms for machine learning.</p>
+<p>Among the numerous examples of software in this category are:</p>
+<ol type="1">
+<li>The <a href="https://github.com/mlr-org/mlr3"><code>mlr3</code> package</a> (with accompanying <a href="https://joss.theoj.org/papers/10.21105/joss.01903">JOSS paper</a>), which provides, “A modern object-oriented machine learning framework in R.”</li>
+<li>The <a href="https://github.com/USCbiostats/fmcmc"><code>fmcmc</code> package</a> (with accompanying <a href="https://joss.theoj.org/papers/10.21105/joss.01427">JOSS paper</a>), which provides a unified framework and workflow for Markov-Chain Monte Carlo analyses.</li>
+<li>The <a href="https://github.com/easystats/bayestestR"><code>bayestestR</code> package</a> (with accompanying <a href="https://joss.theoj.org/papers/10.21105/joss.01541">JOSS paper</a>) for “describing effects and their uncertainty, existence and significance within the Bayesian framework. While this packages includes its own algorithmic implementations, it is primarily intended to aid general Bayesian workflows through a unified interface.</li>
+</ol>
+<p>Workflows are also commonly required and developed for specific areas of application, as exemplified by the <a href="https://github.com/nfrerebeau/tabula"><code>tabular</code> package</a> (with accompanying <a href="https://joss.theoj.org/papers/10.21105/joss.01821">JOSS article</a> for “Analysis, Seriation, and visualisation of Archaeological Count Data”.</p>
+<p><strong><em>Key Considerations:</em></strong> Workflow packages are popular and add considerable value and efficiency for users. One challenge in evaluating such packages is the importance of API design and potential subjectivity of this. For instance, <code>mlr3</code> as well as <code>tidymodels</code> have similar uses of providing a common interface to multiple predictive models and tools for automating processes across these models. Similar, multiple packages have different approaches for handling MCMC data. Each package makes different choices in design and has different priorities, which may or may not agree with reviewers’ opinions or applications. Despite such differences, it may be possible to evaluate such packages for <em>internal</em> cohesion, and adherence to a sufficiently clearly stated design goal. Reviewers may be able to evaluate whether the package provides a <em>more</em> unified workflow or interface than other packages - this would require a standard of relative improvement over the field rather than baseline standards.</p>
+<p>These packages also often contain numerical routines (cross-validation, performance scoring, model comparison), that can be evaluated for correctness or accuracy.</p>
+</section></section></section><section id="overview-prior-art" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="overview-prior-art">
+<span class="header-section-number">2.3</span> Prior Art</h2>
+<section id="ropensci" class="level3" data-number="2.3.1"><h3 data-number="2.3.1" class="anchored" data-anchor-id="ropensci">
+<span class="header-section-number">2.3.1</span> rOpenSci</h3>
+<p>rOpenSci’s current software peer-review process, detailed in our <a href="https://devguide.ropensci.org/softwarereviewintro.html">developer guide</a>, is based on a blend of practices from peer review of academic practices and code review in open-source projects. Review takes place via an issue thread in our <a href="https://github.com/ropensci/software-review">“software-review” repository on GitHub</a>. The review process is entirely open, with each issue thread used to manage the entire process, coordinated by rOpenSci’s editors. After initial screening for scope and minimal qualification by editors, two reviewers provide comments and feedback on software packages. After one or more rounds of revisions, packages reach a point of approval, at which point they are “accepted” by rOpenSci, symbolized both through a badge system, and (generally) through transferring the software from the authors’ private domain to the <a href="https://github.com/ropensci">github.com/ropensci</a> domain.</p>
+</section><section id="the-journal-of-open-source-software" class="level3" data-number="2.3.2"><h3 data-number="2.3.2" class="anchored" data-anchor-id="the-journal-of-open-source-software">
+<span class="header-section-number">2.3.2</span> The Journal of Open Source Software</h3>
+<p>The <a href="https://joss.theoj.org/">Journal of Open Source Software (JOSS)</a> was based on rOpenSci and follows a similar approach, with greater automation and broader scope. The Journal of Statistical Software conducts a closed review of both manuscript and software, with fewer prescriptive standards. In reviewing packages for acceptance into its repository, <a href="https://www.bioconductor.org">BioConductor</a> conducts an <a href="https://www.bioconductor.org/developers/package-submission/">open review</a> primarily aimed at maintaining minimum standards and inter-compatibility.</p>
+</section><section id="the-debian-system" class="level3" data-number="2.3.3"><h3 data-number="2.3.3" class="anchored" data-anchor-id="the-debian-system">
+<span class="header-section-number">2.3.3</span> The Debian System</h3>
+<p>The development of software for the open-source <a href="https://debian.org">Debian Operating System</a> is guided by Debian Developers and Debian Maintainers. Expressed roughly, maintainers are individuals responsible for the maintenance of particular pieces of software, while developers engage with activities supporting the development of the operating system as a whole. The submission and review process for Debian is almost entirely automated, based on tools such as their own software checker, <a href="https://lintian.debian.org"><code>lintian</code></a>. Debian differs fundamentally from the system proposed here in being centred around the trust and verification of people rather than software. Submission of software to Debian is largely automatic, and bug-free software may often progress automatically through various stages towards acceptance. Software may, however, only be submitted by official Debian Maintainers or Developers. People can only become developers or maintainers through being sponsored by existing members, and are then subject to review of the potential contribution they may be able to make to the broader Debian community. (Details can be seen in <a href="https://debian-handbook.info/browse/stable/sect.becoming-package-maintainer.html">this chapter of the Debian handbook</a>.)</p>
+<p>While the general process for software submission and acceptance in Debian may not be of direct relevance, their versioning policy provides a useful basis for our own versioning system. The ongoing development of both the Debian system and all associated packages proceeds in accordance with a versioned <a href="https://www.debian.org/doc/debian-policy/index.html">policy manual</a>. All new packages must comply to the current standards at the time of submission, and are labelled with the latest version of the standards to which they comply, <a href="https://www.debian.org/doc/debian-policy/ch-source.html#standards-conformance">noting that</a>,</p>
+<blockquote class="blockquote">
+<p>For a package to have an old Standards-Version value is not itself a bug … It just means that no-one has yet reviewed the package with changes to the standards in mind.</p>
+</blockquote>
+<p>Each new version of the standards is accompanied by a simple <a href="https://www.debian.org/doc/debian-policy/upgrading-checklist.html">checklist</a> of differences, explicitly indicating differences with and divergences from previous versions. As long as software continues to pass all tests, upgrading to current standards remains optional. Failing tests in response to any upgrading of standards serve as a trigger for review of software. The nominated standards version may only be updated once review has confirmed compliance with current standards. The present project adapts some of these aspects of the Debian system, as described below.</p>
+</section><section id="other-potential-models" class="level3" data-number="2.3.4"><h3 data-number="2.3.4" class="anchored" data-anchor-id="other-potential-models">
+<span class="header-section-number">2.3.4</span> Other Potential Models</h3>
+<p>The Linux <a href="https://www.coreinfrastructure.org/">Core Infrastructure Initiative</a> provides badges to projects meeting <a href="https://github.com/coreinfrastructure/best-practices-badge/blob/master/doc/criteria.md">development best practices</a>. Badges are graded (passing/silver/gold), and awarded by package authors self-certifying that they have implemented items on a checklist.</p>
+</section></section><section id="overview-use-of-book" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="overview-use-of-book">
+<span class="header-section-number">2.4</span> Use of this Book</h2>
+<p>This book is primarily intended to be used by the two primary audiences of <em>software developers</em> and <em>reviewers</em>. As mentioned above, it is also intended to serve as a “blueprint” to be adopted and adapted to other areas, including other computer languages, and other domains of application. The book has two primary entry points for these two primary audiences, with the following chapter providing extensive guidelines for package development, submission, and maintenance, and a subsequent chapter providing guidelines for reviewers of software submissions. Both audiences will need to refer to the actual <a href="standards.html">standards</a>, both general and category-specific. The book also includes important guidelines for our editors, in particular to instruct them on the capabilities of our automated <code>ropensci-review-bot</code>, and associated automatic package checking routines.</p>
+<p>Importantly, the entire project strives to cultivate diverse, inclusive, and geographically expansive communities, in terms both of software itself, and associated communities of developers, reviewers, and users. Note that while these aspects of community are not explicitly addressed throughout any of the remainder of this document, it is important that future revisions return to this point, and ensure that each of the following sections are appropriately modified to ensure effective consideration and incorporation of the representativeness and inclusiveness of communities cultivating and surrounding our software.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-estivill-castro_why_2002" class="csl-entry" role="listitem">
+Estivill-Castro, Vladimir. 2002. <span>“Why so Many Clustering Algorithms: A Position Paper.”</span> <em>ACM SIGKDD Explorations Newsletter</em> 4 (1): 65–75. <a href="https://doi.org/10.1145/568574.568575">https://doi.org/10.1145/568574.568575</a>.
+</div>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/stats-devguide\.ropensci\.org\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Welcome">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./pkgdev.html" class="pagination-link" aria-label="Guide for Authors">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Guide for Authors</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ropensci/statistical-software-review-book/edit/main/overview.Rmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ropensci/statistical-software-review-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

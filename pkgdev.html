@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Documentation of rOpenSci’s project on expanding software peer review to include statistical software.">
+<title>3&nbsp; Guide for Authors – rOpenSci Statistical Software Peer Review</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./pkgsubmission.html" rel="next">
+<link href="./overview.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-6e6d6a75e8a864baf13101a93f407953.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+</head>
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pkgdev.html">Package Development, Submission, and Review</a></li><li class="breadcrumb-item"><a href="./pkgdev.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Guide for Authors</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">rOpenSci Statistical Software Peer Review</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ropensci/statistical-software-review-book" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of the Project and of this Book</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Package Development, Submission, and Review</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pkgdev.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Guide for Authors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pkgsubmission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Guide for Editors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pkgreview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Guide for Reviewers</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Standards</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./standards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Standards: Version 0.2.0</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Appendices</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#benefits-of-statistical-software-peer-review" id="toc-benefits-of-statistical-software-peer-review" class="nav-link active" data-scroll-target="#benefits-of-statistical-software-peer-review"><span class="header-section-number">3.1</span> Benefits of statistical software peer review</a></li>
+  <li><a href="#scope" id="toc-scope" class="nav-link" data-scroll-target="#scope"><span class="header-section-number">3.2</span> Scope</a></li>
+  <li><a href="#the-pkgcheck-package" id="toc-the-pkgcheck-package" class="nav-link" data-scroll-target="#the-pkgcheck-package"><span class="header-section-number">3.3</span> The <code>pkgcheck</code> package</a></li>
+  <li><a href="#pkgdev-autotest" id="toc-pkgdev-autotest" class="nav-link" data-scroll-target="#pkgdev-autotest"><span class="header-section-number">3.4</span> The <code>autotest</code> package</a></li>
+  <li><a href="#pkgdev-srr" id="toc-pkgdev-srr" class="nav-link" data-scroll-target="#pkgdev-srr"><span class="header-section-number">3.5</span> The <code>srr</code> package</a></li>
+  <li>
+<a href="#pkgdev-badges" id="toc-pkgdev-badges" class="nav-link" data-scroll-target="#pkgdev-badges"><span class="header-section-number">3.6</span> Gold, Silver, and Bronze Badges</a>
+  <ul class="collapse">
+<li><a href="#pkgdev-bronze" id="toc-pkgdev-bronze" class="nav-link" data-scroll-target="#pkgdev-bronze"><span class="header-section-number">3.6.1</span> Bronze <img src="badges/stats-bronze.png" class="img-fluid"></a></li>
+  <li><a href="#pkgdev-silver" id="toc-pkgdev-silver" class="nav-link" data-scroll-target="#pkgdev-silver"><span class="header-section-number">3.6.2</span> Silver <img src="badges/stats-silver.png" class="img-fluid"></a></li>
+  <li><a href="#pkgdev-gold" id="toc-pkgdev-gold" class="nav-link" data-scroll-target="#pkgdev-gold"><span class="header-section-number">3.6.3</span> Gold <img src="badges/stats-gold.png" class="img-fluid"></a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/ropensci/statistical-software-review-book/edit/main/pkgdev.Rmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ropensci/statistical-software-review-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pkgdev.html">Package Development, Submission, and Review</a></li><li class="breadcrumb-item"><a href="./pkgdev.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Guide for Authors</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="pkgdev" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Guide for Authors</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>The current chapter should be considered an extension of the corresponding <a href="https://devguide.ropensci.org/authors-guide.html">“Guide for Authors”</a> in rOpenSci’s “Dev Guide”. The principles for package development described there also apply to statistical packages, with this chapter describing additional processes and practices for packages intended for submission to the statistical software peer review system.</p>
+<p>The major additional process is the documentation of how a package complies with the general and category-specific standards given in <a href="standards.html">Chapter 6</a>. Statistical software packages must document compliance with the <a href="#general-standards"><em>General Standards</em></a>, as well as at least one set of <a href="standards.html">category-specific standards</a>. Authors need to document within the software itself every point at which it complies with every general and every applicable category-specific standard. The process of doing so is facilitated by the <a href="https://github.com/ropensci-review-tools/srr"><code>srr</code> package</a>, as described in detail in <a href="#pkgdev-srr">Sub-section 3.4, below</a>.</p>
+<p>Documenting compliance with our standards will generally entail more work than for non-statistical software submitted to our general peer review system. The first of the following sub-sections thus presents some of the benefits authors may expect from submitting their statistical software for peer-review.</p>
+<p>The chapter then proceeds with a description of the scope of statistical software able to be considered for review, followed by descriptions of two tools intended to be used through the entire process of package development. The first tool is the <a href="https://github.com/ropensci-review-tools/pkgcheck"><code>pkgcheck</code> package</a> which should be used to confirm whether software is ready for submission or not, and enables authors to locally run the suite of checks which are automatically run on package submission. The subsequent sub-section describes our <a href="https://github.com/ropensci-review-tools/autotest"><code>autotest</code> tool</a>, which is intended to be used through the entire process of package development. The third sub-section describes how use the <a href="https://github.com/ropensci-review-tools/srr"><code>srr</code> package</a> to address the major task of aligning software with our <a href="standards.html">general and category-specific standards</a> for statistical software, and the final sub-section describes the final step of specifying which grade of badge authors are aiming for.</p>
+<section id="benefits-of-statistical-software-peer-review" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="benefits-of-statistical-software-peer-review">
+<span class="header-section-number">3.1</span> Benefits of statistical software peer review</h2>
+<ul>
+<li>First, feedback from your reviewers and editors will increase the quality and usability of your software. Both authors and reviewers consistently report that review improves code and makes them better programmers through the feedback and interaction with each other.</li>
+<li>Bringing your software into compliance with our standards will make your software easier to maintain, as many of our standards, such as those for testing and continuous integration, are designed to make sure software continues to function well as it is updated.</li>
+<li>As our standards and peer-review process aim to improve the quality and completeness of documentation, going through peer-review should make your software more understandable and reduce the support you need to provide to users.</li>
+<li>Approval by rOpenSci will make it easier to submit your software to repositories and journals. Packages approved by rOpenSci generally are CRAN-ready. They are eligible for expedited review at the <a href="https://joss.theoj.org/"><em>Journal of Open Source Software</em></a>, and the <a href="https://www.jstatsoft.org/index"><em>Journal of Statistical Software</em> (JStatSoft)</a> already <a href="https://www.jstatsoft.org/authors">recommends that developers refer to our standards</a>. In our experience code peer-review is looked on favorably by reviewers of software papers at many journals.</li>
+<li>In regulated environments and other fields where strong demonstration of quality and compliance is needed, approval by peer-review provides strong evidence of software quality rarely available for statistical software. Our approach to annotating <em>within code</em> how software meets standards makes demonstration of compliance clear and granular. We are actively working with the <a href="https://pharmar.org">R Validation Hub</a> to make approval under our system of review and standards a component of validation in regulated environments such as pharmaceutical or clinical research.</li>
+</ul></section><section id="scope" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="scope">
+<span class="header-section-number">3.2</span> Scope</h2>
+<p>The first important task prior to submitting a package is to estimate whether a package is likely to be considered within our scope for statistical software. As described in the <a href="overview.html#overview-scope">Overview</a>, packages are generally considered in scope if they fit one or more of the <a href="overview.html#overview-categories">categories listed there</a>. Prior to submission, authors must choose one or more of these categories, and document how their software aligns with the corresponding standards given in <a href="standards.html">Chapter 6</a>, according to the procedures <a href="#pkgdev-srr">described below</a>. Any software which can be aligned with one or more sets of category-specific standards will by definition be considered in scope.</p>
+<p>Authors are encouraged to contact us at any point prior to, or during, development, to ask about whether a package might be in scope, or which categories it might fit within. Categorisation of packages may not always be straightforward, and we particularly encourage authors who are unsure about whether a package belongs in a particular category or not to contact us for discussion. An initial judgement of whether or not a package belongs in a particular category may be gained by examining the respective standards. Any package for which a large number of standards from a particular category may be considered applicable (regardless of whether or not they would actually be checked) is likely to fit within that category. Once you have determined that your package is likely to fit into one or more of our in-scope categories, you’ll need to apply our three primary development tools described in the following two sub-sections.</p>
+</section><section id="the-pkgcheck-package" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="the-pkgcheck-package">
+<span class="header-section-number">3.3</span> The <a href="https://github.com/ropensci-review-tools/pkgcheck"><code>pkgcheck</code> package</a>
+</h2>
+<p>The <a href="https://github.com/ropensci-review-tools/pkgcheck"><code>pkgcheck</code> package</a> can be used to confirm whether software is ready for submission or not. The checks implemented within this package are also automatically run upon submission, and packages are expected to successfully pass all checks prior to initial submission. Packages may only be submitted once the main <a href="hThe://ropensci-review-tools.github.io/pkgcheck/reference/pkgcheck.html"><code>pkgcheck()</code> function</a> indicates such, through clearly stating,</p>
+<blockquote class="blockquote">
+<p><em>This package may be submitted</em></p>
+</blockquote>
+<p>This function accepts a single argument of the local path to the package being checked, and returns a detailed list of checks and associated results. The return object has a <code>summary</code> method which prints a formatted result to the console indicating whether a package is ready for submission or not. See the main <a href="https://github.com/ropensci-review-tools/pkgcheck">package website</a> for more details.</p>
+<p>The <a href="hThe://ropensci-review-tools.github.io/pkgcheck/reference/pkgcheck.html"><code>pkgcheck()</code> function</a> is also applied to all packages upon initial submission, in response to which our <code>ropensci-review-bot</code> will print the results in the issue. In the unlikely circumstances that a package is unable to pass particular checks, explanations should be given upon submission about why those checks fail, and why review may proceed in spite of such failures.</p>
+<p>An example result of the <a href="hThe://ropensci-review-tools.github.io/pkgcheck/reference/pkgcheck.html"><code>pkgcheck()</code> function</a> may be seen by applying it to the skeleton <a href="https://github.com/ropensci-review-tools/srr"><code>srr</code> (<strong>S</strong>oftware <strong>R</strong>eview <strong>R</strong>oclets) package</a>:</p>
+</section><section id="pkgdev-autotest" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="pkgdev-autotest">
+<span class="header-section-number">3.4</span> The <a href="https://github.com/ropensci-review-tools/autotest"><code>autotest</code> package</a>
+</h2>
+<p>The <a href="https://github.com/ropensci-review-tools/autotest"><code>autotest</code> package</a> is an automated assessment tool which all packages are expected to pass in order to be accepted for submission. The package implements a form of “mutation testing,” by examining the types of all input parameters, implementing type-specific mutations, and examining the response of each function in a package to all such mutations. This kind of mutation testing is a very effective way to uncover any unexpected behaviour which authors themselves might not necessarily pre-empt. The purpose of using <a href="https://github.com/ropensci-review-tools/autotest"><code>autotest</code></a> to prepare packages is to avoid as much as possible the common situation of reviewers discovering bugs when they attempt to use software in ways that differ from typical uses envisioned by authors themselves. Reviews of software prepared with the help of <a href="https://github.com/ropensci-review-tools/autotest"><code>autotest</code></a> should be less burdened by discussions of what are often minor technical details, and more able to focus on “higher level” aspects of software quality.</p>
+<p>Full documentation of how to use <a href="https://github.com/ropensci-review-tools/autotest"><code>autotest</code></a> in package development is provided on the <a href="https://ropensci-review-tools.github.io/autotest/">package website</a>, and we particularly encourage any authors intending to develop packages for submission to our peer review system to step through the <a href="https://ropensci-review-tools.github.io/autotest/articles/autotest.html">main <code>autotest</code> vignette</a>, and to apply <a href="https://ropensci-review-tools.github.io/autotest/"><code>autotest</code></a> continuously throughout package development, to ensure that <a href="https://ropensci-review-tools.github.io/autotest/reference/autotest_package.html"><code>autotest_package()</code></a> returns clean (<code>NULL</code>) results when the package is first submitted.</p>
+<p>Note that use of <a href="https://github.com/ropensci-review-tools/autotest"><code>autotest</code></a> is recommended yet not strictly required. The package is intended to aid package development and preparation for submission, yet it is still experimental, and it may not be possible for all packages to generate clean (<code>NULL</code>) results.</p>
+</section><section id="pkgdev-srr" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="pkgdev-srr">
+<span class="header-section-number">3.5</span> The <a href="https://github.com/ropensci-review-tools/srr"><code>srr</code> package</a>
+</h2>
+<p>Once a package has been sufficiently developed to begin alignment with our standards, and once all issues revealed by <a href="https://ropensci-review-tools.github.io/autotest/"><code>autotest</code></a> have been addressed, authors will need to use our third tool, the <a href="https://ropensci-review-tools.github.io/srr/"><code>ssr</code> (<strong>s</strong>oftware <strong>r</strong>eview <strong>r</strong>oclets) package</a> to insert both general and category-specific standards into their code, and to begin the process of documenting within the code itself how and where the code adheres to the individual standards. The <a href="https://ropensci-review-tools.github.io/srr/"><code>srr</code> package</a> can be installed locally by running either one of the following two lines.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ropensci-review-tools/srr"</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pkg_install.html">pkg_install</a></span><span class="op">(</span><span class="st">"ropensci-review-tools/srr"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>srr</code> procedures are described in detail on the <a href="https://ropensci-review-tools.github.io/srr/">package website</a>, and in particular in the <a href="https://ropensci-review-tools.github.io/srr/articles/srr-stats.html">main vignette</a>. Authors are first encouraged to obtain a local copy of the <a href="https://github.com/ropensci-review-tools/srr/blob/main/vignettes/srr-stats.Rmd">source code for that vignette</a>, and to step through each line in order to understand how the procedure works. Having done that, you may then insert standards into your own package by running the following line from within the local directory of your package,</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">srr_stats_roxygen</span> <span class="op">(</span>category <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span> <span class="op">(</span><span class="st">"&lt;category-1&gt;"</span>, <span class="st">"&lt;category-2&gt;"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That will insert a new file into the <code>R/</code> directory of your package called (by default) <code>srr-stats-standards.R</code>. All standards initially have a <a href="https://roxygen2.r-lib.org"><code>roxygen2</code></a> tag of <code>@srrstatsTODO</code>, to indicate that these standards are yet to be addressed. These tags are processed by the <a href="https://ropensci-review-tools.github.io/srr/"><code>srr</code> roclet</a> which needs to be connected with your package by modifying the <code>Roxygen</code> line of your <code>DESCRIPTION</code> file to the following form:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Roxygen</span><span class="op">:</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span> <span class="op">(</span>markdown <span class="op">=</span> <span class="cn">TRUE</span>, roclets <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span> <span class="op">(</span><span class="st">"namespace"</span>, <span class="st">"rd"</span>, <span class="st">"srr::srr_stats_roclet"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You do not need to add the <code>srr</code> package anywhere else in your <code>DESCRIPTION</code> file, nor do you need to retain this line when submitting packages to CRAN (or elsewhere). You should nevertheless retain the line at all other times, and you can easily disable the roclet output by including <code>#' @srrVerbose FALSE</code> somewhere within your documentation. Note that <code>srr</code> documentation lines are used only to produce on-screen output triggered by running <a href="https://roxygen2.r-lib.org/reference/roxygenize.html"><code>roxygen2::roxygensise()</code></a>, or the equivalent function, <a href="http://devtools.r-lib.org/reference/document.html"><code>devtools::document()</code></a>, and do not appear in actual package documentation.</p>
+<p>The <a href="https://ropensci-review-tools.github.io/srr/"><code>srr</code> roclet</a> recognises and process three tags:</p>
+<ol type="1">
+<li>
+<code>@srrstatsTODO</code> to flag standards yet to be addressed;</li>
+<li>
+<code>@srrstats</code> to flag standards which have been addressed, and followed by descriptions of how your code addresses those standards; and</li>
+<li>
+<code>@srrstatsNA</code> to flag standards which you deem not to be applicable to your code, followed by explanations of why you deem those standards not applicable.</li>
+</ol>
+<p>The file generated by <a href="https://ropensci-review-tools.github.io/srr/reference/srr_stats_roxygen.html"><code>srr_stats_roxygen()</code></a> initially contains two <a href="https://roxygen2.r-lib.org"><code>roxygen2</code></a> blocks, the first containing every standard potentially applicable to your package, tagged with <code>@srrstatsTODO</code>, and the second with a title of <code>NA_standards</code>, to document standards deemed not applicable. The first task after having generated this file is to move standards to approximate locations within your package where they are likely to be addressed. For example, standards concerning tests should be moved somewhere within the <code>tests/</code> directory, standards concerning documentation to the main <code>README.Rmd</code> file, or within a vignette file. The <a href="https://ropensci-review-tools.github.io/srr/reference/srr_stats_pkg_skeleton.html">package skeleton</a> includes code demonstrating how to include roclet tags within <code>.Rmd</code> files.</p>
+<p>Moving different standards to more appropriate locations within your code will break down an initially large single list of standards into more manageable groups dispersed throughout your code. As each standard is addressed, it should be moved to one or more locations in your code as near as possible to relevant code, the tag changed from <code>@srrstatsTODO</code> to <code>@srrstats</code>, and a brief description appended to explain how that standard is addressed. Standards deemed not to be applicable to your package should all be grouped together within a single <a href="https://roxygen2.r-lib.org"><code>roxygen2</code></a> block with a title of <code>NA_standards</code>, each with a tag of <code>@srrstatsNA</code>, and a brief description of why those standards are deemed not to be applicable.</p>
+<p>Software to be submitted for review must contain no <code>@srrstatsTODO</code> tags – that is, all standards must have been addressed by modifying every tag to either <code>@srrstats</code> or <code>@srrstatsNA</code>, as described above. Two useful functions to aid package alignment with standards are:</p>
+<ol type="1">
+<li>The <a href="https://ropensci-review-tools.github.io/srr/reference/srr_stats_pre_submit.html"><code>srr_stats_pre_submit()</code> function</a>, which confirms that all standards have been addressed prior to submission.</li>
+<li>The <a href="https://ropensci-review-tools.github.io/srr/reference/srr_report.html"><code>srr_report()</code> function</a>, which generates a summary report with hyperlinks to locations within your code at which all standards are placed.</li>
+</ol>
+<p>The output of both of these functions are included in the result of the <a href="hThe://ropensci-review-tools.github.io/pkgcheck/reference/pkgcheck.html"><code>pkgcheck()</code> function</a>, both when run locally, and as run upon initial package submission. The <a href="https://ropensci-review-tools.github.io/srr/reference/srr_stats_pre_submit.html"><code>srr_stats_pre_submit()</code> function</a> can be used locally to confirm that,</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ All applicable standards have been documented in this package</code></pre>
+</div>
+</div>
+<p>while the result of the <a href="https://ropensci-review-tools.github.io/srr/reference/srr_report.html"><code>srr_report()</code> function</a> may be accessed through the link given in the <code>pkgcheck</code> output, or it can be viewed by calling that function directly.</p>
+</section><section id="pkgdev-badges" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="pkgdev-badges">
+<span class="header-section-number">3.6</span> Gold, Silver, and Bronze Badges</h2>
+<p>All statistical software which is recommended for acceptance by reviewers is entitled to display an rOpenSci badge. This badge is a modified version of the badge for the <a href="https://devguide.ropensci.org/building.html#readme">current peer-review system</a>, with an additional section on the far right indicating the version of that standards against which the software was assessed, coloured according to the “grade” of the badge. The three possible badges look like this:</p>
+<p><a href="https://github.com/ropensci/statistical-software-review-book"><img src="badges/stats-bronze.png" class="img-fluid"></a> <strong>bronze</strong> for software which is sufficiently or minimally compliant with standards to pass review.</p>
+<p><a href="https://github.com/ropensci/statistical-software-review-book"><img src="badges/stats-silver.png" class="img-fluid"></a> <strong>silver</strong> for software for which complies with more than a minimal set of applicable standards, and which extends beyond bronze in least one notable way, as explained below.</p>
+<p><a href="https://github.com/ropensci/statistical-software-review-book"><img src="badges/stats-gold.png" class="img-fluid"></a> <strong>gold</strong> for software which complies with <em>all</em> standards which reviewers have deemed potentially applicable.</p>
+<p>The <a href="https://github.com/ropensci/software-review/blob/master/.github/ISSUE_TEMPLATE/F-submit-statistical-software-for-review.md">submission template</a> for statistical software submissions requires authors to identify the grade they wish to attain from the review process. These standards are not static, and it is always possible to elevate a badge to a higher grade subsequent to review. Badge grades may also be downgraded for code which is not continuously aligned with ongoing developments in standards. The following sub-sections provide further clarification of each grade.</p>
+<section id="pkgdev-bronze" class="level3" data-number="3.6.1"><h3 data-number="3.6.1" class="anchored" data-anchor-id="pkgdev-bronze">
+<span class="header-section-number">3.6.1</span> Bronze <a href="https://github.com/ropensci/statistical-software-review-book"><img src="badges/stats-bronze.png" class="img-fluid"></a>
+</h3>
+<p>Software which is sufficiently or minimally compliant with standards will receive a bronze badge. One common reason for this badge is software which authors do not intend to develop further following review. This commonly arises for software produced from research projects which have been completed, leaving no funding to further develop the software. Another reason might be that software has been developed for a particular use case, with authors unable to align it with additional standards in order to expand its general utility. A bronze badge need not signify any weakness or inadequacy in software, rather it will generally signify software which has been developed for one particular use case, and which will not be subject to significant further development.</p>
+</section><section id="pkgdev-silver" class="level3" data-number="3.6.2"><h3 data-number="3.6.2" class="anchored" data-anchor-id="pkgdev-silver">
+<span class="header-section-number">3.6.2</span> Silver <a href="https://github.com/ropensci/statistical-software-review-book"><img src="badges/stats-silver.png" class="img-fluid"></a>
+</h3>
+<p>Silver badges are granted to software which extends beyond the minimal requirements of bronze in at least one the following four aspects:</p>
+<ul>
+<li>Compliance with a good number of standards beyond those identified as minimally necessary. This will require reviewers and authors to agree on identification of both a minimal subset of necessary standards, and a full set of potentially applicable standards. This aspect may be considered fulfilled if at least one quarter of the additional potentially applicable standards have been met, and should definitely be considered fulfilled if more than one half have been met.</li>
+<li>Demonstrating excellence in compliance with multiple standards from at least two broad sub-categories. Sub-categories are distinguished in the <a href="standards.html">Standards Chapter</a> by three numbers, so that the <a href="#general-standards"><em>General Standards</em></a> have five sub-categories numbered 6.1.1 to 6.1.5. This aspect would require software to extend notably beyond the requirements of two or more standards in at least two sub-categories (regardless of whether general or category-specific standards). For example, software which might otherwise be assessed at bronze grade, yet which is both excellently documented, and has an outstanding test suite, may be considered to fulfil this aspect.</li>
+<li>Have a demonstrated <em>generality</em> of usage beyond one single envisioned use case. Software is frequently developed for one particular use case envisioned by the authors themselves. Generalising the utility of software so that it is readily applicable to other use cases, and satisfactorily documenting such generality of usage, represents another aspect which may be considered sufficient for software to attain a silver grade.</li>
+<li>Internal aspects of package structure and design. Many aspects of the internal structure and design of software are too variable to be effectively addressed by standards. Packages which are judged by reviewers to reflect notably excellent design choices, especially in the implementation of core statistical algorithms, may also be considered worthy of a silver grade.</li>
+</ul></section><section id="pkgdev-gold" class="level3" data-number="3.6.3"><h3 data-number="3.6.3" class="anchored" data-anchor-id="pkgdev-gold">
+<span class="header-section-number">3.6.3</span> Gold <a href="https://github.com/ropensci/statistical-software-review-book"><img src="badges/stats-gold.png" class="img-fluid"></a>
+</h3>
+<p>To attain a gold badge, software must comply with all applicable standards, and must also fulfil at least three of the four aspects described above for silver-grade badges. Both the applicability of standards, and fulfilment of these three aspects, will ultimately determined by reviewers. Moreover, compliance with all grades is assessed against current standards, meaning that a gold badge must be actively maintained as standards themselves are revised and updated.</p>
+
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/stats-devguide\.ropensci\.org\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./overview.html" class="pagination-link" aria-label="Overview of the Project and of this Book">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Overview of the Project and of this Book</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./pkgsubmission.html" class="pagination-link" aria-label="Guide for Editors">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Guide for Editors</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ropensci/statistical-software-review-book/edit/main/pkgdev.Rmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ropensci/statistical-software-review-book/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

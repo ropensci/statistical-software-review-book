@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://stats-devguide.ropensci.org/index.html</loc>
+    <lastmod>2025-07-09T09:45:10.286Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stats-devguide.ropensci.org/overview.html</loc>
+    <lastmod>2025-07-09T09:45:10.286Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stats-devguide.ropensci.org/pkgdev.html</loc>
+    <lastmod>2025-07-09T09:45:10.286Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stats-devguide.ropensci.org/pkgsubmission.html</loc>
+    <lastmod>2025-07-09T09:45:10.287Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stats-devguide.ropensci.org/pkgreview.html</loc>
+    <lastmod>2025-07-09T09:45:10.286Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stats-devguide.ropensci.org/standards.html</loc>
+    <lastmod>2025-07-09T09:45:10.288Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stats-devguide.ropensci.org/appendix.html</loc>
+    <lastmod>2025-07-09T09:45:10.284Z</lastmod>
+  </url>
+</urlset>
