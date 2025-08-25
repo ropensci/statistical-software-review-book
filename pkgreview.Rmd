@@ -229,7 +229,7 @@ themselves](https://github.com/ropensci/software-review/issues), along with the
 In formulating a general review of statistical software, we ask reviewers to
 explicitly consider the following aspects, some of which loosely correspond to
 sub-sections of the [*General Standards for Statistical
-Software*](#general-standards):
+Software*](/standards.html#standards-general):
 
 1. **Documentation**: Is the documentation sufficient to enable general use of
    the package beyond one specific use case? Do the various components of
@@ -261,7 +261,7 @@ particular attention to the assessment of algorithmic quality. Most
 category-specific standards include a central "*Algorithmic Standards*"
 component which can be used to provide starting points for more general
 considerations of algorithmic quality. The [*General Standard*
-**G1.1**](#general-standards) also requires all similar algorithms or
+**G1.1**](standards.html#standards-general) also requires all similar algorithms or
 implementations to be documented within the software, so reviewers should also
 have access to a list of comparable implementations.
 
