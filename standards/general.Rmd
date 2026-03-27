@@ -538,7 +538,7 @@ defaulting to the value defined by `base::all_equal()` of
   expected stochastic behaviour, such as through the following conditions:*
     - [**G5.9a**]{#G5_9a} *Adding trivial noise (for example, at the scale of
       `.Machine$double.eps`) to data does not meaningfully change results*
-    - [**G5.9b**]{#G5_9c} *Running under different random seeds or initial
+    - [**G5.9b**]{#G5_9b} *Running under different random seeds or initial
       conditions does not meaningfully change results*
 
 #### Extended tests
