@@ -372,7 +372,7 @@ developed of several packages offering unified interfaces. As for input data,
 standards do not suggest that any particular package use any of these, but they
 should at least be considered as comparative benchmarks against which to assess
 packages. Both the [`mlr3`](https://joss.theoj.org/papers/10.21105/joss.01903)
-and [`tidymoels`](https://tidymodels.org) collection of packages reflect
+and [`tidymodels`](https://tidymodels.org) collection of packages reflect
 unified ML workflows with modular and extensible interfaces to a range of ML
 routines.
 
