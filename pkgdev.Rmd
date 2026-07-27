@@ -125,7 +125,7 @@ should be given upon submission about why those checks fail, and why review may
 proceed in spite of such failures.
 
 An example result of the [`pkgcheck()`
-function](hThe://ropensci-review-tools.github.io/pkgcheck/reference/pkgcheck.html)
+function](https://ropensci-review-tools.github.io/pkgcheck/reference/pkgcheck.html)
 may be seen by applying it to the skeleton [`srr` (**S**oftware **R**eview
 **R**oclets) package](https://github.com/ropensci-review-tools/srr):
 
