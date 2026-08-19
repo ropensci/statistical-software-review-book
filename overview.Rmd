@@ -423,13 +423,13 @@ include:
 
 #### Probability Distributions {#overview-distributions}
 
-(**Not yet in scope**) The category of probability distributions is an outlier
-in the preceding network diagram, connected only to ML and
-regression/interpolation algorithms. It is nevertheless included here as
-a distinct category because we anticipate software which explicitly represents
-or relies on probability distributions to be subject to distinct standards and
-assessment procedures, particularly through enabling routines to be tested for
-robustness against a variety of perturbations to assumed distributional forms.
+The category of probability distributions is an outlier in the preceding
+network diagram, connected only to ML and regression/interpolation algorithms.
+It is nevertheless included here as a distinct category because we anticipate
+software which explicitly represents or relies on probability distributions to
+be subject to distinct standards and assessment procedures, particularly
+through enabling routines to be tested for robustness against a variety of
+perturbations to assumed distributional forms.
 
 Packages which fall within this category  include:
 
