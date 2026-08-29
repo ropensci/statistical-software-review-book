@@ -46,8 +46,8 @@ have dedicated pages for each category of standards.
 Submissions of statistical software for our peer-review system are currently
 handled by the following team of expert editors:
 
--   [Adam Sparks](https://adamhsparks.netlify.app/), Department of Primary Industries and Regional Development, Western Australia.
--   [Emi Tanaka](https://emitanaka.org/), Biological Data Science Institute, Australian National University
+-   [Adam Sparks](https://adamhsparks.netlify.app/), Centre for Crop and Disease Managment, Curtin University, Western Australia, Australia.
+-   [Emi Tanaka](https://emitanaka.org/), Biological Data Science Institute, Australian National University, Canberra, Australia.
 -   [Jouni Helske](https://jounihelske.netlify.app/), University of Jyväskylä, Finland.
 -   [Rebecca Killick](http://www.lancs.ac.uk/~killick/), Lancaster University, UK
 -   [Toby Hocking](http://tdhock.github.io/), Northern Arizona University, USA
