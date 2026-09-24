@@ -3,6 +3,7 @@ project:
 
 book:
   title: "rOpenSci Statistical Software Peer Review"
+  llms-txt: true
   author: "Mark Padgham and Noam Ross"
   description: |
     Documentation of rOpenSci's project on expanding software peer review to
