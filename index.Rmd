@@ -46,11 +46,25 @@ have dedicated pages for each category of standards.
 Submissions of statistical software for our peer-review system are currently
 handled by the following team of expert editors:
 
--   [Adam Sparks](https://adamhsparks.netlify.app/), Department of Primary Industries and Regional Development, Western Australia.
--   [Emi Tanaka](https://emitanaka.org/), Biological Data Science Institute, Australian National University
--   [Jouni Helske](https://jounihelske.netlify.app/), University of Jyväskylä, Finland.
--   [Rebecca Killick](http://www.lancs.ac.uk/~killick/), Lancaster University, UK
--   [Toby Hocking](http://tdhock.github.io/), Northern Arizona University, USA
+```{r stats-team-list}
+#| echo: false
+#| results: 'asis'
+
+u <- "https://raw.githubusercontent.com/ropensci/roweb3/refs/heads/main/data/team/team.json"
+team <- jsonlite::read_json (u, simplifyVector = TRUE)
+stats_team <- team [which (team$stats), ]
+is_current_ed <- vapply (stats_team$roles, function (i) "editor" %in% i, logical (1L))
+is_alumnus <- ifelse (is.na (stats_team$alumnus), FALSE, stats_team$alumnus)
+stats_team <- stats_team [which (is_current_ed & !is_alumnus), ]
+
+nm <- ifelse (is.na (stats_team$url) | stats_team$url == "",
+              stats_team$name,
+              paste0 ("[", stats_team$name, "](", stats_team$url, ")"))
+aff <- ifelse (is.na (stats_team$affiliation) | stats_team$affiliation == "",
+               "",
+               paste0 (", ", stats_team$affiliation))
+cat (paste0 ("-   ", nm, aff), sep = "\n")
+```
 
 This project has developed to its current state largely through the support of
 a great advisory and editorial committee. We are grateful to all of the
