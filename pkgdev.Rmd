@@ -125,7 +125,7 @@ should be given upon submission about why those checks fail, and why review may
 proceed in spite of such failures.
 
 An example result of the [`pkgcheck()`
-function](hThe://ropensci-review-tools.github.io/pkgcheck/reference/pkgcheck.html)
+function](https://ropensci-review-tools.github.io/pkgcheck/reference/pkgcheck.html)
 may be seen by applying it to the skeleton [`srr` (**S**oftware **R**eview
 **R**oclets) package](https://github.com/ropensci-review-tools/srr):
 
@@ -194,6 +194,12 @@ continuously throughout package development, to ensure that
 [`autotest_package()`](https://ropensci-review-tools.github.io/autotest/reference/autotest_package.html)
 returns clean (`NULL`) results when the package is first submitted.
 
+Note that use of
+[`autotest`](https://github.com/ropensci-review-tools/autotest) is recommended
+yet not strictly required. The package is intended to aid package development
+and preparation for submission, yet it is still experimental, and it may not be
+possible for all packages to generate clean (`NULL`) results.
+
 
 ## The [`srr` package](https://github.com/ropensci-review-tools/srr) {#pkgdev-srr}
 
@@ -201,7 +207,7 @@ Once a package has been sufficiently developed to begin alignment with our
 standards, and once all issues revealed by
 [`autotest`](https://ropensci-review-tools.github.io/autotest/) have been
 addressed, authors will need to use our third tool, the [`ssr` (**s**oftware
-**r**eveiw **r**oclets) package](https://ropensci-review-tools.github.io/srr/)
+**r**eview **r**oclets) package](https://ropensci-review-tools.github.io/srr/)
 to insert both general and category-specific standards into their code, and to
 begin the process of documenting within the code itself how and where the code
 adheres to the individual standards. The [`srr`

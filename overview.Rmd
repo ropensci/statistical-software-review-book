@@ -193,6 +193,7 @@ to date developed standards for the following categories:
 5. [Time Series Analyses](#overview-ts)
 6. [Machine Learning](#overview-ml)
 7. [Spatial Analyses](#overview-spatial)
+8. [Probability Distributions](#overview-distributions)
 
 Each of these categories is represented by a set of standards, as briefly
 described in the following sub-section. We anticipate that submissions will
@@ -202,15 +203,14 @@ alignment with specific categories may not always be straightforward, and we
 anticipate that some submissions will require negotiation between developers
 and editors to identify appropriate categories prior to full submission.
 
-We also intend to expand the system to include the additional four categories
+We also intend to expand the system to include the additional three categories
 of:
 
 1. [Wrapper Packages](#overview-wrapper)
 2. [Network Analysis Software](#overview-networks)
-3. [Probability Distributions](#overview-distributions)
-4. [Workflow Support](#overview-workflow)
+3. [Workflow Support](#overview-workflow)
 
-While software in these latter four categories is beyond the scope of current
+While software in these latter three categories is beyond the scope of current
 standards, we invite any software developers interested in submitting software
 within one or more of these categories to contact us directly to enquire about
 the status of associated standards, and the possibility of submitting. Finally,
@@ -372,7 +372,7 @@ developed of several packages offering unified interfaces. As for input data,
 standards do not suggest that any particular package use any of these, but they
 should at least be considered as comparative benchmarks against which to assess
 packages. Both the [`mlr3`](https://joss.theoj.org/papers/10.21105/joss.01903)
-and [`tidymoels`](https://tidymodels.org) collection of packages reflect
+and [`tidymodels`](https://tidymodels.org) collection of packages reflect
 unified ML workflows with modular and extensible interfaces to a range of ML
 routines.
 
@@ -423,13 +423,13 @@ include:
 
 #### Probability Distributions {#overview-distributions}
 
-(**Not yet in scope**) The category of probability distributions is an outlier
-in the preceding network diagram, connected only to ML and
-regression/interpolation algorithms. It is nevertheless included here as
-a distinct category because we anticipate software which explicitly represents
-or relies on probability distributions to be subject to distinct standards and
-assessment procedures, particularly through enabling routines to be tested for
-robustness against a variety of perturbations to assumed distributional forms.
+The category of probability distributions is an outlier in the preceding
+network diagram, connected only to ML and regression/interpolation algorithms.
+It is nevertheless included here as a distinct category because we anticipate
+software which explicitly represents or relies on probability distributions to
+be subject to distinct standards and assessment procedures, particularly
+through enabling routines to be tested for robustness against a variety of
+perturbations to assumed distributional forms.
 
 Packages which fall within this category  include:
 

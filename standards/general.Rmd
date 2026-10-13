@@ -130,7 +130,7 @@ must be explicitly clarified.
     - [**G1.4a**]{#G1_4a} *All internal (non-exported) functions should also be
       documented in standard [`roxygen2`](https://roxygen2.r-lib.org/) format,
       along with a final `@noRd` tag to suppress automatic generation of `.Rd`
-      files.*
+      files or [`@keywords internal`](https://roxygen2.r-lib.org/reference/tags-index-crossref.html?q=keywords%20internal#null) if documentation is still desired.*
 
 #### Supplementary Documentation
 
@@ -353,7 +353,7 @@ of input classes.
 
 **Columns of tabular inputs**
 
-The follow standards apply to `data.frame`-like tabular objects (including all
+The following standards apply to `data.frame`-like tabular objects (including all
 derived and otherwise compatible classes), and so do not apply to `matrix` or
 `array` objects.
 
@@ -440,7 +440,7 @@ listed here need not necessarily be listed as `Imports` to a package.
 
 - [**G4.0**]{#G4_0} *Statistical Software which enables outputs to be written
   to local files should parse parameters specifying file names to ensure
-  appropriate file suffices are automatically generated where not provided.*
+  appropriate file suffixes are automatically generated where not provided.*
 
 ### Testing 
 
@@ -510,7 +510,7 @@ following types:
     - [**G5.6b**]{#G5_6b} *Parameter recovery tests should be run with multiple
       random seeds when either data simulation or the algorithm contains
       a random component. (When long-running, such tests may be part of an
-      extended, rather than regular, test suite; see G4.10-4.12, below).*
+      extended, rather than regular, test suite; see G5.10-4.12, below).*
 
 Note that authors should ensure that they use [at least v3 of the `testthat`
 package](https://testthat.r-lib.org), which introduced a
@@ -538,7 +538,7 @@ defaulting to the value defined by `base::all_equal()` of
   expected stochastic behaviour, such as through the following conditions:*
     - [**G5.9a**]{#G5_9a} *Adding trivial noise (for example, at the scale of
       `.Machine$double.eps`) to data does not meaningfully change results*
-    - [**G5.9b**]{#G5_9c} *Running under different random seeds or initial
+    - [**G5.9b**]{#G5_9b} *Running under different random seeds or initial
       conditions does not meaningfully change results*
 
 #### Extended tests

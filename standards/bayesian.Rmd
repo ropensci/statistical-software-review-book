@@ -401,7 +401,7 @@ internal sampling algorithms:
 Regardless of whether or not Bayesian Software implements internal sampling
 algorithms, it should:
 
-- **BS4.2** *Implement at least one means to validate posterior estimates.*
+- [**BS4.2**]{#BS4_2} *Implement at least one means to validate posterior estimates.*
 
 An example of posterior validation is the [Simulation Based
 Calibration](https://arxiv.org/abs/1804.06788) approach implemented in the
