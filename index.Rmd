@@ -102,28 +102,36 @@ BibTeX entry:
 #| results: 'asis'
 #| warning: false
 cat("\n```bibtex\n")
-u <- "https://zenodo.org/record/5556755" # universal URL redirects to latest
-s <- rvest::session(u)
-u <- paste0(s$url, "/export/hx") # redirected
-out <- rvest::read_html(u)
-bibentry <- rvest::html_text(out)
-out <- strsplit (bibentry, "\n")[[1]]
-writeLines(out, "dev_citation_BibTeX.bib")
+# Zenodo can fail on CI runners, so explicit timeout
+get_bib <- function () {
+    op <- options (timeout = 20L)
+    on.exit (options (op))
+    u <- "https://zenodo.org/record/5556755" # universal URL redirects to latest
+    s <- rvest::session (u)
+    u <- paste0 (s$url, "/export/hx") # redirected
+    rvest::html_text (rvest::read_html (u))
+}
+# Static fallback entry from book bibliography
+get_fallback <- function () {
+    bib <- readLines ("statistical-software.bib", encoding = "UTF-8")
+    start <- grep ("^@software\\{padgham_2021_5556756,", bib)
+    end <- start + which (bib [-seq (start)] == "}") [1]
+    entry <- bib [start:end]
+    entry <- entry [!grepl ("^\\s*note\\s*=", entry)]
+    entry [length (entry) - 1L] <- sub (",$", "", entry [length (entry) - 1L])
+    paste0 (entry, collapse = "\n")
+}
+bibentry <- tryCatch (
+    get_bib (),
+    error = function (e) get_fallback ()
+)
+out <- strsplit (bibentry, "\n") [[1]]
+writeLines (out, "dev_citation_BibTeX.bib")
 cat (bibentry)
 cat("\n```\n")
 ```
 
 ## Contributors
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
