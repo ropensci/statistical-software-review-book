@@ -504,9 +504,8 @@ code, and the computer language being wrapped.
 
 #### Networks {#overview-networks}
 
-(**Not yet in scope**) Network software is a particular area of application of
-what might often be considered more generic algorithms, as in the example
-described above of the
+Network software is a particular area of application of what might often be
+considered more generic algorithms, as in the example described above of the
 [`grapherator`](https://github.com/jakobbossek/grapherator) package, for which
 this category is appropriate only because the input data are assumed to
 represent a particular form of graphical relationship, while most of the
@@ -529,8 +528,10 @@ and benchmarks include:
    yet is clearly amenable to benchmarking, as well as measures of stability in
    response to variable input structures.
 
-Network software which is likely more difficult to assess or compare in any
-general way includes:
+Standards for network software, prefixed "NW", are given in the
+[Network Software](#standards-networks) section of the standards. Network
+software which is likely more difficult to assess or compare in any general way
+includes:
 
 1. [`tcherry`](https://joss.theoj.org/papers/10.21105/joss.01480) is a package
    for "Learning the structure of tcherry trees," which themselves are
