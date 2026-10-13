@@ -1,4 +1,4 @@
-.PHONY: all build test open clean help
+.PHONY: all build test open allcon clean help
 
 TARGET=index
 
@@ -12,6 +12,9 @@ test: ## Test that all standards conform to expected format
 
 open: ## open the rendered book in default browser
 	xdg-open _book/$(TARGET).html &
+
+allcon: ## Update contributors lists in README.md and index.Rmd
+	Rscript -e 'library ("allcontributors"); add_contributors (files = c ("README.md", "index.Rmd"), ncols = 5, section_names = c ("Content", "Issue Authors", "Issue Contributors"))'
 
 clean: ## Remove all quarto build artefacts
 	rm -rf _book
