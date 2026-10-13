@@ -50,18 +50,10 @@ All of the content of this repository is licensed
 
 ## Contributors
 
-
-
-
-
-
-
-
-
-
-
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
 <!-- prettier-ignore-start -->
+
 <!-- markdownlint-disable -->
 
 All contributions to this project are gratefully acknowledged using the [`allcontributors` package](https://github.com/ropensci/allcontributors) following the [allcontributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
@@ -130,20 +122,54 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=elong0527">elong0527</a>
 </td>
 <td align="center">
-<a href="https://github.com/christophsax">
-<img src="https://avatars.githubusercontent.com/u/1390827?v=4" width="100px;" alt=""/>
+<a href="https://github.com/tjmahr">
+<img src="https://avatars.githubusercontent.com/u/1890315?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=christophsax">christophsax</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=tjmahr">tjmahr</a>
 </td>
 </tr>
 
 
 <tr>
 <td align="center">
-<a href="https://github.com/Pakillo">
-<img src="https://avatars.githubusercontent.com/u/1597843?v=4" width="100px;" alt=""/>
+<a href="https://github.com/robjhyndman">
+<img src="https://avatars.githubusercontent.com/u/127518?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=Pakillo">Pakillo</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=robjhyndman">robjhyndman</a>
+</td>
+<td align="center">
+<a href="https://github.com/rkillick">
+<img src="https://avatars.githubusercontent.com/u/16543041?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=rkillick">rkillick</a>
+</td>
+<td align="center">
+<a href="https://github.com/n-kall">
+<img src="https://avatars.githubusercontent.com/u/33577035?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=n-kall">n-kall</a>
+</td>
+<td align="center">
+<a href="https://github.com/maurolepore">
+<img src="https://avatars.githubusercontent.com/u/5856545?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=maurolepore">maurolepore</a>
+</td>
+<td align="center">
+<a href="https://github.com/lcolladotor">
+<img src="https://avatars.githubusercontent.com/u/2288213?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=lcolladotor">lcolladotor</a>
+</td>
+</tr>
+
+
+<tr>
+<td align="center">
+<a href="https://github.com/grwhumphries">
+<img src="https://avatars.githubusercontent.com/u/1613298?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=grwhumphries">grwhumphries</a>
 </td>
 <td align="center">
 <a href="https://github.com/briatte">
@@ -152,22 +178,32 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <a href="https://github.com/ropensci/statistical-software-review-book/commits?author=briatte">briatte</a>
 </td>
 <td align="center">
-<a href="https://github.com/grwhumphries">
-<img src="https://avatars.githubusercontent.com/u/1613298?v=4" width="100px;" alt=""/>
+<a href="https://github.com/Pakillo">
+<img src="https://avatars.githubusercontent.com/u/1597843?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=grwhumphries">grwhumphries</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=Pakillo">Pakillo</a>
 </td>
 <td align="center">
-<a href="https://github.com/lcolladotor">
-<img src="https://avatars.githubusercontent.com/u/2288213?v=4" width="100px;" alt=""/>
+<a href="https://github.com/christophsax">
+<img src="https://avatars.githubusercontent.com/u/1390827?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=lcolladotor">lcolladotor</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=christophsax">christophsax</a>
 </td>
 <td align="center">
-<a href="https://github.com/rkillick">
-<img src="https://avatars.githubusercontent.com/u/16543041?v=4" width="100px;" alt=""/>
+<a href="https://github.com/AntoineSoetewey">
+<img src="https://avatars.githubusercontent.com/u/17910063?v=4" width="100px;" alt=""/>
 </a><br>
-<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=rkillick">rkillick</a>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=AntoineSoetewey">AntoineSoetewey</a>
+</td>
+</tr>
+
+
+<tr>
+<td align="center">
+<a href="https://github.com/adamhsparks">
+<img src="https://avatars.githubusercontent.com/u/3195906?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/statistical-software-review-book/commits?author=adamhsparks">adamhsparks</a>
 </td>
 </tr>
 
@@ -214,12 +250,6 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 
 <tr>
 <td align="center">
-<a href="https://github.com/n-kall">
-<img src="https://avatars.githubusercontent.com/u/33577035?v=4" width="100px;" alt=""/>
-</a><br>
-<a href="https://github.com/ropensci/statistical-software-review-book/issues?q=is%3Aissue+author%3An-kall">n-kall</a>
-</td>
-<td align="center">
 <a href="https://github.com/KlausVigo">
 <img src="https://avatars.githubusercontent.com/u/3372431?v=4" width="100px;" alt=""/>
 </a><br>
@@ -230,5 +260,7 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 </table>
 
 <!-- markdownlint-enable -->
+
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
