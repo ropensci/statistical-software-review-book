@@ -51,8 +51,9 @@ heading](https://cran.r-project.org/web/views/Distributions.html#Misc) on
 *Unified interface to handle distributions*. Packages mentioned in that
 sub-section include:
 
-- The core [`stats`](https://cran.r-project.org/web/packages/STAT/index.html) 
-  package distributed wtih base `R`;
+- The core [`stats`
+  package](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/00Index.html)
+  distributed with base `R`;
 - The [`distr` family of packages](https://distr.r-forge.r-project.org/), which
   offer an extremely powerful and flexibility range of S4-class objects for
   representing and manipulating probability distributions;
