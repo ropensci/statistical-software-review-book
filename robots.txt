@@ -1,0 +1,1 @@
+Sitemap: https://stats-devguide.ropensci.org/sitemap.xml
