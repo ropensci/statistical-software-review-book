@@ -46,7 +46,6 @@ have dedicated pages for each category of standards.
 Submissions of statistical software for our peer-review system are currently
 handled by the following team of expert editors:
 
-
 ```{r stats-team-list}
 #| echo: false
 #| results: 'asis'
