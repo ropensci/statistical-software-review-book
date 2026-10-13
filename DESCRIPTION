@@ -17,6 +17,7 @@ Imports:
     ggplot2,
     here,
     igraph,
+    jsonlite,
     knitr,
     quarto,
     rvest,
