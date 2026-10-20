@@ -1,0 +1,11 @@
+# rOpenSci Statistical Software Peer Review
+
+## Pages
+
+- [rOpenSci Statistical Software Peer Review](https://stats-devguide.ropensci.org/index.llms.md)
+- [[[2]{.chapter-number}  [ Overview of the Project and of this Book]{.chapter-title}]{#overview .quarto-section-identifier}](https://stats-devguide.ropensci.org/overview.llms.md)
+- [[[3]{.chapter-number}  [Guide for Authors]{.chapter-title}]{#pkgdev .quarto-section-identifier}](https://stats-devguide.ropensci.org/pkgdev.llms.md)
+- [[[4]{.chapter-number}  [Guide for Editors ]{.chapter-title}]{#pkgsubmission .quarto-section-identifier}](https://stats-devguide.ropensci.org/pkgsubmission.llms.md)
+- [[[5]{.chapter-number}  [Guide for Reviewers]{.chapter-title}]{#pkgreview .quarto-section-identifier}](https://stats-devguide.ropensci.org/pkgreview.llms.md)
+- [[[6]{.chapter-number}  [Standards: Version {{< var version >}}]{.chapter-title}]{#standards .quarto-section-identifier}](https://stats-devguide.ropensci.org/standards.llms.md)
+- [[7]{.chapter-number}  [Appendices]{.chapter-title}](https://stats-devguide.ropensci.org/appendix.llms.md)
