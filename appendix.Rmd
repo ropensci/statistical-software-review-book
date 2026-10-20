@@ -689,9 +689,6 @@ in these lines:
         label_version: v0.X
     ```
 
-
-
-
 Approving a package will then automatically add the badge for the corresponding
 stats grade, along with the latest version number. All other processes within
 the `ropensci-review-bot` rely on the external endpoint, `stats_badge`,
@@ -700,3 +697,10 @@ defined [by the `stats_badge()` function in
 That function reads the version from the badge at the time of approval, or
 defaults to the latest version for packages still under review and not yet
 approved.
+
+## New stats categories
+
+Any new stats categories also have to be added to hard-coded values in
+[`ropensci-review-tools/srr`](https://github.com/ropensci-review-tools/srr/).
+See examples in [this
+PR](https://github.com/ropensci-review-tools/srr/pull/32/changes).
