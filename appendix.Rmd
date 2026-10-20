@@ -680,6 +680,17 @@ release of this book.
 3. Ensure that corresponding issue labels exist on [the main `software-review`
    repository](https://github.com/ropensci/software-review/labels), or create
    issue labels with new version numbers if they don't exist.
+4. Update the hard-coded version to current value in the [`buffy`
+   config](https://github.com/ropensci-org/buffy/blob/main/config/settings-production.yml),
+in these lines:
+    ```{yaml}
+    ropensci_mint:
+        only: editors
+        label_version: v0.X
+    ```
+
+
+
 
 Approving a package will then automatically add the badge for the corresponding
 stats grade, along with the latest version number. All other processes within
